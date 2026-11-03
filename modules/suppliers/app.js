@@ -7,6 +7,8 @@ let stored={};try{stored=JSON.parse(localStorage.getItem(STORAGE)||'{}')}catch{}
 // New networks remain visible. Only explicit hidden choices are persisted.
 const hiddenNetworks=new Set((stored.hidden||[]).filter(k=>NETWORKS[k]?.is_network));
 let showIndependent=stored.independent!==false;
+const manufacturerKeys=new Set(SUPPLIERS.filter(d=>d.kind==='Производитель').map(d=>d.company_key).filter(Boolean));
+const manufacturerOnly=document.getElementById('manufacturers-only');manufacturerOnly.checked=stored.manufacturers!==false;
 const networkOf=d=>NETWORKS[d.company_key];
 const locationOf=d=>[d.lat,d.lon<0?d.lon+360:d.lon];
 const colorOf=d=>networkOf(d)?.is_network?networkOf(d).color:d.kind==='Производитель'?'#8052a0':/склад/i.test(d.kind)?'#087f73':'#2168a4';
@@ -38,9 +40,9 @@ let filtered=[],selected=null;const markers=new Map();
 function populateRegions(){const keep=region.value;region.innerHTML='<option value="">Все регионы</option>';[...new Set(SUPPLIERS.filter(d=>!district.value||d.district===district.value).map(d=>d.region))].sort((a,b)=>a.localeCompare(b,'ru')).forEach(t=>region.add(new Option(t,t)));if([...region.options].some(o=>o.value===keep))region.value=keep}
 populateRegions();
 function distance(d){return d.distance_km!=null?`≈ ${Math.round(d.distance_km)} км от Москвы`:''}
-function persist(){try{localStorage.setItem(STORAGE,JSON.stringify({hidden:[...hiddenNetworks],independent:showIndependent}))}catch{}}
+function persist(){try{localStorage.setItem(STORAGE,JSON.stringify({hidden:[...hiddenNetworks],independent:showIndependent,manufacturers:manufacturerOnly.checked}))}catch{}}
 function networkVisible(d){return networkOf(d)?.is_network?!hiddenNetworks.has(d.company_key):showIndependent}
-function matchesFilters(d){const q=search.value.trim().toLocaleLowerCase('ru');return(!q||[d.name,networkOf(d)?.name,d.address,d.region,d.tags.join(' '),d.note].join(' ').toLocaleLowerCase('ru').includes(q))&&(!cat.value||d.tags.includes(cat.value))&&(!kind.value||d.kind===kind.value)&&(!region.value||d.region===region.value)&&(!district.value||d.district===district.value)&&(!profile.value||d.profile===profile.value)&&(radius.value==='all'||d.distance_km<=Number(radius.value))}
+function matchesFilters(d){const q=search.value.trim().toLocaleLowerCase('ru');return(!manufacturerOnly.checked||manufacturerKeys.has(d.company_key))&&(!q||[d.name,networkOf(d)?.name,d.address,d.region,d.tags.join(' '),d.note].join(' ').toLocaleLowerCase('ru').includes(q))&&(!cat.value||d.tags.includes(cat.value))&&(!kind.value||d.kind===kind.value)&&(!region.value||d.region===region.value)&&(!district.value||d.district===district.value)&&(!profile.value||d.profile===profile.value)&&(radius.value==='all'||d.distance_km<=Number(radius.value))}
 function oneNetwork(key){if(!NETWORKS[key]?.is_network)return;ALL_NETWORKS.forEach(n=>hiddenNetworks.add(n.id));hiddenNetworks.delete(key);showIndependent=false;search.value='';cat.value='';kind.value='';profile.value='';district.value='';region.value='';radius.value='all';populateRegions();persist();render(true)}
 function popup(d){const n=networkOf(d),c=colorOf(d);return `<h2>${esc(d.name)}</h2>${n?.is_network?`<div class="popup-network"><span class="swatch" style="background:${c}"></span>${esc(n.name)} · ${n.point_count} адресов${n.corporate_color?'':' · условный цвет'}</div>`:''}<span class="tag">${esc(d.kind)}</span><p>${esc(d.address)}</p><p><strong>${distance(d)}</strong> · по прямой</p><p>${d.tags.map(esc).join(' · ')}</p>${d.note?`<p class="note">${esc(d.note)}</p>`:''}<p class="precision">${esc(d.precision)}</p><p class="note">${esc(d.source_type)} · проверено ${esc(d.checked)}<br>${esc(d.address_status)}</p><p>${d.phone?`<a href="tel:${d.phone.split(/;|доб\.|добавочный/)[0].replace(/[^+0-9]/g,'')}">${esc(d.phone)}</a>`:'Телефон не опубликован — см. источник'}</p><div class="links">${d.website?`<a href="${esc(d.website)}" target="_blank" rel="noopener">Сайт компании ↗</a>`:'<span class="note">Собственный сайт не подтверждён</span>'}<a href="${esc(d.source)}" target="_blank" rel="noopener">Источник / контакты ↗</a><a href="https://yandex.ru/maps/?text=${encodeURIComponent(d.address)}" target="_blank" rel="noopener">Адрес / маршрут ↗</a>${n?.is_network?`<button class="network-focus" data-network="${esc(n.id)}">Показать все адреса этой сети</button>`:''}</div>`}
 function select(d){selected=d.id;document.querySelectorAll('.row').forEach(e=>e.classList.toggle('selected',Number(e.dataset.id)===selected));const m=markers.get(d.id);if(m&&map){if(cluster.zoomToShowLayer)cluster.zoomToShowLayer(m,()=>{map.setView(m.getLatLng(),Math.max(map.getZoom(),12));m.openPopup()});else{map.setView(m.getLatLng(),13);m.openPopup()}}}
@@ -77,6 +79,7 @@ function render(autoFit=false){
  if(!count)list.innerHTML='<p class="empty">Нет видимых точек по выбранным условиям. Проверьте фильтры и включённые сети.</p>';
  updateNetworkPanel();if(autoFit)fit();
 }
+manufacturerOnly.onchange=()=>{persist();render(true)};
 search.addEventListener('input',()=>render());[cat,kind,region,radius,profile].forEach(e=>e.onchange=()=>render(true));district.onchange=()=>{region.value='';populateRegions();render(true)};
 document.getElementById('network-search').oninput=updateNetworkPanel;
 document.getElementById('all-networks').onchange=e=>{ALL_NETWORKS.forEach(n=>e.target.checked?hiddenNetworks.delete(n.id):hiddenNetworks.add(n.id));persist();render()};
