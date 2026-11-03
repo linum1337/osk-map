@@ -1,1 +1,2 @@
 const user=window.CURRENT_USER;document.getElementById('portal-account').textContent=user.login+' · '+(user.role==='admin'?'Администратор':'Менеджер');document.getElementById('portal-rights').textContent=user.canExport?'Выгрузки доступны администратору':'Выгрузки доступны только администратору';
+const switchUser=document.createElement('a');switchUser.href='/login';switchUser.textContent='Сменить пользователя';switchUser.style.cssText='display:block;margin-top:5px;color:#1959a6;font-size:12px';document.getElementById('portal-account').append(switchUser);

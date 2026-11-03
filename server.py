@@ -1,7 +1,7 @@
-import os,hmac,threading,urllib.request,urllib.error,json,io,shutil,re
+import os,hmac,threading,urllib.request,urllib.error,json,io,shutil,re,secrets,hashlib
 from pathlib import Path
 from urllib.parse import urlsplit
-from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,send_file,redirect
+from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,send_file,redirect,session,render_template_string
 from werkzeug.middleware.proxy_fix import ProxyFix
 import crm_store,auth_store,table_export
 ROOT=Path(__file__).resolve().parent
@@ -12,6 +12,31 @@ crm_store.init()
 auth_store.init()
 app=Flask(__name__,static_folder=None)
 app.config['MAX_CONTENT_LENGTH']=100000
+key_file=crm_store.DB.parent/'session.key'
+try:
+ with key_file.open('x') as key: key.write(secrets.token_hex(32))
+ key_file.chmod(0o600)
+except FileExistsError:pass
+app.secret_key=key_file.read_text().strip()
+app.config.update(SESSION_COOKIE_SECURE=True,SESSION_COOKIE_HTTPONLY=True,SESSION_COOKIE_SAMESITE='Lax',SESSION_COOKIE_NAME='osk_session')
+def revision(marker):return hmac.new(app.secret_key.encode(),marker.encode(),hashlib.sha256).hexdigest()
+def account(login,password=None):
+ if login==USERNAME:
+  if password is not None and hmac.compare_digest(password.encode(),PASSWORD.encode()):return {'login':USERNAME,'role':'admin','canExport':True},revision(PASSWORD)
+ if password is not None:
+  user=auth_store.authenticate(login,password)
+  if not user:return None,None
+  login=user['login']
+ with crm_store.connect() as c:row=c.execute('SELECT display_name,manager,password_hash FROM accounts WHERE login=? AND active=1',(auth_store.normalize(login),)).fetchone()
+ if not row:return None,None
+ return {'login':row[0],'manager':row[1],'role':'manager','canExport':False},revision(row[2])
+def session_user():
+ login=session.get('login')
+ if not isinstance(login,str):return None
+ if session.get('kind')=='admin':user,rev=({'login':USERNAME,'role':'admin','canExport':True},revision(PASSWORD)) if login==USERNAME else (None,'')
+ else:user,rev=account(login)
+ return user if user and hmac.compare_digest(session.get('revision',''),rev) else None
+
 # Run only behind the supplied Caddy proxy (one trusted hop).
 app.wsgi_app=ProxyFix(app.wsgi_app,x_for=1,x_proto=1,x_host=1)
 cache=crm_store.DB.parent/'tiles';cache.mkdir(parents=True,exist_ok=True)
@@ -26,15 +51,14 @@ for module in ('transport','suppliers'):
 
 @app.before_request
 def guard():
- if request.path=='/healthz':return
+ if request.path in ('/healthz','/login','/login.css','/assets/osk-logo.png'):return
+ g.user=session_user()
  auth=request.authorization
- if not auth or auth.type.lower()!='basic':
-  return Response('Требуется вход',401,{'WWW-Authenticate':'Basic realm="OSK", charset="UTF-8"'})
- login,password=auth.username or '',auth.password or ''
- is_admin=hmac.compare_digest(login.encode(),USERNAME.encode()) and hmac.compare_digest(password.encode(),PASSWORD.encode())
- g.user={'login':USERNAME,'role':'admin','canExport':True} if is_admin else auth_store.authenticate(login,password)
+ if not g.user and auth and auth.type.lower()=='basic':g.user,_=account(auth.username or '',auth.password or '')
  if not g.user:
-  return Response('Неверный логин или пароль',401,{'WWW-Authenticate':'Basic realm="OSK", charset="UTF-8"'})
+  if request.method=='GET' and request.accept_mimetypes.accept_html and not request.path.startswith('/api/'):
+   return redirect('/login?next='+request.path)
+  return jsonify(error='Требуется вход'),401
  if (request.path.startswith('/api/export/') or request.path.lower().endswith(('.csv','.xlsx','.xls','.zip'))) and not g.user['canExport']:
   return jsonify(error='Выгрузка доступна только администратору'),403
  if request.method not in ('GET','HEAD','OPTIONS'):
@@ -48,6 +72,28 @@ def headers(response):
  response.headers['Referrer-Policy']='same-origin'
  response.headers['Cache-Control']='private, no-cache'
  return response
+@app.route('/login',methods=['GET','POST'])
+def login_page():
+ error=''
+ if 'login_csrf' not in session:session['login_csrf']=secrets.token_urlsafe(32)
+ next_page=request.values.get('next','/')
+ if next_page.split('?')[0] not in ('/','/transport/','/suppliers/','/companies/'):next_page='/'
+ if request.method=='POST':
+  origin=request.headers.get('Origin')
+  token=request.form.get('csrf','')
+  if (origin and origin.rstrip('/')!=request.host_url.rstrip('/')) or not hmac.compare_digest(token,session['login_csrf']):return Response('Обновите страницу входа и повторите попытку',403)
+  user,rev=account(request.form.get('login',''),request.form.get('password',''))
+  if user:
+   session.clear();session.update(login=user['login'],kind=user['role'],revision=rev)
+   return redirect(next_page,code=303)
+  error='Неверный логин или пароль'
+ options=[(USERNAME,'Администратор · '+USERNAME)]+[(name,name) for name in ['Андрей Логинов','Анна Скрынник','Светлана Квашина','Любовь Коровина'] if name!=USERNAME]
+ return render_template_string((ROOT/'app/login.html').read_text(),options=options,csrf=session['login_csrf'],next_page=next_page,error=error,selected=request.form.get('login',USERNAME)),401 if error else 200
+@app.get('/login.css')
+def login_css():return send_from_directory(ROOT/'app','login.css')
+@app.post('/logout')
+def logout():
+ session.clear();return jsonify(ok=True)
 @app.get('/healthz')
 def health():return jsonify(ok=True)
 @app.get('/api/me')
