@@ -1,7 +1,7 @@
-import os,hmac,threading,urllib.request,urllib.error,json,io
+import os,hmac,threading,urllib.request,urllib.error,json,io,shutil,re
 from pathlib import Path
 from urllib.parse import urlsplit
-from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,send_file
+from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,send_file,redirect
 from werkzeug.middleware.proxy_fix import ProxyFix
 import crm_store,auth_store,table_export
 ROOT=Path(__file__).resolve().parent
@@ -16,6 +16,14 @@ app.config['MAX_CONTENT_LENGTH']=100000
 app.wsgi_app=ProxyFix(app.wsgi_app,x_for=1,x_proto=1,x_host=1)
 cache=crm_store.DB.parent/'tiles';cache.mkdir(parents=True,exist_ok=True)
 slots=threading.BoundedSemaphore(6)
+MODULE_DATA=crm_store.DB.parent/'modules'
+for module in ('transport','suppliers'):
+ target=MODULE_DATA/module;target.mkdir(parents=True,exist_ok=True)
+ bootstrap=ROOT/'module-data'/module
+ if bootstrap.is_dir():
+  for file in bootstrap.iterdir():
+   if file.is_file() and not (target/file.name).exists():shutil.copy2(file,target/file.name)
+
 @app.before_request
 def guard():
  if request.path=='/healthz':return
@@ -91,6 +99,50 @@ def tile(z,x,y):
  if not dest.exists():abort(502)
  return send_from_directory(dest.parent,dest.name,mimetype='image/png')
 @app.get('/')
-def index():return send_from_directory(ROOT/'app','index.html')
+def index():return send_from_directory(ROOT/'app','portal.html')
+@app.get('/index.html')
+def legacy_index():return redirect('/')
+@app.get('/companies')
+def companies_redirect():return redirect('/companies/')
+@app.get('/companies/')
+def companies_index():return send_from_directory(ROOT/'app','index.html')
+@app.get('/companies/<path:name>')
+def companies_asset(name):return send_from_directory(ROOT/'app',name)
+@app.get('/suppliers')
+def suppliers_redirect():return redirect('/suppliers/')
+@app.get('/suppliers/')
+def suppliers_index():return send_from_directory(ROOT/'modules/suppliers','index.html')
+@app.get('/suppliers/<path:name>')
+def suppliers_file(name):
+ if name=='app.js':return send_from_directory(ROOT/'modules/suppliers',name)
+ allowed={'data.js','networks.js','networks.json','suppliers.json','suppliers.csv','audit.html','audit.md','site-audit.json'}
+ if name not in allowed:abort(404)
+ file=MODULE_DATA/'suppliers'/name
+ if file.is_file():
+  if name=='audit.html':
+   html=file.read_text()
+   css='<link rel="stylesheet" href="/portal-nav.css">'
+   html=html.replace('</head>',css+'</head>',1) if '</head>' in html else html.replace('<style>',css+'<style>',1)
+   scripts='<script src="/access.js"></script><script src="/portal-nav.js"></script>'
+   html=html.replace('</body>',scripts+'</body>',1) if '</body>' in html else html.replace('</html>',scripts+'</html>',1)
+   return Response(html,mimetype='text/html')
+  return send_from_directory(file.parent,file.name)
+ if name=='data.js':return Response('const SUPPLIERS=[];',mimetype='application/javascript')
+ if name=='networks.js':return Response('const NETWORKS={};',mimetype='application/javascript')
+ if name.endswith('.json'):return jsonify([])
+ if name=='audit.html':return Response('<!doctype html><html lang="ru"><meta charset="utf-8"><p>Материалы проверки ещё не загружены.</p><a href="/suppliers/">Назад</a></html>',mimetype='text/html')
+ abort(404)
+@app.get('/transport')
+def transport_redirect():return redirect('/transport/')
+@app.get('/transport/')
+def transport_index():
+ html=(ROOT/'modules/transport/index.html').read_text()
+ for id in ('offline-map','offline-towns','terminals-data','gazetteer-data'):
+  file=MODULE_DATA/'transport'/(id+'.json')
+  if file.is_file():
+   payload=file.read_text().replace('</','<\\/')
+   pattern=r'(<script\b[^>]*\bid="'+id+r'"[^>]*>)([\s\S]*?)(</script>)'
+   html=re.sub(pattern,lambda m:m[1]+payload+m[3],html,count=1)
+ return Response(html,mimetype='text/html')
 @app.get('/<path:name>')
 def static_file(name):return send_from_directory(ROOT/'app',name)

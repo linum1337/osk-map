@@ -9,3 +9,5 @@ private-users*.json
 *passwords*
 *credentials*
 access-users*.json
+
+# module-data is intentionally bundled only in private deployment archives.

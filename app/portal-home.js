@@ -1,0 +1,1 @@
+const user=window.CURRENT_USER;document.getElementById('portal-account').textContent=user.login+' · '+(user.role==='admin'?'Администратор':'Менеджер');document.getElementById('portal-rights').textContent=user.canExport?'Выгрузки доступны администратору':'Выгрузки доступны только администратору';
