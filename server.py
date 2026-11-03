@@ -3,13 +3,14 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,send_file,redirect,session,render_template_string
 from werkzeug.middleware.proxy_fix import ProxyFix
-import crm_store,auth_store,table_export
+import crm_store,auth_store,table_export,head_office
 ROOT=Path(__file__).resolve().parent
 USERNAME=os.environ.get('APP_USER','osk')
 PASSWORD=os.environ.get('APP_PASSWORD','')
 if len(PASSWORD)<16:raise RuntimeError('Set APP_PASSWORD to a password of at least 16 characters')
 crm_store.init()
 auth_store.init()
+head_office.init()
 app=Flask(__name__,static_folder=None)
 app.config['MAX_CONTENT_LENGTH']=100000
 key_file=crm_store.DB.parent/'session.key'
@@ -77,7 +78,7 @@ def login_page():
  error=''
  if 'login_csrf' not in session:session['login_csrf']=secrets.token_urlsafe(32)
  next_page=request.values.get('next','/')
- if next_page.split('?')[0] not in ('/','/transport/','/suppliers/','/companies/'):next_page='/'
+ if next_page.split('?')[0] not in ('/','/transport/','/suppliers/','/companies/','/requests/'):next_page='/'
  if request.method=='POST':
   origin=request.headers.get('Origin')
   token=request.form.get('csrf','')
@@ -113,6 +114,23 @@ def export_table(format):
  payload=table_export.xlsx_bytes(records,history) if format=='xlsx' else table_export.csv_bytes(records)
  mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' if format=='xlsx' else 'text/csv; charset=utf-8'
  return send_file(io.BytesIO(payload),mimetype=mime,as_attachment=True,download_name='Companies.'+format)
+@app.get('/api/head-office-requests')
+def head_office_rows():return jsonify(head_office.rows())
+@app.post('/api/head-office-requests')
+def head_office_create():
+ status,data=head_office.create(request.get_json(silent=True),g.user['login'])
+ return jsonify(data),status
+@app.get('/requests/')
+def head_office_page():return send_from_directory(ROOT/'app','head-office.html')
+@app.get('/requests')
+def head_office_redirect():return redirect('/requests/')
+@app.post('/api/export/requests/xlsx')
+def export_head_office():
+ body=request.get_json(silent=True);ids=body.get('ids') if isinstance(body,dict) else None
+ if not isinstance(ids,list) or len(ids)>10000 or any(type(id) is not int for id in ids) or len(ids)!=len(set(ids)):return jsonify(error='Некорректная выборка'),400
+ try:clients,history=head_office.export_snapshot(ids)
+ except KeyError:return jsonify(error='Запрос не найден'),404
+ return send_file(io.BytesIO(table_export.xlsx_bytes(clients,history)),mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',as_attachment=True,download_name='Head-office-requests.xlsx')
 @app.get('/api/records')
 def records():return jsonify(crm_store.rows())
 @app.patch('/api/records/<record_id>')
