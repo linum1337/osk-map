@@ -21,3 +21,8 @@ app/data.js
 app/city-centres.js
 app/scope-data.js
 app/settlement-coverage.json
+
+private-users*.json
+*passwords*
+*credentials*
+access-users*.json

@@ -4,3 +4,8 @@ __pycache__
 *.zip
 backups
 checks
+
+private-users*.json
+*passwords*
+*credentials*
+access-users*.json

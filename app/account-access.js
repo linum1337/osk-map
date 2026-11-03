@@ -1,0 +1,1 @@
+(()=>{const user=window.CURRENT_USER;if(!user)return;const badge=document.createElement('span');badge.className='account-badge';badge.textContent=user.login+' · '+(user.role==='admin'?'Администратор':'Менеджер');badge.style.cssText='font-size:12px;color:#617083';document.querySelector('header>div:last-child').prepend(badge)})();
