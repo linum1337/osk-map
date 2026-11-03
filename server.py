@@ -70,8 +70,8 @@ def guard():
 def headers(response):
  response.headers['X-Content-Type-Options']='nosniff'
  response.headers['X-Frame-Options']='DENY'
- response.headers['Referrer-Policy']='same-origin'
- response.headers['Cache-Control']='private, no-cache'
+ response.headers['Referrer-Policy']='strict-origin-when-cross-origin'
+ response.headers['Cache-Control']='private, max-age=604800' if request.path.startswith('/tiles/') and response.status_code==200 else 'private, no-cache'
  return response
 @app.route('/login',methods=['GET','POST'])
 def login_page():
@@ -149,9 +149,9 @@ def tile(z,x,y):
   if not slots.acquire(timeout=3):abort(503)
   try:
    if not dest.exists():
-    for host in ('tile.openstreetmap.org','tile.openstreetmap.fr/hot'):
+    for host in ('tile.openstreetmap.org',):
      try:
-      req=urllib.request.Request(f'https://{host}/{z}/{x}/{y}.png',headers={'User-Agent':'OSK-company-map/1.0'})
+      req=urllib.request.Request(f'https://{host}/{z}/{x}/{y}.png',headers={'User-Agent':'OSK-company-map/1.0 (+https://github.com/freeder1980-svg/osk-map)','Referer':request.headers.get('Referer',request.host_url)})
       with urllib.request.urlopen(req,timeout=10) as r:data=r.read(2000000)
       if not data.startswith(b'\x89PNG\r\n\x1a\n'):continue
       dest.parent.mkdir(parents=True,exist_ok=True)

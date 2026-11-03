@@ -26,9 +26,9 @@ function clusterIcon(group){
 const map=typeof L!=='undefined'?L.map('map',{scrollWheelZoom:true,zoomSnap:.25}).setView(CENTER,6):null;
 let tilesLoaded=0,tileErrors=0,boundaryCircle=null;
 if(map){
- const tiles=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'}).addTo(map);
+ const tiles=L.tileLayer('/tiles/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>'}).addTo(map);
  tiles.on('tileload',()=>{tilesLoaded++;document.getElementById('maperror').style.display='none'});
- tiles.on('tileerror',()=>{tileErrors++;if(!tilesLoaded&&tileErrors>3)document.getElementById('maperror').style.display='block'});
+ tiles.on('tileerror',e=>{tileErrors++;if(e.tile)e.tile.style.visibility='hidden';if(tileErrors>2)document.getElementById('maperror').style.display='block'});
  L.control.scale({imperial:false}).addTo(map);
  L.circleMarker(CENTER,{radius:4,color:'#173b48',weight:2,fillOpacity:1}).addTo(map).bindTooltip('Центр Москвы — начало отсчёта');
 }else document.getElementById('maperror').style.display='block';
