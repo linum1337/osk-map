@@ -108,10 +108,9 @@ def export_table(format):
  body=request.get_json(silent=True)
  ids=body.get('ids') if isinstance(body,dict) else None
  if not isinstance(ids,list) or len(ids)>10000 or any(not isinstance(x,str) for x in ids) or len(set(ids))!=len(ids):return jsonify(error='Некорректная выборка'),400
- available={r['officeId']:r for r in crm_store.rows()}
- if any(x not in available for x in ids):return jsonify(error='Запись не найдена. Обновите таблицу'),400
- records=[available[x] for x in ids]
- payload=table_export.xlsx_bytes(records) if format=='xlsx' else table_export.csv_bytes(records)
+ try:records,history=crm_store.export_snapshot(ids)
+ except KeyError:return jsonify(error='Запись не найдена. Обновите таблицу'),400
+ payload=table_export.xlsx_bytes(records,history) if format=='xlsx' else table_export.csv_bytes(records)
  mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' if format=='xlsx' else 'text/csv; charset=utf-8'
  return send_file(io.BytesIO(payload),mimetype=mime,as_attachment=True,download_name='Companies.'+format)
 @app.get('/api/records')
@@ -121,7 +120,7 @@ def update(record_id):
  if not record_id.startswith('office-') or not record_id[7:].isdigit():abort(404)
  body=request.get_json(silent=True)
  if not isinstance(body,dict):return jsonify(error='Некорректный запрос'),400
- try:status,data=crm_store.update(record_id,body)
+ try:status,data=crm_store.update(record_id,body,actor=g.user['login'])
  except (TypeError,ValueError,AttributeError):return jsonify(error='Некорректные поля'),400
  return jsonify(data),status
 @app.get('/tiles/<int:z>/<int:x>/<int:y>.png')

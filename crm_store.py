@@ -37,12 +37,13 @@ def init():
  with connect() as c:
   c.execute('CREATE TABLE IF NOT EXISTS records(id TEXT PRIMARY KEY, data TEXT NOT NULL, version INTEGER NOT NULL DEFAULT 1)')
   c.execute('CREATE TABLE IF NOT EXISTS history(id INTEGER PRIMARY KEY, record_id TEXT, changed_at TEXT DEFAULT CURRENT_TIMESTAMP, changes TEXT)')
+  if 'actor' not in {row[1] for row in c.execute('PRAGMA table_info(history)')}:c.execute("ALTER TABLE history ADD COLUMN actor TEXT NOT NULL DEFAULT ''")
   for r in json.loads((ROOT/'crm-seed.json').read_text()) if (ROOT/'crm-seed.json').exists() else []:
    r.update(status='Не обработан',notes='')
    c.execute('INSERT OR IGNORE INTO records VALUES(?,?,1)',(r['officeId'],json.dumps(r,ensure_ascii=False)))
 def rows():
  with connect() as c:return [dict(json.loads(d),version=v) for d,v in c.execute('SELECT data,version FROM records ORDER BY rowid')]
-def update(id,body):
+def update(id,body,actor=''):
  changes=body.get('changes',{})
  if not changes or set(changes)-FIELDS or any(not isinstance(v,str) or len(v)>10000 for v in changes.values()):return 400,{'error':'Некорректные поля'}
  if 'manager' in changes and changes['manager'] not in MANAGERS:return 400,{'error':'Выберите менеджера из списка'}
@@ -61,5 +62,20 @@ def update(id,body):
   if body.get('version')!=v:return 409,{'error':'Запись уже изменена другим пользователем. Закройте карточку и откройте обновлённую запись.', 'record':dict(d,version=v)}
   d.update(changes)
   c.execute('UPDATE records SET data=?,version=version+1 WHERE id=?',(json.dumps(d,ensure_ascii=False),id))
-  c.execute('INSERT INTO history(record_id,changes) VALUES(?,?)',(id,json.dumps(changes,ensure_ascii=False)))
+  c.execute('INSERT INTO history(record_id,changes,actor) VALUES(?,?,?)',(id,json.dumps(changes,ensure_ascii=False),actor))
  return 200,dict(d,version=v+1)
+
+def export_snapshot(ids):
+ with connect() as c:
+  c.execute('BEGIN')
+  all_records={r['officeId']:dict(r,version=v) for d,v in c.execute('SELECT data,version FROM records') for r in [json.loads(d)]}
+  if any(id not in all_records for id in ids):raise KeyError('Record not found')
+  records=[all_records[id] for id in ids];history=[]
+  for start in range(0,len(ids),500):
+   chunk=ids[start:start+500];marks=','.join('?' for id in chunk)
+   for id,record_id,date,changes,actor in c.execute('SELECT id,record_id,changed_at,changes,actor FROM history WHERE record_id IN ('+marks+')',chunk):
+    history.append({'id':id,'recordId':record_id,'changedAt':date,'actor':actor,'changes':json.loads(changes)})
+  history.sort(key=lambda h:h['id'])
+  for h in history:
+   r=all_records[h['recordId']];r['lastEditedAt']=h['changedAt'];r['lastEditedBy']=h['actor']
+ return records,history
