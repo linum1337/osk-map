@@ -1,0 +1,53 @@
+services:
+  data-init:
+    build: .
+    user: "0:0"
+    entrypoint: ["sh", "-c", "chown -R 10001:10001 /data && chmod 700 /data"]
+    volumes:
+      - crm_data:/data
+    restart: "no"
+  app:
+    build: .
+    depends_on:
+      data-init:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    environment:
+      APP_USER: ${APP_USER:-osk}
+      APP_PASSWORD: ${APP_PASSWORD:?Set APP_PASSWORD in .env}
+      DATA_DIR: /data
+    volumes:
+      - crm_data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz', timeout=5)"]
+      interval: 30s
+      timeout: 6s
+      retries: 3
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN in .env}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      app:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  crm_data:
+  caddy_data:
+  caddy_config:
