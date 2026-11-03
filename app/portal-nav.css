@@ -4,3 +4,6 @@ body{padding-top:44px!important}#portal-nav{position:fixed;inset:0 0 auto;z-inde
 html[data-section=companies] .crm-panel.crm-panel{top:var(--portal-content-top,148px)}
 @media(min-width:801px){html[data-section=companies] main,html[data-section=suppliers] .workspace{height:calc(100dvh - var(--portal-content-top,148px))}html[data-section=transport] #map{height:calc(100dvh - var(--portal-content-top,144px));top:44px}html[data-section=transport] main{min-height:calc(100dvh - var(--portal-content-top,144px))}}
 @media(max-width:700px){#portal-nav{padding:0 6px;font-size:12px;gap:1px}#portal-nav a{padding:8px}#portal-nav .portal-user{display:none}}
+
+/* Original OSK logo remains legible on the blue navigation bar. */
+#portal-nav .portal-brand{flex:0 0 auto;background:#fff;padding:3px 8px;margin-right:5px;border-radius:5px;height:35px}#portal-nav .portal-brand:hover{background:#edf3fa}#portal-nav .portal-brand img{display:block;object-fit:contain;width:92px;height:29px;max-width:none}
