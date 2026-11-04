@@ -3,7 +3,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,send_file,redirect,session,render_template_string
 from werkzeug.middleware.proxy_fix import ProxyFix
-import crm_store,auth_store,table_export,head_office
+import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import
 ROOT=Path(__file__).resolve().parent
 USERNAME=os.environ.get('APP_USER','osk')
 PASSWORD=os.environ.get('APP_PASSWORD','')
@@ -11,6 +11,7 @@ if len(PASSWORD)<16:raise RuntimeError('Set APP_PASSWORD to a password of at lea
 crm_store.init()
 auth_store.init()
 head_office.init()
+workspace_store.initialize()
 app=Flask(__name__,static_folder=None)
 app.config['MAX_CONTENT_LENGTH']=100000
 key_file=crm_store.DB.parent/'session.key'
@@ -60,6 +61,9 @@ def guard():
   if request.method=='GET' and request.accept_mimetypes.accept_html and not request.path.startswith('/api/'):
    return redirect('/login?next='+request.path)
   return jsonify(error='Требуется вход'),401
+ if request.path in ('/api/bitrix/preview','/api/bitrix/import'):
+  if g.user['role']!='admin':return jsonify(error='Импорт доступен только администратору'),403
+  request.max_content_length=12_000_000
  if (request.path.startswith('/api/export/') or request.path.lower().endswith(('.csv','.xlsx','.xls','.zip'))) and not g.user['canExport']:
   return jsonify(error='Выгрузка доступна только администратору'),403
  if request.method not in ('GET','HEAD','OPTIONS'):
@@ -131,6 +135,26 @@ def export_head_office():
  try:clients,history=head_office.export_snapshot(ids)
  except KeyError:return jsonify(error='Запрос не найден'),404
  return send_file(io.BytesIO(table_export.xlsx_bytes(clients,history)),mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',as_attachment=True,download_name='Head-office-requests.xlsx')
+@app.get('/data.js')
+@app.get('/companies/data.js')
+def company_data_script():return Response('window.PROVIDERS='+json.dumps(crm_store.rows(),ensure_ascii=False)+';',mimetype='application/javascript')
+@app.get('/city-centres.js')
+@app.get('/companies/city-centres.js')
+def city_centres_script():return Response('window.CITY_CENTRES='+json.dumps(workspace_store.setting('cityCentres',{}),ensure_ascii=False)+';',mimetype='application/javascript')
+@app.get('/scope-data.js')
+@app.get('/companies/scope-data.js')
+def company_scope_script():return Response(workspace_store.scope_script(),mimetype='application/javascript')
+@app.get('/scope.js')
+@app.get('/companies/scope.js')
+def scope_compatibility():return Response('if(!window.inWorkArea)window.inWorkArea=r=>!r.hiddenReason;',mimetype='application/javascript')
+@app.post('/api/bitrix/preview')
+@app.post('/api/bitrix/import')
+def import_bitrix_report():
+ payload=request.get_json(silent=True)
+ if not isinstance(payload,dict):return jsonify(error='Выберите подготовленный файл импорта Битрикс24 (JSON)'),400
+ try:summary=bitrix_import.run(payload,crm_store.DB,ROOT/'app',apply=request.path.endswith('/import'))
+ except (ValueError,KeyError,TypeError,AttributeError) as error:return jsonify(error='Не удалось проверить импорт: '+str(error)),400
+ return jsonify(summary)
 @app.get('/api/records')
 def records():return jsonify(crm_store.rows())
 @app.patch('/api/records/<record_id>')
