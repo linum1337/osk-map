@@ -68,6 +68,11 @@ def meta(x,payload,reason,previous=None):
 
 def plan(c,payload,app_dir):
  records={id:dict(json.loads(data),version=version) for id,data,version in c.execute('SELECT id,data,version FROM records')};before=copy.deepcopy(records);scope,centres=initial_workspace(c,app_dir)
+ bootstrap=payload.get('workspaceBootstrap') or {}
+ if scope is None and isinstance(bootstrap.get('visibleIds'),list):scope={id for id in bootstrap['visibleIds'] if isinstance(id,str) and id in records}
+ if not centres and isinstance(bootstrap.get('cityCentres'),dict):
+  for id,point in bootstrap['cityCentres'].items():
+   if id in records and isinstance(point,dict) and isinstance(point.get('lat'),(int,float)) and isinstance(point.get('lon'),(int,float)) and -90<=point['lat']<=90 and -180<=point['lon']<=180:centres[id]=dict(point,approximate=True)
  old_ids=set(records);by_crm=collections.defaultdict(set);by_alias=collections.defaultdict(set);by_phone=collections.defaultdict(set);by_host=collections.defaultdict(set);edited=collections.defaultdict(set)
  for id,changes in c.execute('SELECT record_id,changes FROM history'):
   try:edited[id].update(set(json.loads(changes))&EDITABLE)
@@ -155,7 +160,8 @@ def run(payload,db,app_dir,apply=False):
  if not isinstance(payload.get('companies'),list) or len(payload['companies'])>20000:raise ValueError('Invalid company list')
  ids=[x['crmId'] for x in payload['companies']]
  if len(ids)!=len(set(ids)) or any(not isinstance(id,str) or not id.isdigit() for id in ids):raise ValueError('Duplicate/invalid CRM IDs')
- digest=hashlib.sha256(json.dumps(payload,ensure_ascii=False,sort_keys=True).encode()).hexdigest();db=Path(db)
+ digest_payload={k:v for k,v in payload.items() if k!='workspaceBootstrap'}
+ digest=hashlib.sha256(json.dumps(digest_payload,ensure_ascii=False,sort_keys=True).encode()).hexdigest();db=Path(db)
  if not db.is_file():raise ValueError('Working database not found')
  c=sqlite3.connect(db,timeout=30)
  if apply:c.execute('PRAGMA journal_mode=WAL')

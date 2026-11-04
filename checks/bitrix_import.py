@@ -28,3 +28,15 @@ with tempfile.TemporaryDirectory() as tmp:
  result=bitrix_import.run(second,db,app,True);assert result['addedRecords']==1 and result['reviewCount']==1
  with sqlite3.connect(db) as c:assert json.loads(c.execute("select data from records where id='office-1'").fetchone()[0])['manager']=='Скрынник Анна'
  print('PASS: read-only preview, CRM ID ownership, manager edits preserved, all CRM metadata, exclusion policies, city-centre approximation, backup, idempotency, separate CRM identities')
+# A Git-only deployment can bootstrap existing city markers and visibility from the captured site.
+with tempfile.TemporaryDirectory() as tmp:
+ root=Path(tmp);app=root/'app';app.mkdir();db=root/'crm.sqlite3'
+ with sqlite3.connect(db) as c:
+  c.execute('create table records(id text primary key,data text,version integer)');c.execute('create table history(id integer primary key,record_id text,changed_at text default CURRENT_TIMESTAMP,changes text,actor text)')
+  c.execute('insert into records values(?,?,1)',('office-1',json.dumps(original)))
+ prepared=copy.deepcopy(payload);prepared['companies']=[row(42,'Тестовая сеть')];prepared['workspaceBootstrap']={'visibleIds':['office-1'],'cityCentres':{'office-1':{'city':'Кострома','lat':57.7,'lon':40.9,'region':'Костромская область'},'unknown-record':{'lat':0,'lon':0}}}
+ bitrix_import.run(prepared,db,app,True)
+ with sqlite3.connect(db) as c:settings={k:json.loads(v) for k,v in c.execute('select key,value from workspace_settings')}
+ assert settings['visibleIds']==['office-1'] and settings['cityCentres']['office-1']['lat']==57.7 and 'unknown-record' not in settings['cityCentres']
+ without=copy.deepcopy(prepared);without.pop('workspaceBootstrap');assert bitrix_import.run(without,db,app,True)['alreadyImported'] is True
+ print('PASS: hosted city centres/visibility preserved across Git-only deployment, no unknown-record markers, stable import identity')
