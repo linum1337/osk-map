@@ -1,0 +1,136 @@
+name: Deploy production
+
+# Деплой на прод (https://osk.l1num.ru) при каждом слиянии в main.
+# Можно запустить вручную: вкладка Actions → Deploy production → Run workflow.
+#
+# Обязательные секреты репозитория:
+#   PROD_HOST     — IP или домен сервера (193.164.17.141)
+#   PROD_USER     — пользователь SSH (root)
+#   PROD_SSH_KEY  — приватный ключ ed25519 без пароля (целиком, с BEGIN/END)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Сборка и перезапуск на сервере
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Проверить секреты
+        env:
+          HOST: ${{ secrets.PROD_HOST }}
+          DEPLOY_USER: ${{ secrets.PROD_USER }}
+          KEY: ${{ secrets.PROD_SSH_KEY }}
+        run: |
+          missing=""
+          [ -n "$HOST" ] || missing="$missing PROD_HOST"
+          [ -n "$DEPLOY_USER" ] || missing="$missing PROD_USER"
+          [ -n "$KEY" ] || missing="$missing PROD_SSH_KEY"
+          if [ -n "$missing" ]; then
+            echo "::error::Не заданы секреты:$missing (Settings → Secrets and variables → Actions)"
+            exit 1
+          fi
+
+      - name: Подготовить SSH
+        env:
+          KEY: ${{ secrets.PROD_SSH_KEY }}
+          HOST: ${{ secrets.PROD_HOST }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$HOST" 2>/dev/null >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Деплой
+        env:
+          HOST: ${{ secrets.PROD_HOST }}
+          DEPLOY_USER: ${{ secrets.PROD_USER }}
+          COMMIT: ${{ github.sha }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
+            "$DEPLOY_USER@$HOST" "ACTOR='$ACTOR' bash -s" <<'REMOTE'
+          #!/usr/bin/env bash
+          set -euo pipefail
+
+          APP_DIR=/root/osk-map
+          cd "$APP_DIR"
+
+          # Репозиторный compose.yaml поднимает Caddy и занимает 80/443 —
+          # на этом сервере там Traefik, поэтому деплой только через compose.prod.yaml.
+          [ -f compose.prod.yaml ] || {
+            echo "::error::compose.prod.yaml не найден в $APP_DIR — деплой остановлен"
+            exit 1
+          }
+
+          PREV=$(git rev-parse HEAD)
+          echo "Сейчас на сервере: $PREV — $(git log -1 --pretty=%s "$PREV")"
+
+          git fetch --quiet --prune origin main
+          TARGET=$(git rev-parse origin/main)
+          echo "Деплоим:          $TARGET — $(git log -1 --pretty=%s "$TARGET")"
+
+          if ! git merge-base --is-ancestor "$PREV" "$TARGET"; then
+            echo "::warning::История сервера разошлась с origin/main — будет жёсткий сброс на $TARGET"
+          fi
+
+          # Бэкап базы: миграции схемы выполняются при старте приложения.
+          TS=$(date +%Y%m%d-%H%M%S)
+          mkdir -p /root/backups
+          docker run --rm -v osk-map_crm_data:/data -v /root/backups:/backup python:3.12-slim \
+            python -c "import shutil;shutil.copy('/data/crm.sqlite3','/backup/crm-before-deploy-$TS.sqlite3')"
+          echo "Бэкап базы: /root/backups/crm-before-deploy-$TS.sqlite3"
+
+          # Сброс на целевой коммит. .env и compose.prod.yaml не отслеживаются git — они сохраняются.
+          git reset --quiet --hard "$TARGET"
+
+          build()  { docker compose -f compose.prod.yaml up -d --build; }
+          healthy() {
+            for _ in $(seq 1 60); do
+              [ "$(docker inspect osk-map-app-1 --format '{{.State.Health.Status}}' 2>/dev/null || echo none)" = healthy ] && return 0
+              sleep 5
+            done
+            echo "::error::Контейнер не стал healthy за 5 минут"
+            docker logs --tail 60 osk-map-app-1 2>&1 || true
+            return 1
+          }
+          smoke() {
+            local code
+            code=$(curl -s -o /dev/null -w '%{http_code}' -m 5  http://127.0.0.1:8000/healthz)      || code=000
+            [ "$code" = 200 ] || { echo "::error::/healthz вернул $code"; return 1; }
+            code=$(curl -s -o /dev/null -w '%{http_code}' -m 10 http://127.0.0.1:8000/login)        || code=000
+            [ "$code" = 200 ] || { echo "::error::/login вернул $code"; return 1; }
+            code=$(curl -s -o /dev/null -w '%{http_code}' -m 15 http://127.0.0.1:8000/api/records)  || code=000
+            [ "$code" = 401 ] || { echo "::error::/api/records без сессии вернул $code (ожидали 401)"; return 1; }
+            echo "Проверки: /healthz 200, /login 200, /api/records 401 (доступ закрыт)"
+          }
+          rollback() {
+            echo "::error::Деплой $TARGET не прошёл проверки — откат на $PREV"
+            git reset --quiet --hard "$PREV" || true
+            build || true
+            healthy || true
+            exit 1
+          }
+
+          echo "== Пересборка и запуск"
+          if ! build; then
+            echo "::error::Сборка или запуск контейнера не удались"
+            rollback
+          fi
+          healthy || rollback
+          smoke   || rollback
+
+          docker image prune -f >/dev/null 2>&1 || true
+          echo "Готово: $TARGET развёрнут на https://osk.l1num.ru (запустил $ACTOR)"
+          REMOTE

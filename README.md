@@ -118,3 +118,17 @@ docker compose exec -T app python bitrix_import.py --apply < bitrix-import-YYYY-
 Сам файл выгрузки/JSON, резервные базы и отчёты сверки не включать в Git. Проверки: `python checks/bitrix_import.py` и `python checks/bitrix_api.py`.
 
 При миграции со старой версии JSON может содержать `workspaceBootstrap` с сохранёнными центрами городов и видимыми ID действующего сайта. Эти настройки применяются только если их ещё нет в постоянной базе. Дополнительный блок не меняет идентичность отчёта для защиты от повторного импорта.
+
+## Деплой на прод из GitHub Actions
+
+Слияние в `main` запускает `.github/workflows/deploy.yml`: раннер заходит по SSH на сервер, делает `git fetch` + `git reset --hard origin/main`, собирает образ через `compose.prod.yaml`, ждёт статус `healthy`, прогоняет smoke-проверки (`/healthz` 200, `/login` 200, `/api/records` без сессии 401) и при неудаче откатывается на предыдущий коммит и пересобирает его. Запуск вручную — вкладка Actions → Deploy production → Run workflow.
+
+Секреты репозитория (Settings → Secrets and variables → Actions):
+
+| Секрет | Значение |
+| --- | --- |
+| `PROD_HOST` | `193.164.17.141` |
+| `PROD_USER` | `root` |
+| `PROD_SSH_KEY` | приватный ключ ed25519 без пароля, целиком вместе со строками BEGIN/END |
+
+Перед сборкой workflow делает копию базы в `/root/backups/crm-before-deploy-<дата>.sqlite3`. `.env` и `compose.prod.yaml` не отслеживаются git, поэтому `git reset --hard` их не затрагивает. Репозиторный `compose.yaml` в деплое не используется: он поднимает Caddy и занимает 80/443, где на сервере работает Traefik.
