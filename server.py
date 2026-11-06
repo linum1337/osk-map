@@ -3,7 +3,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,send_file,redirect,session,render_template_string
 from werkzeug.middleware.proxy_fix import ProxyFix
-import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import,supplier_catalog
+import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import,supplier_catalog,contact_enrichment
 ROOT=Path(__file__).resolve().parent
 USERNAME=os.environ.get('APP_USER','osk')
 PASSWORD=os.environ.get('APP_PASSWORD','')
@@ -61,7 +61,7 @@ def guard():
   if request.method=='GET' and request.accept_mimetypes.accept_html and not request.path.startswith('/api/'):
    return redirect('/login?next='+request.path)
   return jsonify(error='Требуется вход'),401
- if request.path in ('/api/bitrix/preview','/api/bitrix/import'):
+ if request.path in ('/api/bitrix/preview','/api/bitrix/import','/api/contacts/preview','/api/contacts/enrich'):
   if g.user['role']!='admin':return jsonify(error='Импорт доступен только администратору'),403
   request.max_content_length=12_000_000
  if (request.path.startswith('/api/export/') or request.path.lower().endswith(('.csv','.xlsx','.xls','.zip'))) and not g.user['canExport']:
@@ -154,6 +154,12 @@ def import_bitrix_report():
  if not isinstance(payload,dict):return jsonify(error='Выберите подготовленный файл импорта Битрикс24 (JSON)'),400
  try:summary=bitrix_import.run(payload,crm_store.DB,ROOT/'app',apply=request.path.endswith('/import'))
  except (ValueError,KeyError,TypeError,AttributeError) as error:return jsonify(error='Не удалось проверить импорт: '+str(error)),400
+ return jsonify(summary)
+@app.post('/api/contacts/preview')
+@app.post('/api/contacts/enrich')
+def enrich_public_contacts():
+ try:summary=contact_enrichment.run(request.get_json(silent=True),crm_store.DB,apply=request.path.endswith('/enrich'),actor=g.user['login'])
+ except (ValueError,TypeError,KeyError,AttributeError) as error:return jsonify(error='Не удалось проверить контакты: '+str(error)),400
  return jsonify(summary)
 @app.get('/api/records')
 def records():return jsonify(crm_store.rows())
