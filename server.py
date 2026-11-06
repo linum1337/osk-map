@@ -3,7 +3,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,send_file,redirect,session,render_template_string
 from werkzeug.middleware.proxy_fix import ProxyFix
-import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import
+import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import,supplier_catalog
 ROOT=Path(__file__).resolve().parent
 USERNAME=os.environ.get('APP_USER','osk')
 PASSWORD=os.environ.get('APP_PASSWORD','')
@@ -204,6 +204,13 @@ def suppliers_file(name):
  if name=='app.js':return send_from_directory(ROOT/'modules/suppliers',name)
  allowed={'data.js','networks.js','networks.json','suppliers.json','suppliers.csv','audit.html','audit.md','site-audit.json'}
  if name not in allowed:abort(404)
+ if name in ('data.js','networks.js','suppliers.json','networks.json','suppliers.csv'):
+  rows,networks=supplier_catalog.load(MODULE_DATA/'suppliers')
+  if name=='suppliers.json':return jsonify(rows)
+  if name=='networks.json':return jsonify(networks)
+  if name=='suppliers.csv':return Response(supplier_catalog.csv_text(rows),mimetype='text/csv; charset=utf-8',headers={'Content-Disposition':'attachment; filename=suppliers.csv'})
+  variable,value=('SUPPLIERS',rows) if name=='data.js' else ('NETWORKS',networks)
+  return Response('const '+variable+'='+json.dumps(value,ensure_ascii=False)+';',mimetype='application/javascript')
  file=MODULE_DATA/'suppliers'/name
  if file.is_file():
   if name=='audit.html':
