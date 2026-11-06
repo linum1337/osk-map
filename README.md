@@ -132,3 +132,12 @@ docker compose exec -T app python bitrix_import.py --apply < bitrix-import-YYYY-
 | `PROD_SSH_KEY` | приватный ключ ed25519 без пароля, целиком вместе со строками BEGIN/END |
 
 Перед сборкой workflow делает копию базы в `/root/backups/crm-before-deploy-<дата>.sqlite3`. `.env` и `compose.prod.yaml` не отслеживаются git, поэтому `git reset --hard` их не затрагивает. Репозиторный `compose.yaml` в деплое не используется: он поднимает Caddy и занимает 80/443, где на сервере работает Traefik.
+
+
+## Дополнение открытых контактов
+
+Администратор передаёт проверенные контакты в `/api/contacts/preview` (проверка) и `/api/contacts/enrich` (применение). Требуются вход администратора и `X-Requested-With: OSK-Map`; проверка Origin сохраняется. Формат: `osk-public-contacts-v1`, дата `checked`, массив `records` с `officeId`, `fields` и `sources`. Для каждого поля нужна ссылка на источник. Разрешены только `website`, `generalPhone`, `email`.
+
+Заполняются только пустые поля. Ручное очищение менеджером сохраняется. Назначения, статусы, заметки, офисные телефоны, координаты, все `bitrix*` и `crm*` поля не меняются. Перед применением создаётся копия SQLite. Изменения записываются в историю, источники сохраняются отдельно в `publicContactSources`, отображаются рядом с контактами и включаются в полную выгрузку. Приватные пакеты с ID клиентов и результатами проверки в Git не включаются.
+
+Проверка: `python checks/contact_enrichment.py`.
