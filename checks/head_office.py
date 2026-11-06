@@ -1,4 +1,4 @@
-import os,sys,tempfile,base64,json,io,zipfile,xml.etree.ElementTree as E
+import os,sys,tempfile,base64,json,io,zipfile,sqlite3,xml.etree.ElementTree as E
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 with tempfile.TemporaryDirectory() as tmp:
@@ -15,15 +15,32 @@ with tempfile.TemporaryDirectory() as tmp:
  assert c.post('/api/head-office-requests',json=body).status_code==401
  assert c.post('/api/head-office-requests',headers={k:v for k,v in manager.items() if k!='X-Requested-With'},json=body).status_code==403
  res=c.post('/api/head-office-requests',headers=manager,json=body);assert res.status_code==201,res.data
- row=res.json;assert row['createdBy']=='Андрей Логинов';assert row['client']['name']==record['name'];assert row['client']['unknown']==record['unknown'];assert row['client']['notes']=='Новая заметка';assert row['client']['version']==2;assert row['history'][-1]['actor']=='Андрей Логинов'
+ row=res.json;assert row['createdBy']=='Андрей Логинов';assert row['client']['name']==record['name'];assert row['client']['unknown']==record['unknown'];assert row['client']['notes']=='Новая заметка';assert row['client']['version']==3;assert row['client']['status']==crm_store.HEAD_OFFICE_STATUS;assert row['record']['version']==3;assert row['record']['status']==crm_store.HEAD_OFFICE_STATUS;assert row['history'][-1]['changes']=={'status':crm_store.HEAD_OFFICE_STATUS};assert row['history'][-1]['actor']=='Андрей Логинов'
  assert c.post('/api/head-office-requests',headers=manager,json=body).json['id']==row['id'];assert len(head_office.rows())==1
  assert c.post('/api/head-office-requests',headers=admin,json=body).status_code==409
- assert c.patch('/api/records/'+record['officeId'],headers=manager,json={'version':2,'changes':{'notes':'После запроса'}}).status_code==200
+ assert c.patch('/api/records/'+record['officeId'],headers=manager,json={'version':3,'changes':{'notes':'После запроса','status':'Завершён'}}).status_code==200
  assert head_office.rows()[0]['client']['notes']=='Новая заметка'
+ # A retry returns the current record without resetting a later manager decision.
+ retry=c.post('/api/head-office-requests',headers=manager,json=body)
+ assert retry.json['record']['status']=='Завершён' and retry.json['record']['version']==4
+ assert len(head_office.rows())==1
+ with crm_store.connect() as db:
+  baseline=db.execute('SELECT data,version FROM records WHERE id=?',(record['officeId'],)).fetchone()
+  history_count=db.execute('SELECT COUNT(*) FROM history WHERE record_id=?',(record['officeId'],)).fetchone()[0]
+  db.execute("CREATE TRIGGER fail_hq BEFORE INSERT ON head_office_requests BEGIN SELECT RAISE(ABORT,'test failure'); END")
+ try:head_office.create({**body,'requestKey':'rollback-request-key-123456'},'Андрей Логинов')
+ except sqlite3.IntegrityError:pass
+ else:raise AssertionError('Expected request failure')
+ with crm_store.connect() as db:
+  assert db.execute('SELECT data,version FROM records WHERE id=?',(record['officeId'],)).fetchone()==baseline
+  assert db.execute('SELECT COUNT(*) FROM history WHERE record_id=?',(record['officeId'],)).fetchone()[0]==history_count
+  db.execute('DROP TRIGGER fail_hq')
+
  assert c.get('/requests/',headers=manager).status_code==200
  assert c.post('/api/export/requests/xlsx',headers=manager,json={'ids':[row['id']]}).status_code==403
  res=c.post('/api/export/requests/xlsx',headers=admin,json={'ids':[row['id']]});assert res.status_code==200
  with zipfile.ZipFile(io.BytesIO(res.data)) as z:
   ns={'s':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'};root=E.fromstring(z.read('xl/worksheets/sheet1.xml'));rows=[[cell.find('s:is/s:t',ns).text or '' for cell in r.findall('s:c',ns)] for r in root.findall('s:sheetData/s:row',ns)];data=dict(zip(rows[0],rows[1]));assert data['Комментарий для головного офиса']==body['comment'];assert data['Заметки']=='Новая заметка';assert data['Автор запроса']=='Андрей Логинов'
  assert c.post('/api/head-office-requests',headers=manager,json={'recordId':'office-missing','requestKey':'missing-request-1234567'}).status_code==404
- print('PASS: saved full client/history snapshot, server-side authorship, idempotency, persistent request table, frozen snapshot, admin-only full Excel, CSRF')
+ assert crm_store.HEAD_OFFICE_STATUS in crm_store.STATUSES
+ print('PASS: automatic persisted client status, immediate response, later status preserved on retry, atomic rollback, saved full client/history snapshot, server-side authorship, idempotency, persistent request table, frozen snapshot, admin-only full Excel, CSRF')

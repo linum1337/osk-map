@@ -4,6 +4,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 DB=Path(os.environ.get('DATA_DIR',str(ROOT/'data')))/'crm.sqlite3'
 FIELDS={'manager','website','officePhone','generalPhone','email','status','notes'}
+HEAD_OFFICE_STATUS='Отправлен в головной офис'
+STATUSES=['Не обработан','В работе','Связались','Предложение отправлено',HEAD_OFFICE_STATUS,'Завершён']
 MANAGERS=['Логинов Андрей','Скрынник Анна','Квашина Светлана','Коровина Любовь']
 def connect():
  c=sqlite3.connect(DB,timeout=15);c.execute('PRAGMA journal_mode=WAL');return c
@@ -47,7 +49,7 @@ def update(id,body,actor=''):
  changes=body.get('changes',{})
  if not changes or set(changes)-FIELDS or any(not isinstance(v,str) or len(v)>10000 for v in changes.values()):return 400,{'error':'Некорректные поля'}
  if 'manager' in changes and changes['manager'] not in MANAGERS:return 400,{'error':'Выберите менеджера из списка'}
- if 'status' in changes and changes['status'] not in ['Не обработан','В работе','Связались','Предложение отправлено','Завершён']:return 400,{'error':'Неизвестный статус'}
+ if 'status' in changes and changes['status'] not in STATUSES:return 400,{'error':'Неизвестный статус'}
  if 'website' in changes:
   changes['website']=changes['website'].strip()
   try:
