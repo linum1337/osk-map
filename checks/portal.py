@@ -7,7 +7,7 @@ with tempfile.TemporaryDirectory() as tmp:
  with crm_store.connect() as fixture:fixture.execute('DELETE FROM accounts')
  # Test datasets are deliberately small; no private data needed.
  t=Path(tmp)/'modules/transport';(t/'terminals-data.json').write_text(json.dumps([{'city':'Тест','name':'Тестовая ТК','address':'не настоящий адрес','lat':55,'lon':37}]))
- s=Path(tmp)/'modules/suppliers';(s/'data.js').write_text('const SUPPLIERS=[{name:"Тестовый поставщик"}];');(s/'suppliers.csv').write_text('name\nTest\n')
+ s=Path(tmp)/'modules/suppliers';(s/'data.js').write_text('const SUPPLIERS=[{"name":"Тестовый поставщик"}];');(s/'suppliers.csv').write_text('name\nTest\n')
  (s/'audit.html').write_text('<!doctype html><html lang="ru"><style>body{margin:0}</style><a href="suppliers.csv" download>CSV</a></html>')
  manage_users.import_users([{'login':'Андрей Логинов','manager':crm_store.MANAGERS[0],'password':'portal-manager-password-123'}])
  c=server.app.test_client()
