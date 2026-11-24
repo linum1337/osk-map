@@ -54,4 +54,27 @@ with tempfile.TemporaryDirectory() as tmp:
  assert {h['id'] for h in audit}<={h['id'] for h in w.history()}
  assert act(dict(parent,version=4),'reserve').status_code==409
  assert list((Path(tmp)/'backups').glob('*.sqlite3'))
+ import io,zipfile,xml.etree.ElementTree as E
+ export=c.get('/warehouse/api/admin/stock.xlsx',headers=admin)
+ assert export.status_code==200 and export.mimetype=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+ with zipfile.ZipFile(io.BytesIO(export.data)) as z:
+  ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
+  book=E.fromstring(z.read('xl/workbook.xml'))
+  assert [r.get('name') for r in book.findall('m:sheets/m:sheet',ns)]==['Состояние','Катушки','История','Архив']
+  sheets=[E.fromstring(z.read('xl/worksheets/sheet'+str(i)+'.xml')) for i in [2,3,4]]
+  assert len(sheets[0].findall('m:sheetData/m:row',ns))==5
+  assert len(sheets[1].findall('m:sheetData/m:row',ns))==len(w.history())+1
+  assert len(sheets[2].findall('m:sheetData/m:row',ns))==2
+  text=E.tostring(sheets[1],encoding='unicode')
+  assert 'ORDER-UPDATE-42' in text and 'Продажа' in text and 'Разбивка на катушки' in text
+  assert not any(sheet.findall('.//m:f',ns) for sheet in sheets)
+ assert c.get('/warehouse/api/admin/stock.xlsx',headers=auth('Тест Склад','fixture-warehouse-password')).status_code==403
+
+ import warehouse_export
+ long='😀'*17000
+ binary=warehouse_export.workbook([('Тест',['Текст'],[['=1+1'],[long]])])
+ with zipfile.ZipFile(io.BytesIO(binary)) as z:
+  first_sheet=E.fromstring(z.read('xl/worksheets/sheet1.xml'));parts=E.fromstring(z.read('xl/worksheets/sheet2.xml'))
+  assert first_sheet.find('.//m:c[@r="A2"]',ns).get('t')=='inlineStr'
+  assert ''.join(r.find('m:c[@r="E'+r.get('r')+'"]/m:is/m:t',ns).text for r in parts.findall('m:sheetData/m:row',ns)[1:])==long
  print('PASS stock refresh: 136-style reel split, stable IDs, reservations/sales/order preserved, lineage and audit, stale versions, incomplete plans, length conservation, protected split, backup, idempotency, role denial')

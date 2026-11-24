@@ -30,17 +30,19 @@ def amounts(value):
  base=Decimal(str(value))/1000
  return {key:format((base*factor).quantize(Decimal('.01'),rounding=ROUND_HALF_UP),'f') for key,factor in [('base',Decimal(1)),('plus10',Decimal('1.10')),('plus15',Decimal('1.15')),('plus20',Decimal('1.20')),('plus30',Decimal('1.30'))]}
 
-def catalogue():
- with crm_store.connect() as c:row=c.execute('SELECT digest,data,updated_at FROM warehouse_prices WHERE id=1').fetchone()
+def catalogue(connection=None):
+ if connection is not None:row=connection.execute('SELECT digest,data,updated_at FROM warehouse_prices WHERE id=1').fetchone()
+ else:
+  with crm_store.connect() as c:row=c.execute('SELECT digest,data,updated_at FROM warehouse_prices WHERE id=1').fetchone()
  if not row:return {'version':None,'rows':[],'source':'','title':'Прайс ещё не загружен','unit':'₽/м с НДС'}
  data=json.loads(row[1]);data.update(version=row[0],updatedAt=row[2],unit='₽/м с НДС')
  for r in data['rows']:r['prices']=amounts(r['pricePerKm'])
  return data
 
-def decorate(snapshot,user):
+def decorate(snapshot,user,catalogue_data=None):
  snapshot['canViewPrices']=allowed(user)
  if not snapshot['canViewPrices']:return snapshot
- cat=catalogue();lookup={}
+ cat=catalogue_data if catalogue_data is not None else catalogue();lookup={}
  for r in cat['rows']:
   key=match_key(r)
   if key:lookup.setdefault(key,[]).append(r)

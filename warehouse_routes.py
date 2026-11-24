@@ -5,6 +5,7 @@ from flask import Blueprint,request,jsonify,send_from_directory,g,redirect,send_
 import warehouse_store as store
 import warehouse_price_export
 import warehouse_update
+import warehouse_export
 import auth_store
 import warehouse_prices as prices
 
@@ -45,6 +46,9 @@ def register(app,admin_name):
   catalogue=prices.catalogue()
   if not catalogue['rows']:return jsonify(error='Прайс ещё не загружен'),404
   return send_file(BytesIO(warehouse_price_export.xlsx_bytes(catalogue)),mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',as_attachment=True,download_name='osk-price.xlsx')
+ @bp.get('/api/admin/stock.xlsx')
+ def download_stock():
+  return send_file(BytesIO(warehouse_export.xlsx_bytes()),mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',as_attachment=True,download_name='osk-warehouse-history.xlsx')
  @bp.post('/api/admin/prices')
  def import_prices():
   status,data=prices.import_prices(request.get_json(silent=True),g.user);return jsonify(data),status
