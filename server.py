@@ -72,7 +72,8 @@ def guard():
  if request.path in ('/api/bitrix/preview','/api/bitrix/import','/api/contacts/preview','/api/contacts/enrich'):
   if g.user['role']!='admin':return jsonify(error='Импорт доступен только администратору'),403
   request.max_content_length=12_000_000
- if (request.path.startswith('/api/export/') or request.path.lower().endswith(('.csv','.xlsx','.xls','.zip'))) and not g.user['canExport']:
+ price_download=request.path=='/warehouse/api/prices.xlsx' and g.user['role']=='manager'
+ if not price_download and (request.path.startswith('/api/export/') or request.path.lower().endswith(('.csv','.xlsx','.xls','.zip'))) and not g.user['canExport']:
   return jsonify(error='Выгрузка доступна только администратору'),403
  if request.method not in ('GET','HEAD','OPTIONS'):
   if request.headers.get('X-Requested-With')!='OSK-Map':return jsonify(error='Недопустимый запрос'),403

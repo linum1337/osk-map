@@ -105,13 +105,14 @@ with tempfile.TemporaryDirectory() as temp:
  assert c.post('/warehouse/api/admin/prices',headers=stock_user,json=price_payload).status_code==403
  assert c.post('/warehouse/api/admin/prices',headers=manager,json=price_payload).status_code==403
  assert c.get('/warehouse/api/prices',headers=stock_user).status_code==403
- for auth in [manager,stock_user]:assert c.get('/warehouse/api/admin/prices.xlsx',headers=auth).status_code==403
- assert c.get('/warehouse/api/admin/prices.xlsx').status_code==401
- assert c.get('/warehouse/api/admin/prices.xlsx',headers=admin).status_code==404
+ assert c.get('/warehouse/api/prices.xlsx',headers=stock_user).status_code==403
+ assert c.get('/warehouse/api/prices.xlsx').status_code==401
+ assert c.get('/warehouse/api/prices.xlsx',headers=admin).status_code==404
  assert c.post('/warehouse/api/admin/prices',headers=admin,json=price_payload).status_code==201
  assert c.post('/warehouse/api/admin/prices',headers=admin,json=price_payload).json['imported'] is False
  import io,zipfile,xml.etree.ElementTree as E
- exported=c.get('/warehouse/api/admin/prices.xlsx',headers=admin)
+ assert c.get('/warehouse/api/prices.xlsx',headers=manager).status_code==200
+ exported=c.get('/warehouse/api/prices.xlsx',headers=admin)
  assert exported.status_code==200 and 'attachment' in exported.headers['Content-Disposition']
  assert exported.mimetype=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
  with zipfile.ZipFile(io.BytesIO(exported.data)) as z:
