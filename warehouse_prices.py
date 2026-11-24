@@ -14,15 +14,17 @@ def allowed(user):
  return user.get('role')!='warehouse' and auth_store.normalize(user.get('login',''))!=auth_store.normalize('Валерия Алексеева')
 
 def match_key(data):
- # Exact specification only. Decimal spelling and the known manufacturer suffix
- # do not change the specification; diameter, load and rod always remain in key.
- construction=data.get('construction') or data.get('marking') or ''
- construction=re.sub(r'\s*(?:ультракабель|ультркабель|ск)\s*$','',construction.casefold())
- construction=re.sub(r'\s+','',construction).replace(',','.')
- construction=re.sub(r'(окпд-)0+(\d)',r'\1\2',construction)
+ # Price depends only on fibre count and the rod's diameter and material.
+ # Read the actual construction first; fall back to its source marking.
+ fibres=None
+ for text in [data.get('construction',''),data.get('marking','')]:
+  match=re.search(r'-(\d+)[аa](?=\W|\d|$)',re.sub(r'\s+','',text.casefold()))
+  if match:
+   fibres=int(match[1]);break
  rod=re.sub(r'\s+','',data.get('rod','').casefold()).replace(',','.').translate(str.maketrans({'е':'e','а':'a'}))
- def decimal(m):return format(Decimal(m[0]).normalize(),'f')
- return re.sub(r'\d+(?:\.\d+)?',decimal,construction)+'|'+re.sub(r'\d+(?:\.\d+)?',decimal,rod)
+ rod_match=re.fullmatch(r'(\d+(?:\.\d+)?)(rod|eaa)',rod)
+ if not fibres or not rod_match:return None
+ return str(fibres)+'|'+format(Decimal(rod_match[1]).normalize(),'f')+'|'+rod_match[2]
 
 def amounts(value):
  base=Decimal(str(value))/1000
@@ -38,10 +40,16 @@ def catalogue():
 def decorate(snapshot,user):
  snapshot['canViewPrices']=allowed(user)
  if not snapshot['canViewPrices']:return snapshot
- cat=catalogue();lookup={match_key(r):r for r in cat['rows']}
- snapshot['priceVersion']=cat['version'];snapshot['priceTitle']=cat['title']
+ cat=catalogue();lookup={}
+ for r in cat['rows']:
+  key=match_key(r)
+  if key:lookup.setdefault(key,[]).append(r)
+ snapshot['priceVersion']='fibre-rod-v1:'+str(cat['version']);snapshot['priceTitle']=cat['title']
  for r in snapshot['items']+snapshot['groups']:
-  match=lookup.get(match_key(r));r['prices']=match['prices'] if match else None
+  candidates=lookup.get(match_key(r),[])
+  # A future catalogue with conflicting prices must not choose one silently.
+  match=candidates[0] if candidates and len({Decimal(x['pricePerKm']) for x in candidates})==1 else None
+  r['prices']=match['prices'] if match else None
   if match:r['priceSourceRow']=match['sourceRow']
  return snapshot
 
@@ -60,7 +68,7 @@ def import_prices(body,user):
    price=Decimal(str(r['pricePerKm']))
    if not price.is_finite() or price<=0 or price>1000000000 or price*100!=(price*100).to_integral_value():raise ValueError()
    key=match_key(r)
-   if key in keys:raise ValueError()
+   if not key or key in keys:raise ValueError()
    keys.add(key);clean.append({k:r[k] for k in ['sourceRow','construction','rod','category','cableDiameter','weight','type']}|{'pricePerKm':format(price,'f')})
  except (ValueError,KeyError,TypeError,InvalidOperation):return 400,{'error':'Некорректная или повторяющаяся строка прайса'}
  data={'source':source,'title':title,'rows':clean}

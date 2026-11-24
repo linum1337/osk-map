@@ -53,7 +53,7 @@ with tempfile.TemporaryDirectory() as temp:
  assert c.get('/api/records',headers=manager).status_code==200
 
  def item(row,reel,length,rod='1,2 ROD'):
-  return {'sourceRow':row,'pallet':'1','reel':reel,'length':length,'sourceLength':length,'sourceUnit':'м','construction':'Fixture cable','marking':'Fixture marking','rod':rod,'note':'Original note','location':'Fixture storage'}
+  return {'sourceRow':row,'pallet':'1','reel':reel,'length':length,'sourceLength':length,'sourceUnit':'м','construction':'ОКПД-4А-(1,5)-1/4,8','marking':'Fixture marking','rod':rod,'note':'Original note','location':'Fixture storage'}
  payload={'format':'osk-krasnodar-stock-v1','source':'fixture.xlsx','sourceDigest':'a'*64,'sourceData':{'headers':['original header']},'items':[item(2,'1',100),item(3,'2',200,'1.2 ROD'),item(4,'3',50,'1.0 EAA')]}
  invalid=copy.deepcopy(payload);invalid['items'][1]['length']=-1
  assert c.post('/warehouse/api/admin/import',headers=admin,json=invalid).status_code==400
@@ -101,7 +101,7 @@ with tempfile.TemporaryDirectory() as temp:
  # Prices use an independent catalogue; Valeria/warehouse role never receives them.
  import warehouse_prices as prices
  prices.init();prices.init()
- price_payload={'format':'osk-warehouse-prices-v1','source':'fixture-prices.xlsx','sourceDigest':'c'*64,'title':'Fixture VAT price list','rows':[{'sourceRow':7,'construction':'Fixture cable','rod':'1.2 ROD','category':'Fixture category','cableDiameter':'4.2','weight':'15','type':'round','pricePerKm':'12345.67'}]}
+ price_payload={'format':'osk-warehouse-prices-v1','source':'fixture-prices.xlsx','sourceDigest':'c'*64,'title':'Fixture VAT price list','rows':[{'sourceRow':7,'construction':'ОКПД-4А-(1,5)-1/4,8','rod':'1.2 ROD','category':'Fixture category','cableDiameter':'4.2','weight':'15','type':'round','pricePerKm':'12345.67'}]}
  assert c.post('/warehouse/api/admin/prices',headers=stock_user,json=price_payload).status_code==403
  assert c.post('/warehouse/api/admin/prices',headers=manager,json=price_payload).status_code==403
  assert c.get('/warehouse/api/prices',headers=stock_user).status_code==403
@@ -125,8 +125,16 @@ with tempfile.TemporaryDirectory() as temp:
  assert all('prices' not in r and 'priceSourceRow' not in r for r in hidden['items']+hidden['groups'])
  assert prices.match_key({'construction':'ОКПД-04А-(1,5)-1/5,0 Ультракабель','rod':'1,0 ЕАА'})==prices.match_key({'construction':'ОКПД-4А-(1.5)-1/5','rod':'1.0 EAA'})
  exact={'construction':'ОКПД-4А-(1,5)-1/5,0','rod':'1.2 ROD'}
- for difference in [{'construction':'ОКПД-4А-(1,5)-1/5,2'},{'construction':'ОКПД-4А-(1,0)-1/5,0'},{'rod':'1.4 ROD'}]:
+ for difference in [{'construction':'ОКПД-4А-(1,5)-1/5,2'},{'construction':'ОКПД-4А-(1,0)-1/5,0'},{'construction':'ОКТ-Д(3,0)П-4А1-1-0-60'}]:
+  assert prices.match_key(exact)==prices.match_key(exact|difference)
+ for difference in [{'construction':'ОКПД-8А-(1,5)-1/5,0'},{'rod':'1.4 ROD'},{'rod':'1.2 EAA'}]:
   assert prices.match_key(exact)!=prices.match_key(exact|difference)
+ assert prices.match_key({'construction':'unknown','rod':'1.2 ROD'}) is None
+ assert prices.match_key({'construction':'ОКПД-4А-(1,5)-1/4,8','rod':''}) is None
+ # Different cable diameter and load still receive the same rod/fibre price.
+ variant=copy.deepcopy(w.snapshot(True))
+ variant['items'][0]['construction']='ОКТ-Д(3,0)П-4А1-1-0-60'
+ assert prices.decorate(variant,{'role':'manager','login':'fixture'})['items'][0]['prices']['base']=='12.35'
  # Price import cannot change stock versions, reservations, sales or history.
  before=w.snapshot(True);events=w.history()
  assert c.post('/warehouse/api/admin/prices',headers=admin,json=price_payload).status_code==200
