@@ -17,7 +17,7 @@ with tempfile.TemporaryDirectory() as tmp:
   assert c.get(path).status_code==401,path
   for headers in [admin,manager]:assert c.get(path,headers=headers).status_code==200,path
  home=c.get('/',headers=admin).get_data(as_text=True)
- for path in ['/transport/','/suppliers/','/companies/']:assert f'href="{path}"' in home
+ for path in ['/transport/','/suppliers/','/companies/','/warehouse/']:assert f'href="{path}"' in home
  for path in ['/portal.css','/portal-home.js','/portal-nav.js','/portal-nav.css','/companies/crm.js','/companies/data.js','/suppliers/app.js','/suppliers/networks.js']:
   assert c.get(path,headers=manager).status_code==200,path
  transport=c.get('/transport/',headers=manager).get_data(as_text=True);raw=re.search(r'<script id="terminals-data" type="application/json">(.*?)</script>',transport,re.S)[1]
