@@ -91,10 +91,12 @@ with tempfile.TemporaryDirectory() as temp:
  assert sold.status_code==200 and sold.json['item']['soldBy']=='Тест Менеджер'
  assert sold.json['stock']['totals']['reserved']==0 and sold.json['stock']['totals']['sold']==100
  assert sold.json['stock']['totals']['available']==250
+ assert sold.json['stock']['totals']['soldItems']==1
  clock+=9999
  assert id in {r['id'] for r in w.snapshot()['items']}
  clock+=1
  assert id not in {r['id'] for r in w.snapshot()['items']}
+ assert w.snapshot()['totals']['sold']==100 and w.snapshot()['totals']['soldItems']==1
  assert id in {r['id'] for r in w.snapshot(True)['items']}
  assert id not in {r['id'] for r in c.get('/warehouse/api/items',headers=stock_user).json['items']}
  assert id in {r['id'] for r in c.get('/warehouse/api/items?show_sold=1',headers=stock_user).json['items']}
@@ -109,6 +111,7 @@ with tempfile.TemporaryDirectory() as temp:
  assert 'orderNumber' not in restored.json['item']
  assert w.history(id)[0]['orderNumber']=='ORDER-42'
  assert restored.status_code==200 and restored.json['stock']['totals']['available']==350
+ assert restored.json['stock']['totals']['sold']==0 and restored.json['stock']['totals']['soldItems']==0
  # Prices use an independent catalogue; Valeria/warehouse role never receives them.
  import warehouse_prices as prices
  prices.init();prices.init()
