@@ -33,6 +33,7 @@ with tempfile.TemporaryDirectory() as temp:
  assert c.get('/api/me',headers=basic(user_body['login'],'different-password')).status_code==401
  stock_user=basic(user_body['login'],user_body['password'])
  assert c.get('/api/me',headers=stock_user).json['role']=='warehouse'
+ assert c.post('/warehouse/api/items/missing/action',headers=stock_user,json={'action':[],'version':1,'requestKey':'invalid-action-0001'}).status_code==400
  page=c.get('/login').get_data(as_text=True)
  assert 'Тест Склад' in page and '/warehouse/login' not in page
  def signin(client,name,password,next_page='/'):

@@ -96,7 +96,7 @@ def history(item_id=None):
 def change(item_id,body,user):
  if not isinstance(body,dict):return 400,{'error':'Некорректное действие'}
  action=body.get('action');version=body.get('version');key=body.get('requestKey');comment=body.get('comment','')
- if action not in ACTIONS or type(version) is not int or not isinstance(key,str) or not 16<=len(key)<=100 or not isinstance(comment,str) or len(comment)>5000:return 400,{'error':'Проверьте действие и комментарий'}
+ if not isinstance(action,str) or action not in ACTIONS or type(version) is not int or not isinstance(key,str) or not 16<=len(key)<=100 or not isinstance(comment,str) or len(comment)>5000:return 400,{'error':'Проверьте действие и комментарий'}
  if action=='restore' and not comment.strip():return 400,{'error':'Укажите причину возврата проданной позиции'}
  with crm_store.connect() as c:
   c.execute('BEGIN IMMEDIATE')
@@ -126,7 +126,7 @@ def import_stock(body,user):
  clean=[];seen=set()
  try:
   for row in rows:
-   if not isinstance(row,dict) or type(row.get('sourceRow')) is not int or row['sourceRow'] in seen:raise ValueError()
+   if not isinstance(row,dict) or type(row.get('sourceRow')) is not int or not 1<=row['sourceRow']<=1048576 or row['sourceRow'] in seen:raise ValueError()
    seen.add(row['sourceRow'])
    for key in ('pallet','reel','construction','marking','note','rod','location'):
     if not isinstance(row.get(key),str) or len(row[key])>5000:raise ValueError()
