@@ -1,7 +1,9 @@
 """Warehouse routes use the portal login and its server-verified identity."""
 from pathlib import Path
-from flask import Blueprint,request,jsonify,send_from_directory,g,redirect
+from io import BytesIO
+from flask import Blueprint,request,jsonify,send_from_directory,g,redirect,send_file
 import warehouse_store as store
+import warehouse_price_export
 import auth_store
 import warehouse_prices as prices
 
@@ -36,6 +38,11 @@ def register(app,admin_name):
  def price_catalogue():
   if not prices.allowed(g.user):return jsonify(error='Цены недоступны для этой учётной записи'),403
   return jsonify(prices.catalogue())
+ @bp.get('/api/admin/prices.xlsx')
+ def download_prices():
+  catalogue=prices.catalogue()
+  if not catalogue['rows']:return jsonify(error='Прайс ещё не загружен'),404
+  return send_file(BytesIO(warehouse_price_export.xlsx_bytes(catalogue)),mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',as_attachment=True,download_name='osk-price.xlsx')
  @bp.post('/api/admin/prices')
  def import_prices():
   status,data=prices.import_prices(request.get_json(silent=True),g.user);return jsonify(data),status

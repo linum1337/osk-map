@@ -105,8 +105,24 @@ with tempfile.TemporaryDirectory() as temp:
  assert c.post('/warehouse/api/admin/prices',headers=stock_user,json=price_payload).status_code==403
  assert c.post('/warehouse/api/admin/prices',headers=manager,json=price_payload).status_code==403
  assert c.get('/warehouse/api/prices',headers=stock_user).status_code==403
+ for auth in [manager,stock_user]:assert c.get('/warehouse/api/admin/prices.xlsx',headers=auth).status_code==403
+ assert c.get('/warehouse/api/admin/prices.xlsx').status_code==401
+ assert c.get('/warehouse/api/admin/prices.xlsx',headers=admin).status_code==404
  assert c.post('/warehouse/api/admin/prices',headers=admin,json=price_payload).status_code==201
  assert c.post('/warehouse/api/admin/prices',headers=admin,json=price_payload).json['imported'] is False
+ import io,zipfile,xml.etree.ElementTree as E
+ exported=c.get('/warehouse/api/admin/prices.xlsx',headers=admin)
+ assert exported.status_code==200 and 'attachment' in exported.headers['Content-Disposition']
+ assert exported.mimetype=='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+ with zipfile.ZipFile(io.BytesIO(exported.data)) as z:
+  ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
+  sheet=E.fromstring(z.read('xl/worksheets/sheet1.xml'))
+  assert sheet.find('.//m:c[@r="G4"]/m:v',ns).text=='12345.67'
+  assert sheet.find('.//m:c[@r="H4"]/m:v',ns).text=='12.35'
+  assert sheet.find('.//m:c[@r="L4"]/m:v',ns).text=='16.05'
+  assert sheet.find('.//m:autoFilter',ns).get('ref')=='A3:L4'
+  assert sheet.find('.//m:pane',ns).get('ySplit')=='3'
+  assert not sheet.findall('.//m:f',ns)
  bad=copy.deepcopy(price_payload);bad['rows'][0]['pricePerKm']='NaN'
  assert c.post('/warehouse/api/admin/prices',headers=admin,json=bad).status_code==400
  duplicate=copy.deepcopy(price_payload);duplicate['rows'].append({**duplicate['rows'][0],'sourceRow':8})
