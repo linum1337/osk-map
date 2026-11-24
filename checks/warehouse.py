@@ -98,6 +98,39 @@ with tempfile.TemporaryDirectory() as temp:
  assert 'orderNumber' not in restored.json['item']
  assert w.history(id)[0]['orderNumber']=='ORDER-42'
  assert restored.status_code==200 and restored.json['stock']['totals']['available']==350
+ # Prices use an independent catalogue; Valeria/warehouse role never receives them.
+ import warehouse_prices as prices
+ prices.init();prices.init()
+ price_payload={'format':'osk-warehouse-prices-v1','source':'fixture-prices.xlsx','sourceDigest':'c'*64,'title':'Fixture VAT price list','rows':[{'sourceRow':7,'construction':'Fixture cable','rod':'1.2 ROD','category':'Fixture category','cableDiameter':'4.2','weight':'15','type':'round','pricePerKm':'12345.67'}]}
+ assert c.post('/warehouse/api/admin/prices',headers=stock_user,json=price_payload).status_code==403
+ assert c.post('/warehouse/api/admin/prices',headers=manager,json=price_payload).status_code==403
+ assert c.get('/warehouse/api/prices',headers=stock_user).status_code==403
+ assert c.post('/warehouse/api/admin/prices',headers=admin,json=price_payload).status_code==201
+ assert c.post('/warehouse/api/admin/prices',headers=admin,json=price_payload).json['imported'] is False
+ bad=copy.deepcopy(price_payload);bad['rows'][0]['pricePerKm']='NaN'
+ assert c.post('/warehouse/api/admin/prices',headers=admin,json=bad).status_code==400
+ duplicate=copy.deepcopy(price_payload);duplicate['rows'].append({**duplicate['rows'][0],'sourceRow':8})
+ assert c.post('/warehouse/api/admin/prices',headers=admin,json=duplicate).status_code==400
+ for auth in [admin,manager]:
+  cat=c.get('/warehouse/api/prices',headers=auth).json
+  assert len(cat['rows'])==1
+  assert cat['rows'][0]['prices']=={'base':'12.35','plus10':'13.58','plus15':'14.20','plus20':'14.81','plus30':'16.05'}
+  snapshot=c.get('/warehouse/api/items?show_sold=1',headers=auth).json
+  assert snapshot['canViewPrices'] is True
+  assert snapshot['items'][0]['prices']['base']=='12.35'
+  assert snapshot['items'][2]['prices'] is None
+  assert snapshot['groups'][0]['prices']['plus30']=='16.05'
+ hidden=c.get('/warehouse/api/items?show_sold=1',headers=stock_user).json
+ assert hidden['canViewPrices'] is False and 'priceVersion' not in hidden
+ assert all('prices' not in r and 'priceSourceRow' not in r for r in hidden['items']+hidden['groups'])
+ assert prices.match_key({'construction':'ОКПД-04А-(1,5)-1/5,0 Ультракабель','rod':'1,0 ЕАА'})==prices.match_key({'construction':'ОКПД-4А-(1.5)-1/5','rod':'1.0 EAA'})
+ exact={'construction':'ОКПД-4А-(1,5)-1/5,0','rod':'1.2 ROD'}
+ for difference in [{'construction':'ОКПД-4А-(1,5)-1/5,2'},{'construction':'ОКПД-4А-(1,0)-1/5,0'},{'rod':'1.4 ROD'}]:
+  assert prices.match_key(exact)!=prices.match_key(exact|difference)
+ # Price import cannot change stock versions, reservations, sales or history.
+ before=w.snapshot(True);events=w.history()
+ assert c.post('/warehouse/api/admin/prices',headers=admin,json=price_payload).status_code==200
+ assert w.snapshot(True)['items']==before['items'] and w.history()==events
  # A failed audit insert rolls back the inventory update too.
  with crm_store.connect() as db:
   prior=db.execute('SELECT * FROM warehouse_items WHERE id=?',(id,)).fetchone()
@@ -114,6 +147,7 @@ with tempfile.TemporaryDirectory() as temp:
  with crm_store.connect() as db:
   assert db.execute('SELECT * FROM accounts ORDER BY login').fetchall()==accounts_before
   assert json.loads(db.execute('SELECT data FROM records WHERE id="office-1"').fetchone()[0])==original
+ assert action('release',5,'price-hidden-release1').json['stock']['canViewPrices'] is False
  assert session_client.post('/logout',headers={'X-Requested-With':'OSK-Map'}).status_code==200
  assert session_client.get('/warehouse/api/items').status_code==401
  print('PASS: unified login; warehouse-only route/API restrictions; existing credentials and CRM preserved; import idempotency; grouped/free/reserved/sold reconciliation; 10-second hide and show sold; server authorship; full history; CSRF; atomic rollback; concurrent reserve conflict')
