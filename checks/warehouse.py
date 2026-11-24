@@ -63,8 +63,8 @@ with tempfile.TemporaryDirectory() as temp:
  assert c.post('/warehouse/api/admin/import',headers=admin,json={**payload,'sourceDigest':'b'*64}).status_code==409
  snap=w.snapshot();assert len(snap['groups'])==2 and snap['totals']['available']==350
  first=snap['items'][0];id=first['id'];clock=1000000;w.now_ms=lambda:clock
- def action(action,version,key,comment='',auth=stock_user,item_id=id):
-  return c.post('/warehouse/api/items/'+item_id+'/action',headers=auth,json={'action':action,'version':version,'requestKey':key,'comment':comment,'actor':'FAKE','role':'admin'})
+ def action(action,version,key,comment='',auth=stock_user,item_id=id,**extra):
+  return c.post('/warehouse/api/items/'+item_id+'/action',headers=auth,json={'action':action,'version':version,'requestKey':key,'comment':comment,'actor':'FAKE','role':'admin',**extra})
  assert c.post('/warehouse/api/items/'+id+'/action',headers={k:v for k,v in stock_user.items() if k!='X-Requested-With'},json={}).status_code==403
  assert c.post('/warehouse/api/items/'+id+'/action',headers={**stock_user,'Origin':'https://other.invalid'},json={}).status_code==403
  reserved=action('reserve',1,'reserve-request-0001','For customer fixture')
@@ -73,7 +73,10 @@ with tempfile.TemporaryDirectory() as temp:
  assert action('reserve',1,'reserve-request-0002',auth=manager).status_code==409
  assert action('reserve',1,'reserve-request-0001').json['repeated'] is True
  assert action('reserve',1,'reserve-request-0001',auth=manager).status_code==409
- sold=action('sell',2,'sale-request-0000001',auth=manager)
+ assert action('sell',2,'sale-missing-order-01',auth=manager).status_code==400
+ assert action('sell',2,'sale-blank-order-0001',orderNumber='   ').status_code==400
+ sold=action('sell',2,'sale-request-0000001',auth=manager,orderNumber='ORDER-42')
+ assert sold.json['item']['orderNumber']=='ORDER-42'
  assert sold.status_code==200 and sold.json['item']['soldBy']=='Тест Менеджер'
  assert sold.json['stock']['totals']['reserved']==0 and sold.json['stock']['totals']['sold']==100
  assert sold.json['stock']['totals']['available']==250
@@ -87,9 +90,13 @@ with tempfile.TemporaryDirectory() as temp:
  audit=c.get('/warehouse/api/history?item='+id,headers=stock_user).json
  assert [h['action'] for h in audit]==['sell','reserve','import']
  assert audit[0]['actor']=='Тест Менеджер' and audit[1]['actor']==user_body['login']
+ assert audit[0]['orderNumber']=='ORDER-42'
  assert audit[1]['comment']=='For customer fixture'
  assert action('restore',3,'restore-request-0001').status_code==400
- restored=action('restore',3,'restore-request-0002','Cancelled sale')
+ assert action('restore',3,'unconfirmed-return-01','Cancelled sale').status_code==400
+ restored=action('restore',3,'restore-request-0002','Cancelled sale',confirmed=True)
+ assert 'orderNumber' not in restored.json['item']
+ assert w.history(id)[0]['orderNumber']=='ORDER-42'
  assert restored.status_code==200 and restored.json['stock']['totals']['available']==350
  # A failed audit insert rolls back the inventory update too.
  with crm_store.connect() as db:

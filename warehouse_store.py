@@ -27,6 +27,7 @@ def init():
   CREATE TABLE IF NOT EXISTS warehouse_history(id INTEGER PRIMARY KEY, item_id TEXT NOT NULL, action TEXT NOT NULL, from_status TEXT, to_status TEXT NOT NULL, actor TEXT NOT NULL, actor_role TEXT NOT NULL, created_at INTEGER NOT NULL, comment TEXT NOT NULL, request_key TEXT NOT NULL UNIQUE);
   CREATE INDEX IF NOT EXISTS warehouse_history_item ON warehouse_history(item_id,id);
   ''')
+  if 'order_number' not in {r[1] for r in c.execute('PRAGMA table_info(warehouse_history)')}:c.execute("ALTER TABLE warehouse_history ADD COLUMN order_number TEXT NOT NULL DEFAULT ''")
 
 def users():
  with crm_store.connect() as c:return [r[0] for r in c.execute('SELECT display_name FROM warehouse_accounts WHERE active=1 ORDER BY display_name')]
@@ -90,13 +91,16 @@ def snapshot(show_sold=False,clock=None):
 def history(item_id=None):
  with crm_store.connect() as c:
   where,args=(' WHERE h.item_id=?',(item_id,)) if item_id else ('',())
-  rows=c.execute('SELECT h.id,h.item_id,h.action,h.from_status,h.to_status,h.actor,h.actor_role,h.created_at,h.comment,i.data FROM warehouse_history h JOIN warehouse_items i ON i.id=h.item_id'+where+' ORDER BY h.id DESC',args).fetchall()
- return [{'id':id,'itemId':item,'action':action,'fromStatus':old,'toStatus':new,'actor':actor,'actorRole':role,'createdAt':date,'comment':comment,'reel':json.loads(data).get('reel'),'marking':json.loads(data).get('marking')} for id,item,action,old,new,actor,role,date,comment,data in rows]
+  rows=c.execute('SELECT h.id,h.item_id,h.action,h.from_status,h.to_status,h.actor,h.actor_role,h.created_at,h.comment,i.data,h.order_number FROM warehouse_history h JOIN warehouse_items i ON i.id=h.item_id'+where+' ORDER BY h.id DESC',args).fetchall()
+ return [{'id':id,'itemId':item,'action':action,'fromStatus':old,'toStatus':new,'actor':actor,'actorRole':role,'createdAt':date,'comment':comment,'orderNumber':order,'reel':json.loads(data).get('reel'),'marking':json.loads(data).get('marking')} for id,item,action,old,new,actor,role,date,comment,data,order in rows]
 
 def change(item_id,body,user):
  if not isinstance(body,dict):return 400,{'error':'Некорректное действие'}
  action=body.get('action');version=body.get('version');key=body.get('requestKey');comment=body.get('comment','')
  if not isinstance(action,str) or action not in ACTIONS or type(version) is not int or not isinstance(key,str) or not 16<=len(key)<=100 or not isinstance(comment,str) or len(comment)>5000:return 400,{'error':'Проверьте действие и комментарий'}
+ order=body.get('orderNumber','')
+ if action=='sell' and (not isinstance(order,str) or not order.strip() or len(order)>200):return 400,{'error':'Укажите номер заказа покупателя (до 200 символов)'}
+ if action=='restore' and body.get('confirmed') is not True:return 400,{'error':'Подтвердите возврат повторно'}
  if action=='restore' and not comment.strip():return 400,{'error':'Укажите причину возврата проданной позиции'}
  with crm_store.connect() as c:
   c.execute('BEGIN IMMEDIATE')
@@ -114,8 +118,12 @@ def change(item_id,body,user):
   if action=='reserve':reserver=user['login']
   if action in ('release','restore'):reserver=None;seller=None;sold_at=None
   if action=='sell':seller=user['login'];sold_at=clock
+  data=json.loads(row[1])
+  if action=='sell':data['orderNumber']=order.strip()
+  if action=='restore':data.pop('orderNumber',None)
+  c.execute('UPDATE warehouse_items SET data=? WHERE id=?',(json.dumps(data,ensure_ascii=False),item_id))
   c.execute('UPDATE warehouse_items SET status=?,version=version+1,updated_by=?,updated_at=?,reserved_by=?,sold_by=?,sold_at=? WHERE id=?',(target,user['login'],clock,reserver,seller,sold_at,item_id))
-  c.execute('INSERT INTO warehouse_history(item_id,action,from_status,to_status,actor,actor_role,created_at,comment,request_key) VALUES(?,?,?,?,?,?,?,?,?)',(item_id,action,current['status'],target,user['login'],user['role'],clock,comment,key))
+  c.execute('INSERT INTO warehouse_history(item_id,action,from_status,to_status,actor,actor_role,created_at,comment,request_key,order_number) VALUES(?,?,?,?,?,?,?,?,?,?)',(item_id,action,current['status'],target,user['login'],user['role'],clock,comment,key,order.strip() if action=='sell' else current.get('orderNumber','')))
   result=unpack(c.execute('SELECT * FROM warehouse_items WHERE id=?',(item_id,)).fetchone())
  return 200,{'item':result,'serverNow':clock}
 
