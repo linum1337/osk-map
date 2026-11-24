@@ -38,8 +38,9 @@ def register(app,admin_name):
  def price_catalogue():
   if not prices.allowed(g.user):return jsonify(error='Цены недоступны для этой учётной записи'),403
   return jsonify(prices.catalogue())
- @bp.get('/api/admin/prices.xlsx')
+ @bp.get('/api/prices.xlsx')
  def download_prices():
+  if not prices.allowed(g.user):return jsonify(error='Скачивание прайса недоступно для этой учётной записи'),403
   catalogue=prices.catalogue()
   if not catalogue['rows']:return jsonify(error='Прайс ещё не загружен'),404
   return send_file(BytesIO(warehouse_price_export.xlsx_bytes(catalogue)),mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',as_attachment=True,download_name='osk-price.xlsx')
