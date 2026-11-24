@@ -1,7 +1,7 @@
 (()=>{
 'use strict';
 const $=id=>document.getElementById(id),esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const labels={available:'В наличии',reserved:'В резерве',sold:'Продано'},actions={reserve:'Поставить в резерв',release:'Снять резерв',sell:'Отметить как проданное',restore:'Возврат',import:'Импорт остатков'};
+const labels={available:'В наличии',reserved:'В резерве',sold:'Продано'},actions={reserve:'Поставить в резерв',release:'Снять резерв',sell:'Отметить как проданное',restore:'Возврат',import:'Импорт остатков',update:'Обновление из файла',split:'Разбивка на катушки','import-update':'Добавление катушки из файла'};
 const metres=n=>new Intl.NumberFormat('ru-RU',{maximumFractionDigits:3}).format(n||0),date=n=>n?new Intl.DateTimeFormat('ru-RU',{dateStyle:'short',timeStyle:'medium',timeZone:'Europe/Moscow'}).format(n):'—';
 let stock={items:[],groups:[],totals:{}},view='summary',showSold=false,product=null,clockOffset=0,visibleKey='',loadSeq=0,signature='',dialogState=null,toastTimer,priceCatalogue=null,canDownloadPrice=false;
 async function api(path,body){const r=await fetch(path,body?{method:'POST',headers:{'Content-Type':'application/json','X-Requested-With':'OSK-Map'},body:JSON.stringify(body)}:{cache:'no-store'});if(r.status===401){location.href='/login?next=/warehouse/';throw Error('Требуется вход')}const d=await r.json();if(!r.ok){const e=Error(d.error||'Не удалось выполнить действие');e.status=r.status;throw e}return d}

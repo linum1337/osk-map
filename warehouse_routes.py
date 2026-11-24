@@ -4,6 +4,7 @@ from io import BytesIO
 from flask import Blueprint,request,jsonify,send_from_directory,g,redirect,send_file
 import warehouse_store as store
 import warehouse_price_export
+import warehouse_update
 import auth_store
 import warehouse_prices as prices
 
@@ -52,6 +53,9 @@ def register(app,admin_name):
   body=request.get_json(silent=True)
   if isinstance(body,dict) and isinstance(body.get('login'),str) and auth_store.normalize(body['login'])==auth_store.normalize(admin_name):return jsonify(error='Доступ администратора сохранён'),409
   status,data=store.provision(body);return jsonify(data),status
+ @bp.post('/api/admin/update')
+ def update_stock():
+  status,data=warehouse_update.apply(request.get_json(silent=True),g.user);return jsonify(data),status
  @bp.post('/api/admin/import')
  def import_items():
   status,data=store.import_stock(request.get_json(silent=True),g.user);return jsonify(data),status

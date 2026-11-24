@@ -73,7 +73,7 @@ def snapshot(show_sold=False,clock=None):
  clock=now_ms() if clock is None else clock
  with crm_store.connect() as c:
   c.execute('BEGIN')
-  all_rows=[unpack(r) for r in c.execute('SELECT * FROM warehouse_items ORDER BY rowid')]
+  all_rows=[unpack(r) for r in c.execute('SELECT * FROM warehouse_items ORDER BY rowid') if not json.loads(r[1]).get('supersededBy')]
  groups={}
  for r in all_rows:
   key=r['productKey']
@@ -90,7 +90,11 @@ def snapshot(show_sold=False,clock=None):
 
 def history(item_id=None):
  with crm_store.connect() as c:
-  where,args=(' WHERE h.item_id=?',(item_id,)) if item_id else ('',())
+  ids=[];ancestor=item_id
+  while ancestor and ancestor not in ids:
+   ids.append(ancestor);record=c.execute('SELECT data FROM warehouse_items WHERE id=?',(ancestor,)).fetchone()
+   ancestor=json.loads(record[0]).get('parentItemId') if record else None
+  where,args=(' WHERE h.item_id IN ('+','.join('?' for _ in ids)+')',tuple(ids)) if ids else ('',())
   rows=c.execute('SELECT h.id,h.item_id,h.action,h.from_status,h.to_status,h.actor,h.actor_role,h.created_at,h.comment,i.data,h.order_number FROM warehouse_history h JOIN warehouse_items i ON i.id=h.item_id'+where+' ORDER BY h.id DESC',args).fetchall()
  return [{'id':id,'itemId':item,'action':action,'fromStatus':old,'toStatus':new,'actor':actor,'actorRole':role,'createdAt':date,'comment':comment,'orderNumber':order,'reel':json.loads(data).get('reel'),'marking':json.loads(data).get('marking')} for id,item,action,old,new,actor,role,date,comment,data,order in rows]
 
@@ -111,6 +115,7 @@ def change(item_id,body,user):
    if prior!=(item_id,action,user['login']):return 409,{'error':'Повторите действие'}
    return 200,{'item':unpack(row),'serverNow':now_ms(),'repeated':True}
   current=unpack(row)
+  if current.get('supersededBy'):return 409,{'error':'Позиция разбита на отдельные катушки. Обновите таблицу.'}
   if current['version']!=version:return 409,{'error':'Позицию уже изменил другой пользователь. Данные обновлены; проверьте их и повторите действие.','item':current}
   allowed,target=ACTIONS[action];allowed=(allowed,) if isinstance(allowed,str) else allowed
   if current['status'] not in allowed:return 409,{'error':'Действие недоступно для текущего статуса','item':current}
