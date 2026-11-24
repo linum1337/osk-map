@@ -85,7 +85,7 @@ def snapshot(show_sold=False,clock=None):
   g['remaining']=g['available']+g['reserved']
  visible=[r for r in all_rows if show_sold or r['status']!=SOLD or r['hideAt']>clock]
  totals={s:sum(round(r['length']*1000) for r in all_rows if r['status']==s)/1000 for s in LABELS}
- totals.update(items=len(all_rows),remaining=totals['available']+totals['reserved'])
+ totals.update(items=len(all_rows),soldItems=sum(r['status']==SOLD for r in all_rows),remaining=totals['available']+totals['reserved'])
  return {'items':visible,'groups':list(groups.values()),'totals':totals,'serverNow':clock,'hideDelayMs':HIDE_DELAY_MS}
 
 def history(item_id=None):
