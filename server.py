@@ -3,7 +3,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,send_file,redirect,session,render_template_string
 from werkzeug.middleware.proxy_fix import ProxyFix
-import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import,supplier_catalog,contact_enrichment
+import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import,supplier_catalog,contact_enrichment,warehouse_store,warehouse_routes
 ROOT=Path(__file__).resolve().parent
 USERNAME=os.environ.get('APP_USER','osk')
 PASSWORD=os.environ.get('APP_PASSWORD','')
@@ -12,6 +12,7 @@ crm_store.init()
 auth_store.init()
 head_office.init()
 workspace_store.initialize()
+warehouse_store.init()
 app=Flask(__name__,static_folder=None)
 app.config['MAX_CONTENT_LENGTH']=100000
 key_file=crm_store.DB.parent/'session.key'
@@ -27,10 +28,14 @@ def account(login,password=None):
   if password is not None and hmac.compare_digest(password.encode(),PASSWORD.encode()):return {'login':USERNAME,'role':'admin','canExport':True},revision(PASSWORD)
  if password is not None:
   user=auth_store.authenticate(login,password)
-  if not user:return None,None
+  if not user:
+   warehouse_user,hashed=warehouse_store.identity(login,password)
+   return (warehouse_user,revision(hashed)) if warehouse_user else (None,None)
   login=user['login']
  with crm_store.connect() as c:row=c.execute('SELECT display_name,manager,password_hash FROM accounts WHERE login=? AND active=1',(auth_store.normalize(login),)).fetchone()
- if not row:return None,None
+ if not row:
+  warehouse_user,hashed=warehouse_store.identity(login)
+  return (warehouse_user,revision(hashed)) if warehouse_user else (None,None)
  return {'login':row[0],'manager':row[1],'role':'manager','canExport':False},revision(row[2])
 def session_user():
  login=session.get('login')
@@ -58,9 +63,12 @@ def guard():
  auth=request.authorization
  if not g.user and auth and auth.type.lower()=='basic':g.user,_=account(auth.username or '',auth.password or '')
  if not g.user:
-  if request.method=='GET' and request.accept_mimetypes.accept_html and not request.path.startswith('/api/'):
+  if request.method=='GET' and request.accept_mimetypes.best=='text/html' and not request.path.startswith(('/api/','/warehouse/api/')):
    return redirect('/login?next='+request.path)
   return jsonify(error='Требуется вход'),401
+ if g.user['role']=='warehouse' and not (request.path=='/warehouse' or request.path.startswith('/warehouse/') or request.path in ('/api/me','/logout','/access.js')):
+  if request.method=='GET' and request.accept_mimetypes.best=='text/html' and not request.path.startswith(('/api/','/warehouse/api/')):return redirect('/warehouse/')
+  return jsonify(error='Вам доступен только раздел «Склад Краснодар»'),403
  if request.path in ('/api/bitrix/preview','/api/bitrix/import','/api/contacts/preview','/api/contacts/enrich'):
   if g.user['role']!='admin':return jsonify(error='Импорт доступен только администратору'),403
   request.max_content_length=12_000_000
@@ -82,7 +90,7 @@ def login_page():
  error=''
  if 'login_csrf' not in session:session['login_csrf']=secrets.token_urlsafe(32)
  next_page=request.values.get('next','/')
- if next_page.split('?')[0] not in ('/','/transport/','/suppliers/','/companies/','/requests/'):next_page='/'
+ if next_page.split('?')[0] not in ('/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/'):next_page='/'
  if request.method=='POST':
   origin=request.headers.get('Origin')
   token=request.form.get('csrf','')
@@ -90,9 +98,9 @@ def login_page():
   user,rev=account(request.form.get('login',''),request.form.get('password',''))
   if user:
    session.clear();session.update(login=user['login'],kind=user['role'],revision=rev)
-   return redirect(next_page,code=303)
+   return redirect('/warehouse/' if user['role']=='warehouse' else next_page,code=303)
   error='Неверный логин или пароль'
- options=[(USERNAME,'Администратор · '+USERNAME)]+[(name,name) for name in ['Андрей Логинов','Анна Скрынник','Светлана Квашина','Любовь Коровина'] if name!=USERNAME]
+ options=[(USERNAME,'Администратор · '+USERNAME)]+[(name,name) for name in ['Андрей Логинов','Анна Скрынник','Светлана Квашина','Любовь Коровина'] if name!=USERNAME]+[(name,name) for name in warehouse_store.users() if name!=USERNAME]
  return render_template_string((ROOT/'app/login.html').read_text(),options=options,csrf=session['login_csrf'],next_page=next_page,error=error,selected=request.form.get('login',USERNAME)),401 if error else 200
 @app.get('/login.css')
 def login_css():return send_from_directory(ROOT/'app','login.css')
@@ -246,3 +254,5 @@ def transport_index():
  return Response(html,mimetype='text/html')
 @app.get('/<path:name>')
 def static_file(name):return send_from_directory(ROOT/'app',name)
+
+warehouse_routes.register(app,USERNAME)
