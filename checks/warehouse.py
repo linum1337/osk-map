@@ -118,6 +118,8 @@ with tempfile.TemporaryDirectory() as temp:
  assert c.get('/warehouse/api/prices',headers=stock_user).status_code==403
  assert c.get('/warehouse/api/prices.xlsx',headers=stock_user).status_code==403
  assert c.get('/warehouse/api/prices.xlsx').status_code==401
+ assert c.get('/warehouse/api/admin/stock.xlsx').status_code==401
+ for auth in [manager,stock_user]:assert c.get('/warehouse/api/admin/stock.xlsx',headers=auth).status_code==403
  assert c.get('/warehouse/api/prices.xlsx',headers=admin).status_code==404
  assert c.post('/warehouse/api/admin/prices',headers=admin,json=price_payload).status_code==201
  assert c.post('/warehouse/api/admin/prices',headers=admin,json=price_payload).json['imported'] is False
