@@ -67,7 +67,8 @@ def guard():
    return redirect('/login?next='+request.path)
   return jsonify(error='Требуется вход'),401
  if g.user['role']=='warehouse' and not (request.path=='/warehouse' or request.path.startswith('/warehouse/') or request.path in ('/api/me','/logout','/access.js')):
-  if request.method=='GET' and request.accept_mimetypes.best=='text/html' and not request.path.startswith(('/api/','/warehouse/api/')):return redirect('/warehouse/')
+  document_navigation=request.path in ('/','/index.html') or request.headers.get('Sec-Fetch-Mode')=='navigate' or request.headers.get('Sec-Fetch-Dest')=='document' or request.accept_mimetypes.best=='text/html'
+  if request.method=='GET' and document_navigation and not request.path.startswith(('/api/','/warehouse/api/')):return redirect('/warehouse/')
   return jsonify(error='Вам доступен только раздел «Склад Краснодар»'),403
  if request.path in ('/api/bitrix/preview','/api/bitrix/import','/api/contacts/preview','/api/contacts/enrich'):
   if g.user['role']!='admin':return jsonify(error='Импорт доступен только администратору'),403

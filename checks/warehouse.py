@@ -46,6 +46,17 @@ with tempfile.TemporaryDirectory() as temp:
  assert session_client.get('/warehouse/').status_code==200
  assert session_client.get('/',headers={'Accept':'text/html'}).location=='/warehouse/'
  assert session_client.get('/api/me').json['role']=='warehouse'
+ for path in ['/','/index.html']:
+  for headers in [{},{'Accept':'*/*'},{'Accept':'application/json'}]:
+   response=session_client.get(path,headers=headers)
+   assert response.status_code==302 and response.location=='/warehouse/'
+ for headers in [{'Sec-Fetch-Mode':'navigate','Accept':'*/*'},{'Sec-Fetch-Dest':'document','Accept':'application/signed-exchange;v=b3'}]:
+  response=session_client.get('/companies/',headers=headers)
+  assert response.status_code==302 and response.location=='/warehouse/'
+ for path in ['/api/records','/warehouse/api/prices']:
+  response=session_client.get(path,headers={'Sec-Fetch-Mode':'navigate','Accept':'text/html'})
+  assert response.status_code==403 and response.is_json
+
  for path in ['/api/records','/api/head-office-requests','/companies/data.js','/data.js','/scope-data.js','/suppliers/suppliers.json','/suppliers/data.js','/transport/','/requests/','/api/export/table/xlsx','/warehouse/api/admin/users','/warehouse/api/admin/import']:
   method=session_client.post if '/admin/' in path or '/export/' in path else session_client.get
   assert method(path,headers={'X-Requested-With':'OSK-Map'}).status_code==403,path
