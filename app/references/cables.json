@@ -1,0 +1,2226 @@
+{
+  "updated": "26.11.2026",
+  "scope": "Россия и Беларусь",
+  "manufacturers": [
+    {
+      "id": "incab",
+      "name": "Инкаб",
+      "country": "Россия",
+      "site": "https://incab.ru/",
+      "aliases": [
+        "Инкаб"
+      ],
+      "note": "В группе есть отдельная площадка Инкаб Дальний Восток для подводного кабеля. Сравнение общих семейств не подтверждает применимость на морском участке.",
+      "status": "catalog",
+      "source": null
+    },
+    {
+      "id": "okabel",
+      "name": "ОК кабель",
+      "country": "Россия",
+      "site": "https://okabel.ru/",
+      "aliases": [],
+      "note": "ОКК, ОКГ и ОКСН относятся к разным задачам. Не переносите расшифровку марки другого завода.",
+      "status": "catalog",
+      "source": null
+    },
+    {
+      "id": "euro",
+      "name": "Еврокабель 1",
+      "country": "Россия",
+      "site": "http://www.eurocabel-1.ru/",
+      "aliases": [
+        "Еврокабель 1"
+      ],
+      "note": "ОСД встречается в группах с разными силовыми элементами. Материал и нагрузку уточняют по полной марке.",
+      "status": "crosswalk",
+      "source": null
+    },
+    {
+      "id": "ofs",
+      "name": "ОФС РУС ВОКК",
+      "country": "Россия",
+      "site": "https://ofsrus.ru/",
+      "aliases": [
+        "ОФС Связьстрой-1 ВОКК"
+      ],
+      "note": "В старых таблицах — ОФС Связьстрой-1 ВОКК. Прежнее название сохранено для поиска.",
+      "status": "catalog",
+      "source": null
+    },
+    {
+      "id": "ocs",
+      "name": "ОКС 01",
+      "country": "Россия",
+      "site": "https://ocs01.ru/",
+      "aliases": [],
+      "note": "Коды волокна и исполнений берите из действующих ТУ и паспорта, а не из буквенной марки другого завода.",
+      "status": "catalog",
+      "source": null
+    },
+    {
+      "id": "mkf",
+      "name": "Москабель-Фуджикура",
+      "country": "Россия",
+      "site": "https://mk-f.ru/",
+      "aliases": [],
+      "note": "Суффиксы и полное маркообразование важны: базовая марка обозначает семейство, а не конкретный маркоразмер.",
+      "status": "catalog",
+      "source": null
+    },
+    {
+      "id": "socc",
+      "name": "Самарская оптическая кабельная компания (СОКК)",
+      "country": "Россия",
+      "site": "https://soccom.ru/",
+      "aliases": [
+        "Самарская Оптическая Кабельная Компания (СОКК)",
+        "Самарская Оптическая Кабельная Компания"
+      ],
+      "note": "СОКК и Самарская кабельная компания не заведены как два одинаковых набора оптических марок.",
+      "status": "catalog",
+      "source": null
+    },
+    {
+      "id": "sarko",
+      "name": "Сарансккабель-Оптика",
+      "country": "Россия",
+      "site": "https://sarko.ru/",
+      "aliases": [
+        "Сарансккабель-Оптика (СарКо)",
+        "СарансккабельОптика (Оптик-Энерго)"
+      ],
+      "note": "ОКГ у СарКо в сводном каталоге относится к неброневому семейству. У других заводов похожая марка может означать броню для грунта.",
+      "status": "catalog",
+      "source": null
+    },
+    {
+      "id": "transvoc",
+      "name": "ТРАНСВОК",
+      "country": "Россия",
+      "site": "https://www.transvoc.ru/",
+      "aliases": [
+        "Трансвок"
+      ],
+      "note": "Не смешивать ОКМТ, ОКЗ и ОКБ. Условия прокладки и защита различаются.",
+      "status": "catalog",
+      "source": null
+    },
+    {
+      "id": "elprovod",
+      "name": "Электропровод",
+      "country": "Россия",
+      "site": "https://elprovod.ru/",
+      "aliases": [],
+      "note": "Сверяйте современные полные обозначения и пожарные индексы с документацией завода.",
+      "status": "catalog",
+      "source": null
+    },
+    {
+      "id": "elix",
+      "name": "Эликс-кабель",
+      "country": "Россия",
+      "site": null,
+      "aliases": [
+        "Эликс-Кабель"
+      ],
+      "note": "Марки присутствуют в заводской сводной таблице Инкаб. Действующий собственный каталог и возможность выпуска требуют отдельного подтверждения.",
+      "status": "crosswalk",
+      "source": null
+    },
+    {
+      "id": "opten",
+      "name": "Оптен",
+      "country": "Россия",
+      "site": "https://opten.spb.ru/ru/catalog.html",
+      "aliases": [],
+      "note": "Одинаковые с другими заводами обозначения ДПТ/ДПС не гарантируют совпадение диаметра, усилий и оболочки.",
+      "status": "catalog",
+      "source": null
+    },
+    {
+      "id": "altay",
+      "name": "АлтайОптикаКабель",
+      "country": "Россия",
+      "site": "https://altayok.ru/",
+      "aliases": [
+        "Алтай Оптика кабель"
+      ],
+      "note": "Значение символов после ОК/ и исполнение наружной оболочки уточняют по маркообразованию завода.",
+      "status": "catalog",
+      "source": null
+    },
+    {
+      "id": "beltele",
+      "name": "Белтелекабель",
+      "country": "Беларусь",
+      "site": "https://beltelecabel.by/",
+      "aliases": [],
+      "note": "Марки КСО приведены по сводным каталогам. Изготовителя конкретной партии и связь с Белкабельоптик проверяйте по паспорту.",
+      "status": "crosswalk",
+      "source": "beltele"
+    },
+    {
+      "id": "integra",
+      "name": "СОЮЗ-КАБЕЛЬ / Интегра Кабель",
+      "country": "Беларусь",
+      "site": "https://intg.ru/",
+      "aliases": [
+        "Интегра-Кабель",
+        "Интегра Кабель",
+        "СОЮЗ-КАБЕЛЬ"
+      ],
+      "note": "Производство — ИООО СОЮЗ-КАБЕЛЬ, Витебск. Интегра Кабель — торговая марка и канал поставки, отдельный завод не дублируется.",
+      "status": "catalog",
+      "source": "integra"
+    },
+    {
+      "id": "polimet",
+      "name": "Полимет",
+      "country": "Россия",
+      "site": "https://polimet-cable.ru/",
+      "aliases": [],
+      "note": "ВКО для внутриобъектовой линии и ОКДЛ/ОКСЛ для защищённой прокладки — разные семейства.",
+      "status": "catalog",
+      "source": "mkf"
+    },
+    {
+      "id": "elcable",
+      "name": "Электрокабель, Кольчугино",
+      "country": "Россия",
+      "site": "https://elcable.ru/",
+      "aliases": [],
+      "note": "Буквы после ОКЗ и окончания -М/-Т различают броню и модульную конструкцию. Не сокращайте марку до ОКЗ.",
+      "status": "catalog",
+      "source": "mkf"
+    },
+    {
+      "id": "koscab",
+      "name": "Костромакабель / KOSCAB",
+      "country": "Россия",
+      "site": "https://koscab.ru/",
+      "aliases": [
+        "Костромакабель",
+        "KOSCAB"
+      ],
+      "note": "КОС-С, КОС-Д и КОС-ДР обозначают разные внутриобъектовые и абонентские решения.",
+      "status": "catalog",
+      "source": "koscab"
+    },
+    {
+      "id": "starlink",
+      "name": "НПП Старлинк",
+      "country": "Россия",
+      "site": "https://npp-starlink.ru/",
+      "aliases": [],
+      "note": "Малогабаритная канатная броня и центральная трубка отличаются от обычного многомодульного магистрального кабеля.",
+      "status": "catalog",
+      "source": "starlink"
+    },
+    {
+      "id": "spets",
+      "name": "Спецкабель",
+      "country": "Россия",
+      "site": "https://spetskabel.ru/",
+      "aliases": [],
+      "note": "Полевые, бронированные и огнестойкие конструкции сравнивают отдельно; нг и FR не взаимозаменяемые требования.",
+      "status": "catalog",
+      "source": "spets"
+    },
+    {
+      "id": "spkb",
+      "name": "СПКБ Техно",
+      "country": "Россия",
+      "site": "https://spkb.ru/",
+      "aliases": [],
+      "note": "В огнестойком исполнении проверяют не только кабель, но и требования к кабельной линии и подтверждающие документы.",
+      "status": "catalog",
+      "source": "spkb"
+    },
+    {
+      "id": "kes",
+      "name": "КабельЭлектроСвязь",
+      "country": "Россия",
+      "site": "https://cabletrade.ru/",
+      "aliases": [],
+      "note": "У микрокабеля может быть канатная броня и особая гибкость. Совпадение усилия с обычной проволочной бронёй не означает совпадения конструкции.",
+      "status": "catalog",
+      "source": "kes"
+    },
+    {
+      "id": "kuban",
+      "name": "Кубанькабель",
+      "country": "Россия",
+      "site": "https://www.kubancabel.ru/",
+      "aliases": [],
+      "note": "ГЕРДА-КОУ — универсальное семейство с разными оболочками и исполнениями. Прямой массовый аналог без полной спецификации не назначен.",
+      "status": "catalog",
+      "source": "kuban"
+    },
+    {
+      "id": "minsk",
+      "name": "Минсккабель",
+      "country": "Беларусь",
+      "site": "https://minskkabel.by/",
+      "aliases": [],
+      "note": "В обращении есть марки КСО и ОКСНМ/ОМЗКГЦ. Соответствие новой и прежней марки подтверждайте заводским документом.",
+      "status": "catalog",
+      "source": "minsk"
+    }
+  ],
+  "groups": [
+    {
+      "id": "tube",
+      "title": "В трубы, без металлической брони",
+      "application": "Трубы и защищённые трассы",
+      "module": "Модули в повиве",
+      "armor": "Без металлической брони",
+      "strength": "Уточнить по исполнению",
+      "construction": "Оптические модули собраны вокруг центрального силового элемента; наружная оболочка без металлической брони.",
+      "differences": "Проверить необходимость защиты от грызунов, возможность задувки, оболочку и допустимые усилия. Водоблокирование может быть сухим или с заполнителем."
+    },
+    {
+      "id": "tape",
+      "title": "Канализация, стальная лента",
+      "application": "Кабельная канализация",
+      "module": "Модули в повиве",
+      "armor": "Стальная лента",
+      "strength": "Центральный элемент",
+      "construction": "Сердечник из модулей, броня из стальной ленты, наружная полимерная оболочка.",
+      "differences": "Гофрированная лента и круглая проволока — разные виды брони. Уточнить внутреннюю оболочку, раздавливание, диаметр и требования к металлическим частям."
+    },
+    {
+      "id": "wire",
+      "title": "Грунт, стальная проволока",
+      "application": "Грунт",
+      "module": "Модули в повиве",
+      "armor": "Стальная проволока",
+      "strength": "Центральный элемент и броня",
+      "construction": "Модульный сердечник защищён бронёй из стальных проволок и наружной оболочкой.",
+      "differences": "Сверить один или два повива, размер проволок, допустимое растяжение и раздавливание, грунт и водные переходы. Разрешение на любой грунт не следует из названия."
+    },
+    {
+      "id": "aramid",
+      "title": "Круглый самонесущий, арамид",
+      "application": "Подвес",
+      "module": "Модули в повиве",
+      "armor": "Без металлической брони",
+      "strength": "Арамидные нити",
+      "construction": "Круглый кабель с распределёнными арамидными силовыми нитями; без выносного троса.",
+      "differences": "Сопоставить рабочие нагрузки, пролёты по проекту, оболочку и арматуру. Стеклонить не подменяет арамид автоматически."
+    },
+    {
+      "id": "glass",
+      "title": "Круглый самонесущий, стеклонить",
+      "application": "Подвес",
+      "module": "Модули в повиве",
+      "armor": "Без металлической брони",
+      "strength": "Стеклонити",
+      "construction": "Круглый кабель с несущими стеклонитями, без выносного троса.",
+      "differences": "Диаметр, рабочее тяжение и применение на линии сверяют отдельно. Совпадение числа кН не подтверждает одинаковые свойства с арамидом."
+    },
+    {
+      "id": "eight",
+      "title": "Восьмёрка, стальной несущий элемент",
+      "application": "Подвес",
+      "module": "Модули в повиве",
+      "armor": "Уточнить по исполнению",
+      "strength": "Выносной стальной элемент",
+      "construction": "Оптическая часть и вынесенный стальной несущий элемент объединены общей оболочкой в форме восьмёрки.",
+      "differences": "Для арматуры важен размер и материал несущего элемента, а не общий габарит. Проверить трос/проволоку, соединительную перемычку и ограничения монтажа."
+    },
+    {
+      "id": "tape-central",
+      "title": "Канализация, лента и центральная трубка",
+      "application": "Кабельная канализация",
+      "module": "Центральная трубка",
+      "armor": "Стальная лента",
+      "strength": "Уточнить по исполнению",
+      "construction": "Волокна в центральной трубке, снаружи защита стальной лентой и оболочка.",
+      "differences": "От многомодульного кабеля отличается разделкой и организацией волокон. Проверить вместимость трубки, изгиб, вводы муфт и усилия."
+    },
+    {
+      "id": "wire-central",
+      "title": "Грунт, проволока и центральная трубка",
+      "application": "Грунт",
+      "module": "Центральная трубка",
+      "armor": "Стальная проволока",
+      "strength": "Броня и элементы усиления",
+      "construction": "Волокна размещены в центральной трубке; снаружи проволочная броня и защитная оболочка.",
+      "differences": "Уточнить допустимые воздействия и материал трубки; не переносить характеристики многомодульного кабеля по похожей марке."
+    },
+    {
+      "id": "drop",
+      "title": "Плоский абонентский drop",
+      "application": "Абонентская линия",
+      "module": "Без модуля или по исполнению",
+      "armor": "Без металлической брони",
+      "strength": "Два продольных элемента",
+      "construction": "Волокна расположены между двумя продольными элементами в компактной плоской оболочке.",
+      "differences": "Сталь и стеклопластик, наличие отдельного подвесного элемента, исполнение для улицы и помещений различаются. Для подтверждения нужны полная марка и сечение."
+    },
+    {
+      "id": "drop-eight",
+      "title": "Drop с выносным несущим элементом",
+      "application": "Абонентская линия",
+      "module": "По исполнению",
+      "armor": "Без металлической брони",
+      "strength": "Выносной элемент",
+      "construction": "Абонентская оптическая часть соединена с отдельным несущим элементом.",
+      "differences": "Не смешивать со свободно подвешиваемым drop без выносного элемента. Уточнить материал, размер и подходящий зажим."
+    },
+    {
+      "id": "simplex",
+      "title": "Внутриобъектовый simplex",
+      "application": "Помещение",
+      "module": "Волокно в буфере",
+      "armor": "Без металлической брони",
+      "strength": "Упрочняющие нити",
+      "construction": "Одноволоконная конструкция для шнуров и внутриобъектовых соединений.",
+      "differences": "Проверить тип волокна, диаметр буфера и оболочки, материал оболочки, пожарное исполнение. Патч-корд с коннекторами — отдельное готовое изделие."
+    },
+    {
+      "id": "duplex",
+      "title": "Внутриобъектовый duplex",
+      "application": "Помещение",
+      "module": "Два волокна в буфере",
+      "armor": "Без металлической брони",
+      "strength": "Упрочняющие нити",
+      "construction": "Двухволоконная конструкция для соединительных шнуров и внутренней разводки.",
+      "differences": "Форма соединения двух частей, наружные размеры и пожарное исполнение могут различаться. Нужны данные по обоим волокнам."
+    },
+    {
+      "id": "distribution",
+      "title": "Distribution / riser",
+      "application": "Помещение",
+      "module": "Буфер или микромодули",
+      "armor": "По исполнению",
+      "strength": "По исполнению",
+      "construction": "Распределительная конструкция для внутренней разводки; устройство буфера, модулей и доступа к волокнам зависит от серии.",
+      "differences": "Riser и distribution не объявлены одинаковыми. Уточнить вертикальную прокладку, способ извлечения волокон, пожарный индекс и сечение."
+    },
+    {
+      "id": "micro",
+      "title": "Малогабаритный бронированный",
+      "application": "Специальное применение",
+      "module": "Центральный оптический элемент",
+      "armor": "Канатная или особая проволочная броня",
+      "strength": "Броня",
+      "construction": "Компактный оптический элемент защищён проволочной или канатной бронёй и наружной оболочкой.",
+      "differences": "Гибкость, многократная перемотка, число проволок и оболочка требуют отдельного подтверждения. Это не обычный универсальный аналог грунтового кабеля."
+    },
+    {
+      "id": "fire",
+      "title": "Огнестойкое исполнение",
+      "application": "Системы с требованиями огнестойкости",
+      "module": "По конкретной серии",
+      "armor": "По конкретной серии",
+      "strength": "По конкретной серии",
+      "construction": "Конструкция с подтверждаемой огнестойкостью; устройство сердечника и брони зависит от марки.",
+      "differences": "Нужны точные индексы FR/LS/HF/LSLTx, время и условия испытаний, документы и состав линии. Это группа назначения, не однотипные прямые аналоги."
+    },
+    {
+      "id": "special",
+      "title": "Универсальные и полевые",
+      "application": "Специальное применение",
+      "module": "По конкретной серии",
+      "armor": "По конкретной серии",
+      "strength": "По конкретной серии",
+      "construction": "Специальная конструкция для заданного режима эксплуатации.",
+      "differences": "Не объединять полевой, бортовой, судовой или универсальный кабель только по числу волокон. Проверять назначение, циклы изгиба и воздействия."
+    },
+    {
+      "id": "eight-central",
+      "title": "Восьмёрка с центральной трубкой",
+      "application": "Подвес",
+      "module": "Центральная трубка",
+      "armor": "Уточнить по исполнению",
+      "strength": "Выносной стальной элемент",
+      "construction": "Волокна находятся в центральной трубке. Оптическая часть соединена перемычкой с вынесенным стальным несущим элементом.",
+      "differences": "От модульной восьмёрки отличается организацией волокон и разделкой. Проверить несущий элемент, вводы муфт и допустимые воздействия."
+    },
+    {
+      "id": "drop-round",
+      "title": "Круглый drop с двумя стеклопрутками",
+      "application": "Абонентская линия",
+      "module": "Центральная трубка",
+      "armor": "Без металлической брони",
+      "strength": "Два стеклопластиковых прутка",
+      "construction": "Круглый абонентский кабель с центральной трубкой и двумя продольными стеклопластиковыми элементами.",
+      "differences": "Форма и наличие трубки отличаются от плоской бабочки. Нельзя переносить размеры зажима или способ разделки от плоского drop."
+    }
+  ],
+  "entries": [
+    {
+      "id": "c001",
+      "manufacturer": "incab",
+      "group": "tube",
+      "mark": "ДПО, микроДПО",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c002",
+      "manufacturer": "okabel",
+      "group": "tube",
+      "mark": "ОКУ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c003",
+      "manufacturer": "euro",
+      "group": "tube",
+      "mark": "ОТД, ОТМ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c004",
+      "manufacturer": "ofs",
+      "group": "tube",
+      "mark": "ДП, ДН",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c005",
+      "manufacturer": "ocs",
+      "group": "tube",
+      "mark": "ДПО, ДАО, ДПВ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c006",
+      "manufacturer": "mkf",
+      "group": "tube",
+      "mark": "ОКТМ, ОКЗм",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c007",
+      "manufacturer": "socc",
+      "group": "tube",
+      "mark": "ОКЛ, ОКЛм",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c008",
+      "manufacturer": "sarko",
+      "group": "tube",
+      "mark": "ОКГ, ОКМ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c009",
+      "manufacturer": "transvoc",
+      "group": "tube",
+      "mark": "ОКМТ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c010",
+      "manufacturer": "elprovod",
+      "group": "tube",
+      "mark": "ОК",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c011",
+      "manufacturer": "elix",
+      "group": "tube",
+      "mark": "ДПО, ДАО",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c012",
+      "manufacturer": "opten",
+      "group": "tube",
+      "mark": "ДПО, ДАО",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c013",
+      "manufacturer": "beltele",
+      "group": "tube",
+      "mark": "ОККТМ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c014",
+      "manufacturer": "integra",
+      "group": "tube",
+      "mark": "ИК-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c015",
+      "manufacturer": "altay",
+      "group": "tube",
+      "mark": "ОК-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c016",
+      "manufacturer": "incab",
+      "group": "tape",
+      "mark": "ДПЛ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c017",
+      "manufacturer": "ofs",
+      "group": "tape",
+      "mark": "ДБП",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c018",
+      "manufacturer": "ocs",
+      "group": "tape",
+      "mark": "ДПЛ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c019",
+      "manufacturer": "socc",
+      "group": "tape",
+      "mark": "ОКЛСт",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c020",
+      "manufacturer": "sarko",
+      "group": "tape",
+      "mark": "ОКЛ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c021",
+      "manufacturer": "transvoc",
+      "group": "tape",
+      "mark": "ОКЗ-С, ОКЗ-СА",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c022",
+      "manufacturer": "elprovod",
+      "group": "tape",
+      "mark": "ОКС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c023",
+      "manufacturer": "elix",
+      "group": "tape",
+      "mark": "ДПЛ, ДАЛ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c024",
+      "manufacturer": "opten",
+      "group": "tape",
+      "mark": "ДПЛ, ДПСк",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c025",
+      "manufacturer": "integra",
+      "group": "tape",
+      "mark": "ИКС-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c026",
+      "manufacturer": "altay",
+      "group": "tape",
+      "mark": "ОКС-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c027",
+      "manufacturer": "incab",
+      "group": "wire",
+      "mark": "ДПС, ДАС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c028",
+      "manufacturer": "okabel",
+      "group": "wire",
+      "mark": "ОКГ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c029",
+      "manufacturer": "euro",
+      "group": "wire",
+      "mark": "ОГД, ОГМ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c030",
+      "manufacturer": "ofs",
+      "group": "wire",
+      "mark": "ДКП, ДКПа",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c031",
+      "manufacturer": "ocs",
+      "group": "wire",
+      "mark": "ДПС, ДАС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c032",
+      "manufacturer": "mkf",
+      "group": "wire",
+      "mark": "ОКГМ, ОКЗмБ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c033",
+      "manufacturer": "socc",
+      "group": "wire",
+      "mark": "ОКЛК",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c034",
+      "manufacturer": "sarko",
+      "group": "wire",
+      "mark": "ОКБ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c035",
+      "manufacturer": "transvoc",
+      "group": "wire",
+      "mark": "ОКБ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c036",
+      "manufacturer": "elprovod",
+      "group": "wire",
+      "mark": "ОКБ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c037",
+      "manufacturer": "elix",
+      "group": "wire",
+      "mark": "ДПС, ДАС, ДПУ, ДАУ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c038",
+      "manufacturer": "opten",
+      "group": "wire",
+      "mark": "ДАС, ДПС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c039",
+      "manufacturer": "beltele",
+      "group": "wire",
+      "mark": "ОМЗКГМ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c040",
+      "manufacturer": "integra",
+      "group": "wire",
+      "mark": "ИКБ-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c041",
+      "manufacturer": "altay",
+      "group": "wire",
+      "mark": "ОКБ-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c042",
+      "manufacturer": "incab",
+      "group": "aramid",
+      "mark": "ДПТ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c043",
+      "manufacturer": "euro",
+      "group": "aramid",
+      "mark": "ОСД",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение."
+    },
+    {
+      "id": "c044",
+      "manufacturer": "ofs",
+      "group": "aramid",
+      "mark": "ДС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение."
+    },
+    {
+      "id": "c045",
+      "manufacturer": "ocs",
+      "group": "aramid",
+      "mark": "ДПТ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c046",
+      "manufacturer": "mkf",
+      "group": "aramid",
+      "mark": "ОКСМ, ОКСД",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение."
+    },
+    {
+      "id": "c047",
+      "manufacturer": "socc",
+      "group": "aramid",
+      "mark": "ОКЛЖ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c048",
+      "manufacturer": "sarko",
+      "group": "aramid",
+      "mark": "ОКК",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c049",
+      "manufacturer": "transvoc",
+      "group": "aramid",
+      "mark": "ОКМС-А",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c050",
+      "manufacturer": "elprovod",
+      "group": "aramid",
+      "mark": "ОКА",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c051",
+      "manufacturer": "elix",
+      "group": "aramid",
+      "mark": "ДПТ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c052",
+      "manufacturer": "opten",
+      "group": "aramid",
+      "mark": "ДПТ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c053",
+      "manufacturer": "beltele",
+      "group": "aramid",
+      "mark": "ОКСНМ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение."
+    },
+    {
+      "id": "c054",
+      "manufacturer": "integra",
+      "group": "aramid",
+      "mark": "ИКА-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c055",
+      "manufacturer": "altay",
+      "group": "aramid",
+      "mark": "ОКА-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение."
+    },
+    {
+      "id": "c056",
+      "manufacturer": "incab",
+      "group": "glass",
+      "mark": "ДПТс",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c057",
+      "manufacturer": "euro",
+      "group": "glass",
+      "mark": "ОСД",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение."
+    },
+    {
+      "id": "c058",
+      "manufacturer": "ofs",
+      "group": "glass",
+      "mark": "ДС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение."
+    },
+    {
+      "id": "c059",
+      "manufacturer": "ocs",
+      "group": "glass",
+      "mark": "ДПТс",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c060",
+      "manufacturer": "mkf",
+      "group": "glass",
+      "mark": "ОКСМ, ОКСД",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение."
+    },
+    {
+      "id": "c061",
+      "manufacturer": "socc",
+      "group": "glass",
+      "mark": "ОКЛЖ (стн)",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c062",
+      "manufacturer": "sarko",
+      "group": "glass",
+      "mark": "ОККС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c063",
+      "manufacturer": "transvoc",
+      "group": "glass",
+      "mark": "ОКМС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c064",
+      "manufacturer": "beltele",
+      "group": "glass",
+      "mark": "ОКСНМ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение."
+    },
+    {
+      "id": "c065",
+      "manufacturer": "integra",
+      "group": "glass",
+      "mark": "ИКАс-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c066",
+      "manufacturer": "altay",
+      "group": "glass",
+      "mark": "ОКА-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение."
+    },
+    {
+      "id": "c067",
+      "manufacturer": "incab",
+      "group": "eight",
+      "mark": "ДПОм",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c068",
+      "manufacturer": "euro",
+      "group": "eight",
+      "mark": "ОПД",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c069",
+      "manufacturer": "ocs",
+      "group": "eight",
+      "mark": "ДПК",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c070",
+      "manufacturer": "mkf",
+      "group": "eight",
+      "mark": "ОКПМ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c071",
+      "manufacturer": "socc",
+      "group": "eight",
+      "mark": "ОКЛЖ-ВС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c072",
+      "manufacturer": "sarko",
+      "group": "eight",
+      "mark": "ОКТ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c073",
+      "manufacturer": "transvoc",
+      "group": "eight",
+      "mark": "ОКП-Т",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c074",
+      "manufacturer": "elprovod",
+      "group": "eight",
+      "mark": "ОК/Т",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c075",
+      "manufacturer": "elix",
+      "group": "eight",
+      "mark": "ДПОм",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c076",
+      "manufacturer": "opten",
+      "group": "eight",
+      "mark": "ДПВ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c077",
+      "manufacturer": "beltele",
+      "group": "eight",
+      "mark": "ОКСНМт",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c078",
+      "manufacturer": "integra",
+      "group": "eight",
+      "mark": "ИК/Т-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c079",
+      "manufacturer": "altay",
+      "group": "eight",
+      "mark": "ОК/Т-М",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c080",
+      "manufacturer": "mkf",
+      "group": "wire",
+      "mark": "ОКГМ",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c081",
+      "manufacturer": "mkf",
+      "group": "wire-central",
+      "mark": "ОКГЦ",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c082",
+      "manufacturer": "mkf",
+      "group": "tape",
+      "mark": "ОККМ",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c083",
+      "manufacturer": "mkf",
+      "group": "tape-central",
+      "mark": "ОККЦ",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c084",
+      "manufacturer": "mkf",
+      "group": "glass",
+      "mark": "ОКСМс",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c085",
+      "manufacturer": "mkf",
+      "group": "aramid",
+      "mark": "ОКСМ ОКСД",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c086",
+      "manufacturer": "mkf",
+      "group": "tube",
+      "mark": "ОКТМ",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c087",
+      "manufacturer": "polimet",
+      "group": "wire",
+      "mark": "ОКСС, ОКДС ОКД2С",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c088",
+      "manufacturer": "polimet",
+      "group": "tape",
+      "mark": "ОКДЛ, ОКСЛ ОКДЛВ, ОКСЛВ",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c089",
+      "manufacturer": "polimet",
+      "group": "tape-central",
+      "mark": "ОКЦЛ ОКЦЛВ",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c090",
+      "manufacturer": "polimet",
+      "group": "glass",
+      "mark": "ОКДР ОКДПР",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c091",
+      "manufacturer": "polimet",
+      "group": "aramid",
+      "mark": "ОКДК, ОКДПК",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c092",
+      "manufacturer": "polimet",
+      "group": "eight",
+      "mark": "ОКДТ ОКСТ",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c093",
+      "manufacturer": "polimet",
+      "group": "tube",
+      "mark": "ОКДП",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c094",
+      "manufacturer": "mkf",
+      "group": "simplex",
+      "mark": "ОКС Simplex",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c095",
+      "manufacturer": "mkf",
+      "group": "duplex",
+      "mark": "ОКД Duplex",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c096",
+      "manufacturer": "mkf",
+      "group": "distribution",
+      "mark": "ОКР Distribution",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c097",
+      "manufacturer": "mkf",
+      "group": "distribution",
+      "mark": "ОКВ Riser",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c098",
+      "manufacturer": "mkf",
+      "group": "drop",
+      "mark": "ОКДП Drop",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c099",
+      "manufacturer": "mkf",
+      "group": "drop-eight",
+      "mark": "ОКДП Drop с выносным элементом",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c100",
+      "manufacturer": "beltele",
+      "group": "simplex",
+      "mark": "КСО-ВнАнг…- СШ",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c101",
+      "manufacturer": "beltele",
+      "group": "duplex",
+      "mark": "КСО-ВнАнгДШ",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c102",
+      "manufacturer": "beltele",
+      "group": "distribution",
+      "mark": "КСО-Вннг-…-Р",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c103",
+      "manufacturer": "beltele",
+      "group": "distribution",
+      "mark": "КСО-Вннг-…-В",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c104",
+      "manufacturer": "beltele",
+      "group": "drop",
+      "mark": "КСО-Внг-…-Д",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c105",
+      "manufacturer": "beltele",
+      "group": "drop-eight",
+      "mark": "КСО-Внг-…-Д-М",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c106",
+      "manufacturer": "integra",
+      "group": "simplex",
+      "mark": "ИКВА",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c107",
+      "manufacturer": "integra",
+      "group": "duplex",
+      "mark": "ИКВД2-П",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c108",
+      "manufacturer": "integra",
+      "group": "distribution",
+      "mark": "ИКВА-П",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c109",
+      "manufacturer": "integra",
+      "group": "distribution",
+      "mark": "ИКВД2-М",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c110",
+      "manufacturer": "integra",
+      "group": "drop",
+      "mark": "ИКВД2",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c111",
+      "manufacturer": "integra",
+      "group": "drop-eight",
+      "mark": "ИКВД2/Т",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c112",
+      "manufacturer": "polimet",
+      "group": "simplex",
+      "mark": "ВКО (Simplex)",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c113",
+      "manufacturer": "polimet",
+      "group": "duplex",
+      "mark": "ВКО (Duplex)",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c114",
+      "manufacturer": "polimet",
+      "group": "distribution",
+      "mark": "ВКОр",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c115",
+      "manufacturer": "polimet",
+      "group": "distribution",
+      "mark": "ВКОСр",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c116",
+      "manufacturer": "polimet",
+      "group": "drop",
+      "mark": "ВКОД, ВКОС",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c117",
+      "manufacturer": "polimet",
+      "group": "drop-eight",
+      "mark": "ВКОДД, ВКОСС",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c118",
+      "manufacturer": "sarko",
+      "group": "simplex",
+      "mark": "ОКВнг(D)-С-1",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c119",
+      "manufacturer": "sarko",
+      "group": "duplex",
+      "mark": "ОКВнг(D)-Д-2",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c120",
+      "manufacturer": "sarko",
+      "group": "distribution",
+      "mark": "ОКВнг(D)-РД",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c121",
+      "manufacturer": "sarko",
+      "group": "distribution",
+      "mark": "ОКВнг(D)-Р",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c122",
+      "manufacturer": "sarko",
+      "group": "drop",
+      "mark": "ОКПА-П",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c123",
+      "manufacturer": "sarko",
+      "group": "drop-eight",
+      "mark": "ОКПА-П/С, ОКПАП/П ОКПА-С/П, ОКПА-С/С",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+    },
+    {
+      "id": "c124",
+      "manufacturer": "koscab",
+      "group": "simplex",
+      "mark": "КОС-С",
+      "source": "koscab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c125",
+      "manufacturer": "koscab",
+      "group": "duplex",
+      "mark": "КОС-Д",
+      "source": "koscab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c126",
+      "manufacturer": "koscab",
+      "group": "distribution",
+      "mark": "КОС-ДН",
+      "source": "koscab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c127",
+      "manufacturer": "koscab",
+      "group": "distribution",
+      "mark": "КОС-Р",
+      "source": "koscab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c128",
+      "manufacturer": "koscab",
+      "group": "drop",
+      "mark": "КОС-ДР-1 / КОС-ДР-2",
+      "source": "koscab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c129",
+      "manufacturer": "koscab",
+      "group": "drop-eight",
+      "mark": "КОС-ДР-3 / КОС-ДР-4",
+      "source": "koscab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c130",
+      "manufacturer": "starlink",
+      "group": "micro",
+      "mark": "СЛ-ОКМБ",
+      "source": "starlink",
+      "kind": "catalog",
+      "note": "Малогабаритный бронированный."
+    },
+    {
+      "id": "c131",
+      "manufacturer": "starlink",
+      "group": "micro",
+      "mark": "СЛ-ОКПБ",
+      "source": "starlink",
+      "kind": "catalog",
+      "note": "Центральный полимерный модуль и канатная броня."
+    },
+    {
+      "id": "c132",
+      "manufacturer": "starlink",
+      "group": "eight-central",
+      "mark": "СЛ-ОКПЦ",
+      "source": "starlink",
+      "kind": "catalog",
+      "note": "Центральная трубка; выносной стальной элемент. Отличается от многомодульной восьмёрки."
+    },
+    {
+      "id": "c133",
+      "manufacturer": "starlink",
+      "group": "drop-round",
+      "mark": "СЛ-ОКПЦ-Д2",
+      "source": "starlink",
+      "kind": "catalog",
+      "note": "Круглый drop с двумя стеклопрутками. Отличается формой от плоской бабочки."
+    },
+    {
+      "id": "c134",
+      "manufacturer": "spets",
+      "group": "special",
+      "mark": "ОКСА / ОКСАн",
+      "source": "spets",
+      "kind": "catalog",
+      "note": "Полевые исполнения: наружное / внутреннее и наружное."
+    },
+    {
+      "id": "c135",
+      "manufacturer": "spets",
+      "group": "special",
+      "mark": "СК-ОКЗЛнг(А)-HF",
+      "source": "spets",
+      "kind": "catalog",
+      "note": "Бронированное исполнение. Материал и устройство брони подтвердить по спецификации артикула."
+    },
+    {
+      "id": "c136",
+      "manufacturer": "spets",
+      "group": "special",
+      "mark": "СК-ОКЗКнг(А)-HF",
+      "source": "spets",
+      "kind": "catalog",
+      "note": "Бронированное исполнение. Материал и устройство брони подтвердить по спецификации артикула."
+    },
+    {
+      "id": "c137",
+      "manufacturer": "spets",
+      "group": "fire",
+      "mark": "СКАЛА-ОКЗЛнг(А)-FRHF",
+      "source": "spets",
+      "kind": "catalog",
+      "note": "Огнестойкая бронированная конструкция."
+    },
+    {
+      "id": "c138",
+      "manufacturer": "spets",
+      "group": "special",
+      "mark": "СКПОЛ-ОКПл",
+      "source": "spets",
+      "kind": "catalog",
+      "note": "Лёгкий полевой кабель."
+    },
+    {
+      "id": "c139",
+      "manufacturer": "spkb",
+      "group": "fire",
+      "mark": "СП-ОКБ / СП-ОКС / СП-ОКВ (огнестойкие исполнения)",
+      "source": "spkb",
+      "kind": "catalog",
+      "note": "Семейства с разной защитой. Сопоставление между ними без полного исполнения не задано."
+    },
+    {
+      "id": "c140",
+      "manufacturer": "kes",
+      "group": "micro",
+      "mark": "ОКМБ-01 / ОКМБ-02 / ОКМБ-03",
+      "source": "kes",
+      "kind": "catalog",
+      "note": "Разные размеры и канатная броня; не объединять по допустимому усилию."
+    },
+    {
+      "id": "c141",
+      "manufacturer": "kes",
+      "group": "micro",
+      "mark": "ОКПБ",
+      "source": "kes",
+      "kind": "catalog",
+      "note": "Центральная полимерная трубка и компактная канатная броня."
+    },
+    {
+      "id": "c142",
+      "manufacturer": "kes",
+      "group": "eight-central",
+      "mark": "ОКПЦ",
+      "source": "kes",
+      "kind": "catalog",
+      "note": "Центральная трубка и выносной стальной элемент."
+    },
+    {
+      "id": "c143",
+      "manufacturer": "kes",
+      "group": "wire",
+      "mark": "ОКГМ",
+      "source": "kes",
+      "kind": "catalog",
+      "note": "Многомодульная конструкция с канатной бронёй."
+    },
+    {
+      "id": "c144",
+      "manufacturer": "kes",
+      "group": "micro",
+      "mark": "ОКМ2Б / ОКП2Б",
+      "source": "kes",
+      "kind": "catalog",
+      "note": "Двойной броневой повив. Проверять каждый тип отдельно."
+    },
+    {
+      "id": "c145",
+      "manufacturer": "kuban",
+      "group": "special",
+      "mark": "ГЕРДА-КОУ",
+      "source": "kuban",
+      "kind": "catalog",
+      "note": "Универсальное семейство. Подбор по конкретной конструкции и оболочке."
+    },
+    {
+      "id": "c146",
+      "manufacturer": "minsk",
+      "group": "aramid",
+      "mark": "КСО-ВСНЗПАр",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Модульная конструкция."
+    },
+    {
+      "id": "c147",
+      "manufacturer": "minsk",
+      "group": "eight-central",
+      "mark": "КСО-ВСЦЗПКс",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Центральная трубка, выносной трос."
+    },
+    {
+      "id": "c148",
+      "manufacturer": "minsk",
+      "group": "eight",
+      "mark": "КСО-ВСНЗПКс",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Модульная конструкция, выносной трос."
+    },
+    {
+      "id": "c149",
+      "manufacturer": "minsk",
+      "group": "wire-central",
+      "mark": "КСО-КСЦЗПБ",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Центральная трубка и броня."
+    },
+    {
+      "id": "c150",
+      "manufacturer": "minsk",
+      "group": "wire",
+      "mark": "КСО-КСНЗПБ",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Модульная конструкция."
+    },
+    {
+      "id": "c151",
+      "manufacturer": "minsk",
+      "group": "tape-central",
+      "mark": "КСО-КСЦЗПС",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Центральная трубка."
+    },
+    {
+      "id": "c152",
+      "manufacturer": "minsk",
+      "group": "tape",
+      "mark": "КСО-КСНЗПС",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Модульная конструкция."
+    },
+    {
+      "id": "c153",
+      "manufacturer": "minsk",
+      "group": "tube",
+      "mark": "КСО-ТСНЗПАл",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Для прокладки в трубы; проверить конкретную технологию задувки."
+    },
+    {
+      "id": "c154",
+      "manufacturer": "elcable",
+      "group": "wire",
+      "mark": "ОКЗпК-М",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c155",
+      "manufacturer": "elcable",
+      "group": "wire-central",
+      "mark": "ОКЗК-Т",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c156",
+      "manufacturer": "elcable",
+      "group": "tape",
+      "mark": "ОКЗБ-М ОКЗпБ-М",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c157",
+      "manufacturer": "elcable",
+      "group": "tape-central",
+      "mark": "ОКЗБ-Т",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c158",
+      "manufacturer": "elcable",
+      "group": "glass",
+      "mark": "ОКВпН-М",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c159",
+      "manufacturer": "elcable",
+      "group": "aramid",
+      "mark": "ОКВпАр-м",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c160",
+      "manufacturer": "elcable",
+      "group": "eight",
+      "mark": "ОКВп/Д-М ОКВп/ Ст-М",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c161",
+      "manufacturer": "elcable",
+      "group": "tube",
+      "mark": "ОКЗ-М",
+      "source": "mkf",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c162",
+      "manufacturer": "okabel",
+      "group": "aramid",
+      "mark": "ОКСН-А",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "В источнике указано облегчённое исполнение; параметры нельзя переносить со стандартной серии."
+    },
+    {
+      "id": "c163",
+      "manufacturer": "okabel",
+      "group": "glass",
+      "mark": "ОКСН",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "В источнике указано облегчённое исполнение; параметры нельзя переносить со стандартной серии."
+    },
+    {
+      "id": "c164",
+      "manufacturer": "opten",
+      "group": "glass",
+      "mark": "ДОТ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": "В источнике указано облегчённое исполнение; параметры нельзя переносить со стандартной серии."
+    },
+    {
+      "id": "c165",
+      "manufacturer": "incab",
+      "group": "tape-central",
+      "mark": "ТОЛ, ТОС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c166",
+      "manufacturer": "okabel",
+      "group": "tape-central",
+      "mark": "ОКЦ, ОККЦ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c167",
+      "manufacturer": "euro",
+      "group": "tape-central",
+      "mark": "ОКЦ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c168",
+      "manufacturer": "ocs",
+      "group": "tape-central",
+      "mark": "ОПЛ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c169",
+      "manufacturer": "socc",
+      "group": "tape-central",
+      "mark": "ОКЛСт-МТ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c170",
+      "manufacturer": "sarko",
+      "group": "tape-central",
+      "mark": "ОКЛ-Т",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c171",
+      "manufacturer": "transvoc",
+      "group": "tape-central",
+      "mark": "ОКЗ-СА-Ц",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c172",
+      "manufacturer": "opten",
+      "group": "tape-central",
+      "mark": "ТОСк, ТОЛ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c173",
+      "manufacturer": "beltele",
+      "group": "tape-central",
+      "mark": "ОКСТЦ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c174",
+      "manufacturer": "integra",
+      "group": "tape-central",
+      "mark": "ИКС-Т, ИКСЛ-Т",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c175",
+      "manufacturer": "altay",
+      "group": "tape-central",
+      "mark": "ОКСЛ-Т",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c176",
+      "manufacturer": "incab",
+      "group": "wire-central",
+      "mark": "ТОС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c177",
+      "manufacturer": "okabel",
+      "group": "wire-central",
+      "mark": "ОКГЦ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c178",
+      "manufacturer": "euro",
+      "group": "wire-central",
+      "mark": "ОГЦ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c179",
+      "manufacturer": "ocs",
+      "group": "wire-central",
+      "mark": "ОПС, ОСВ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c180",
+      "manufacturer": "mkf",
+      "group": "wire-central",
+      "mark": "ОКГЦ, ОКЗтБ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c181",
+      "manufacturer": "socc",
+      "group": "wire-central",
+      "mark": "ОКЛК-МТ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c182",
+      "manufacturer": "sarko",
+      "group": "wire-central",
+      "mark": "ОКБ-Т",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c183",
+      "manufacturer": "transvoc",
+      "group": "wire-central",
+      "mark": "ОКБ-..Ц",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c184",
+      "manufacturer": "elprovod",
+      "group": "wire-central",
+      "mark": "ОКБ-Т",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c185",
+      "manufacturer": "opten",
+      "group": "wire-central",
+      "mark": "ТО1, ТОС",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c186",
+      "manufacturer": "beltele",
+      "group": "wire-central",
+      "mark": "ОМЗКГЦ",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c187",
+      "manufacturer": "integra",
+      "group": "wire-central",
+      "mark": "ИКБ-Т",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    },
+    {
+      "id": "c188",
+      "manufacturer": "altay",
+      "group": "wire-central",
+      "mark": "ОКБ-Т",
+      "source": "incab",
+      "kind": "crosswalk",
+      "note": ""
+    }
+  ],
+  "sources": {
+    "incab": {
+      "title": "Инкаб: соответствия марок разных заводов",
+      "url": "https://incab.ru/useful-information/optic-cable-and-fiber/comparison-table/"
+    },
+    "mkf": {
+      "title": "Москабель-Фуджикура: соответствие маркировок",
+      "url": "https://mk-f.ru/info/sootv/"
+    },
+    "koscab": {
+      "title": "KOSCAB: сравнительная маркировка",
+      "url": "https://koscab.ru/baza-znaniy/rasshifrovka_markirovki_rossiyskikh_proizvoditeley_opticheskogo_kabelya/"
+    },
+    "starlink": {
+      "title": "НПП Старлинк: маркообразование",
+      "url": "https://npp-starlink.ru/help/markoobrazovanie-optovolokonnykh-kabeley-npp-starlink/"
+    },
+    "spets": {
+      "title": "Спецкабель: оптические кабели в каталоге",
+      "url": "https://spb.spetskabel.ru/about/news/2026/2771/"
+    },
+    "spkb": {
+      "title": "СПКБ Техно: огнестойкие оптические кабели",
+      "url": "https://spkb.ru/catalog/fireproof-optical-cables/"
+    },
+    "kes": {
+      "title": "КабельЭлектроСвязь: конструкции оптических кабелей",
+      "url": "https://cabletrade.ru/products/volokonno-opticheskiy-kabe/"
+    },
+    "kuban": {
+      "title": "Кубанькабель: заводской каталог",
+      "url": "https://www.kubancabel.ru/upload/Catalog.pdf"
+    },
+    "minsk": {
+      "title": "Минсккабель: каталог официального представительства",
+      "url": "https://optikabel.kz/"
+    },
+    "integra": {
+      "title": "Интегра Кабель: производство на заводе СОЮЗ-КАБЕЛЬ",
+      "url": "https://intg.ru/o-kompanii/proizvodstvo/"
+    },
+    "beltele": {
+      "title": "Белтелекабель: официальный сайт",
+      "url": "https://beltelecabel.by/"
+    }
+  },
+  "coverageNotes": [
+    {
+      "name": "Белкабельоптик",
+      "country": "Беларусь",
+      "status": "Нужна действующая заводская спецификация",
+      "note": "Название встречается в отраслевых перечнях. Не подставлено вместо Белтелекабель без подтверждения изготовителя партии."
+    },
+    {
+      "name": "Севкабель-Оптик / Яуза-кабель",
+      "country": "Россия",
+      "status": "Исторические марки требуют проверки",
+      "note": "Не объявлены действующими поставщиками на основании старой сравнительной таблицы."
+    },
+    {
+      "name": "ОКБ КП / ВНИИКП и специальные производства",
+      "country": "Россия",
+      "status": "Отдельные спецификации",
+      "note": "Бортовые и специальные кабели нельзя включать в общий ряд прямых магистральных аналогов без документов."
+    }
+  ],
+  "coverage": "Сопоставления собраны по открытым заводским таблицам, каталогам и официальному представительству Минсккабель. Это проверяемая база семейств, а не подтверждённый реестр всех действующих заводов и всех маркоразмеров.",
+  "comparisonFields": [
+    "Количество и тип волокон",
+    "Модули и волокна в модуле",
+    "Рабочее растяжение и раздавливание",
+    "Диаметр и минимальный радиус изгиба",
+    "Материал и толщина брони",
+    "Силовой элемент и подходящая арматура",
+    "Оболочка и пожарные индексы",
+    "Температуры монтажа и эксплуатации",
+    "Условия прокладки и водоблокирование",
+    "ТУ, документы и согласование замены"
+  ]
+}

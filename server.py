@@ -61,7 +61,7 @@ for module in ('transport','suppliers'):
 
 TRAINING_COURSES=('optical-cable','optical-closures','optical-crosses','twisted-pair','suspension-hardware')
 TRAINING_PAGE_PATHS={'/training/'+slug+'/' for slug in TRAINING_COURSES}
-PORTAL_PAGES={'/','/index.html','/transport','/transport/','/suppliers','/suppliers/','/companies','/companies/','/requests','/requests/','/warehouse','/warehouse/','/admin','/admin/','/training','/training/','/training/optical-cable/'} | TRAINING_PAGE_PATHS | {path.rstrip('/') for path in TRAINING_PAGE_PATHS}
+PORTAL_PAGES={'/','/index.html','/transport','/transport/','/suppliers','/suppliers/','/companies','/companies/','/requests','/requests/','/warehouse','/warehouse/','/admin','/admin/','/training','/training/','/training/optical-cable/','/references','/references/'} | TRAINING_PAGE_PATHS | {path.rstrip('/') for path in TRAINING_PAGE_PATHS}
 
 @app.before_request
 def guard():
@@ -73,6 +73,8 @@ def guard():
   if request.method in ('GET','HEAD') and (request.path in PORTAL_PAGES or request.accept_mimetypes.best=='text/html' or request.headers.get('Sec-Fetch-Dest')=='document') and not request.path.startswith(('/api/','/warehouse/api/')):
    return redirect('/login?next='+request.path)
   return jsonify(error='Требуется вход'),401
+ if request.path=='/references' or request.path.startswith('/references/'):
+  if g.user['role']!='admin':return jsonify(error='Справочные материалы доступны только администратору'),403
  if request.path=='/training' or request.path.startswith('/training/'):
   if g.user['role']!='admin':return jsonify(error='Обучение доступно только администратору'),403
  if request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/')):
@@ -97,7 +99,7 @@ def headers(response):
  response.headers['X-Content-Type-Options']='nosniff'
  response.headers['X-Frame-Options']='DENY'
  response.headers['Referrer-Policy']='strict-origin-when-cross-origin'
- response.headers['Cache-Control']='private, no-store' if request.path.startswith('/warehouse') or request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/','/training/','/companies/training/')) or request.path=='/training' else 'private, max-age=604800' if request.path.startswith('/tiles/') and response.status_code==200 else 'private, no-cache'
+ response.headers['Cache-Control']='private, no-store' if request.path.startswith('/warehouse') or request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/','/training/','/companies/training/','/references','/companies/references/')) or request.path=='/training' else 'private, max-age=604800' if request.path.startswith('/tiles/') and response.status_code==200 else 'private, no-cache'
  return response
 @app.route('/login',methods=['GET','POST'])
 def login_page():
@@ -106,9 +108,9 @@ def login_page():
  next_page=request.values.get('next','/')
  try:
   target=urlsplit(next_page)
-  allowed={'/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/','/admin/','/training/','/training/optical-cable/'} | TRAINING_PAGE_PATHS
+  allowed={'/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/','/admin/','/training/','/training/optical-cable/','/references/'} | TRAINING_PAGE_PATHS
   path=target.path
-  if path in ('/transport','/suppliers','/companies','/requests','/warehouse','/admin','/training') or path in {item.rstrip('/') for item in TRAINING_PAGE_PATHS}:path+='/'
+  if path in ('/transport','/suppliers','/companies','/requests','/warehouse','/admin','/training','/references') or path in {item.rstrip('/') for item in TRAINING_PAGE_PATHS}:path+='/'
   if target.scheme or target.netloc or path not in allowed or any(char in next_page for char in ('\\','\r','\n')):next_page='/'
   else:next_page=target._replace(path=path).geturl()
  except ValueError:next_page='/'
@@ -242,6 +244,10 @@ def tile(z,x,y):
 def index():return send_from_directory(ROOT/'app','portal.html')
 @app.get('/index.html')
 def legacy_index():return redirect('/')
+@app.get('/references')
+def references_redirect():return redirect('/references/')
+@app.get('/references/')
+def references_index():return send_from_directory(ROOT/'app/references','index.html')
 @app.get('/training')
 def training_redirect():return redirect('/training/')
 @app.get('/training/')
@@ -256,7 +262,7 @@ def companies_redirect():return redirect('/companies/')
 def companies_index():return send_from_directory(ROOT/'app','index.html')
 @app.get('/companies/<path:name>')
 def companies_asset(name):
- if any((ROOT/'app'/name).resolve().is_relative_to((ROOT/'app'/folder).resolve()) for folder in ('admin','training')) and g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
+ if any((ROOT/'app'/name).resolve().is_relative_to((ROOT/'app'/folder).resolve()) for folder in ('admin','training','references')) and g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
  return send_from_directory(ROOT/'app',name)
 @app.get('/suppliers')
 def suppliers_redirect():return redirect('/suppliers/')
