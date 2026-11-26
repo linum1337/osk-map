@@ -156,8 +156,8 @@
       "country": "Беларусь",
       "site": "https://beltelecabel.by/",
       "aliases": [],
-      "note": "Марки КСО приведены по сводным каталогам. Изготовителя конкретной партии и связь с Белкабельоптик проверяйте по паспорту.",
-      "status": "crosswalk",
+      "note": "Магистральные, самонесущие, внутриобъектовые и комбинированные кабели. Центральный модуль и многомодульный сердечник различаются по полной марке.",
+      "status": "catalog",
       "source": "beltele"
     },
     {
@@ -262,8 +262,11 @@
       "name": "Минсккабель",
       "country": "Беларусь",
       "site": "https://minskkabel.by/",
-      "aliases": [],
-      "note": "В обращении есть марки КСО и ОКСНМ/ОМЗКГЦ. Соответствие новой и прежней марки подтверждайте заводским документом.",
+      "aliases": [
+        "МинскКабель",
+        "МКЗ Минсккабель"
+      ],
+      "note": "Магистральные, объектовые и внутриобъектовые оптические кабели. КСО, ОКВ и ОКАД — обозначения разных семейств.",
       "status": "catalog",
       "source": "minsk"
     },
@@ -1083,7 +1086,17 @@
       "mark": "ОККТМ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-3/",
+          "label": "Описание ОККТМ",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-beltele-b7a7932427ca"
+      ]
     },
     {
       "id": "c014",
@@ -1541,7 +1554,17 @@
       "mark": "ОМЗКГМ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli/",
+          "label": "Описание ОМЗКГМ",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-beltele-e5f675cd847e"
+      ]
     },
     {
       "id": "c040",
@@ -1773,7 +1796,17 @@
       "mark": "ОКСНМ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение."
+      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение.",
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-mnogomodulnye-samonesushhie/",
+          "label": "Описание ОКСНМ",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-beltele-6a37a66013f3"
+      ]
     },
     {
       "id": "c054",
@@ -2589,10 +2622,13 @@
       "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-10/",
-          "label": "Описание КСО-ВнАнг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-9/",
+          "label": "Описание КСО-ВнАнг…- СШ",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-91b4a48cdd15"
       ]
     },
     {
@@ -2602,7 +2638,17 @@
       "mark": "КСО-ВнАнгДШ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-15/",
+          "label": "Описание КСО-ВнАнгДШ",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-beltele-d28be3ba9daf"
+      ]
     },
     {
       "id": "c102",
@@ -2611,29 +2657,25 @@
       "mark": "КСО-Вннг-…-Р",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
-      "descriptionLinks": [
-        {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
-          "label": "Описание КСО-Вннг",
-          "kind": "product"
-        }
-      ]
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
     },
     {
       "id": "c103",
       "manufacturer": "beltele",
-      "group": "distribution",
+      "group": "riser-buffer",
       "mark": "КСО-Вннг-…-В",
       "source": "mkf",
       "kind": "crosswalk",
       "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
-          "label": "Описание КСО-Вннг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-14/",
+          "label": "Описание КСО-Вннг-…-В",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-b75fe979eb9a"
       ]
     },
     {
@@ -2643,14 +2685,7 @@
       "mark": "КСО-Внг-…-Д",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
-      "descriptionLinks": [
-        {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-11/",
-          "label": "Описание КСО-Внг",
-          "kind": "product"
-        }
-      ]
+      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению."
     },
     {
       "id": "c105",
@@ -2662,10 +2697,13 @@
       "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-11/",
-          "label": "Описание КСО-Внг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-12/",
+          "label": "Описание КСО-Внг-…-Д-М",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-216fb8a0dbea"
       ]
     },
     {
@@ -3614,7 +3652,17 @@
       "mark": "ОКСТЦ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-odnomodulnye-dlja-prokladki-v-kanalizacii/",
+          "label": "Описание ОКСТЦ",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-beltele-0596b4faeaea"
+      ]
     },
     {
       "id": "c174",
@@ -3853,7 +3901,17 @@
       "mark": "ОМЗКГЦ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-dlja-odnomodulnoj-prokladki-v-grunt/",
+          "label": "Описание ОМЗКГЦ",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-beltele-7ae3a0cb43c1"
+      ]
     },
     {
       "id": "c187",
@@ -3982,7 +4040,14 @@
       "mark": "ОККТЦ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-3/",
+          "label": "Описание ОККТЦ",
+          "kind": "product"
+        }
+      ]
     },
     {
       "id": "c1007",
@@ -4235,7 +4300,17 @@
       "mark": "ОКСТМ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить."
+      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-2/",
+          "label": "Описание ОКСТМ",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-beltele-e54090d7cfc9"
+      ]
     },
     {
       "id": "c1024",
@@ -6081,17 +6156,20 @@
     {
       "id": "c1137",
       "manufacturer": "beltele",
-      "group": "riser-micro",
+      "group": "riser-buffer",
       "mark": "КСО-Вннг-...-В-",
       "source": "incab",
       "kind": "crosswalk",
       "note": "",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
-          "label": "Описание КСО-Вннг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-14/",
+          "label": "Описание КСО-Вннг-...-В-",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-b75fe979eb9a"
       ]
     },
     {
@@ -6104,10 +6182,13 @@
       "note": "",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
-          "label": "Описание КСО-Вннг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-14/",
+          "label": "Описание КСО-Вннг-...-В-",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-b75fe979eb9a"
       ]
     },
     {
@@ -6353,7 +6434,7 @@
     {
       "id": "c1156",
       "manufacturer": "beltele",
-      "group": "distribution-micro",
+      "group": "distribution-buffer",
       "mark": "КСО-ВнАнг-...-Р-",
       "source": "incab",
       "kind": "crosswalk",
@@ -6361,9 +6442,12 @@
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-10/",
-          "label": "Описание КСО-ВнАнг",
+          "label": "Описание КСО-ВнАнг-...-Р-",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-d14886be2a9a"
       ]
     },
     {
@@ -6377,9 +6461,12 @@
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-10/",
-          "label": "Описание КСО-ВнАнг",
+          "label": "Описание КСО-ВнАнг-...-Р-",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-d14886be2a9a"
       ]
     },
     {
@@ -6720,10 +6807,13 @@
       "note": "",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-10/",
-          "label": "Описание КСО-ВнАнг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-9/",
+          "label": "Описание КСО-ВнАнг-...-СШ-",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-91b4a48cdd15"
       ]
     },
     {
@@ -6736,10 +6826,13 @@
       "note": "",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-10/",
-          "label": "Описание КСО-ВнАнг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-15/",
+          "label": "Описание КСО-ВнАнг-...-ДШ-",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-d28be3ba9daf"
       ]
     },
     {
@@ -6753,9 +6846,12 @@
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
-          "label": "Описание КСО-Вннг",
+          "label": "Описание КСО-Вннг-...-Д-",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-09b213631534"
       ]
     },
     {
@@ -7016,10 +7112,13 @@
       "note": "",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-11/",
-          "label": "Описание КСО-Внг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-12/",
+          "label": "Описание КСО-Внг...-Д-М",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-216fb8a0dbea"
       ]
     },
     {
@@ -7713,13 +7812,13 @@
       "note": "Состав кабеля зависит от полного исполнения.",
       "descriptionLinks": [
         {
-          "url": "https://intg.ru/catalog/kabel-opticheskiy/v-grunt/v-negoryuchey-obolochke/ikbng-a-hf-m/",
-          "label": "Описание ИКБ",
+          "url": "https://intg.ru/catalog/kabel-opticheskiy/v-grunt/v-negoryuchey-obolochke/ikbng-a-hf-t/",
+          "label": "Описание ИКБнг(А)-HF-Т",
           "kind": "product"
         }
       ],
       "images": [
-        "factory-30181149707f62ce"
+        "verified-integra-1fee6e66560d"
       ]
     },
     {
@@ -7757,19 +7856,13 @@
       "note": "Состав кабеля зависит от полного исполнения.",
       "descriptionLinks": [
         {
-          "url": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-negoryuchey-obolochke/iksng-a-hf-m/",
-          "label": "Описание ИКС",
-          "kind": "product"
-        },
-        {
-          "url": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-negoryuchey-obolochke/ikslng-a-hf-m/",
-          "label": "Описание ИКСЛ",
+          "url": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-negoryuchey-obolochke/iksng-a-hf-t/",
+          "label": "Описание ИКСнг(А)-HF-Т",
           "kind": "product"
         }
       ],
       "images": [
-        "factory-7181498be1e32da1",
-        "factory-fcc3702ced7b6324"
+        "verified-integra-1e95b0fcd232"
       ]
     },
     {
@@ -7834,7 +7927,17 @@
       "mark": "ИК…-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения."
+      "note": "Состав кабеля зависит от полного исполнения.",
+      "descriptionLinks": [
+        {
+          "url": "https://intg.ru/catalog/kabel-opticheskiy/v-truby/v-negoryuchey-obolochke/ikng-a-hf-m/",
+          "label": "Описание ИКнг(А)-HF-М",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-integra-d2adacf6d473"
+      ]
     },
     {
       "id": "c1252",
@@ -8936,14 +9039,7 @@
       "mark": "КСО-Вннг-…-Р",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
-      "descriptionLinks": [
-        {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
-          "label": "Описание КСО-Вннг",
-          "kind": "product"
-        }
-      ]
+      "note": "Состав кабеля зависит от полного исполнения."
     },
     {
       "id": "c1313",
@@ -8952,14 +9048,7 @@
       "mark": "КСО-Вннг- …-Р (mxn)",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
-      "descriptionLinks": [
-        {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
-          "label": "Описание КСО-Вннг",
-          "kind": "product"
-        }
-      ]
+      "note": "Состав кабеля зависит от полного исполнения."
     },
     {
       "id": "c1314",
@@ -8971,26 +9060,32 @@
       "note": "Состав кабеля зависит от полного исполнения.",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
-          "label": "Описание КСО-Вннг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-14/",
+          "label": "Описание КСО-Вннг-…-В",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-b75fe979eb9a"
       ]
     },
     {
       "id": "c1315",
       "manufacturer": "beltele",
-      "group": "riser-micro",
+      "group": "riser-buffer",
       "mark": "КСО-Вннг-…-В (mxn)",
       "source": "mkf",
       "kind": "crosswalk",
       "note": "Состав кабеля зависит от полного исполнения.",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
-          "label": "Описание КСО-Вннг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-14/",
+          "label": "Описание КСО-Вннг-…-В (mxn)",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-b75fe979eb9a"
       ]
     },
     {
@@ -9471,10 +9566,13 @@
       "note": "Точный состав кабеля уточняется по спецификации.",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-10/",
-          "label": "Описание КСО-внанг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-9/",
+          "label": "Описание КСО-внанг…-сш",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-91b4a48cdd15"
       ]
     },
     {
@@ -9484,7 +9582,17 @@
       "mark": "КСО-внанг-дш",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации."
+      "note": "Точный состав кабеля уточняется по спецификации.",
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-15/",
+          "label": "Описание КСО-внанг-дш",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-beltele-d28be3ba9daf"
+      ]
     },
     {
       "id": "c1351",
@@ -9493,14 +9601,7 @@
       "mark": "КСО-вннг-…-р (mxn)",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
-      "descriptionLinks": [
-        {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
-          "label": "Описание КСО-вннг",
-          "kind": "product"
-        }
-      ]
+      "note": "Точный состав кабеля уточняется по спецификации."
     },
     {
       "id": "c1352",
@@ -9512,10 +9613,13 @@
       "note": "Точный состав кабеля уточняется по спецификации.",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
-          "label": "Описание КСО-вннг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-14/",
+          "label": "Описание КСО-вннг-…-в",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-b75fe979eb9a"
       ]
     },
     {
@@ -9525,14 +9629,7 @@
       "mark": "КСО-внг-…-д",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
-      "descriptionLinks": [
-        {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-11/",
-          "label": "Описание КСО-внг",
-          "kind": "product"
-        }
-      ]
+      "note": "Точный состав кабеля уточняется по спецификации."
     },
     {
       "id": "c1354",
@@ -9544,10 +9641,13 @@
       "note": "Точный состав кабеля уточняется по спецификации.",
       "descriptionLinks": [
         {
-          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-11/",
-          "label": "Описание КСО-внг",
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-12/",
+          "label": "Описание КСО-внг-…-д-м",
           "kind": "product"
         }
+      ],
+      "images": [
+        "verified-beltele-216fb8a0dbea"
       ]
     },
     {
@@ -11340,6 +11440,432 @@
           "kind": "product"
         }
       ]
+    },
+    {
+      "id": "direct-beltele-81d457068bb3",
+      "manufacturer": "beltele",
+      "mark": "КСППз",
+      "group": "hybrid",
+      "source": "beltele",
+      "kind": "catalog",
+      "note": "Оптические волокна и медные жилы; экран из алюмополиэтиленовой ленты. Для защитных пластмассовых труб.",
+      "attributes": {
+        "module": "Оптические волокна и медные изолированные жилы",
+        "armor": "Без стальной брони; алюмополиэтиленовый экран",
+        "strength": "Центральный стеклопластиковый пруток",
+        "shape": "Круглый"
+      },
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-8/",
+          "label": "Описание КСППз",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-beltele-b199bf0ea15b"
+      ]
+    },
+    {
+      "id": "direct-beltele-6f695cdd11d1",
+      "manufacturer": "beltele",
+      "mark": "КСППг",
+      "group": "hybrid",
+      "source": "beltele",
+      "kind": "catalog",
+      "note": "Оптические волокна и медные жилы; стальная гофрированная лента. Для канализации, труб, мостов и эстакад.",
+      "attributes": {
+        "module": "Оптические волокна и медные изолированные жилы",
+        "armor": "Стальная гофрированная лента",
+        "strength": "Центральный стеклопластиковый пруток",
+        "shape": "Круглый"
+      },
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-6/",
+          "label": "Описание КСППг",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-beltele-7b99eb55ed85"
+      ]
+    },
+    {
+      "id": "direct-minsk-807a70610465",
+      "manufacturer": "minsk",
+      "mark": "ОКВс (Simplex)",
+      "group": "simplex",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Одно волокно в плотном буфере 600–900 мкм, арамидные нити и оболочка LSZH.",
+      "attributes": {
+        "module": "Одно волокно в плотном буфере 600–900 мкм",
+        "strength": "Арамидные нити",
+        "shape": "Круглый"
+      },
+      "descriptionLinks": [
+        {
+          "url": "https://minskkabel.by/vnutriobyektovyy-minikabel-okvs",
+          "label": "Описание ОКВс (Simplex)",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-008b3b97d226"
+      ]
+    },
+    {
+      "id": "direct-minsk-31a8b9c4f17c",
+      "manufacturer": "minsk",
+      "mark": "ОКВк (Duplex)",
+      "group": "duplex",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Два волокна в плотном буфере, арамидные нити, оболочка LSZH.",
+      "attributes": {
+        "module": "Два волокна в плотном буфере 600–900 мкм",
+        "strength": "Арамидные нити"
+      },
+      "descriptionLinks": [
+        {
+          "url": "http://minskkabel.by/vnutriobyektovyy-kabel-okvk",
+          "label": "Описание ОКВк (Duplex)",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-3b545642766b"
+      ]
+    },
+    {
+      "id": "direct-minsk-2148406f8388",
+      "manufacturer": "minsk",
+      "mark": "ОКВр",
+      "group": "distribution-buffer",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "От 2 до 12 волокон в плотном буфере, арамидные нити, оболочка LSZH.",
+      "attributes": {
+        "module": "От 2 до 12 волокон в плотном буфере",
+        "strength": "Арамидные нити"
+      },
+      "descriptionLinks": [
+        {
+          "url": "http://minskkabel.by/page3574661.html",
+          "label": "Описание ОКВр",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-13b33cfbf14d"
+      ]
+    },
+    {
+      "id": "direct-minsk-674bdb4464e3",
+      "manufacturer": "minsk",
+      "mark": "ОКВд",
+      "group": "duplex",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Два волокна в плотном буфере; арамидное усиление, оболочки элементов и общая наружная оболочка LSZH.",
+      "attributes": {
+        "module": "Два защищённых волокна в общей оболочке",
+        "strength": "Арамидные нити"
+      },
+      "descriptionLinks": [
+        {
+          "url": "http://minskkabel.by/page3575936.html",
+          "label": "Описание ОКВд",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-1a958605349b"
+      ]
+    },
+    {
+      "id": "direct-minsk-ab4cdb9daa8e",
+      "manufacturer": "minsk",
+      "mark": "ОКВб",
+      "group": "breakout",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "От 4 до 12 миникабелей по одному волокну. Арамидные нити, центральные стеклопластиковые прутки, общая оболочка LSZH.",
+      "attributes": {
+        "module": "Отдельные защищённые миникабели по одному волокну",
+        "strength": "Арамидные нити и центральные стеклопластиковые прутки"
+      },
+      "descriptionLinks": [
+        {
+          "url": "http://minskkabel.by/page3576006.html",
+          "label": "Описание ОКВб",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-73116e4756b8"
+      ]
+    },
+    {
+      "id": "direct-minsk-7c6f2250f1a5",
+      "manufacturer": "minsk",
+      "mark": "ОКВм (микромодули)",
+      "group": "riser-micro",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Минимодули из LSZH; стеклопластиковые прутки; от 2 до 576 волокон.",
+      "attributes": {
+        "module": "От 1 до 48 мини-модулей, до 12 волокон в каждом",
+        "strength": "Стеклопластиковые прутки"
+      },
+      "descriptionLinks": [
+        {
+          "url": "https://minskkabel.by/raspredelitelnyy-volokonno-opticheskiy-kabel-okvm",
+          "label": "Описание ОКВм (микромодули)",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-591e49d6fa11"
+      ]
+    },
+    {
+      "id": "direct-minsk-eafe76f98725",
+      "manufacturer": "minsk",
+      "mark": "ОКВм (Tight Buffer)",
+      "group": "riser-buffer",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Волокна в буфере LSZH; стеклопластиковые прутки; от 2 до 32 волокон.",
+      "attributes": {
+        "module": "Волокна в плотном буфере LSZH",
+        "strength": "Стеклопластиковые прутки"
+      },
+      "descriptionLinks": [
+        {
+          "url": "http://minskkabel.by/page3909703.html",
+          "label": "Описание ОКВм (Tight Buffer)",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-912f76819b79"
+      ]
+    },
+    {
+      "id": "direct-minsk-7c776f6340d1",
+      "manufacturer": "minsk",
+      "mark": "ОКВро",
+      "group": "distribution-buffer",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "От 2 до 24 волокон; арамидные нити и оболочка LSZH.",
+      "attributes": {
+        "module": "Оптические волокна; устройство защитного покрытия уточняется",
+        "strength": "Арамидные нити"
+      },
+      "descriptionLinks": [
+        {
+          "url": "http://minskkabel.by/page3854257.html",
+          "label": "Описание ОКВро",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-15f965794324"
+      ]
+    },
+    {
+      "id": "direct-minsk-9641ecf78dc4",
+      "manufacturer": "minsk",
+      "mark": "ОКВ (Tight Buffer)",
+      "group": "simplex",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Одно волокно с плотным защитным покрытием диаметром 900 мкм. Отдельных арамидных нитей и наружной оболочки в конструкции нет.",
+      "attributes": {
+        "module": "Одно волокно в плотном покрытии LSZH, 900 мкм",
+        "strength": "Отдельный силовой элемент не указан",
+        "armor": "Без брони",
+        "shape": "Круглый"
+      },
+      "descriptionLinks": [
+        {
+          "url": "http://minskkabel.by/page3952038.html",
+          "label": "Описание ОКВ (Tight Buffer)",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-3a252902fc17"
+      ]
+    },
+    {
+      "id": "direct-minsk-85dcfdf03208",
+      "manufacturer": "minsk",
+      "mark": "ОКТ-Д",
+      "group": "tube-central",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "От 1 до 48 волокон в центральном модуле с гидрофобным заполнителем; периферийные стеклопластиковые прутки; полиэтиленовая оболочка.",
+      "attributes": {
+        "module": "Центральный оптический модуль с гидрофобным заполнителем",
+        "strength": "Периферийные стеклопластиковые прутки"
+      },
+      "descriptionLinks": [
+        {
+          "url": "https://minskkabel.by/page3574078.html",
+          "label": "Описание ОКТ-Д",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-9b80fe5a2e05"
+      ]
+    },
+    {
+      "id": "direct-minsk-34968434d920",
+      "manufacturer": "minsk",
+      "mark": "ОКАДт",
+      "group": "drop-flat-tube",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Центральный оптический модуль с гидрофобным заполнителем, периферийные стеклопластиковые прутки, полиэтиленовая оболочка; 1–24 волокна.",
+      "attributes": {
+        "module": "Центральный оптический модуль с гидрофобным заполнителем",
+        "strength": "Периферийные стеклопластиковые прутки"
+      },
+      "descriptionLinks": [
+        {
+          "url": "https://minskkabel.by/page3587338.html",
+          "label": "Описание ОКАДт",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-ca61a77a1a4a"
+      ]
+    },
+    {
+      "id": "direct-minsk-1110a397b39d",
+      "manufacturer": "minsk",
+      "mark": "ОКАД-Д",
+      "group": "drop-bare",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "От 1 до 12 волокон, периферийные стеклопластиковые прутки, полиэтиленовая оболочка.",
+      "attributes": {
+        "module": "Волокна без отдельной модульной трубки",
+        "strength": "Периферийные стеклопластиковые прутки"
+      },
+      "descriptionLinks": [
+        {
+          "url": "http://minskkabel.by/page3587572.html",
+          "label": "Описание ОКАД-Д",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-c5ba58fd152c"
+      ]
+    },
+    {
+      "id": "direct-minsk-f71cc76f71a0",
+      "manufacturer": "minsk",
+      "mark": "ОКАД-ДД",
+      "group": "drop-eight",
+      "source": "minsk",
+      "kind": "catalog",
+      "note": "Периферийные стеклопластиковые прутки и выносной стеклопластиковый пруток; 1–12 волокон.",
+      "attributes": {
+        "module": "Волокна без отдельной модульной трубки",
+        "strength": "Периферийные и выносной стеклопластиковые прутки",
+        "shape": "Плоский с выносным несущим элементом"
+      },
+      "descriptionLinks": [
+        {
+          "url": "http://minskkabel.by/page3587470.html",
+          "label": "Описание ОКАД-ДД",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-minsk-c66eff3f51bc"
+      ]
+    },
+    {
+      "id": "direct-integra-32e5af6e5a18",
+      "manufacturer": "integra",
+      "mark": "ИКД3нг(А)-HF-О",
+      "group": "drop-eight",
+      "source": "integra",
+      "kind": "catalog",
+      "note": "Абонентский кабель FTTH с выносным несущим элементом.",
+      "attributes": {
+        "module": "Волокна без отдельной модульной трубки",
+        "strength": "Выносной стеклопластиковый пруток 1 мм; усиливающие стеклопрутки 0,5 мм",
+        "shape": "Плоский с выносным несущим элементом"
+      },
+      "descriptionLinks": [
+        {
+          "url": "https://intg.ru/catalog/kabel-opticheskiy/ftth/v-negoryuchey-obolochke/ikd3nga-hf-o/",
+          "label": "Описание ИКД3нг(А)-HF-О",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-integra-b030d6dc4778"
+      ]
+    },
+    {
+      "id": "direct-integra-d7f7f1edd526",
+      "manufacturer": "integra",
+      "mark": "ИКТ3нг(А)-HF-О",
+      "group": "drop-eight",
+      "source": "integra",
+      "kind": "catalog",
+      "note": "Абонентский кабель FTTH с выносным несущим элементом.",
+      "attributes": {
+        "module": "Волокна без отдельной модульной трубки",
+        "strength": "Выносная стальная проволока 1 мм; усиливающая стальная проволока 0,5 мм",
+        "shape": "Плоский с выносным несущим элементом"
+      },
+      "descriptionLinks": [
+        {
+          "url": "https://intg.ru/catalog/kabel-opticheskiy/ftth/v-negoryuchey-obolochke/ikt3nga-hf-o/",
+          "label": "Описание ИКТ3нг(А)-HF-О",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-integra-9c1d3ae56bbf"
+      ]
+    },
+    {
+      "id": "direct-beltele-b364f622e37a",
+      "manufacturer": "beltele",
+      "mark": "КСО-Внг-HFСП-Д / КСО-Внг-LSСП-Д",
+      "group": "special",
+      "source": "beltele",
+      "kind": "catalog",
+      "note": "Круглый кабель для канализации FTTH. Арамидные нити, внутренняя оболочка, стальная гофрированная лента и наружная оболочка.",
+      "attributes": {
+        "module": "Оптические волокна во внутренней защитной оболочке",
+        "strength": "Продольные силовые элементы и арамидные нити",
+        "armor": "Стальная гофрированная лента",
+        "shape": "Круглый"
+      },
+      "descriptionLinks": [
+        {
+          "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-11/",
+          "label": "Описание КСО-Внг-HFСП-Д / КСО-Внг-LSСП-Д",
+          "kind": "product"
+        }
+      ],
+      "images": [
+        "verified-beltele-f0fa23de7667"
+      ]
     }
   ],
   "sources": {
@@ -11376,8 +11902,8 @@
       "url": "https://www.kubancabel.ru/upload/Catalog.pdf"
     },
     "minsk": {
-      "title": "Минсккабель: каталог официального представительства",
-      "url": "https://optikabel.kz/"
+      "title": "Минсккабель: официальный каталог оптических кабелей",
+      "url": "https://minskkabel.by/kabeli-volokonno-opticheskiye-lokalnyye"
     },
     "integra": {
       "title": "Интегра Кабель: производство на заводе СОЮЗ-КАБЕЛЬ",
@@ -11715,9 +12241,10 @@
       },
       {
         "manufacturer": "beltele",
-        "records": 39,
-        "groups": 25,
+        "records": 42,
+        "groups": 26,
         "sources": [
+          "beltele",
           "incab",
           "koscab",
           "mkf"
@@ -11726,10 +12253,11 @@
       },
       {
         "manufacturer": "integra",
-        "records": 49,
+        "records": 51,
         "groups": 27,
         "sources": [
           "incab",
+          "integra",
           "koscab",
           "mkf"
         ],
@@ -11822,8 +12350,8 @@
       },
       {
         "manufacturer": "minsk",
-        "records": 8,
-        "groups": 8,
+        "records": 21,
+        "groups": 18,
         "sources": [
           "minsk"
         ],
@@ -11834,7 +12362,6 @@
         "records": 5,
         "groups": 5,
         "sources": [
-          "ultra",
           "ultra-marking"
         ],
         "status": "Официальный каталог, изображения и заводское маркообразование"
@@ -14276,6 +14803,270 @@
       "sourcePage": "https://koscab.ru/upload/img/koscab/Catalog2022.pdf#page=20",
       "original": "https://koscab.ru/upload/img/koscab/Catalog2022.pdf",
       "alt": "КОС-ОКПС · заводская иллюстрация из каталога 2022"
+    },
+    "verified-beltele-b7a7932427ca": {
+      "manufacturer": "beltele",
+      "mark": "ОККТМ",
+      "src": "/references/images/factory-05149c77a3bc5edd.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-3/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/okktm.png",
+      "alt": "Для задувки в трубы СИП ОККТМН ОККТЦН"
+    },
+    "verified-beltele-e5f675cd847e": {
+      "manufacturer": "beltele",
+      "mark": "ОМЗКГМ",
+      "src": "/references/images/factory-b62f99543bcefefa.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/omzkgm2.png",
+      "alt": "Волоконно-оптические кабели многомодульные для прокладки в грунт СИП ОМЗКГМН ОМЗКГМд"
+    },
+    "verified-beltele-6a37a66013f3": {
+      "manufacturer": "beltele",
+      "mark": "ОКСНМ",
+      "src": "/references/images/factory-32391b10319a6327.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-mnogomodulnye-samonesushhie/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2025/04/okchm.png",
+      "alt": "Волоконно-оптические кабели многомодульные самонесущие СИП ОКСНМ-10-01-0 ОКСНМН-10-01-0"
+    },
+    "verified-beltele-91b4a48cdd15": {
+      "manufacturer": "beltele",
+      "mark": "КСО-внанг…-сш",
+      "src": "/references/images/factory-bc020d1b240b96e4.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-9/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/kso-vnag-hf-shs.png",
+      "alt": "Волоконно-оптические кабели СИП КСО-ВнАнг-Н КСО-ВнАнг"
+    },
+    "verified-beltele-d28be3ba9daf": {
+      "manufacturer": "beltele",
+      "mark": "КСО-внанг-дш",
+      "src": "/references/images/factory-68389eb261af362c.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-15/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/kso-vnang-ls-dsh.png",
+      "alt": "Волоконно-оптические кабели СИП КСО-ВнАнг"
+    },
+    "verified-beltele-b75fe979eb9a": {
+      "manufacturer": "beltele",
+      "mark": "КСО-вннг-…-в",
+      "src": "/references/images/factory-26f36b961f4cc832.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-14/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/kso-vnng-hf.png",
+      "alt": "Волоконно-оптические кабели СИП КСО-Вннг"
+    },
+    "verified-beltele-f0fa23de7667": {
+      "manufacturer": "beltele",
+      "mark": "КСО-Внг-HFСП-Д / КСО-Внг-LSСП-Д",
+      "src": "/references/images/factory-e90366e8087b2b47.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-11/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/drop.png",
+      "alt": "Дроп для канализации СИП КСО-Внг"
+    },
+    "verified-beltele-216fb8a0dbea": {
+      "manufacturer": "beltele",
+      "mark": "КСО-внг-…-д-м",
+      "src": "/references/images/factory-5011d117b7d3dd24.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-12/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/ls-d3.png",
+      "alt": "Дроп подвесной с выносным элементом СИП КСО-Внг"
+    },
+    "verified-beltele-0596b4faeaea": {
+      "manufacturer": "beltele",
+      "mark": "ОКСТЦ",
+      "src": "/references/images/factory-87b3191638c511d1.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-odnomodulnye-dlja-prokladki-v-kanalizacii/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2025/04/okstc.png",
+      "alt": "Волоконно-оптические кабели одномодульные для прокладки в канализации СИП ОКСТЦ-10-01-0 ОКСТЦН-10-01-0"
+    },
+    "verified-beltele-7ae3a0cb43c1": {
+      "manufacturer": "beltele",
+      "mark": "ОМЗКГЦ",
+      "src": "/references/images/factory-56976c181db40900.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-dlja-odnomodulnoj-prokladki-v-grunt/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2025/03/omzkgc.png",
+      "alt": "Волоконно-оптические кабели для одномодульной прокладки в грунт СИП ОМЗКГЦ-10-01-0 ОМЗКГЦд-10-01-0 ОМЗКГЦН-10-01-0 ОМЗКГЦНд-10-01-0"
+    },
+    "verified-beltele-e54090d7cfc9": {
+      "manufacturer": "beltele",
+      "mark": "ОКСТМ",
+      "src": "/references/images/factory-4baf5218fc1f7be3.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-2/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/okstm.png",
+      "alt": "В кабельную канализацию СИП ОКСТМН ОКСТЦН"
+    },
+    "verified-beltele-d14886be2a9a": {
+      "manufacturer": "beltele",
+      "mark": "КСО-ВнАнг-...-Р-",
+      "src": "/references/images/factory-8874e5095f55e424.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-10/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/hf-p.png",
+      "alt": "Распределительный СИП КСО-ВнАнг"
+    },
+    "verified-beltele-09b213631534": {
+      "manufacturer": "beltele",
+      "mark": "КСО-Вннг-...-Д-",
+      "src": "/references/images/factory-8f2df5cfa8594c93.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-13/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/babo4ka-drop-podvesnoy.png",
+      "alt": "Дроп подвесной СИП КСО-Вннг"
+    },
+    "verified-beltele-b199bf0ea15b": {
+      "manufacturer": "beltele",
+      "mark": "КСППз",
+      "src": "/references/images/factory-1c5546315317e8bf.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-8/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/ksppz.png",
+      "alt": "Волоконно-оптические кабели СИП КСППз"
+    },
+    "verified-beltele-7b99eb55ed85": {
+      "manufacturer": "beltele",
+      "mark": "КСППг",
+      "src": "/references/images/factory-2a7b3367f885846c.svg",
+      "sourcePage": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-6/",
+      "original": "https://beltelecabel.by/wp-content/uploads/2024/05/ksppg.png",
+      "alt": "Волоконно-оптические кабели СИП КСППг"
+    },
+    "verified-minsk-008b3b97d226": {
+      "manufacturer": "minsk",
+      "mark": "ОКВс (Simplex)",
+      "src": "/references/images/factory-9d8fa5b63562a8d7.svg",
+      "sourcePage": "https://minskkabel.by/vnutriobyektovyy-minikabel-okvs",
+      "original": "https://static.tildacdn.com/tild6339-3061-4239-b738-386164316165/photo.jpg",
+      "alt": "2.2 Кабели внутриобъектовые. Внутриобъектовый миникабель ОКВс"
+    },
+    "verified-minsk-3b545642766b": {
+      "manufacturer": "minsk",
+      "mark": "ОКВк (Duplex)",
+      "src": "/references/images/factory-7ba61c51d692e6f0.svg",
+      "sourcePage": "http://minskkabel.by/vnutriobyektovyy-kabel-okvk",
+      "original": "https://static.tildacdn.com/tild6234-6637-4930-b339-666162396361/_Zip-Cord.jpg",
+      "alt": "2.3 Кабели внутриобъектовые. Внутриобъектовый кабель ОКВк (DUPLEX)"
+    },
+    "verified-minsk-13b33cfbf14d": {
+      "manufacturer": "minsk",
+      "mark": "ОКВр",
+      "src": "/references/images/factory-9cbaa11ec4122cd6.svg",
+      "sourcePage": "http://minskkabel.by/page3574661.html",
+      "original": "https://static.tildacdn.com/tild6133-3533-4661-b933-636233386432/_Distribution.jpg",
+      "alt": "Кабели внутриобъектовые. Распределительный волоконно-оптический кабель ОКВР"
+    },
+    "verified-minsk-1a958605349b": {
+      "manufacturer": "minsk",
+      "mark": "ОКВд",
+      "src": "/references/images/factory-dc54fec8efb01211.svg",
+      "sourcePage": "http://minskkabel.by/page3575936.html",
+      "original": "https://static.tildacdn.com/tild3464-3865-4332-b862-373935623934/_Heavi_Duplex-01.jpg",
+      "alt": "Кабели внутриобъектовые. Распределительный волоконно-оптический кабель ОКВД"
+    },
+    "verified-minsk-73116e4756b8": {
+      "manufacturer": "minsk",
+      "mark": "ОКВб",
+      "src": "/references/images/factory-4613d7e77042b373.svg",
+      "sourcePage": "http://minskkabel.by/page3576006.html",
+      "original": "https://static.tildacdn.com/tild3735-3163-4230-a663-323231613832/_Breakout.jpg",
+      "alt": "Кабели внутриобъектовые. Распределительный волоконно-оптический кабель ОКВБ"
+    },
+    "verified-minsk-591e49d6fa11": {
+      "manufacturer": "minsk",
+      "mark": "ОКВм (микромодули)",
+      "src": "/references/images/factory-2ecc74e66761e4eb.svg",
+      "sourcePage": "https://minskkabel.by/raspredelitelnyy-volokonno-opticheskiy-kabel-okvm",
+      "original": "https://static.tildacdn.com/tild3633-3939-4333-b737-636439613939/photo.jpg",
+      "alt": "2.1 Кабели внутриобъектовые. Распределительный волоконно-оптический кабель ОКВм"
+    },
+    "verified-minsk-912f76819b79": {
+      "manufacturer": "minsk",
+      "mark": "ОКВм (Tight Buffer)",
+      "src": "/references/images/factory-68a2185a30214493.svg",
+      "sourcePage": "http://minskkabel.by/page3909703.html",
+      "original": "https://static.tildacdn.com/tild6533-3637-4132-b836-383166373537/__-01.jpg",
+      "alt": "Кабели внутриобъектовые. Распределительный волоконно-оптический кабель ОКВм Tight Buffer"
+    },
+    "verified-minsk-15f965794324": {
+      "manufacturer": "minsk",
+      "mark": "ОКВро",
+      "src": "/references/images/factory-c17c7071f01f3788.svg",
+      "sourcePage": "http://minskkabel.by/page3854257.html",
+      "original": "https://static.tildacdn.com/tild3930-6531-4339-a363-393438336637/2026-01-19_173501.jpg",
+      "alt": "Кабели внутриобъектовые. Распределительный волоконно-оптический кабель ОКВро"
+    },
+    "verified-minsk-3a252902fc17": {
+      "manufacturer": "minsk",
+      "mark": "ОКВ (Tight Buffer)",
+      "src": "/references/images/factory-be569e22ebff263a.svg",
+      "sourcePage": "http://minskkabel.by/page3952038.html",
+      "original": "https://static.tildacdn.com/tild3262-3836-4237-a361-356366316237/_Tight_Buffer.jpg",
+      "alt": "Кабели внутриобъектовые. Распределительный волоконно-оптический кабель ОКВ"
+    },
+    "verified-minsk-9b80fe5a2e05": {
+      "manufacturer": "minsk",
+      "mark": "ОКТ-Д",
+      "src": "/references/images/factory-1911468755e0f756.svg",
+      "sourcePage": "https://minskkabel.by/page3574078.html",
+      "original": "https://static.tildacdn.com/tild3837-6230-4166-b963-346464363931/-.jpg",
+      "alt": "Кабели объектовые. Распределительный волоконно-оптический кабель ОКТ-Д"
+    },
+    "verified-minsk-ca61a77a1a4a": {
+      "manufacturer": "minsk",
+      "mark": "ОКАДт",
+      "src": "/references/images/factory-f68fec66612a23f9.svg",
+      "sourcePage": "https://minskkabel.by/page3587338.html",
+      "original": "https://static.tildacdn.com/tild3261-6230-4563-b732-376237336632/-.jpg",
+      "alt": "Кабели внутриобъектовые. Распределительный волоконно-оптический кабель ОКАДт"
+    },
+    "verified-minsk-c5ba58fd152c": {
+      "manufacturer": "minsk",
+      "mark": "ОКАД-Д",
+      "src": "/references/images/factory-0761b8621f0b6ebd.svg",
+      "sourcePage": "http://minskkabel.by/page3587572.html",
+      "original": "https://static.tildacdn.com/tild3962-6233-4264-b938-656430373238/photo.jpg",
+      "alt": "Кабели внутриобъектовые. Распределительный волоконно-оптический кабель ОКАД-Д"
+    },
+    "verified-minsk-c66eff3f51bc": {
+      "manufacturer": "minsk",
+      "mark": "ОКАД-ДД",
+      "src": "/references/images/factory-5c62d2a13d523408.svg",
+      "sourcePage": "http://minskkabel.by/page3587470.html",
+      "original": "https://static.tildacdn.com/tild6434-3462-4234-b734-393336396361/-__-01.jpg",
+      "alt": "Кабели внутриобъектовые. Распределительный волоконно-оптический кабель ОКАД-ДД"
+    },
+    "verified-integra-1fee6e66560d": {
+      "manufacturer": "integra",
+      "mark": "ИКБнг(А)-HF-Т",
+      "src": "/references/images/factory-8fb9ce8369753aa5.svg",
+      "sourcePage": "https://intg.ru/catalog/kabel-opticheskiy/v-grunt/v-negoryuchey-obolochke/ikbng-a-hf-t/",
+      "original": "https://intg.ru/wp-content/uploads/2019/05/ikbt.png",
+      "alt": "ИКБнг(А)-HF-Т - оптический кабель в грунт и канализацию"
+    },
+    "verified-integra-1e95b0fcd232": {
+      "manufacturer": "integra",
+      "mark": "ИКСнг(А)-HF-Т",
+      "src": "/references/images/factory-6f8c1a0bf8a31c8b.svg",
+      "sourcePage": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-negoryuchey-obolochke/iksng-a-hf-t/",
+      "original": "https://intg.ru/wp-content/uploads/2019/05/ikct.png",
+      "alt": "ИКСнг(А)-HF-Т - оптический кабель в канализацию"
+    },
+    "verified-integra-d2adacf6d473": {
+      "manufacturer": "integra",
+      "mark": "ИКнг(А)-HF-М",
+      "src": "/references/images/factory-6d194c153bc5ef31.svg",
+      "sourcePage": "https://intg.ru/catalog/kabel-opticheskiy/v-truby/v-negoryuchey-obolochke/ikng-a-hf-m/",
+      "original": "https://intg.ru/wp-content/uploads/2019/04/ikm.png",
+      "alt": "ИКнг(А)-HF-М - оптический кабель в трубы"
+    },
+    "verified-integra-b030d6dc4778": {
+      "manufacturer": "integra",
+      "mark": "ИКД3нг(А)-HF-О",
+      "src": "/references/images/factory-0bdc7f93d0f0b0e6.svg",
+      "sourcePage": "https://intg.ru/catalog/kabel-opticheskiy/ftth/v-negoryuchey-obolochke/ikd3nga-hf-o/",
+      "original": "https://intg.ru/wp-content/uploads/2020/03/ikd3.png",
+      "alt": "ИКД3нг(А)-HF-О - оптический дроп-кабель (FTTH)"
+    },
+    "verified-integra-9c1d3ae56bbf": {
+      "manufacturer": "integra",
+      "mark": "ИКТ3нг(А)-HF-О",
+      "src": "/references/images/factory-7863593844539015.svg",
+      "sourcePage": "https://intg.ru/catalog/kabel-opticheskiy/ftth/v-negoryuchey-obolochke/ikt3nga-hf-o/",
+      "original": "https://intg.ru/wp-content/uploads/2020/03/ikt3.png",
+      "alt": "ИКТ3нг(А)-HF-О - оптический дроп-кабель (FTTH)"
     }
   }
 }
