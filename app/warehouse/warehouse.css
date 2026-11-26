@@ -9,3 +9,36 @@
 .stats small{display:block;color:#617083;font-size:12px;margin-top:4px}#sold{color:#a32b35}
 
 .cable-name{min-width:300px;max-width:390px}.cable-marking+.cable-marking{margin-top:7px}.construction-details{margin-top:10px}.construction-details summary{color:#1959a6;font-weight:500}.construction-details div{margin-top:7px;color:#617083;font-weight:400}.cable-description{min-width:200px;max-width:260px;color:#39516d}.cable-description>div+div{margin-top:6px}@media(max-width:850px){#summary-view td.cable-description{grid-column:1/-1;font-size:13px;color:#39516d}#summary-view td.cable-description::before{content:"Краткое описание";display:block;font-size:11px;color:#617083;margin-bottom:4px}}
+
+/* Fit complete entries instead of concealing overflowing columns. */
+#summary-view table,#prices-view table{width:100%;min-width:0;table-layout:fixed}
+#summary-view th,#summary-view td,#prices-view th,#prices-view td{min-width:0;max-width:none;padding:12px 8px;white-space:normal;overflow-wrap:anywhere;font-size:12px;line-height:1.45}
+#summary-view th,#prices-view th{font-size:11px}
+#summary-view th:first-child{width:23%}#summary-view th:nth-child(2){width:15%}#summary-view th:last-child{width:10%}
+#summary-view button{width:100%;padding:8px 5px;font-size:12px;white-space:normal}
+#summary-view .muted{font-size:11px}#summary-view .price-value,#prices-view .price-value{min-width:0}
+#prices-view th:first-child{width:30%}#prices-view th:nth-child(2){width:12%}
+#items-view table{width:100%;table-layout:fixed}#items-view th,#items-view td{min-width:0;max-width:none;padding:12px 7px;white-space:normal;overflow-wrap:anywhere;font-size:12px}
+#items-view th:first-child{width:9%}#items-view th:nth-child(2){width:10%}#items-view th:nth-child(6),#items-view th:nth-child(7){width:13%}#items-view th:nth-child(9){width:10%}
+@media(max-width:1699px){
+#items-view table,#items-view tbody{display:block}#items-view thead{display:none}
+#items-view tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:18px;border-bottom:1px solid #dce4ef}
+#items-view td{display:block;min-width:0;padding:0;border:0;text-align:left;font-size:13px}
+#items-view td[data-label]::before{content:attr(data-label);display:block;font-size:11px;color:#617083;margin-bottom:4px;font-weight:400}
+#items-view td.row-actions,#items-view td:nth-child(2),#items-view td:nth-child(6),#items-view td:nth-child(7){grid-column:1/-1}
+#items-view td.row-actions{display:flex;flex-wrap:wrap;gap:8px}#items-view td.row-actions::before{display:none}
+#items-view .row-actions button{display:inline-block;width:auto;margin:0;flex:1;min-width:100px}
+#items-view .cell-notes{white-space:pre-wrap}
+}
+@media(max-width:1599px){
+#summary-view table,#summary-view tbody,#prices-view table,#prices-view tbody{display:block}
+#summary-view thead,#prices-view thead{display:none}
+#summary-view tr,#prices-view tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:18px;border-bottom:1px solid #dce4ef}
+#summary-view td,#prices-view td{display:block;min-width:0;max-width:none;border:0;padding:0;text-align:left;white-space:normal;overflow-wrap:anywhere;font-size:13px}
+#summary-view td.number,#prices-view td.number{font-size:17px}
+#summary-view td[data-label]::before,#prices-view td[data-label]::before{content:attr(data-label);display:block;font-size:11px;color:#617083;margin-bottom:4px;font-weight:400}
+#summary-view td.construction,#summary-view td.cable-description,#summary-view td:last-child,#prices-view td.construction{grid-column:1/-1}
+#summary-view .cable-name,#summary-view .cable-description{min-width:0}#summary-view .cable-name{font-size:14px}#summary-view td:last-child button{max-width:230px}
+#summary-view .muted,#prices-view .muted{max-width:none}
+}
+@media(max-width:650px){#summary-view tr,#items-view tr,#prices-view tr{grid-template-columns:repeat(2,minmax(0,1fr));padding:16px 14px;gap:12px}}
