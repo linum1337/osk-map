@@ -13,11 +13,13 @@ def init():
 def allowed(user):
  return user.get('role')!='warehouse' and auth_store.normalize(user.get('login',''))!=auth_store.normalize('Валерия Алексеева')
 
-def match_key(data):
+def match_key(data,marking_only=False):
  # Price depends only on fibre count and the rod's diameter and material.
- # Read the actual construction first; fall back to its source marking.
+ # Warehouse prices use the marking only; catalogue nomenclature is kept in
+ # the historical construction field when no separate marking is supplied.
  fibres=None
- for text in [data.get('construction',''),data.get('marking','')]:
+ texts=[data.get('marking','')] if marking_only or data.get('marking') else [data.get('construction','')]
+ for text in texts:
   match=re.search(r'-(\d+)[аa](?=\W|\d|$)',re.sub(r'\s+','',text.casefold()))
   if match:
    fibres=int(match[1]);break
@@ -46,13 +48,22 @@ def decorate(snapshot,user,catalogue_data=None):
  for r in cat['rows']:
   key=match_key(r)
   if key:lookup.setdefault(key,[]).append(r)
- snapshot['priceVersion']='fibre-rod-v1:'+str(cat['version']);snapshot['priceTitle']=cat['title']
- for r in snapshot['items']+snapshot['groups']:
-  candidates=lookup.get(match_key(r),[])
-  # A future catalogue with conflicting prices must not choose one silently.
-  match=candidates[0] if candidates and len({Decimal(x['pricePerKm']) for x in candidates})==1 else None
-  r['prices']=match['prices'] if match else None
+ snapshot['priceVersion']='marking-fibre-rod-v2:'+str(cat['version']);snapshot['priceTitle']=cat['title']
+ def find(data):
+  candidates=lookup.get(match_key(data,marking_only=True),[])
+  return candidates[0] if candidates and len({Decimal(x['pricePerKm']) for x in candidates})==1 else None
+ for r in snapshot['items']:
+  match=find(r);r['prices']=match['prices'] if match else None
+  r['priceStatus']='matched' if match else 'missing'
   if match:r['priceSourceRow']=match['sourceRow']
+ for group in snapshot['groups']:
+  matches=[find({'marking':marking,'rod':group.get('rod','')}) for marking in group.get('markings',[])]
+  known=[r for r in matches if r]
+  same=bool(matches) and len(known)==len(matches) and len({Decimal(r['pricePerKm']) for r in known})==1
+  group['prices']=known[0]['prices'] if same else None
+  group['priceStatus']='matched' if same else 'mixed' if known else 'missing'
+  if same:group['priceSourceRow']=known[0]['sourceRow']
+
  return snapshot
 
 def import_prices(body,user):
