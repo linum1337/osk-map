@@ -49,6 +49,22 @@ with tempfile.TemporaryDirectory() as tmp:
  for row in data['audit']['manufacturers']:
   assert row['records']==sum(e['manufacturer']==row['manufacturer'] for e in data['entries'])
   assert row['groups']==len({e['group'] for e in data['entries'] if e['manufacturer']==row['manufacturer']})
+ # Manufacturer imagery stays behind the same access rules and has explicit provenance.
+ assert len(data['images'])>=40
+ for im in data['images'].values():
+  assert im['src'].startswith('/references/images/') and '..' not in im['src']
+  assert urlsplit(im['sourcePage']).hostname==urlsplit(im['original']).hostname
+  assert urlsplit(im['sourcePage']).hostname==urlsplit(makers[im['manufacturer']]['site']).hostname
+  response=client.get(im['src'],headers=admin)
+  assert response.status_code==200 and response.content_type.startswith('image/')
+ for e in data['entries']:
+  assert all(data['images'][i]['manufacturer']==e['manufacturer'] for i in e.get('images',[]))
+ first=next(iter(data['images'].values()))['src']
+ for path in [first,'/companies'+first]:
+  assert client.get(path).status_code==401
+  for role in ['manager','warehouse']:
+   for method in ['get','head']:assert getattr(client,method)(path,headers=auth('Reference '+role,'reference-fixture-password')).status_code==403
+  assert client.get(path,headers=admin).status_code==200
  text=client.get('/login?next=/references/').get_data(as_text=True);csrf=re.search('name="csrf" value="([^\"]+)"',text)[1]
  response=client.post('/login',data={'next':'/references/','login':'admin','password':os.environ['APP_PASSWORD'],'csrf':csrf})
  assert response.status_code==303 and response.location=='/references/'

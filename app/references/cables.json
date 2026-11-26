@@ -817,7 +817,10 @@
       "mark": "ДПО, микроДПО",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-dpo"
+      ]
     },
     {
       "id": "c002",
@@ -952,7 +955,10 @@
       "mark": "ДПЛ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-dpl"
+      ]
     },
     {
       "id": "c017",
@@ -1051,7 +1057,11 @@
       "mark": "ДПС, ДАС",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-dps",
+        "incab-das"
+      ]
     },
     {
       "id": "c028",
@@ -1186,7 +1196,10 @@
       "mark": "ДПТ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-dpt"
+      ]
     },
     {
       "id": "c043",
@@ -1312,7 +1325,10 @@
       "mark": "ДПТс",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-dpts"
+      ]
     },
     {
       "id": "c057",
@@ -1411,7 +1427,10 @@
       "mark": "ДПОм",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-dpom"
+      ]
     },
     {
       "id": "c068",
@@ -2320,7 +2339,10 @@
       "mark": "ТОС",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-tos"
+      ]
     },
     {
       "id": "c177",
@@ -2509,7 +2531,10 @@
       "mark": "ДОЛ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить."
+      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "images": [
+        "incab-dol"
+      ]
     },
     {
       "id": "c1010",
@@ -2518,7 +2543,10 @@
       "mark": "ТОЛ",
       "source": "incab-tol",
       "kind": "catalog",
-      "note": "Гофрированная стальная лента. ТОС с проволочной бронёй относится к другой группе."
+      "note": "Гофрированная стальная лента. ТОС с проволочной бронёй относится к другой группе.",
+      "images": [
+        "incab-tol"
+      ]
     },
     {
       "id": "c1011",
@@ -2527,7 +2555,10 @@
       "mark": "ТсПО",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-tspo"
+      ]
     },
     {
       "id": "c1012",
@@ -2662,7 +2693,10 @@
       "mark": "ТсОС",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-tsos"
+      ]
     },
     {
       "id": "c1027",
@@ -2671,7 +2705,10 @@
       "mark": "ДПД",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-dpd"
+      ]
     },
     {
       "id": "c1028",
@@ -2680,7 +2717,10 @@
       "mark": "ТОД",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-tod"
+      ]
     },
     {
       "id": "c1029",
@@ -2851,7 +2891,10 @@
       "mark": "ДПС2",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-dps2"
+      ]
     },
     {
       "id": "c1048",
@@ -2860,7 +2903,10 @@
       "mark": "ТОС2",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-tos2"
+      ]
     },
     {
       "id": "c1049",
@@ -2869,7 +2915,10 @@
       "mark": "ДПД2",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-dpd2"
+      ]
     },
     {
       "id": "c1050",
@@ -2878,7 +2927,10 @@
       "mark": "ТОД2",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-tod2"
+      ]
     },
     {
       "id": "c1051",
@@ -3004,7 +3056,10 @@
       "mark": "ДОТа",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить."
+      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "images": [
+        "incab-dota"
+      ]
     },
     {
       "id": "c1065",
@@ -3013,7 +3068,10 @@
       "mark": "ДОТс",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить."
+      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "images": [
+        "incab-dots"
+      ]
     },
     {
       "id": "c1066",
@@ -3094,7 +3152,10 @@
       "mark": "ТПОм",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-tpom"
+      ]
     },
     {
       "id": "c1075",
@@ -3517,7 +3578,10 @@
       "mark": "ОКГТ-Ц",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-okgt-c"
+      ]
     },
     {
       "id": "c1122",
@@ -3526,7 +3590,10 @@
       "mark": "ОКГТ-С",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-okgt-s"
+      ]
     },
     {
       "id": "c1123",
@@ -3535,7 +3602,10 @@
       "mark": "ГТК",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-gtk"
+      ]
     },
     {
       "id": "c1124",
@@ -3571,7 +3641,10 @@
       "mark": "ОМВ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-omv"
+      ]
     },
     {
       "id": "c1128",
@@ -3580,7 +3653,10 @@
       "mark": "ОБВ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-obv"
+      ]
     },
     {
       "id": "c1129",
@@ -3715,7 +3791,10 @@
       "mark": "ОМР",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-omr"
+      ]
     },
     {
       "id": "c1144",
@@ -3724,7 +3803,10 @@
       "mark": "ОБР",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-obr"
+      ]
     },
     {
       "id": "c1145",
@@ -3895,7 +3977,10 @@
       "mark": "ОБС",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-obs"
+      ]
     },
     {
       "id": "c1164",
@@ -3904,7 +3989,10 @@
       "mark": "ОБД",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-obd"
+      ]
     },
     {
       "id": "c1165",
@@ -4134,7 +4222,10 @@
         "module": "Центральная полимерная трубка",
         "strength": "Два стеклопластиковых прутка",
         "shape": "Плоский"
-      }
+      },
+      "images": [
+        "incab-tpod"
+      ]
     },
     {
       "id": "c1190",
@@ -4296,7 +4387,10 @@
       "mark": "ОБК-А",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-obk-a"
+      ]
     },
     {
       "id": "c1208",
@@ -4305,7 +4399,10 @@
       "mark": "ОВК-А",
       "source": "incab",
       "kind": "crosswalk",
-      "note": ""
+      "note": "",
+      "images": [
+        "incab-ovk-a"
+      ]
     },
     {
       "id": "c1209",
@@ -4548,7 +4645,10 @@
       "mark": "ДПТ, ДПТа ДОТа",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Строка может объединять исполнения; состав уточнить по полной марке."
+      "note": "Строка может объединять исполнения; состав уточнить по полной марке.",
+      "images": [
+        "incab-dpt"
+      ]
     },
     {
       "id": "c1236",
@@ -4584,7 +4684,10 @@
       "mark": "ДПО",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Строка может объединять исполнения; состав уточнить по полной марке."
+      "note": "Строка может объединять исполнения; состав уточнить по полной марке.",
+      "images": [
+        "incab-dpo"
+      ]
     },
     {
       "id": "c1240",
@@ -5313,7 +5416,10 @@
       "mark": "ОВП-2Д, ОМП-2Д",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Сводная таблица объединяет разные конструкции. ОМП-2Д имеет модуль: используйте отдельную карточку в группе плоского drop с трубкой."
+      "note": "Сводная таблица объединяет разные конструкции. ОМП-2Д имеет модуль: используйте отдельную карточку в группе плоского drop с трубкой.",
+      "images": [
+        "incab-omp"
+      ]
     },
     {
       "id": "c1321",
@@ -5849,7 +5955,10 @@
         "module": "Без модульной трубки",
         "armor": "Стальные канатные проволоки",
         "shape": "Круглый"
-      }
+      },
+      "images": [
+        "incab-ovkb"
+      ]
     },
     {
       "id": "c1406",
@@ -5863,7 +5972,10 @@
         "module": "Без модульной трубки",
         "armor": "Стальные многопроволочные тросы",
         "shape": "Круглый"
-      }
+      },
+      "images": [
+        "incab-ovkg"
+      ]
     },
     {
       "id": "c1407",
@@ -5877,7 +5989,10 @@
         "module": "Без модульной трубки",
         "armor": "Шесть стальных канатных проволок",
         "shape": "Круглый"
-      }
+      },
+      "images": [
+        "sl03"
+      ]
     },
     {
       "id": "c1408",
@@ -5891,7 +6006,10 @@
         "module": "Без отдельной полимерной трубки",
         "armor": "Многопроволочные стальные тросы",
         "shape": "Круглый"
-      }
+      },
+      "images": [
+        "sl01"
+      ]
     },
     {
       "id": "c1409",
@@ -5905,7 +6023,10 @@
         "module": "Без отдельной полимерной трубки",
         "armor": "Многопроволочные стальные тросы",
         "shape": "Круглый"
-      }
+      },
+      "images": [
+        "sl02"
+      ]
     },
     {
       "id": "c1410",
@@ -5914,7 +6035,10 @@
       "mark": "СЛ-ОКПБ",
       "source": "starlink",
       "kind": "catalog",
-      "note": "Отдельная полимерная трубка внутри компактной канатной брони."
+      "note": "Отдельная полимерная трубка внутри компактной канатной брони.",
+      "images": [
+        "slpb"
+      ]
     },
     {
       "id": "c1411",
@@ -5937,7 +6061,10 @@
         "module": "Без модульной трубки",
         "armor": "Шесть стальных канатных проволок",
         "shape": "Круглый"
-      }
+      },
+      "images": [
+        "kes03"
+      ]
     },
     {
       "id": "c1413",
@@ -6018,7 +6145,10 @@
         "module": "Центральная полимерная трубка",
         "strength": "Два стеклопластиковых прутка",
         "shape": "Плоский"
-      }
+      },
+      "images": [
+        "slflat"
+      ]
     },
     {
       "id": "c1420",
@@ -6032,7 +6162,10 @@
         "module": "Центральная полимерная трубка",
         "strength": "Два стеклопластиковых прутка",
         "shape": "Плоский"
-      }
+      },
+      "images": [
+        "kesflat"
+      ]
     },
     {
       "id": "c1421",
@@ -6044,7 +6177,10 @@
       "note": "Круглое исполнение: окончание «к» существенно. Не равно плоскому СЛ-ОКПЦ-Д2.",
       "attributes": {
         "shape": "Круглый"
-      }
+      },
+      "images": [
+        "slround"
+      ]
     },
     {
       "id": "c1422",
@@ -6125,7 +6261,10 @@
       "note": "Абонентское исполнение с модулем и стеклопрутками; нагрузки и оболочка отличаются от ТПОд2.",
       "attributes": {
         "shape": "Плоский"
-      }
+      },
+      "images": [
+        "incab-omp"
+      ]
     },
     {
       "id": "d585",
@@ -6346,7 +6485,10 @@
         "strength": "Центральный стеклопластиковый пруток",
         "construction": "Огнестойкий модульный кабель; защита: без брони. Оболочка и предел огнестойкости зависят от исполнения."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение."
+      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "images": [
+        "spkb-v-frhf"
+      ]
     },
     {
       "id": "direct-spkb-v-frlsltx",
@@ -6361,7 +6503,10 @@
         "strength": "Центральный стеклопластиковый пруток",
         "construction": "Огнестойкий модульный кабель; защита: без брони. Оболочка и предел огнестойкости зависят от исполнения."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение."
+      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "images": [
+        "spkb-v-frlsltx"
+      ]
     },
     {
       "id": "direct-spkb-p-frhf",
@@ -6376,7 +6521,10 @@
         "strength": "Центральный стеклопластиковый пруток",
         "construction": "Огнестойкий модульный кабель; защита: стеклопластиковые прутки. Оболочка и предел огнестойкости зависят от исполнения."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение."
+      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "images": [
+        "spkb-p-frhf"
+      ]
     },
     {
       "id": "direct-spkb-p-frlsltx",
@@ -6391,7 +6539,10 @@
         "strength": "Центральный стеклопластиковый пруток",
         "construction": "Огнестойкий модульный кабель; защита: стеклопластиковые прутки. Оболочка и предел огнестойкости зависят от исполнения."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение."
+      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "images": [
+        "spkb-p-frlsltx"
+      ]
     }
   ],
   "sources": {
@@ -6854,5 +7005,391 @@
         "c1420"
       ]
     }
-  ]
+  ],
+  "images": {
+    "incab-dpo": {
+      "manufacturer": "incab",
+      "mark": "ДПО",
+      "src": "/references/images/incab-dpo.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-tube/dpo/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/dots.png",
+      "alt": "Стандартный в трубы (кабель ДПО)"
+    },
+    "incab-dpl": {
+      "manufacturer": "incab",
+      "mark": "ДПЛ",
+      "src": "/references/images/incab-dpl.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-duct/dpl/",
+      "original": "https://incab.ru/wp-content/uploads/2020/08/DPL.png",
+      "alt": "Конструкция ДПЛ"
+    },
+    "incab-dol": {
+      "manufacturer": "incab",
+      "mark": "ДОЛ",
+      "src": "/references/images/incab-dol.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-duct/dol/",
+      "original": "https://incab.ru/wp-content/uploads/2018/09/dol_new.png",
+      "alt": "Кабель ДОЛ Инкаб"
+    },
+    "incab-tspo": {
+      "manufacturer": "incab",
+      "mark": "ТсПО",
+      "src": "/references/images/incab-tspo.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-duct/tspo/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/tspo.png",
+      "alt": "Конструкция ТсПО"
+    },
+    "incab-dps": {
+      "manufacturer": "incab",
+      "mark": "ДПС",
+      "src": "/references/images/incab-dps.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-ground/dps/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/dps.png",
+      "alt": "Конструкция ДПС"
+    },
+    "incab-das": {
+      "manufacturer": "incab",
+      "mark": "ДАС",
+      "src": "/references/images/incab-das.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-ground/das/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/das.png",
+      "alt": "Конструкция ДАС"
+    },
+    "incab-tsos": {
+      "manufacturer": "incab",
+      "mark": "ТсОС",
+      "src": "/references/images/incab-tsos.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-ground/tsos/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/tsos.png",
+      "alt": "Конструкция ТсОС"
+    },
+    "incab-dpd": {
+      "manufacturer": "incab",
+      "mark": "ДПД",
+      "src": "/references/images/incab-dpd.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-ground/dpd/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/dpd.png",
+      "alt": "Конструкция ДПД"
+    },
+    "incab-tod": {
+      "manufacturer": "incab",
+      "mark": "ТОД",
+      "src": "/references/images/incab-tod.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-ground/tod/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/tod.png",
+      "alt": "Конструкция ТОД"
+    },
+    "incab-dps2": {
+      "manufacturer": "incab",
+      "mark": "ДПС2",
+      "src": "/references/images/incab-dps2.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-ground/dps2/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/dps2.png",
+      "alt": "Конструкция ДПС2"
+    },
+    "incab-tos2": {
+      "manufacturer": "incab",
+      "mark": "ТОС2",
+      "src": "/references/images/incab-tos2.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-ground/tos2/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/tos2.png",
+      "alt": "Конструкция ТОС2"
+    },
+    "incab-dpd2": {
+      "manufacturer": "incab",
+      "mark": "ДПД2",
+      "src": "/references/images/incab-dpd2.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-ground/dpd2/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/dpd2.png",
+      "alt": "Конструкция ДПД2"
+    },
+    "incab-tod2": {
+      "manufacturer": "incab",
+      "mark": "ТОД2",
+      "src": "/references/images/incab-tod2.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-ground/tod2/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/tod2.png",
+      "alt": "Конструкция ТОД2"
+    },
+    "incab-dpt": {
+      "manufacturer": "incab",
+      "mark": "ДПТ",
+      "src": "/references/images/incab-dpt.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-air/dpt/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/dpt.png",
+      "alt": "Конструкция ДПТ"
+    },
+    "incab-dota": {
+      "manufacturer": "incab",
+      "mark": "ДОТа",
+      "src": "/references/images/incab-dota.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-air/dota/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/dota.png",
+      "alt": "Конструкция ДОТа"
+    },
+    "incab-dpts": {
+      "manufacturer": "incab",
+      "mark": "ДПТс",
+      "src": "/references/images/incab-dpts.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-air/dpts/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/dpts.png",
+      "alt": "Конструкция ДПТс"
+    },
+    "incab-dots": {
+      "manufacturer": "incab",
+      "mark": "ДОТс",
+      "src": "/references/images/incab-dots.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-air/dots/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/dots.png",
+      "alt": "Стандартный в трубы (кабель ДПО)"
+    },
+    "incab-dpom": {
+      "manufacturer": "incab",
+      "mark": "ДПОм",
+      "src": "/references/images/incab-dpom.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-air-8/dpom/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/dpom.png",
+      "alt": "Конструкция ДПОм"
+    },
+    "incab-tpom": {
+      "manufacturer": "incab",
+      "mark": "ТПОм",
+      "src": "/references/images/incab-tpom.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-air-8/tpom/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/tpom.png",
+      "alt": "Конструкция ТПОм"
+    },
+    "incab-okgt-c": {
+      "manufacturer": "incab",
+      "mark": "ОКГТ-Ц",
+      "src": "/references/images/incab-okgt-c.png",
+      "sourcePage": "https://incab.ru/optical-cable/opgw/okgt-c/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/okgt-c.png",
+      "alt": "Конструкция ОКГТ-Ц"
+    },
+    "incab-okgt-s": {
+      "manufacturer": "incab",
+      "mark": "ОКГТ-С",
+      "src": "/references/images/incab-okgt-s.png",
+      "sourcePage": "https://incab.ru/optical-cable/opgw/okgt-s/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/okgt-s.png",
+      "alt": "Конструкция ОКГТ-С"
+    },
+    "incab-gtk": {
+      "manufacturer": "incab",
+      "mark": "ГТК",
+      "src": "/references/images/incab-gtk.png",
+      "sourcePage": "https://incab.ru/optical-cable/opgw/gtk/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/gtk.png",
+      "alt": "Конструкция ГТК"
+    },
+    "incab-omv": {
+      "manufacturer": "incab",
+      "mark": "ОМВ",
+      "src": "/references/images/incab-omv.png",
+      "sourcePage": "https://incab.ru/optical-cable/distribution/omv/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/riser_omv.png",
+      "alt": "Конструкция ОМВ"
+    },
+    "incab-obv": {
+      "manufacturer": "incab",
+      "mark": "ОБВ",
+      "src": "/references/images/incab-obv.png",
+      "sourcePage": "https://incab.ru/optical-cable/distribution/obv/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/riser_obv.png",
+      "alt": "Конструкция ОБВ"
+    },
+    "incab-omr": {
+      "manufacturer": "incab",
+      "mark": "ОМР",
+      "src": "/references/images/incab-omr.png",
+      "sourcePage": "https://incab.ru/optical-cable/distribution/omr/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/omr.png",
+      "alt": "Конструкция ОМР"
+    },
+    "incab-obr": {
+      "manufacturer": "incab",
+      "mark": "ОБР",
+      "src": "/references/images/incab-obr.png",
+      "sourcePage": "https://incab.ru/optical-cable/distribution/obr/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/obr.png",
+      "alt": "Конструкция ОБР"
+    },
+    "incab-obs": {
+      "manufacturer": "incab",
+      "mark": "ОБС",
+      "src": "/references/images/incab-obs.png",
+      "sourcePage": "https://incab.ru/optical-cable/distribution/obs/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/obs.png",
+      "alt": "Конструкция ОБС"
+    },
+    "incab-obd": {
+      "manufacturer": "incab",
+      "mark": "ОБД",
+      "src": "/references/images/incab-obd.png",
+      "sourcePage": "https://incab.ru/optical-cable/distribution/obd/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/obd.png",
+      "alt": "Конструкция ОБД"
+    },
+    "incab-obk-a": {
+      "manufacturer": "incab",
+      "mark": "ОБК-А",
+      "src": "/references/images/incab-obk-a.png",
+      "sourcePage": "https://incab.ru/optical-cable/drop/obk-a/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/obk.png",
+      "alt": "Конструкция ОБК-А"
+    },
+    "incab-ovk-a": {
+      "manufacturer": "incab",
+      "mark": "ОВК-А",
+      "src": "/references/images/incab-ovk-a.png",
+      "sourcePage": "https://incab.ru/optical-cable/drop/ovk-a/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/ovk.png",
+      "alt": "Конструкция ОВК-А"
+    },
+    "incab-ovkb": {
+      "manufacturer": "incab",
+      "mark": "ОВК-Б",
+      "src": "/references/images/incab-ovkb.png",
+      "sourcePage": "https://incab.ru/optical-cable/universalnye-kabeli/ovk-b/",
+      "original": "https://incab.ru/wp-content/uploads/2026/01/ovk-b-bez-gelya-1024x254.png",
+      "alt": "Конструкция ОВК-Б"
+    },
+    "incab-ovkg": {
+      "manufacturer": "incab",
+      "mark": "ОВК-Г",
+      "src": "/references/images/incab-ovkg.png",
+      "sourcePage": "https://incab.ru/optical-cable/universalnye-kabeli/ovk-g/",
+      "original": "https://incab.ru/wp-content/uploads/2026/01/ovk-g-p-bez-gelya-1024x254.png",
+      "alt": "Конструкция ОВК-Г"
+    },
+    "incab-tpod": {
+      "manufacturer": "incab",
+      "mark": "ТПОд2",
+      "src": "/references/images/incab-tpod.png",
+      "sourcePage": "https://incab.ru/optical-cable/drop/tpod2/",
+      "original": "https://incab.ru/wp-content/uploads/2018/02/tpod2.png",
+      "alt": "Конструкция ТПОд2"
+    },
+    "incab-tol": {
+      "manufacturer": "incab",
+      "mark": "ТОЛ",
+      "src": "/references/images/incab-tol.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-duct/tol/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/tol-with-central-optical-module.png",
+      "alt": "Конструкция ТОЛ"
+    },
+    "incab-tos": {
+      "manufacturer": "incab",
+      "mark": "ТОС",
+      "src": "/references/images/incab-tos.png",
+      "sourcePage": "https://incab.ru/optical-cable/in-duct/tos/",
+      "original": "https://incab.ru/wp-content/uploads/2018/01/tos.png",
+      "alt": "Конструкция ТОС"
+    },
+    "incab-omp": {
+      "manufacturer": "incab",
+      "mark": "ОМП-2Д",
+      "src": "/references/images/incab-omp.png",
+      "sourcePage": "https://incab.ru/optical-cable/drop/drop-kabel-omp-2d/",
+      "original": "https://incab.ru/wp-content/uploads/2026/03/drop-omp-2d-1024x255.png",
+      "alt": "Конструкция ОМП-2Д"
+    },
+    "sl03": {
+      "manufacturer": "starlink",
+      "mark": "СЛ-ОКМБ-03",
+      "src": "/references/images/sl03.jpeg",
+      "sourcePage": "https://npp-starlink.ru/catalog/sl-okmb-03/",
+      "original": "https://npp-starlink.ru/upload/resize_cache/iblock/5f6/450_450_1/p6klo2tkulzcjlqub7enej9qxd725lu1.jpeg",
+      "alt": "Оптический кабель СЛ-ОКМБ-03НУ-16М6-9,0"
+    },
+    "slpb": {
+      "manufacturer": "starlink",
+      "mark": "СЛ-ОКПБ",
+      "src": "/references/images/slpb.jpg",
+      "sourcePage": "https://npp-starlink.ru/catalog/sl-okpb/",
+      "original": "https://npp-starlink.ru/upload/resize_cache/iblock/7a8/450_450_1/5ayg9b3e1pb0ul4g38w4hevi2p8v3vzu.jpg",
+      "alt": "Оптический кабель СЛ-ОКПБ-НУ-8М5-7,0"
+    },
+    "slflat": {
+      "manufacturer": "starlink",
+      "mark": "СЛ-ОКПЦ-Д2",
+      "src": "/references/images/slflat.jpg",
+      "sourcePage": "https://npp-starlink.ru/catalog/ploskiy-drop-kabel-sl-okpts-d2/",
+      "original": "https://npp-starlink.ru/upload/resize_cache/iblock/e18/450_450_1/5ffvqeyge9l3mww5ax4hj4tweoijg6g1.jpg",
+      "alt": "Оптический кабель СЛ-ОКПЦ-Д2-16Е2-3,0"
+    },
+    "slround": {
+      "manufacturer": "starlink",
+      "mark": "СЛ-ОКПЦ-Д2к",
+      "src": "/references/images/slround.jpg",
+      "sourcePage": "https://npp-starlink.ru/catalog/sl-okpts-d2k-kruglyy-drop-kabel/",
+      "original": "https://npp-starlink.ru/upload/resize_cache/iblock/cc5/450_450_1/j9y8uq831luc71gffocp7n16xsoamz28.jpg",
+      "alt": "Оптический кабель СЛ-ОКПЦ-Д2к-16Е2-3,0"
+    },
+    "sl01": {
+      "manufacturer": "starlink",
+      "mark": "СЛ-ОКМБ-01",
+      "src": "/references/images/sl01.png",
+      "sourcePage": "https://npp-starlink.ru/catalog/sl-okmb-01/",
+      "original": "https://npp-starlink.ru/upload/resize_cache/iblock/1d8/450_450_1/fxqawlxzmmflj7fgjtoh960yql1chrrg.png",
+      "alt": "Оптический кабель СЛ-ОКМБ-01НУ-4Е2-1,5 «Мягкий»"
+    },
+    "sl02": {
+      "manufacturer": "starlink",
+      "mark": "СЛ-ОКМБ-02",
+      "src": "/references/images/sl02.jpg",
+      "sourcePage": "https://npp-starlink.ru/catalog/sl-okmb-02/",
+      "original": "https://npp-starlink.ru/upload/resize_cache/iblock/9e7/450_450_1/iwc2dkg4pv3sqe7f7whrwpi0nvp555wm.jpg",
+      "alt": "Оптический кабель СЛ-ОКМБ 02НУ-16М6-2,5"
+    },
+    "kes03": {
+      "manufacturer": "kes",
+      "mark": "ОКМБ-03",
+      "src": "/references/images/kes03.png",
+      "sourcePage": "https://cabletrade.ru/products/vols03/okmb03/",
+      "original": "https://cabletrade.ru/upload/iblock/1b8/1b8ba2fba7df1d0f3518faff9e1d3e5a.png",
+      "alt": "Кабель оптический ОКМБ 03НУ-2А-2.7"
+    },
+    "kesflat": {
+      "manufacturer": "kes",
+      "mark": "ОКПЦ-Д2",
+      "src": "/references/images/kesflat.jpg",
+      "sourcePage": "https://cabletrade.ru/products/vols09/okpc-d2/",
+      "original": "https://cabletrade.ru/upload/iblock/53d/53dbbf4cb3172dc1bf3cdf7127feccd1.jpg",
+      "alt": "Кабель оптический ОКПЦ-Д2"
+    },
+    "spkb-v-frhf": {
+      "manufacturer": "spkb",
+      "mark": "СП-ОКВнг(А)-FRHF",
+      "src": "/references/images/spkb-v-frhf.png",
+      "sourcePage": "https://spkb.ru/catalog/fireproof-optical-cables/sp-okvng-a-frhf/",
+      "original": "https://spkb.ru/upload/resize_cache/iblock/91e/560_300_0/jk7ue4x39ywiow9u8n1yk82v1pkl9z66.png",
+      "alt": "Изображение СП-ОКВнг(А)-FRHF"
+    },
+    "spkb-v-frlsltx": {
+      "manufacturer": "spkb",
+      "mark": "СП-ОКВнг(А)-FRLSLTx",
+      "src": "/references/images/spkb-v-frlsltx.png",
+      "sourcePage": "https://spkb.ru/catalog/fireproof-optical-cables/sp-okvng-a-frlsltx/",
+      "original": "https://spkb.ru/upload/iblock/a21/ts1ld4isze67g2uvqzwpdp2q0x7wdjco/ugkpsz2dur78l0wzqg2oyo4o44tpmg9x.png",
+      "alt": "Изображение СП-ОКВнг(А)-FRLSLTx"
+    },
+    "spkb-p-frhf": {
+      "manufacturer": "spkb",
+      "mark": "СП-ОКПнг(A)-FRHF",
+      "src": "/references/images/spkb-p-frhf.png",
+      "sourcePage": "https://spkb.ru/catalog/fireproof-optical-cables/sp-okpng-a-frhf/",
+      "original": "https://spkb.ru/upload/resize_cache/iblock/6e4/626p3ok2tav5i8gwog687dodtssjwdqw/560_300_0/СП-ОКП.png",
+      "alt": "Изображение СП-ОКПнг(A)-FRHF"
+    },
+    "spkb-p-frlsltx": {
+      "manufacturer": "spkb",
+      "mark": "СП-ОКПнг(A)-FRLSLTx",
+      "src": "/references/images/spkb-p-frlsltx.png",
+      "sourcePage": "https://spkb.ru/catalog/fireproof-optical-cables/sp-okpng-a-frlsltx/",
+      "original": "https://spkb.ru/upload/resize_cache/iblock/3ec/emr2ebqmvh48qnqg5607igerfipkobb7/560_300_0/СП-ОКП.png",
+      "alt": "Изображение СП-ОКПнг(A)-FRLSLTx"
+    }
+  }
 }
