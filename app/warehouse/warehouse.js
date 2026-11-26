@@ -11,7 +11,7 @@ function toast(text){$('message').textContent=text;$('message').hidden=false;cle
 function useStock(data){stock=data;clockOffset=Date.now()-data.serverNow;signature=priceSignature(stock);render()}
 const priceLabels=['Приходная','+10%','+15%','+20%','+30%'],priceKeys=['base','plus10','plus15','plus20','plus30'];
 const money=n=>new Intl.NumberFormat('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(n));
-function priceCells(r){if(!stock.canViewPrices)return '';return priceKeys.map((k,i)=>`<td class="number price-value" data-label="${priceLabels[i]}, ₽/м">${r.prices?money(r.prices[k]):i===0?'<span class="muted">Нет цены в прайсе</span>':'—'}</td>`).join('')}
+function priceCells(r){if(!stock.canViewPrices)return '';return priceKeys.map((k,i)=>`<td class="number price-value" data-label="${priceLabels[i]}, ₽/м">${r.prices?money(r.prices[k]):i===0?`<span class="muted">${r.priceStatus==='mixed'?'Цена по катушкам':'Нет цены в прайсе'}</span>`:'—'}</td>`).join('')}
 function priceSignature(data){return JSON.stringify([data.items.map(r=>[r.id,r.version]),showSold,data.canViewPrices,data.priceVersion])}
 async function loadPrices(){try{priceCatalogue=await api('/warehouse/api/prices');render()}catch(e){toast(e.message)}}
 function render(){

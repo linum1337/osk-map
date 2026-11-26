@@ -64,7 +64,7 @@ with tempfile.TemporaryDirectory() as temp:
  assert c.get('/api/records',headers=manager).status_code==200
 
  def item(row,reel,length,rod='1,2 ROD'):
-  return {'sourceRow':row,'pallet':'1','reel':reel,'length':length,'sourceLength':length,'sourceUnit':'м','construction':'ОКПД-4А-(1,5)-1/4,8','marking':'Fixture marking','rod':rod,'note':'Original note','location':'Fixture storage'}
+  return {'sourceRow':row,'pallet':'1','reel':reel,'length':length,'sourceLength':length,'sourceUnit':'м','construction':'ОКПД-4А-(1,5)-1/4,8','marking':'ОКПД-4А-(1,5)-1/4,8','rod':rod,'note':'Original note','location':'Fixture storage'}
  payload={'format':'osk-krasnodar-stock-v1','source':'fixture.xlsx','sourceDigest':'a'*64,'sourceData':{'headers':['original header']},'items':[item(2,'1',100),item(3,'2',200,'1.2 ROD'),item(4,'3',50,'1.0 EAA')]}
  invalid=copy.deepcopy(payload);invalid['items'][1]['length']=-1
  assert c.post('/warehouse/api/admin/import',headers=admin,json=invalid).status_code==400
@@ -166,8 +166,12 @@ with tempfile.TemporaryDirectory() as temp:
  assert prices.match_key({'construction':'ОКПД-4А-(1,5)-1/4,8','rod':''}) is None
  # Different cable diameter and load still receive the same rod/fibre price.
  variant=copy.deepcopy(w.snapshot(True))
- variant['items'][0]['construction']='ОКТ-Д(3,0)П-4А1-1-0-60'
+ variant['items'][0]['construction']='ОКПД-8А-(3,0)-1/6,0'
  assert prices.decorate(variant,{'role':'manager','login':'fixture'})['items'][0]['prices']['base']=='12.35'
+ assert prices.match_key({'marking':'ОКПД-8А-(1,5)-1/4,8','construction':'ОКПД-4А-(1,5)-1/4,8','rod':'1.2 ROD'})=='8|1.2|rod'
+ assert prices.match_key({'marking':'Unknown','construction':'ОКПД-4А-(1,5)-1/4,8','rod':'1.2 ROD'},marking_only=True) is None
+ mixed=prices.decorate({'items':[],'groups':[{'rod':'1.2 ROD','markings':['ОКПД-4А-(1,5)-1/4,8','ОКПД-8А-(1,5)-1/4,8']}]},{'role':'manager','login':'fixture'})
+ assert mixed['groups'][0]['prices'] is None and mixed['groups'][0]['priceStatus']=='mixed'
  # Price import cannot change stock versions, reservations, sales or history.
  before=w.snapshot(True);events=w.history()
  assert c.post('/warehouse/api/admin/prices',headers=admin,json=price_payload).status_code==200
