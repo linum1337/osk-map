@@ -7,3 +7,5 @@
 .page-heading{flex-wrap:wrap}.page-heading>div{flex:1 1 300px}
 
 .stats small{display:block;color:#617083;font-size:12px;margin-top:4px}#sold{color:#a32b35}
+
+.cable-name{min-width:300px;max-width:390px}.cable-marking+.cable-marking{margin-top:7px}.construction-details{margin-top:10px}.construction-details summary{color:#1959a6;font-weight:500}.construction-details div{margin-top:7px;color:#617083;font-weight:400}.cable-description{min-width:200px;max-width:260px;color:#39516d}.cable-description>div+div{margin-top:6px}@media(max-width:850px){#summary-view td.cable-description{grid-column:1/-1;font-size:13px;color:#39516d}#summary-view td.cable-description::before{content:"Краткое описание";display:block;font-size:11px;color:#617083;margin-bottom:4px}}
