@@ -63,12 +63,24 @@ with tempfile.TemporaryDirectory() as tmp:
  assert next(e for e in ultra if e['mark']=='ОКБц')['group']=='wire-central'
  for im in data['images'].values():
   assert im['src'].startswith('/references/images/') and '..' not in im['src']
-  assert urlsplit(im['sourcePage']).hostname==urlsplit(im['original']).hostname
-  assert urlsplit(im['sourcePage']).hostname==urlsplit(makers[im['manufacturer']]['site']).hostname
+  host=lambda url:(urlsplit(url).hostname or '').removeprefix('www.')
+  assert host(im['sourcePage'])==host(makers[im['manufacturer']]['site'])
+  allowed={host(im['sourcePage'])}
+  if im['manufacturer']=='minsk':allowed.update({'static.tildacdn.com','thb.tildacdn.com'})
+  assert host(im['original']) in allowed,(im['manufacturer'],im['original'])
   response=client.get(im['src'],headers=admin)
   assert response.status_code==200 and response.content_type.startswith('image/')
+ assert len({im['manufacturer'] for im in data['images'].values()})>=21
+ assert sum(bool(e.get('descriptionLinks')) for e in data['entries'])>=440
+ assert sum(bool(e.get('images')) for e in data['entries'])>=380
  for e in data['entries']:
   assert all(data['images'][i]['manufacturer']==e['manufacturer'] for i in e.get('images',[]))
+  urls=[]
+  for item in e.get('descriptionLinks',[]):
+   assert urlsplit(item['url']).scheme in ['http','https'] and item['label']
+   assert host(item['url'])==host(makers[e['manufacturer']]['site'])
+   assert item['url'] not in urls
+   urls.append(item['url'])
  first=next(iter(data['images'].values()))['src']
  for path in [first,'/companies'+first]:
   assert client.get(path).status_code==401
