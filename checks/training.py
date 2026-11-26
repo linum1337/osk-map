@@ -21,12 +21,19 @@ with tempfile.TemporaryDirectory() as tmp:
   assert 'no-store' in response.headers['Cache-Control'],path
  assert client.get('/training/',headers={'Accept':'text/html'}).status_code==302
  data=client.get('/training/optical-cable/course.json',headers=admin).json
- assert len(data['lessons'])==10 and len(data['quiz'])==14
- assert len({x['id'] for x in data['lessons']})==10
+ assert len(data['lessons'])==18 and len(data['quiz'])==24
+ assert len({x['id'] for x in data['lessons']})==18
  assert data['audience']=='Продажи в России'
- for question in data['quiz']:assert 0<=question['answer']<len(question['options']) and question['explanation']
+ for question in data['quiz']:
+  assert 0<=question['answer']<len(question['options']) and question['explanation']
+  assert any(l['id']==question['lesson'] for l in data['lessons'])
+ assert len(data['cases'])==4 and data['memos']
+ for case in data['cases']:
+  assert case['task'] and case['answer'] and case['criteria']
+  assert all(any(l['id']==id for l in data['lessons']) for id in case['lessons'])
  for lesson in data['lessons']:
-  assert lesson['blocks'] and lesson['goal']
+  assert lesson['blocks'] and lesson['goal'] and lesson['module']
+  assert lesson['practice']['task'] and lesson['practice']['answer'] and lesson['practice']['criteria']
   for ref in lesson['sources']:assert ref in data['sources']
  # Session login can return to the actual course, and existing areas remain accessible.
  text=client.get('/login?next=/training/optical-cable/').get_data(as_text=True)
