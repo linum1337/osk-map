@@ -3,7 +3,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,send_file,redirect,session,render_template_string
 from werkzeug.middleware.proxy_fix import ProxyFix
-import site_backup
+import site_backup,admin_store,admin_routes
 import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import,supplier_catalog,contact_enrichment,warehouse_store,warehouse_routes
 ROOT=Path(__file__).resolve().parent
 USERNAME=os.environ.get('APP_USER','osk')
@@ -14,6 +14,7 @@ auth_store.init()
 head_office.init()
 workspace_store.initialize()
 warehouse_store.init()
+admin_store.init()
 app=Flask(__name__,static_folder=None)
 app.config['MAX_CONTENT_LENGTH']=100000
 key_file=crm_store.DB.parent/'session.key'
@@ -24,6 +25,7 @@ except FileExistsError:pass
 app.secret_key=key_file.read_text().strip()
 app.config.update(SESSION_COOKIE_SECURE=True,SESSION_COOKIE_HTTPONLY=True,SESSION_COOKIE_SAMESITE='Lax',SESSION_COOKIE_NAME='osk_session')
 def revision(marker):return hmac.new(app.secret_key.encode(),marker.encode(),hashlib.sha256).hexdigest()
+def staff_revision(marker,login):return revision(marker+admin_store.revision_token(login))
 def account(login,password=None):
  if login==USERNAME:
   if password is not None and hmac.compare_digest(password.encode(),PASSWORD.encode()):return {'login':USERNAME,'role':'admin','canExport':True},revision(PASSWORD)
@@ -31,13 +33,13 @@ def account(login,password=None):
   user=auth_store.authenticate(login,password)
   if not user:
    warehouse_user,hashed=warehouse_store.identity(login,password)
-   return (warehouse_user,revision(hashed)) if warehouse_user else (None,None)
+   return (warehouse_user,staff_revision(hashed,warehouse_user['login'])) if warehouse_user else (None,None)
   login=user['login']
  with crm_store.connect() as c:row=c.execute('SELECT display_name,manager,password_hash FROM accounts WHERE login=? AND active=1',(auth_store.normalize(login),)).fetchone()
  if not row:
   warehouse_user,hashed=warehouse_store.identity(login)
-  return (warehouse_user,revision(hashed)) if warehouse_user else (None,None)
- return {'login':row[0],'manager':row[1],'role':'manager','canExport':False},revision(row[2])
+  return (warehouse_user,staff_revision(hashed,warehouse_user['login'])) if warehouse_user else (None,None)
+ return {'login':row[0],'manager':row[1],'role':'manager','canExport':False},staff_revision(row[2],row[0])
 def session_user():
  login=session.get('login')
  if not isinstance(login,str):return None
@@ -67,6 +69,9 @@ def guard():
   if request.method=='GET' and request.accept_mimetypes.best=='text/html' and not request.path.startswith(('/api/','/warehouse/api/')):
    return redirect('/login?next='+request.path)
   return jsonify(error='Требуется вход'),401
+ if request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/')):
+  if g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
+  request.max_content_length=12_000_000
  if g.user['role']=='warehouse' and not (request.path=='/warehouse' or request.path.startswith('/warehouse/') or request.path in ('/api/me','/logout','/access.js')):
   document_navigation=request.path in ('/','/index.html') or request.headers.get('Sec-Fetch-Mode')=='navigate' or request.headers.get('Sec-Fetch-Dest')=='document' or request.accept_mimetypes.best=='text/html'
   if request.method=='GET' and document_navigation and not request.path.startswith(('/api/','/warehouse/api/')):return redirect('/warehouse/')
@@ -86,14 +91,15 @@ def headers(response):
  response.headers['X-Content-Type-Options']='nosniff'
  response.headers['X-Frame-Options']='DENY'
  response.headers['Referrer-Policy']='strict-origin-when-cross-origin'
- response.headers['Cache-Control']='private, no-store' if request.path.startswith('/warehouse') or request.path=='/api/admin/backup' else 'private, max-age=604800' if request.path.startswith('/tiles/') and response.status_code==200 else 'private, no-cache'
+ response.headers['Cache-Control']='private, no-store' if request.path.startswith('/warehouse') or request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/')) else 'private, max-age=604800' if request.path.startswith('/tiles/') and response.status_code==200 else 'private, no-cache'
  return response
 @app.route('/login',methods=['GET','POST'])
 def login_page():
  error=''
  if 'login_csrf' not in session:session['login_csrf']=secrets.token_urlsafe(32)
  next_page=request.values.get('next','/')
- if next_page.split('?')[0] not in ('/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/'):next_page='/'
+ if next_page.split('?')[0]=='/admin':next_page='/admin/'
+ if next_page.split('?')[0] not in ('/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/','/admin/'):next_page='/'
  if request.method=='POST':
   origin=request.headers.get('Origin')
   token=request.form.get('csrf','')
@@ -103,7 +109,8 @@ def login_page():
    session.clear();session.update(login=user['login'],kind=user['role'],revision=rev)
    return redirect('/warehouse/' if user['role']=='warehouse' else next_page,code=303)
   error='Неверный логин или пароль'
- options=[(USERNAME,'Администратор · '+USERNAME)]+[(name,name) for name in ['Андрей Логинов','Анна Скрынник','Светлана Квашина','Любовь Коровина'] if name!=USERNAME]
+ disabled=auth_store.disabled_logins()
+ options=[(USERNAME,'Администратор · '+USERNAME)]+[(name,name) for name in ['Андрей Логинов','Анна Скрынник','Светлана Квашина','Любовь Коровина'] if name!=USERNAME and auth_store.normalize(name) not in disabled]
  seen={auth_store.normalize(value) for value,_ in options}
  for name in auth_store.users()+warehouse_store.users():
   if auth_store.normalize(name) not in seen:options.append((name,name));seen.add(auth_store.normalize(name))
@@ -117,6 +124,7 @@ def create_manager():
 def download_site_backup():
  if g.user['role']!='admin':return jsonify(error='Доступно только администратору'),403
  archive=site_backup.build_backup(crm_store.DB,USERNAME,PASSWORD,request.host)
+ admin_store.record(g.user['login'],'backup','Сайт','Создана полная резервная копия сайта')
  response=send_file(archive,mimetype='application/gzip',as_attachment=True,download_name='osk-site-backup.tar.gz',max_age=0)
  response.headers['Cache-Control']='private, no-store'
  response.call_on_close(archive.close)
@@ -227,7 +235,9 @@ def companies_redirect():return redirect('/companies/')
 @app.get('/companies/')
 def companies_index():return send_from_directory(ROOT/'app','index.html')
 @app.get('/companies/<path:name>')
-def companies_asset(name):return send_from_directory(ROOT/'app',name)
+def companies_asset(name):
+ if (ROOT/'app'/name).resolve().is_relative_to((ROOT/'app/admin').resolve()) and g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
+ return send_from_directory(ROOT/'app',name)
 @app.get('/suppliers')
 def suppliers_redirect():return redirect('/suppliers/')
 @app.get('/suppliers/')
@@ -275,3 +285,5 @@ def transport_index():
 def static_file(name):return send_from_directory(ROOT/'app',name)
 
 warehouse_routes.register(app,USERNAME)
+
+admin_routes.register(app,USERNAME)

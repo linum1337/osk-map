@@ -34,3 +34,6 @@ def provision(body,admin_name):
   if c.execute('SELECT 1 FROM accounts WHERE login=?',(login,)).fetchone():return 200,{'created':False,'login':name}
   c.execute('INSERT INTO accounts(login,display_name,manager,password_hash) VALUES(?,?,?,?)',(login,name,manager.strip(),hashed))
  return 201,{'created':True,'login':name,'role':'manager'}
+
+def disabled_logins():
+ with crm_store.connect() as c:return {r[0] for r in c.execute('SELECT login FROM accounts WHERE active=0 UNION SELECT login FROM warehouse_accounts WHERE active=0')}
