@@ -3,6 +3,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,send_file,redirect,session,render_template_string
 from werkzeug.middleware.proxy_fix import ProxyFix
+import site_backup
 import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import,supplier_catalog,contact_enrichment,warehouse_store,warehouse_routes
 ROOT=Path(__file__).resolve().parent
 USERNAME=os.environ.get('APP_USER','osk')
@@ -85,7 +86,7 @@ def headers(response):
  response.headers['X-Content-Type-Options']='nosniff'
  response.headers['X-Frame-Options']='DENY'
  response.headers['Referrer-Policy']='strict-origin-when-cross-origin'
- response.headers['Cache-Control']='private, no-store' if request.path.startswith('/warehouse') else 'private, max-age=604800' if request.path.startswith('/tiles/') and response.status_code==200 else 'private, no-cache'
+ response.headers['Cache-Control']='private, no-store' if request.path.startswith('/warehouse') or request.path=='/api/admin/backup' else 'private, max-age=604800' if request.path.startswith('/tiles/') and response.status_code==200 else 'private, no-cache'
  return response
 @app.route('/login',methods=['GET','POST'])
 def login_page():
@@ -112,6 +113,14 @@ def create_manager():
  if g.user['role']!='admin':return jsonify(error='Доступно только администратору'),403
  status,data=auth_store.provision(request.get_json(silent=True),USERNAME)
  return jsonify(data),status
+@app.post('/api/admin/backup')
+def download_site_backup():
+ if g.user['role']!='admin':return jsonify(error='Доступно только администратору'),403
+ archive=site_backup.build_backup(crm_store.DB,USERNAME,PASSWORD,request.host)
+ response=send_file(archive,mimetype='application/gzip',as_attachment=True,download_name='osk-site-backup.tar.gz',max_age=0)
+ response.headers['Cache-Control']='private, no-store'
+ response.call_on_close(archive.close)
+ return response
 @app.get('/login.css')
 def login_css():return send_from_directory(ROOT/'app','login.css')
 @app.post('/logout')
