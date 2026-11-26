@@ -66,7 +66,7 @@ def decorate(snapshot,user,catalogue_data=None):
 
  return snapshot
 
-def import_prices(body,user):
+def import_prices(body,user,expected_version=...):
  if not isinstance(body,dict) or body.get('format')!='osk-warehouse-prices-v1':return 400,{'error':'Неверный формат прайса'}
  rows=body.get('rows');digest=body.get('sourceDigest');source=body.get('source');title=body.get('title')
  if not isinstance(rows,list) or not 1<=len(rows)<=10000 or not isinstance(digest,str) or not re.fullmatch('[a-f0-9]{64}',digest):return 400,{'error':'Проверьте строки прайса и источник'}
@@ -88,6 +88,7 @@ def import_prices(body,user):
  with crm_store.connect() as c:
   c.execute('BEGIN IMMEDIATE')
   previous=c.execute('SELECT digest FROM warehouse_prices WHERE id=1').fetchone()
+  if expected_version is not ... and (previous[0] if previous else None)!=expected_version and (not previous or previous[0]!=digest):return 409,{'error':'Прайс изменился после сверки. Загрузите файл заново.'}
   if previous and previous[0]==digest:return 200,{'imported':False,'rows':len(clean)}
   c.execute('INSERT INTO warehouse_prices VALUES(1,?,?,?,?) ON CONFLICT(id) DO UPDATE SET digest=excluded.digest,data=excluded.data,actor=excluded.actor,updated_at=excluded.updated_at',(digest,json.dumps(data,ensure_ascii=False),user['login'],stock.now_ms()))
  return 201,{'imported':True,'rows':len(clean)}
