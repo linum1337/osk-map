@@ -50,7 +50,13 @@ with tempfile.TemporaryDirectory() as tmp:
   assert row['records']==sum(e['manufacturer']==row['manufacturer'] for e in data['entries'])
   assert row['groups']==len({e['group'] for e in data['entries'] if e['manufacturer']==row['manufacturer']})
  # Manufacturer imagery stays behind the same access rules and has explicit provenance.
- assert len(data['images'])>=40
+ assert len(data['images'])>=53
+ assert makers['ultra']['country']=='Россия'
+ ultra=[e for e in data['entries'] if e['manufacturer']=='ultra']
+ assert {e['mark'] for e in ultra}=={'ОКПД','ОКПДп','ОКБм','ОКБц','ОКС'}
+ assert all(e.get('images') for e in ultra)
+ assert next(e for e in ultra if e['mark']=='ОКПДп')['group']=='drop-flat-tube'
+ assert next(e for e in ultra if e['mark']=='ОКБц')['group']=='wire-central'
  for im in data['images'].values():
   assert im['src'].startswith('/references/images/') and '..' not in im['src']
   assert urlsplit(im['sourcePage']).hostname==urlsplit(im['original']).hostname
