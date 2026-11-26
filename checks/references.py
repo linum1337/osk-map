@@ -52,6 +52,16 @@ with tempfile.TemporaryDirectory() as tmp:
  for row in data['audit']['manufacturers']:
   assert row['records']==sum(e['manufacturer']==row['manufacturer'] for e in data['entries'])
   assert row['groups']==len({e['group'] for e in data['entries'] if e['manufacturer']==row['manufacturer']})
+ # Belarus catalogues: exact indoor families and core arrangements remain separate.
+ minsk=[e for e in data['entries'] if e['manufacturer']=='minsk']
+ assert len(minsk)>=21 and all(e.get('images') and e.get('descriptionLinks') for e in minsk)
+ assert {'ОКВм (микромодули)','ОКВм (Tight Buffer)','ОКВб','ОКАД-ДД'} <= {e['mark'] for e in minsk}
+ assert sum(bool(e.get('images')) for e in data['entries'] if e['manufacturer']=='beltele')>=29
+ for e in data['entries']:
+  if e['manufacturer']=='beltele' and e['group']=='simplex':assert e['descriptionLinks'][0]['url'].endswith('kabeli-9/')
+  if e['manufacturer']=='beltele' and e['group']=='duplex':assert e['descriptionLinks'][0]['url'].endswith('kabeli-15/')
+ central=next(e for e in data['entries'] if e['id']=='c1243')
+ assert all(data['images'][i]['sourcePage'].endswith('ikbng-a-hf-t/') for i in central['images'])
  # Manufacturer imagery stays behind the same access rules and has explicit provenance.
  assert client.get('/references/images/ultra-0.webp',headers=admin).content_type=='image/webp'
  assert len(data['images'])>=53
