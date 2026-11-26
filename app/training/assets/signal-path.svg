@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690"><defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="none" stroke="#1959a6" stroke-width="1.6"/></marker><linearGradient id="body" x2="0" y2="1"><stop stop-color="#52677c"/><stop offset=".45" stop-color="#20394e"/><stop offset="1" stop-color="#10293f"/></linearGradient></defs><rect width="1200" height="690" rx="22" fill="#f5f8fd"/><g font-family="Arial, sans-serif" fill="#203248">
+<text x="54" y="62" font-size="32" font-weight="700">Как данные проходят по оптической линии</text>
+<text x="54" y="99" font-size="21" fill="#58718b">Упрощённо показываем передачу в одну сторону</text>
+<rect x="45" y="135" width="340" height="435" rx="18" fill="white" stroke="#d2e0ef"/>
+<rect x="430" y="135" width="340" height="435" rx="18" fill="white" stroke="#d2e0ef"/>
+<rect x="815" y="135" width="340" height="435" rx="18" fill="white" stroke="#d2e0ef"/>
+<circle cx="85" cy="177" r="19" fill="#1959a6"/><text x="85" y="184" text-anchor="middle" font-size="20" fill="white">1</text>
+<text x="117" y="185" font-size="26" font-weight="700">Передатчик</text>
+<circle cx="470" cy="177" r="19" fill="#1959a6"/><text x="470" y="184" text-anchor="middle" font-size="20" fill="white">2</text>
+<text x="502" y="185" font-size="26" font-weight="700">Волокно</text>
+<circle cx="855" cy="177" r="19" fill="#1959a6"/><text x="855" y="184" text-anchor="middle" font-size="20" fill="white">3</text>
+<text x="887" y="185" font-size="26" font-weight="700">Приёмник</text>
+<rect x="115" y="258" width="205" height="108" rx="13" fill="#e8f1fc" stroke="#356caa" stroke-width="5"/><path d="m128 257 22-23h147l21 23" fill="#d4e5fa" stroke="#356caa" stroke-width="4"/><g fill="white" stroke="#356caa" stroke-width="3"><rect x="139" y="298" width="32" height="32" rx="4"/><rect x="184" y="298" width="32" height="32" rx="4"/><rect x="229" y="298" width="32" height="32" rx="4"/></g><circle cx="287" cy="282" r="6" fill="#356caa"/>
+<path d="M490 312h220" stroke="#233e57" stroke-width="55" stroke-linecap="round"/>
+<path d="M490 312h220" stroke="#e8b552" stroke-width="9" stroke-linecap="round"/>
+<path d="M519 312h155" stroke="#fff4be" stroke-width="5" stroke-dasharray="8 17"/>
+<text x="600" y="390" text-anchor="middle" font-size="21" fill="#58718b">внутри кабеля</text>
+<rect x="885" y="258" width="205" height="108" rx="13" fill="#eaf6f0" stroke="#3d8a69" stroke-width="5"/><path d="m898 257 22-23h147l21 23" fill="#d2ece0" stroke="#3d8a69" stroke-width="4"/><g fill="white" stroke="#3d8a69" stroke-width="3"><rect x="909" y="298" width="32" height="32" rx="4"/><rect x="954" y="298" width="32" height="32" rx="4"/><rect x="999" y="298" width="32" height="32" rx="4"/></g><circle cx="1057" cy="282" r="6" fill="#3d8a69"/>
+<path d="M352 312h57" stroke="#1959a6" stroke-width="4" fill="none" marker-end="url(#arrow)"/><path d="M784 312h57" stroke="#1959a6" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+<text x="78" y="464" font-size="23">Превращает электрический</text><text x="78" y="498" font-size="23">сигнал в световой</text>
+<text x="462" y="464" font-size="23">Передаёт световой сигнал</text><text x="462" y="498" font-size="23">к другому концу линии</text>
+<text x="848" y="464" font-size="23">Превращает световой</text><text x="848" y="498" font-size="23">сигнал в электрический</text>
+<rect x="45" y="597" width="1110" height="57" rx="11" fill="#e5eef9"/>
+<text x="600" y="633" text-anchor="middle" font-size="22">Оборудование на концах + кабель + соединения = оптическая линия</text>
+</g></svg>
