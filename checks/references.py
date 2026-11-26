@@ -31,8 +31,24 @@ with tempfile.TemporaryDirectory() as tmp:
  assert all(g['construction'] and g['differences'] for g in groups.values())
  assert all(urlsplit(s['url']).scheme=='https' for s in data['sources'].values())
  assert data['coverage'] and data['coverageNotes'] and len(data['comparisonFields'])>=10
- assert next(e for e in data['entries'] if e['manufacturer']=='starlink' and e['mark']=='СЛ-ОКПЦ-Д2')['group']=='drop-round'
+ assert next(e for e in data['entries'] if e['manufacturer']=='starlink' and e['mark']=='СЛ-ОКПЦ-Д2')['group']=='drop-flat-tube'
  assert next(e for e in data['entries'] if e['manufacturer']=='minsk' and e['mark']=='КСО-ВСЦЗПКс')['group']=='eight-central'
+ # Concrete regressions: direct constructions must connect the three manufacturers.
+ assert len(data['entries'])>=550 and len(data['groups'])>=45
+ for example in data['examples']:
+  es=[next(e for e in data['entries'] if e['id']==id) for id in example['entries']]
+  assert {e['manufacturer'] for e in es}=={'incab','starlink','kes'}
+  assert {e['group'] for e in es}=={example['group']}
+  assert all(e['kind']=='catalog' and e['attributes']['module'] for e in es)
+ assert any(e['manufacturer']=='incab' and e['mark']=='ОВК-Б' and e['group']=='micro-wire' for e in data['entries'])
+ assert any(e['manufacturer']=='incab' and e['mark']=='ОВК-Г' and e['group']=='micro-rope' for e in data['entries'])
+ assert any(e['manufacturer']=='starlink' and e['mark']=='СЛ-ОКПЦ-Д2к' and e['group']=='drop-round' for e in data['entries'])
+ assert not any(e['manufacturer']=='incab' and e['group']=='tape-central' and 'ТОС' in e['mark'] for e in data['entries'])
+ assert all(any(e['manufacturer']=='incab' and e['group']==group for e in data['entries']) for group in ['wire-heavy','dielectric-ground','eight-dielectric','subsea','opgw-central','riser-micro','distribution-buffer','hybrid'])
+ assert len(data['audit']['manufacturers'])==len(makers)
+ for row in data['audit']['manufacturers']:
+  assert row['records']==sum(e['manufacturer']==row['manufacturer'] for e in data['entries'])
+  assert row['groups']==len({e['group'] for e in data['entries'] if e['manufacturer']==row['manufacturer']})
  text=client.get('/login?next=/references/').get_data(as_text=True);csrf=re.search('name="csrf" value="([^\"]+)"',text)[1]
  response=client.post('/login',data={'next':'/references/','login':'admin','password':os.environ['APP_PASSWORD'],'csrf':csrf})
  assert response.status_code==303 and response.location=='/references/'
