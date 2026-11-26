@@ -1,5 +1,6 @@
 """Training is owner-only, including raw assets and company aliases."""
 import os,sys,tempfile,base64,json,re
+from urllib.parse import urlsplit
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 with tempfile.TemporaryDirectory() as tmp:
@@ -24,6 +25,9 @@ with tempfile.TemporaryDirectory() as tmp:
  assert len(data['lessons'])==18 and len(data['quiz'])==24
  assert len({x['id'] for x in data['lessons']})==18
  assert data['audience']=='Продажи в России'
+ allowed_sources={'ocs01.ru','incab.ru','incab-holding.ru','mk-f.ru','spkb.ru','vols.expert','www.expert-labs.ru','cdn.nag.ru'}
+ assert all(urlsplit(source[1]).hostname in allowed_sources for source in data['sources'].values())
+ assert set(data['sources'])=={ref for lesson in data['lessons'] for ref in lesson['sources']}
  for question in data['quiz']:
   assert 0<=question['answer']<len(question['options']) and question['explanation']
   assert any(l['id']==question['lesson'] for l in data['lessons'])

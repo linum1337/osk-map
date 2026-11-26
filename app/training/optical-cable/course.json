@@ -1284,20 +1284,20 @@
   ],
   "sources": {
     "fiber": [
-      "FOA: оптическое волокно",
-      "https://www.thefoa.org/tech/ref/basic/fiber.html"
+      "ОКС 01: виды и характеристики оптических волокон",
+      "https://ocs01.ru/catalog/haract_ov"
     ],
     "cable": [
-      "FOA: устройство кабеля",
-      "https://www.thefoa.org/tech/ref/basic/cable.html"
+      "Инкаб: как устроено производство оптического кабеля",
+      "https://incab-holding.ru/press/videoekskursiya-po-zavodu-pokazyvaem-proizvodstvo-opticheskogo-kabelya-ot-volokna-do-gotovogo-izdeliya/"
     ],
     "g652": [
-      "ITU-T G.652: одномодовое волокно",
-      "https://www.itu.int/rec/T-REC-G.652-202408-I"
+      "ОКС 01: характеристики одномодовых и многомодовых волокон",
+      "https://ocs01.ru/catalog/haract_ov"
     ],
     "g657": [
-      "ITU-T G.657: волокно с уменьшенными потерями на изгибах",
-      "https://www.itu.int/rec/T-REC-G.657-202408-I"
+      "Инкаб: ответы о волокнах G.652 и G.657",
+      "https://incab.ru/useful-information/question-answer/"
     ],
     "marks": [
       "Москабель-Фуджикура: соответствие маркировок",
@@ -1308,8 +1308,8 @@
       "https://incab.ru/useful-information/optic-cable-and-fiber/certificates/"
     ],
     "otdr": [
-      "FOA: что измеряет рефлектометр",
-      "https://www.thefoa.org/tech/ref/testing/OTDR/OTDR.html"
+      "ВОЛС.Эксперт: как читать рефлектограмму",
+      "https://vols.expert/useful-information/reflektogramma-opticheskogo-kabelya/"
     ],
     "incab-air": [
       "Инкаб: как выбирать самонесущий кабель",
@@ -1347,13 +1347,9 @@
       "СПКБ Техно: маркировка и пример огнестойкого оптического кабеля",
       "https://spkb.ru/upload/marketing-materials/buklet-optics-spkb-techno.pdf"
     ],
-    "budget": [
-      "FOA: расчёт оптических потерь линии",
-      "https://www.thefoa.org/tech/lossbudg.htm"
-    ],
     "connectors": [
-      "Corning: типы коннекторов и полировки оптических сборок",
-      "https://www.corning.com/optical-communications/in/en/home/products/fiber-optic-cable-assemblies.html"
+      "ЭкспертЛабс: виды оптических соединений и коннекторов",
+      "https://www.expert-labs.ru/baza_znaniy/vols/vidy-soedineniy-opticheskikh-volokon/"
     ],
     "dpl-spec": [
       "Инкаб: спецификация ДПЛ-П-2,7 кН, 27.11.2025",
@@ -1364,24 +1360,20 @@
       "https://spkb.ru/upload/marketing-materials/catalog-spkb-techno.pdf"
     ],
     "test": [
-      "FOA: методы испытания оптической линии",
-      "https://www.thefoa.org/tech/ref/basic/test.html"
-    ],
-    "pon": [
-      "FOA: устройство и проектирование FTTH/PON",
-      "https://www.thefoa.org/tech/ref/appln/FTTH-design.html"
+      "ВОЛС.Эксперт: измерения линии, OTDR и OLTS",
+      "https://vols.expert/useful-information/izmereniya-vols/"
     ],
     "bidi": [
-      "Cisco: примеры одноволоконных двунаправленных модулей",
-      "https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/transceiver-modules/data_sheet_c78-455693.html"
+      "НАГ: русская спецификация одноволоконных модулей SFP+ BiDi",
+      "https://cdn.nag.ru/snrsystems.public.uploads/files/b02b0405a5c1413a9565630ee702ea9fa4c10c3353bb191d40c5561f3c6191bb.pdf"
     ],
     "drop": [
       "Инкаб: абонентский дроп-кабель",
       "https://incab.ru/optical-cable/drop/"
     ],
     "apc": [
-      "Fluke Networks: почему APC и UPC нельзя непосредственно состыковывать",
-      "https://www.flukenetworks.com/blog/cabling-chronicles/101-series-what-apc-connector-and-how-do-i-test-it"
+      "ЭкспертЛабс: различия полировок UPC и APC",
+      "https://www.expert-labs.ru/baza_znaniy/vols/vidy-soedineniy-opticheskikh-volokon/"
     ]
   },
   "quiz": [
@@ -1893,5 +1885,5 @@
       ]
     }
   ],
-  "sourceNote": "Технические сведения проверены по первичным материалам изготовителей и ITU-T. Числа, явно названные учебными, придуманы для задач и не являются характеристиками товара, текущими ценами или проектными нормативами. Российский контекст курса — покупатели, заявки, заводская маркировка и поставка в рублях; иностранные технические руководства не подменяют требования проекта и действующие требования к поставке в России."
+  "sourceNote": "Дополнительные материалы — на русском языке, на ресурсах российских производителей и учебных организаций: Инкаб, ОКС 01, Москабель-Фуджикура, СПКБ Техно, НАГ, ВОЛС.Эксперт и ЭкспертЛабс. Ссылки подобраны по темам уроков. Обозначения международных рекомендаций сохранены как технические названия. Числа, явно названные учебными, не являются текущими ценами, характеристиками товара или проектными нормативами. При реальной поставке используйте актуальную документацию конкретной позиции."
 }
