@@ -1,10 +1,13 @@
 """Admin-only reference library: access, deep links and crosswalk data integrity."""
-import os,sys,tempfile,json,re,base64
+import os,sys,tempfile,json,re,base64,mimetypes
 from pathlib import Path
 from urllib.parse import urlsplit
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 with tempfile.TemporaryDirectory() as tmp:
  os.environ.update(DATA_DIR=tmp,APP_USER='admin',APP_PASSWORD='reference-fixture-password')
+ mimetypes.init()
+ mimetypes.types_map.pop(".webp",None)
+ mimetypes.common_types.pop(".webp",None)
  import server
  server.app.config['SESSION_COOKIE_SECURE']=False
  client=server.app.test_client()
@@ -50,6 +53,7 @@ with tempfile.TemporaryDirectory() as tmp:
   assert row['records']==sum(e['manufacturer']==row['manufacturer'] for e in data['entries'])
   assert row['groups']==len({e['group'] for e in data['entries'] if e['manufacturer']==row['manufacturer']})
  # Manufacturer imagery stays behind the same access rules and has explicit provenance.
+ assert client.get('/references/images/ultra-0.webp',headers=admin).content_type=='image/webp'
  assert len(data['images'])>=53
  assert makers['ultra']['country']=='Россия'
  ultra=[e for e in data['entries'] if e['manufacturer']=='ultra']
