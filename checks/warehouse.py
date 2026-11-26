@@ -134,10 +134,10 @@ with tempfile.TemporaryDirectory() as temp:
  with zipfile.ZipFile(io.BytesIO(exported.data)) as z:
   ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
   sheet=E.fromstring(z.read('xl/worksheets/sheet1.xml'))
-  assert sheet.find('.//m:c[@r="G4"]/m:v',ns).text=='12345.67'
-  assert sheet.find('.//m:c[@r="H4"]/m:v',ns).text=='12.35'
-  assert sheet.find('.//m:c[@r="L4"]/m:v',ns).text=='16.05'
-  assert sheet.find('.//m:autoFilter',ns).get('ref')=='A3:L4'
+  assert sheet.find('.//m:c[@r="C4"]/m:v',ns).text=='12345.67'
+  assert sheet.find('.//m:c[@r="D4"]/m:v',ns).text=='12.35'
+  assert sheet.find('.//m:c[@r="H4"]/m:v',ns).text=='16.05'
+  assert sheet.find('.//m:autoFilter',ns).get('ref')=='A3:H4'
   assert sheet.find('.//m:pane',ns).get('ySplit')=='3'
   assert not sheet.findall('.//m:f',ns)
  bad=copy.deepcopy(price_payload);bad['rows'][0]['pricePerKm']='NaN'
