@@ -1,0 +1,38 @@
+"""Training is owner-only, including raw assets and company aliases."""
+import os,sys,tempfile,base64,json,re
+from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+with tempfile.TemporaryDirectory() as tmp:
+ os.environ.update(DATA_DIR=tmp,APP_USER='admin',APP_PASSWORD='training-fixture-password')
+ import server,admin_store
+ client=server.app.test_client();server.app.config['SESSION_COOKIE_SECURE']=False
+ def basic(name,password):return {'Authorization':'Basic '+base64.b64encode((name+':'+password).encode()).decode(),'X-Requested-With':'OSK-Map'}
+ admin=basic('admin',os.environ['APP_PASSWORD'])
+ for role in ('manager','warehouse'):
+  response=client.post('/api/admin/accounts',headers=admin,json={'login':'Training '+role,'password':'training-fixture-pw','role':role});assert response.status_code==201,response.json
+ paths=['/training','/training/','/training/index.html','/training/optical-cable/','/training/optical-cable/index.html','/training/optical-cable/course.json','/training/training.js','/training/training.css','/companies/training/index.html','/companies/training/optical-cable/course.json','/companies/training/training.js','/companies/training/training.css']
+ for path in paths:
+  assert client.get(path).status_code==401,path
+  for role in ('manager','warehouse'):
+   auth=basic('Training '+role,'training-fixture-pw')
+   for method in ('get','head'):
+    assert getattr(client,method)(path,headers=auth).status_code==403,(role,path,method)
+  response=client.get(path,headers=admin);assert response.status_code==(302 if path=='/training' else 200),(path,response.status_code)
+  assert 'no-store' in response.headers['Cache-Control'],path
+ assert client.get('/training/',headers={'Accept':'text/html'}).status_code==302
+ data=client.get('/training/optical-cable/course.json',headers=admin).json
+ assert len(data['lessons'])==10 and len(data['quiz'])==14
+ assert len({x['id'] for x in data['lessons']})==10
+ assert data['audience']=='Продажи в России'
+ for question in data['quiz']:assert 0<=question['answer']<len(question['options']) and question['explanation']
+ for lesson in data['lessons']:
+  assert lesson['blocks'] and lesson['goal']
+  for ref in lesson['sources']:assert ref in data['sources']
+ # Session login can return to the actual course, and existing areas remain accessible.
+ text=client.get('/login?next=/training/optical-cable/').get_data(as_text=True)
+ csrf=re.search('name="csrf" value="([^"]+)"',text)[1]
+ response=client.post('/login?next=/training/optical-cable/',data={'login':'admin','password':os.environ['APP_PASSWORD'],'csrf':csrf})
+ assert response.status_code==303 and response.location=='/training/optical-cable/'
+ assert client.get('/training/optical-cable/').status_code==200
+ for path in ['/','/companies/','/warehouse/','/admin/']:assert client.get(path).status_code==200,path
+print('PASS: owner-only training documents/assets/aliases GET+HEAD; anonymous login; no-store; course completeness; return after login; existing sections')

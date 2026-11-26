@@ -69,6 +69,8 @@ def guard():
   if request.method=='GET' and request.accept_mimetypes.best=='text/html' and not request.path.startswith(('/api/','/warehouse/api/')):
    return redirect('/login?next='+request.path)
   return jsonify(error='Требуется вход'),401
+ if request.path=='/training' or request.path.startswith('/training/'):
+  if g.user['role']!='admin':return jsonify(error='Обучение доступно только администратору'),403
  if request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/')):
   if g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
   request.max_content_length=12_000_000
@@ -91,7 +93,7 @@ def headers(response):
  response.headers['X-Content-Type-Options']='nosniff'
  response.headers['X-Frame-Options']='DENY'
  response.headers['Referrer-Policy']='strict-origin-when-cross-origin'
- response.headers['Cache-Control']='private, no-store' if request.path.startswith('/warehouse') or request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/')) else 'private, max-age=604800' if request.path.startswith('/tiles/') and response.status_code==200 else 'private, no-cache'
+ response.headers['Cache-Control']='private, no-store' if request.path.startswith('/warehouse') or request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/','/training/','/companies/training/')) or request.path=='/training' else 'private, max-age=604800' if request.path.startswith('/tiles/') and response.status_code==200 else 'private, no-cache'
  return response
 @app.route('/login',methods=['GET','POST'])
 def login_page():
@@ -99,7 +101,8 @@ def login_page():
  if 'login_csrf' not in session:session['login_csrf']=secrets.token_urlsafe(32)
  next_page=request.values.get('next','/')
  if next_page.split('?')[0]=='/admin':next_page='/admin/'
- if next_page.split('?')[0] not in ('/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/','/admin/'):next_page='/'
+ if next_page.split('?')[0]=='/training':next_page='/training/'
+ if next_page.split('?')[0] not in ('/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/','/admin/','/training/','/training/optical-cable/'):next_page='/'
  if request.method=='POST':
   origin=request.headers.get('Origin')
   token=request.form.get('csrf','')
@@ -230,13 +233,19 @@ def tile(z,x,y):
 def index():return send_from_directory(ROOT/'app','portal.html')
 @app.get('/index.html')
 def legacy_index():return redirect('/')
+@app.get('/training')
+def training_redirect():return redirect('/training/')
+@app.get('/training/')
+def training_index():return send_from_directory(ROOT/'app/training','index.html')
+@app.get('/training/optical-cable/')
+def training_optical_cable():return send_from_directory(ROOT/'app/training/optical-cable','index.html')
 @app.get('/companies')
 def companies_redirect():return redirect('/companies/')
 @app.get('/companies/')
 def companies_index():return send_from_directory(ROOT/'app','index.html')
 @app.get('/companies/<path:name>')
 def companies_asset(name):
- if (ROOT/'app'/name).resolve().is_relative_to((ROOT/'app/admin').resolve()) and g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
+ if any((ROOT/'app'/name).resolve().is_relative_to((ROOT/'app'/folder).resolve()) for folder in ('admin','training')) and g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
  return send_from_directory(ROOT/'app',name)
 @app.get('/suppliers')
 def suppliers_redirect():return redirect('/suppliers/')
