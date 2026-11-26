@@ -59,7 +59,9 @@ for module in ('transport','suppliers'):
   for file in bootstrap.iterdir():
    if file.is_file() and not (target/file.name).exists():shutil.copy2(file,target/file.name)
 
-PORTAL_PAGES={'/','/index.html','/transport','/transport/','/suppliers','/suppliers/','/companies','/companies/','/requests','/requests/','/warehouse','/warehouse/','/admin','/admin/','/training','/training/','/training/optical-cable/'}
+TRAINING_COURSES=('optical-cable','optical-closures','optical-crosses','twisted-pair','suspension-hardware')
+TRAINING_PAGE_PATHS={'/training/'+slug+'/' for slug in TRAINING_COURSES}
+PORTAL_PAGES={'/','/index.html','/transport','/transport/','/suppliers','/suppliers/','/companies','/companies/','/requests','/requests/','/warehouse','/warehouse/','/admin','/admin/','/training','/training/','/training/optical-cable/'} | TRAINING_PAGE_PATHS | {path.rstrip('/') for path in TRAINING_PAGE_PATHS}
 
 @app.before_request
 def guard():
@@ -104,9 +106,9 @@ def login_page():
  next_page=request.values.get('next','/')
  try:
   target=urlsplit(next_page)
-  allowed={'/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/','/admin/','/training/','/training/optical-cable/'}
+  allowed={'/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/','/admin/','/training/','/training/optical-cable/'} | TRAINING_PAGE_PATHS
   path=target.path
-  if path in ('/transport','/suppliers','/companies','/requests','/warehouse','/admin','/training'):path+='/'
+  if path in ('/transport','/suppliers','/companies','/requests','/warehouse','/admin','/training') or path in {item.rstrip('/') for item in TRAINING_PAGE_PATHS}:path+='/'
   if target.scheme or target.netloc or path not in allowed or any(char in next_page for char in ('\\','\r','\n')):next_page='/'
   else:next_page=target._replace(path=path).geturl()
  except ValueError:next_page='/'
@@ -244,8 +246,10 @@ def legacy_index():return redirect('/')
 def training_redirect():return redirect('/training/')
 @app.get('/training/')
 def training_index():return send_from_directory(ROOT/'app/training','index.html')
-@app.get('/training/optical-cable/')
-def training_optical_cable():return send_from_directory(ROOT/'app/training/optical-cable','index.html')
+@app.get('/training/<any('+','.join(repr(slug) for slug in TRAINING_COURSES)+'):course_slug>/')
+def training_course(course_slug):
+ if course_slug not in TRAINING_COURSES:abort(404)
+ return send_from_directory(ROOT/'app/training'/course_slug,'index.html')
 @app.get('/companies')
 def companies_redirect():return redirect('/companies/')
 @app.get('/companies/')
