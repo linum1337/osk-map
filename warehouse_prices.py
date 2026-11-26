@@ -1,5 +1,6 @@
 """Private price catalogue. No supplier prices or workbook content in source control."""
 import json
+import hashlib
 import re
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 import auth_store
@@ -41,10 +42,42 @@ def catalogue(connection=None):
  for r in data['rows']:r['prices']=amounts(r['pricePerKm'])
  return data
 
+def shape_lookup(catalogue_rows):
+ shapes={}
+ for row in catalogue_rows:
+  family=re.match(r'[а-яa-z]+',str(row.get('marking') or row.get('construction','')).casefold())
+  kind=str(row.get('type','')).strip().casefold()
+  if family and kind:shapes[(family[0],match_key(row))]=kind
+ return shapes
+
+def short_descriptions(markings,rod,catalogue_rows,shapes=None):
+ shapes=shape_lookup(catalogue_rows) if shapes is None else shapes
+ result=[]
+ for marking in markings:
+  name=marking.casefold();family=re.match(r'[а-яa-z]+',name)
+  kind=shapes.get((family[0],match_key({'marking':marking,'rod':rod},marking_only=True))) if family else None
+  parts=[]
+  if kind in ('круглый','round'):parts.append('Круглый')
+  elif kind in ('плоский','flat'):parts.append('Плоский')
+  fibres=re.search(r'-(\d+)[аa](?=\W|\d|$)',re.sub(r'\s+','',name))
+  if fibres and int(fibres[1])>0:
+   count=int(fibres[1]);word='волокно' if count%10==1 and count%100!=11 else 'волокна' if count%10 in (2,3,4) and count%100 not in (12,13,14) else 'волокон'
+   parts.append(str(count)+' '+word)
+  if re.match(r'окпд-|окт-?д',name):
+   load=re.search(r'\((\d+(?:[,.]\d+)?)\)',name)
+   if load:parts.append(format(Decimal(load[1].replace(',','.')).normalize(),'f').replace('.',',')+' кН')
+  description=', '.join(parts)
+  if description and description not in result:result.append(description)
+ return result
+
 def decorate(snapshot,user,catalogue_data=None):
+ cat=catalogue_data if catalogue_data is not None else catalogue()
+ shapes=shape_lookup(cat['rows'])
+ for group in snapshot['groups']:group['descriptions']=short_descriptions(group.get('markings',[]),group.get('rod',''),cat['rows'],shapes)
+ snapshot['descriptionVersion']=hashlib.sha256(json.dumps([(g.get('key'),g['descriptions']) for g in snapshot['groups']],ensure_ascii=False).encode()).hexdigest()
  snapshot['canViewPrices']=allowed(user)
  if not snapshot['canViewPrices']:return snapshot
- cat=catalogue_data if catalogue_data is not None else catalogue();lookup={}
+ lookup={}
  for r in cat['rows']:
   key=match_key(r)
   if key:lookup.setdefault(key,[]).append(r)

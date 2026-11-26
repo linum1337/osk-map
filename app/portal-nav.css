@@ -7,3 +7,5 @@ html[data-section=companies] .crm-panel.crm-panel{top:var(--portal-content-top,1
 
 /* Original OSK logo remains legible on the blue navigation bar. */
 #portal-nav .portal-brand{flex:0 0 auto;background:#fff;padding:3px 8px;margin-right:5px;border-radius:5px;height:35px}#portal-nav .portal-brand:hover{background:#edf3fa}#portal-nav .portal-brand img{display:block;object-fit:contain;width:92px;height:29px;max-width:none}
+
+.portal-logo-link{display:inline-flex;flex:0 0 auto}
