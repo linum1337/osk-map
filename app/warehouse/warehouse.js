@@ -15,7 +15,7 @@ function priceCells(r){if(!stock.canViewPrices)return '';return priceKeys.map((k
 function priceSignature(data){return JSON.stringify([data.items.map(r=>[r.id,r.version]),showSold,data.canViewPrices,data.priceVersion])}
 async function loadPrices(){try{priceCatalogue=await api('/warehouse/api/prices');render()}catch(e){toast(e.message)}}
 function render(){
- const rs=visibleItems();visibleKey=rs.map(r=>r.id).join('|');const keys=new Set(rs.map(r=>r.productKey)),groups=stock.groups.filter(g=>keys.has(g.key));
+ $('search').placeholder=view==='prices'?'Маркировка…':'Конструкция, маркировка, № катушки…';const rs=visibleItems();visibleKey=rs.map(r=>r.id).join('|');const keys=new Set(rs.map(r=>r.productKey)),groups=stock.groups.filter(g=>keys.has(g.key));
  $('free').textContent=metres(stock.totals.available)+' м';$('reserved').textContent=metres(stock.totals.reserved)+' м';$('sold').textContent=metres(stock.totals.sold)+' м';$('sold-positions').textContent='Позиций: '+(stock.totals.soldItems??0);$('remaining').textContent=metres(stock.totals.remaining)+' м';$('positions').textContent=stock.totals.items??0;
  $('summary-view').hidden=view!=='summary';$('items-view').hidden=view!=='items';$('prices-view').hidden=view!=='prices';$('download-prices').hidden=view!=='prices'||!canDownloadPrice;$('prices-tab').hidden=!stock.canViewPrices;$('prices-tab').classList.toggle('active',view==='prices');document.querySelectorAll('.price-column').forEach(el=>el.hidden=!stock.canViewPrices);$('status').hidden=view==='prices';$('show-sold').hidden=view==='prices';$('summary-tab').classList.toggle('active',view==='summary');$('items-tab').classList.toggle('active',view==='items');$('clear-product').hidden=!product||view==='prices';
  $('sync').textContent=`${groups.length} конструкций · ${rs.length} позиций по фильтру · Обновление каждые 3 секунды`;$('sync').classList.remove('error');$('show-sold').setAttribute('aria-pressed',String(showSold));$('show-sold').textContent=showSold?'Скрыть проданное':'Показать проданное';document.querySelectorAll('.sold-column').forEach(el=>el.hidden=!showSold);
@@ -24,7 +24,7 @@ function render(){
  if(view==='prices'){
  const q=$('search').value.trim().toLocaleLowerCase('ru'),rows=(priceCatalogue?.rows||[]).filter(r=>[r.construction,r.rod,r.category,r.type].join(' ').toLocaleLowerCase('ru').includes(q));
  $('price-title').textContent=priceCatalogue?priceCatalogue.title+' · '+priceCatalogue.rows.length+' позиций с ценами': 'Загрузка прайса…';
- $('prices-body').innerHTML=rows.map(r=>`<tr><td class="construction">${esc(r.construction)}<div class="muted">${esc(r.category)}</div></td><td>${esc(r.rod)}</td><td>${esc(r.cableDiameter)}</td><td>${esc(r.weight)}</td><td>${esc(r.type)}</td><td class="number">${money(r.pricePerKm)}</td>${priceCells(r)}</tr>`).join('');
+ $('prices-body').innerHTML=rows.map(r=>`<tr><td class="construction">${esc(r.marking||r.construction)}</td><td>${esc(r.category)}</td><td class="number">${money(r.pricePerKm)}</td>${priceCells(r)}</tr>`).join('');
  $('sync').textContent=rows.length+' позиций по фильтру';$('empty').hidden=!priceCatalogue||rows.length>0;
  }else $('empty').hidden=rs.length>0;tick();
  document.querySelectorAll('[data-product]').forEach(b=>b.onclick=()=>{product=b.dataset.product;view='items';render()});document.querySelectorAll('[data-action]').forEach(b=>b.onclick=()=>openAction(b.dataset.id,b.dataset.action));document.querySelectorAll('[data-history]').forEach(b=>b.onclick=()=>history(b.dataset.history));

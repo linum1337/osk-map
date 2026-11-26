@@ -102,8 +102,16 @@ def login_page():
    session.clear();session.update(login=user['login'],kind=user['role'],revision=rev)
    return redirect('/warehouse/' if user['role']=='warehouse' else next_page,code=303)
   error='Неверный логин или пароль'
- options=[(USERNAME,'Администратор · '+USERNAME)]+[(name,name) for name in ['Андрей Логинов','Анна Скрынник','Светлана Квашина','Любовь Коровина'] if name!=USERNAME]+[(name,name) for name in warehouse_store.users() if name!=USERNAME]
+ options=[(USERNAME,'Администратор · '+USERNAME)]+[(name,name) for name in ['Андрей Логинов','Анна Скрынник','Светлана Квашина','Любовь Коровина'] if name!=USERNAME]
+ seen={auth_store.normalize(value) for value,_ in options}
+ for name in auth_store.users()+warehouse_store.users():
+  if auth_store.normalize(name) not in seen:options.append((name,name));seen.add(auth_store.normalize(name))
  return render_template_string((ROOT/'app/login.html').read_text(),options=options,csrf=session['login_csrf'],next_page=next_page,error=error,selected=request.form.get('login',USERNAME)),401 if error else 200
+@app.post('/api/admin/users')
+def create_manager():
+ if g.user['role']!='admin':return jsonify(error='Доступно только администратору'),403
+ status,data=auth_store.provision(request.get_json(silent=True),USERNAME)
+ return jsonify(data),status
 @app.get('/login.css')
 def login_css():return send_from_directory(ROOT/'app','login.css')
 @app.post('/logout')
