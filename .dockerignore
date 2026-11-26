@@ -11,3 +11,7 @@ private-users*.json
 access-users*.json
 
 # module-data is intentionally bundled only in private deployment archives.
+
+# Persistent restore data and private portable archives never enter the image.
+data/
+*.tar.gz
