@@ -280,6 +280,20 @@
       "note": "Пять серий в официальном каталоге. Круглый и плоский ОКПД разделены; ОКБм и ОКБц различаются сердечником. Материал несущего элемента ОКС уточнить.",
       "status": "catalog",
       "source": "ultra"
+    },
+    {
+      "id": "osk",
+      "name": "ОСК / ОптикСтройКомплект",
+      "country": "Россия",
+      "site": "https://www.optik-sk.ru/",
+      "aliases": [
+        "ОСК",
+        "ОптикСтройКомплект",
+        "OSK"
+      ],
+      "note": "Марки бренда ОСК по официальному каталогу ОптикСтройКомплект. Изготовителя конкретной партии и документы подтверждают при заказе.",
+      "status": "catalog",
+      "source": "osk"
     }
   ],
   "groups": [
@@ -6659,6 +6673,266 @@
       "images": [
         "ultra-4"
       ]
+    },
+    {
+      "id": "direct-osk-0",
+      "manufacturer": "osk",
+      "mark": "ОСКД-п",
+      "group": "drop-flat-tube",
+      "source": "osk-0",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "attributes": {
+        "module": "Центральный полимерный модуль",
+        "strength": "Два стеклопластиковых прутка",
+        "shape": "Плоский",
+        "armor": "Без металлической брони"
+      },
+      "images": [
+        "osk-0"
+      ]
+    },
+    {
+      "id": "direct-osk-1",
+      "manufacturer": "osk",
+      "mark": "ОСКД-к",
+      "group": "drop-round",
+      "source": "osk-1",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "attributes": {
+        "shape": "Круглый",
+        "strength": "Два стеклопластиковых прутка",
+        "module": "Центральный полимерный модуль",
+        "armor": "Без металлической брони"
+      },
+      "images": [
+        "osk-1"
+      ]
+    },
+    {
+      "id": "direct-osk-2",
+      "manufacturer": "osk",
+      "mark": "ОСКМ · 7 кН",
+      "group": "glass",
+      "source": "osk-2",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "attributes": {
+        "module": "Модули в повиве",
+        "strength": "Стеклонити",
+        "shape": "Круглый",
+        "armor": "Без металлической брони"
+      },
+      "images": [
+        "osk-2"
+      ]
+    },
+    {
+      "id": "direct-osk-3",
+      "manufacturer": "osk",
+      "mark": "ОСКМ · 4 кН",
+      "group": "aramid",
+      "source": "osk-3",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "attributes": {
+        "module": "Модули в повиве",
+        "strength": "Арамидные нити",
+        "shape": "Круглый",
+        "armor": "Без металлической брони"
+      },
+      "images": [
+        "osk-3"
+      ]
+    },
+    {
+      "id": "direct-osk-4",
+      "manufacturer": "osk",
+      "mark": "ОСКМ · 6/8 кН",
+      "group": "aramid",
+      "source": "osk-4",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "attributes": {
+        "module": "Модули в повиве",
+        "strength": "Арамидные нити",
+        "shape": "Круглый",
+        "armor": "Без металлической брони"
+      },
+      "images": [
+        "osk-4"
+      ]
+    },
+    {
+      "id": "direct-osk-5",
+      "manufacturer": "osk",
+      "mark": "ОСКМ · 10/15/20/25 кН",
+      "group": "aerial-dielectric-unspecified",
+      "source": "osk-5",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению. Для объединённого диапазона нагрузок материал силовых нитей требует уточнения.",
+      "attributes": {
+        "module": "Модули в повиве",
+        "strength": "Стеклонить или арамид — по исполнению",
+        "shape": "Круглый",
+        "armor": "Без металлической брони"
+      },
+      "images": [
+        "osk-5"
+      ]
+    },
+    {
+      "id": "direct-osk-6",
+      "manufacturer": "osk",
+      "mark": "ОГК-У",
+      "group": "hybrid",
+      "source": "osk-6",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "attributes": {
+        "shape": "Круглый",
+        "module": "Оптическая часть и медные жилы",
+        "armor": "По полному исполнению",
+        "strength": "По полному исполнению"
+      },
+      "images": [
+        "osk-6"
+      ]
+    },
+    {
+      "id": "direct-osk-7",
+      "manufacturer": "osk",
+      "mark": "ОГК",
+      "group": "hybrid",
+      "source": "osk-7",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "attributes": {
+        "shape": "Круглый",
+        "module": "Оптическая часть и медные жилы",
+        "armor": "По полному исполнению",
+        "strength": "По полному исполнению"
+      },
+      "images": [
+        "osk-7"
+      ]
+    },
+    {
+      "id": "direct-osk-8",
+      "manufacturer": "osk",
+      "mark": "ОГК-П",
+      "group": "hybrid",
+      "source": "osk-8",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "attributes": {
+        "shape": "Плоский",
+        "module": "Оптическая часть и медные жилы",
+        "armor": "По полному исполнению",
+        "strength": "По полному исполнению"
+      },
+      "images": [
+        "osk-8"
+      ]
+    },
+    {
+      "id": "direct-osk-9",
+      "manufacturer": "osk",
+      "mark": "ОГК-ПЦ",
+      "group": "hybrid",
+      "source": "osk-9",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "attributes": {
+        "shape": "Круглый",
+        "module": "Оптическая часть и медные жилы",
+        "armor": "Без стальных элементов",
+        "strength": "Стеклопластиковые прутки"
+      },
+      "images": [
+        "osk-9"
+      ]
+    },
+    {
+      "id": "direct-osk-18",
+      "manufacturer": "osk",
+      "mark": "ОКБЦ",
+      "group": "wire-central",
+      "source": "osk-18",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "attributes": {
+        "module": "Центральная полимерная трубка",
+        "armor": "Стальная проволока"
+      },
+      "images": [
+        "osk-18"
+      ]
+    },
+    {
+      "id": "direct-osk-19",
+      "manufacturer": "osk",
+      "mark": "ОКГБ-01 · 1 кН",
+      "group": "micro-rope",
+      "source": "osk-19",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению. Устройство модульной трубки не подставлено по похожей марке другого завода.",
+      "attributes": {
+        "armor": "Многопроволочная металлическая броня",
+        "module": "Уточнить по полному исполнению"
+      },
+      "images": [
+        "osk-19"
+      ]
+    },
+    {
+      "id": "direct-osk-20",
+      "manufacturer": "osk",
+      "mark": "ОКГБ-01 · 1,5 кН",
+      "group": "micro-rope",
+      "source": "osk-20",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению. Устройство модульной трубки не подставлено по похожей марке другого завода.",
+      "attributes": {
+        "armor": "Многопроволочная металлическая броня",
+        "module": "Уточнить по полному исполнению"
+      },
+      "images": [
+        "osk-20"
+      ]
+    },
+    {
+      "id": "direct-osk-21",
+      "manufacturer": "osk",
+      "mark": "ОКГБ-02",
+      "group": "micro-rope",
+      "source": "osk-21",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению. Устройство модульной трубки не подставлено по похожей марке другого завода.",
+      "attributes": {
+        "armor": "Многопроволочная металлическая броня",
+        "module": "Уточнить по полному исполнению"
+      },
+      "images": [
+        "osk-21"
+      ]
+    },
+    {
+      "id": "direct-osk-22",
+      "manufacturer": "osk",
+      "mark": "ОКГБ-03",
+      "group": "micro-wire",
+      "source": "osk-22",
+      "kind": "catalog",
+      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению. Устройство модульной трубки не подставлено по похожей марке другого завода.",
+      "attributes": {
+        "armor": "Отдельные стальные проволоки",
+        "module": "Уточнить по полному исполнению"
+      },
+      "images": [
+        "osk-22"
+      ]
     }
   ],
   "sources": {
@@ -6789,6 +7063,70 @@
     "ultra-marking": {
       "title": "Ультра Кабель: заводское маркообразование",
       "url": "https://ultracabel.ru/wp-content/themes/ok/uploads/pdf/%D0%9C%D0%B0%D1%80%D0%BA%D0%BE%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%A3%D0%BB%D1%8C%D1%82%D1%80%D0%B0.pdf"
+    },
+    "osk": {
+      "title": "ОСК: официальный каталог ОптикСтройКомплект",
+      "url": "https://www.optik-sk.ru/kabel-osk/"
+    },
+    "osk-0": {
+      "title": "ОСК: ОСКД-п",
+      "url": "https://www.optik-sk.ru/kabel-osk/opticheskij-drop-ftth-kabel/ploskij-opticheskij-drop-kabel-oskd-p"
+    },
+    "osk-1": {
+      "title": "ОСК: ОСКД-к",
+      "url": "https://www.optik-sk.ru/kabel-osk/opticheskij-drop-ftth-kabel/kruglyj-opticheskij-drop-oskd-k"
+    },
+    "osk-2": {
+      "title": "ОСК: ОСКМ · 7 кН",
+      "url": "https://www.optik-sk.ru/kabel-osk/opticheskie-raspredelitelnye-kabeli/samonesuschij-opticheskij-kabel-oskm-7-0-kn"
+    },
+    "osk-3": {
+      "title": "ОСК: ОСКМ · 4 кН",
+      "url": "https://www.optik-sk.ru/kabel-osk/opticheskie-raspredelitelnye-kabeli/samonesuschij-opticheskij-kabel-oskm-4-kn"
+    },
+    "osk-4": {
+      "title": "ОСК: ОСКМ · 6/8 кН",
+      "url": "https://www.optik-sk.ru/kabel-osk/opticheskie-raspredelitelnye-kabeli/opticheskij-kabel-oskm-nagruzka-6-i-8-kn"
+    },
+    "osk-5": {
+      "title": "ОСК: ОСКМ · 10/15/20/25 кН",
+      "url": "https://www.optik-sk.ru/kabel-osk/opticheskie-raspredelitelnye-kabeli/opticheskij-kabel-oskm-10-15-20-25-kn"
+    },
+    "osk-6": {
+      "title": "ОСК: ОГК-У",
+      "url": "https://www.optik-sk.ru/kabel-osk/optoelektricheskij-kabel-ogk/universalnyj-usilennyj-kombinirovannyj-kruglyj-optoelektricheskij-kabel-ogk-u"
+    },
+    "osk-7": {
+      "title": "ОСК: ОГК",
+      "url": "https://www.optik-sk.ru/kabel-osk/optoelektricheskij-kabel-ogk/opto-elektricheskij-kabel-ogk"
+    },
+    "osk-8": {
+      "title": "ОСК: ОГК-П",
+      "url": "https://www.optik-sk.ru/kabel-osk/optoelektricheskij-kabel-ogk/ploskij-optoelektricheskij-kabel-ogk-p"
+    },
+    "osk-9": {
+      "title": "ОСК: ОГК-ПЦ",
+      "url": "https://www.optik-sk.ru/kabel-osk/optoelektricheskij-kabel-ogk/optoelektricheskij-kabel-bez-stalnykh-elementov-ogk-pts"
+    },
+    "osk-18": {
+      "title": "ОСК: ОКБЦ",
+      "url": "https://www.optik-sk.ru/kabel-osk/opticheskie-kabelya-osk-bronirovannye-v-grunt/bronirovannyj-opticheskij-kabel-okbc"
+    },
+    "osk-19": {
+      "title": "ОСК: ОКГБ-01 · 1 кН",
+      "url": "https://www.optik-sk.ru/kabel-osk/opticheskie-kabelya-osk-bronirovannye-v-grunt/opticheskij-kabel-okgb-01"
+    },
+    "osk-20": {
+      "title": "ОСК: ОКГБ-01 · 1,5 кН",
+      "url": "https://www.optik-sk.ru/kabel-osk/opticheskie-kabelya-osk-bronirovannye-v-grunt/kabel-opticheskij-okgb-01"
+    },
+    "osk-21": {
+      "title": "ОСК: ОКГБ-02",
+      "url": "https://www.optik-sk.ru/kabel-osk/opticheskie-kabelya-osk-bronirovannye-v-grunt/opticheskij-kabel-bronirovannyj-okgb-02"
+    },
+    "osk-22": {
+      "title": "ОСК: ОКГБ-03",
+      "url": "https://www.optik-sk.ru/kabel-osk/opticheskie-kabelya-osk-bronirovannye-v-grunt/opticheskij-kabel-bronirovannyj-okgb-03"
     }
   },
   "coverageNotes": [
@@ -6811,7 +7149,7 @@
       "note": "Бортовые и специальные кабели нельзя включать в общий ряд прямых магистральных аналогов без документов."
     }
   ],
-  "coverage": "Сопоставлены конструктивные семейства 25 заводов России и Беларуси: многомодульные и центральномодульные, стандартные и усиленные, металлические и диэлектрические, подвесные, подводные, ОКГТ, внутриобъектовые и абонентские. Прямые карточки имеют приоритет над сводной таблицей. Пустая ячейка означает отсутствие проверенного сопоставления в базе, а не отсутствие производства у завода.",
+  "coverage": "Сопоставлены конструктивные семейства 26 производителей и брендов России и Беларуси: многомодульные и центральномодульные, стандартные и усиленные, металлические и диэлектрические, подвесные, подводные, ОКГТ, внутриобъектовые и абонентские. Прямые карточки имеют приоритет над сводной таблицей. Пустая ячейка означает отсутствие проверенного сопоставления в базе, а не отсутствие производства у завода.",
   "comparisonFields": [
     "Количество и тип волокон",
     "Модули и волокна в модуле",
@@ -6825,7 +7163,7 @@
     "ТУ, документы и согласование замены"
   ],
   "audit": {
-    "method": "Сверены все конструктивные столбцы 15 разделов таблицы Инкаб и двух таблиц МКФ. Обе таблицы KOSCAB просмотрены; смешанные сопоставления абонентских конструкций не используются для вывода о сердечнике и броне. Прямые карточки исправляют разночтения сводных источников. Ультра Кабель проверен отдельно по пяти сериям официального каталога и заводскому маркообразованию.",
+    "method": "Сверены все конструктивные столбцы 15 разделов таблицы Инкаб и двух таблиц МКФ. Обе таблицы KOSCAB просмотрены; смешанные сопоставления абонентских конструкций не используются для вывода о сердечнике и броне. Прямые карточки исправляют разночтения сводных источников. Ультра Кабель проверен отдельно по пяти сериям официального каталога и заводскому маркообразованию. Марки бренда ОСК сверены по индивидуальным карточкам официального каталога.",
     "manufacturers": [
       {
         "manufacturer": "incab",
@@ -7093,6 +7431,29 @@
           "ultra-marking"
         ],
         "status": "Официальный каталог, изображения и заводское маркообразование"
+      },
+      {
+        "manufacturer": "osk",
+        "records": 15,
+        "groups": 9,
+        "sources": [
+          "osk-0",
+          "osk-1",
+          "osk-18",
+          "osk-19",
+          "osk-2",
+          "osk-20",
+          "osk-21",
+          "osk-22",
+          "osk-3",
+          "osk-4",
+          "osk-5",
+          "osk-6",
+          "osk-7",
+          "osk-8",
+          "osk-9"
+        ],
+        "status": "Карточки официального каталога бренда ОСК"
       }
     ],
     "reviewedTables": 19,
@@ -7564,6 +7925,126 @@
       "sourcePage": "https://ultracabel.ru/",
       "original": "https://ultracabel.ru/wp-content/uploads/2024/12/1.1081.png",
       "alt": "Конструкция ОКС · Ультра Кабель"
+    },
+    "osk-0": {
+      "manufacturer": "osk",
+      "mark": "ОСКД-п",
+      "src": "/references/images/osk-0.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/opticheskij-drop-ftth-kabel/ploskij-opticheskij-drop-kabel-oskd-p",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/kabel-oskd-p-400x400.jpg",
+      "alt": "Конструкция ОСКД-п · ОСК"
+    },
+    "osk-1": {
+      "manufacturer": "osk",
+      "mark": "ОСКД-к",
+      "src": "/references/images/osk-1.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/opticheskij-drop-ftth-kabel/kruglyj-opticheskij-drop-oskd-k",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/opticheskij-drop-oskd-k-400x400.jpg",
+      "alt": "Конструкция ОСКД-к · ОСК"
+    },
+    "osk-2": {
+      "manufacturer": "osk",
+      "mark": "ОСКМ · 7 кН",
+      "src": "/references/images/osk-2.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/opticheskie-raspredelitelnye-kabeli/samonesuschij-opticheskij-kabel-oskm-7-0-kn",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/oskm-7-0-kn-400x400.jpg",
+      "alt": "Конструкция ОСКМ · 7 кН · ОСК"
+    },
+    "osk-3": {
+      "manufacturer": "osk",
+      "mark": "ОСКМ · 4 кН",
+      "src": "/references/images/osk-3.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/opticheskie-raspredelitelnye-kabeli/samonesuschij-opticheskij-kabel-oskm-4-kn",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/oskm-4-kn-400x400.jpg",
+      "alt": "Конструкция ОСКМ · 4 кН · ОСК"
+    },
+    "osk-4": {
+      "manufacturer": "osk",
+      "mark": "ОСКМ · 6/8 кН",
+      "src": "/references/images/osk-4.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/opticheskie-raspredelitelnye-kabeli/opticheskij-kabel-oskm-nagruzka-6-i-8-kn",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/oskm-4-kn-400x400.jpg",
+      "alt": "Конструкция ОСКМ · 6/8 кН · ОСК"
+    },
+    "osk-5": {
+      "manufacturer": "osk",
+      "mark": "ОСКМ · 10/15/20/25 кН",
+      "src": "/references/images/osk-5.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/opticheskie-raspredelitelnye-kabeli/opticheskij-kabel-oskm-10-15-20-25-kn",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/oskm-4-kn-400x400.jpg",
+      "alt": "Конструкция ОСКМ · 10/15/20/25 кН · ОСК"
+    },
+    "osk-6": {
+      "manufacturer": "osk",
+      "mark": "ОГК-У",
+      "src": "/references/images/osk-6.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/optoelektricheskij-kabel-ogk/universalnyj-usilennyj-kombinirovannyj-kruglyj-optoelektricheskij-kabel-ogk-u",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/ogk/usilennyj-kruglyj-optoelektricheskij-kabel-ogk-u-400-400x400.jpg",
+      "alt": "Конструкция ОГК-У · ОСК"
+    },
+    "osk-7": {
+      "manufacturer": "osk",
+      "mark": "ОГК",
+      "src": "/references/images/osk-7.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/optoelektricheskij-kabel-ogk/opto-elektricheskij-kabel-ogk",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/ogk/optoelektricheskij-kabel-ogk-400-400x400.jpg",
+      "alt": "Конструкция ОГК · ОСК"
+    },
+    "osk-8": {
+      "manufacturer": "osk",
+      "mark": "ОГК-П",
+      "src": "/references/images/osk-8.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/optoelektricheskij-kabel-ogk/ploskij-optoelektricheskij-kabel-ogk-p",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/ogk/ploskij-optoelektricheskij-kabel-400-400x400.jpg",
+      "alt": "Конструкция ОГК-П · ОСК"
+    },
+    "osk-9": {
+      "manufacturer": "osk",
+      "mark": "ОГК-ПЦ",
+      "src": "/references/images/osk-9.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/optoelektricheskij-kabel-ogk/optoelektricheskij-kabel-bez-stalnykh-elementov-ogk-pts",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/ogk/optoelektricheskij-kabel-bez-stalnykh-elementov-ogk-pts-400-400x400.jpg",
+      "alt": "Конструкция ОГК-ПЦ · ОСК"
+    },
+    "osk-18": {
+      "manufacturer": "osk",
+      "mark": "ОКБЦ",
+      "src": "/references/images/osk-18.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/opticheskie-kabelya-osk-bronirovannye-v-grunt/bronirovannyj-opticheskij-kabel-okbc",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/opticheskij-kabel-okbc-400x400.jpg",
+      "alt": "Конструкция ОКБЦ · ОСК"
+    },
+    "osk-19": {
+      "manufacturer": "osk",
+      "mark": "ОКГБ-01 · 1 кН",
+      "src": "/references/images/osk-19.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/opticheskie-kabelya-osk-bronirovannye-v-grunt/opticheskij-kabel-okgb-01",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/opticheskij-kabel-okgb-01-400x400.jpeg",
+      "alt": "Конструкция ОКГБ-01 · 1 кН · ОСК"
+    },
+    "osk-20": {
+      "manufacturer": "osk",
+      "mark": "ОКГБ-01 · 1,5 кН",
+      "src": "/references/images/osk-20.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/opticheskie-kabelya-osk-bronirovannye-v-grunt/kabel-opticheskij-okgb-01",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/opticheskij-kabel-okgb-01-400x400.jpeg",
+      "alt": "Конструкция ОКГБ-01 · 1,5 кН · ОСК"
+    },
+    "osk-21": {
+      "manufacturer": "osk",
+      "mark": "ОКГБ-02",
+      "src": "/references/images/osk-21.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/opticheskie-kabelya-osk-bronirovannye-v-grunt/opticheskij-kabel-bronirovannyj-okgb-02",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/opticheskij-kabel-okgb-01-400x400.jpeg",
+      "alt": "Конструкция ОКГБ-02 · ОСК"
+    },
+    "osk-22": {
+      "manufacturer": "osk",
+      "mark": "ОКГБ-03",
+      "src": "/references/images/osk-22.jpg",
+      "sourcePage": "https://www.optik-sk.ru/kabel-osk/opticheskie-kabelya-osk-bronirovannye-v-grunt/opticheskij-kabel-bronirovannyj-okgb-03",
+      "original": "https://www.optik-sk.ru/image/cache/catalog/kabel-osk/okgb-03-400x400.jpeg",
+      "alt": "Конструкция ОКГБ-03 · ОСК"
     }
   }
 }
