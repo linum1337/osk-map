@@ -14,7 +14,7 @@ with tempfile.TemporaryDirectory() as tmp:
  def auth(name,pw):return {'Authorization':'Basic '+base64.b64encode(f'{name}:{pw}'.encode()).decode()}
  admin=auth('admin',os.environ['APP_PASSWORD']);manager=auth('Андрей Логинов','portal-manager-password-123')
  for path in ['/','/transport/','/suppliers/','/companies/','/api/records','/suppliers/data.js']:
-  assert c.get(path).status_code==401,path
+  assert c.get(path).status_code==(302 if path in server.PORTAL_PAGES else 401),path
   for headers in [admin,manager]:assert c.get(path,headers=headers).status_code==200,path
  home=c.get('/',headers=admin).get_data(as_text=True)
  for path in ['/transport/','/suppliers/','/companies/','/warehouse/']:assert f'href="{path}"' in home

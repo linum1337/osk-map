@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690"><defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="none" stroke="#1959a6" stroke-width="1.6"/></marker><linearGradient id="body" x2="0" y2="1"><stop stop-color="#52677c"/><stop offset=".45" stop-color="#20394e"/><stop offset="1" stop-color="#10293f"/></linearGradient></defs><rect width="1200" height="690" rx="22" fill="#f5f8fd"/><g font-family="Arial, sans-serif" fill="#203248">
+<text x="54" y="62" font-size="32" font-weight="700">Кабель и волокно — разные части</text>
+<text x="54" y="99" font-size="21" fill="#58718b">Внутри одного кабеля может находиться несколько волокон</text>
+<path d="M115 258h395v170H115a45 85 0 0 1 0-170" fill="url(#body)"/>
+<ellipse cx="510" cy="343" rx="61" ry="85" fill="#6f8397" stroke="#213b50" stroke-width="7"/>
+<ellipse cx="510" cy="343" rx="43" ry="64" fill="#dce7f1"/>
+<ellipse cx="510" cy="343" rx="25" ry="44" fill="#f6f9fc"/>
+<g fill="none" stroke-width="7" stroke-linecap="round">
+<path d="M510 318C665 318 688 225 950 225" stroke="#2d72c1"/>
+<path d="M510 329C665 329 688 280 950 280" stroke="#d19b30"/>
+<path d="M510 340C665 340 700 335 950 335" stroke="#3d9975"/>
+<path d="M510 351C665 351 700 390 950 390" stroke="#aa68a0"/>
+<path d="M510 362C665 362 688 445 950 445" stroke="#db7256"/>
+</g>
+<text x="81" y="186" font-size="25" font-weight="700">Оболочка кабеля</text>
+<text x="81" y="216" font-size="20" fill="#58718b">наружная защита</text>
+<path d="M300 224v65" stroke="#1959a6" stroke-width="2.5" fill="none"/>
+<circle cx="300" cy="289" r="5" fill="#1959a6"/>
+<text x="710" y="159" font-size="25" font-weight="700">Оптические волокна</text>
+<text x="710" y="189" font-size="20" fill="#58718b">показаны в цветном покрытии</text>
+<path d="M1040 223h-45v223h45" fill="none" stroke="#1959a6" stroke-width="2.5"/>
+<path d="M958 198h64v25" fill="none" stroke="#1959a6" stroke-width="2.5"/>
+<rect x="45" y="515" width="535" height="100" rx="12" fill="white" stroke="#d2e0ef"/>
+<text x="70" y="554" font-size="24" font-weight="700">Кабель</text><text x="70" y="587" font-size="21">Общая конструкция с защитой</text>
+<rect x="605" y="515" width="550" height="100" rx="12" fill="white" stroke="#d2e0ef"/>
+<text x="630" y="554" font-size="24" font-weight="700">Волокно</text><text x="630" y="587" font-size="21">Тонкая стеклянная нить для сигнала</text>
+<text x="54" y="653" font-size="18" fill="#58718b">Учебная схема без масштаба. Состав защитных элементов зависит от конструкции кабеля.</text>
+</g></svg>

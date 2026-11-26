@@ -59,14 +59,16 @@ for module in ('transport','suppliers'):
   for file in bootstrap.iterdir():
    if file.is_file() and not (target/file.name).exists():shutil.copy2(file,target/file.name)
 
+PORTAL_PAGES={'/','/index.html','/transport','/transport/','/suppliers','/suppliers/','/companies','/companies/','/requests','/requests/','/warehouse','/warehouse/','/admin','/admin/','/training','/training/','/training/optical-cable/'}
+
 @app.before_request
 def guard():
- if request.path in ('/healthz','/login','/login.css','/assets/osk-logo.png'):return
+ if request.path in ('/healthz','/login','/login.css','/login.js','/assets/osk-logo.png'):return
  g.user=session_user()
  auth=request.authorization
  if not g.user and auth and auth.type.lower()=='basic':g.user,_=account(auth.username or '',auth.password or '')
  if not g.user:
-  if request.method=='GET' and request.accept_mimetypes.best=='text/html' and not request.path.startswith(('/api/','/warehouse/api/')):
+  if request.method in ('GET','HEAD') and (request.path in PORTAL_PAGES or request.accept_mimetypes.best=='text/html' or request.headers.get('Sec-Fetch-Dest')=='document') and not request.path.startswith(('/api/','/warehouse/api/')):
    return redirect('/login?next='+request.path)
   return jsonify(error='Требуется вход'),401
  if request.path=='/training' or request.path.startswith('/training/'):
@@ -100,9 +102,14 @@ def login_page():
  error=''
  if 'login_csrf' not in session:session['login_csrf']=secrets.token_urlsafe(32)
  next_page=request.values.get('next','/')
- if next_page.split('?')[0]=='/admin':next_page='/admin/'
- if next_page.split('?')[0]=='/training':next_page='/training/'
- if next_page.split('?')[0] not in ('/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/','/admin/','/training/','/training/optical-cable/'):next_page='/'
+ try:
+  target=urlsplit(next_page)
+  allowed={'/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/','/admin/','/training/','/training/optical-cable/'}
+  path=target.path
+  if path in ('/transport','/suppliers','/companies','/requests','/warehouse','/admin','/training'):path+='/'
+  if target.scheme or target.netloc or path not in allowed or any(char in next_page for char in ('\\','\r','\n')):next_page='/'
+  else:next_page=target._replace(path=path).geturl()
+ except ValueError:next_page='/'
  if request.method=='POST':
   origin=request.headers.get('Origin')
   token=request.form.get('csrf','')

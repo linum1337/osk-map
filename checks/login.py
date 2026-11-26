@@ -16,6 +16,20 @@ with tempfile.TemporaryDirectory() as tmp:
  def post(data,headers=None):return c.post('/login',base_url=base,data=data,headers=headers or {})
  r=get('/',headers={'Accept':'text/html'});assert r.status_code==302 and '/login' in r.location
  assert get('/api/me').status_code==401
+ # Top-level documents redirect even with Accept */*, missing Accept or an expired session.
+ for path in server.PORTAL_PAGES:
+  for headers in ({},{'Accept':'*/*'},{'Sec-Fetch-Dest':'document'}):
+   for method in ('get','head'):
+    response=getattr(c,method)(path,base_url=base,headers=headers)
+    assert response.status_code==302 and response.location.startswith('/login?next='),(path,method)
+ for path in ('/api/me','/api/records','/warehouse/api/items','/api/admin/overview'):
+  assert get(path,headers={'Accept':'text/html','Sec-Fetch-Dest':'document'}).status_code==401,path
+ assert get('/training/assets/signal-path.svg').status_code==401
+ assert get('/login.js').status_code==200
+ for destination,expected in [('/training/optical-cable/#basics','/training/optical-cable/#basics'),('/training','/training/'),('/companies/?filter=test#table','/companies/?filter=test#table'),('https://evil.invalid/','/'),('//evil.invalid/','/'),('/training/optical-cable/\\evil','/'),('/training/optical-cable/\nX-Test:yes','/')]:
+  token=csrf();r=post({'login':'admin','password':os.environ['APP_PASSWORD'],'csrf':token,'next':destination})
+  assert r.status_code==303 and r.location==expected,(destination,r.location)
+  c.post('/logout',base_url=base,headers={'X-Requested-With':'OSK-Map'})
  token=csrf();assert post({'login':'admin','password':os.environ['APP_PASSWORD']}).status_code==403
  assert post({'login':'admin','password':os.environ['APP_PASSWORD'],'csrf':token},headers={'Origin':'https://evil.invalid'}).status_code==403
  r=post({'login':'admin','password':os.environ['APP_PASSWORD'],'csrf':token,'next':'//evil.invalid'});assert r.status_code==303 and r.location=='/'

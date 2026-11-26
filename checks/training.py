@@ -10,9 +10,9 @@ with tempfile.TemporaryDirectory() as tmp:
  admin=basic('admin',os.environ['APP_PASSWORD'])
  for role in ('manager','warehouse'):
   response=client.post('/api/admin/accounts',headers=admin,json={'login':'Training '+role,'password':'training-fixture-pw','role':role});assert response.status_code==201,response.json
- paths=['/training','/training/','/training/index.html','/training/optical-cable/','/training/optical-cable/index.html','/training/optical-cable/course.json','/training/training.js','/training/training.css','/companies/training/index.html','/companies/training/optical-cable/course.json','/companies/training/training.js','/companies/training/training.css']
+ paths=['/training/assets/signal-path.svg','/training/assets/cable-and-fibres.svg','/companies/training/assets/signal-path.svg','/training','/training/','/training/index.html','/training/optical-cable/','/training/optical-cable/index.html','/training/optical-cable/course.json','/training/training.js','/training/training.css','/companies/training/index.html','/companies/training/optical-cable/course.json','/companies/training/training.js','/companies/training/training.css']
  for path in paths:
-  assert client.get(path).status_code==401,path
+  assert client.get(path).status_code==(302 if path in server.PORTAL_PAGES else 401),path
   for role in ('manager','warehouse'):
    auth=basic('Training '+role,'training-fixture-pw')
    for method in ('get','head'):
