@@ -5,7 +5,7 @@ from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,sen
 from werkzeug.middleware.proxy_fix import ProxyFix
 # Minimal container images may not include WebP in the system MIME database.
 mimetypes.add_type("image/webp", ".webp")
-import site_backup,admin_store,admin_routes,section_access
+import site_backup,admin_store,admin_routes,section_access,closure_prices
 import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import,supplier_catalog,contact_enrichment,warehouse_store,warehouse_routes
 ROOT=Path(__file__).resolve().parent
 USERNAME=os.environ.get('APP_USER','osk')
@@ -308,6 +308,7 @@ def transport_index():
 @app.get('/<path:name>')
 def static_file(name):return send_from_directory(ROOT/'app',name)
 
+closure_prices.register(app,USERNAME)
 warehouse_routes.register(app,USERNAME)
 
 admin_routes.register(app,USERNAME)
