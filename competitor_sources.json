@@ -1,0 +1,86 @@
+[
+  {
+    "id": "lanset",
+    "name": "Лансет",
+    "url": "https://lanset.ru/",
+    "seeds": [
+      "https://lanset.ru/category/mednye-kabeli/",
+      "https://lanset.ru/category/kabeli-opticheskie/",
+      "https://lanset.ru/category/kabelnye-katushki-barabany/",
+      "https://lanset.ru/category/krossovoe-oborudovanie/",
+      "https://lanset.ru/category/instrumenty-dlja-montazha/",
+      "https://lanset.ru/category/oborudovanie-dlya-gpon/",
+      "https://lanset.ru/category/svarochnye-apparaty-i-aksessuary/",
+      "https://lanset.ru/category/setevoe-oborudovanie/",
+      "https://lanset.ru/category/uzly-kreplenija-podvesy/",
+      "https://lanset.ru/category/antivandalnye-jashiki/"
+    ]
+  },
+  {
+    "id": "nag",
+    "name": "НАГ",
+    "url": "https://shop.nag.ru/",
+    "seeds": [
+      "https://shop.nag.ru/catalog/31384.sistemy-opticheskogo-transporta-xwdm-xpon",
+      "https://shop.nag.ru/catalog/31352.kabelnaya-produktsiya-sks-i-komponenty-vols",
+      "https://shop.nag.ru/catalog/31318.instrumentmaterialy-dlya-montazha"
+    ]
+  },
+  {
+    "id": "install",
+    "name": "Инсталл",
+    "url": "https://install-ltd.ru/",
+    "seeds": [
+      "https://install-ltd.ru/catalog/telekommunikatsionnye_seti_1/"
+    ]
+  },
+  {
+    "id": "pkk",
+    "name": "Поволжская кабельная компания",
+    "url": "https://www.pkk63.ru/",
+    "seeds": [
+      "https://www.pkk63.ru/catalog/"
+    ]
+  },
+  {
+    "id": "yotta",
+    "name": "Yottacom",
+    "url": "http://yottacom.ru/",
+    "seeds": [
+      "http://yottacom.ru/katalog-tovarov"
+    ]
+  },
+  {
+    "id": "nk",
+    "name": "НК-Групп",
+    "url": "https://nk-groupltd.ru/",
+    "seeds": [
+      "https://nk-groupltd.ru/product-category/cistemy-uplotneniya-cwdm-dwdm/",
+      "https://nk-groupltd.ru/product-category/aktivnoe-oborudovanie/",
+      "https://nk-groupltd.ru/product-category/attenyuatory-opticheskie/",
+      "https://nk-groupltd.ru/product-category/izmeritelnoe-oborudovanie/",
+      "https://nk-groupltd.ru/product-category/instrumenty-i-rashodnye-materialy/",
+      "https://nk-groupltd.ru/product-category/opticheskij-kabel/",
+      "https://nk-groupltd.ru/product-category/kabelnaya-armatura/",
+      "https://nk-groupltd.ru/product-category/kabelnye-sborki/",
+      "https://nk-groupltd.ru/product-category/kabelnye-chulki/",
+      "https://nk-groupltd.ru/product-category/krossy-opticheskie/",
+      "https://nk-groupltd.ru/product-category/mufty-opticheskie/",
+      "https://nk-groupltd.ru/product-category/patch-kordy-opticheskie/",
+      "https://nk-groupltd.ru/product-category/pigtejly/",
+      "https://nk-groupltd.ru/product-category/opticheskie-razvetviteli/",
+      "https://nk-groupltd.ru/product-category/rozetki-i-konnektory/",
+      "https://nk-groupltd.ru/product-category/uzk-ustrojstvo-zakladki/",
+      "https://nk-groupltd.ru/product-category/shkafy-telekommunikatsionnye/",
+      "https://nk-groupltd.ru/product-category/elementi-sks/"
+    ]
+  },
+  {
+    "id": "optikkom",
+    "name": "Оптик Ком",
+    "url": "https://www.optik-kom.ru/",
+    "seeds": [
+      "https://www.optik-kom.ru/catalog"
+    ]
+  }
+]

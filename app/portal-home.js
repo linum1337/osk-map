@@ -8,3 +8,5 @@ if(user.permissions?.training){const a=document.createElement('a');a.className='
 if(user.permissions?.references){const a=document.createElement('a');a.className='portal-card';a.id='references-card';a.href='/references/';a.innerHTML='<span class="card-label">ЗНАНИЕ ПРОДУКТА</span><h2>Справочные материалы</h2><p>Аналоги оптического кабеля России и Беларуси: конструкции, отличия, сравнение и заводские источники.</p><span class="open-section">Открыть справочник</span>';document.querySelector('.portal-cards').append(a)}
 
 for(const a of document.querySelectorAll('.portal-card[href],a[href="/requests/"]')){const key=a.getAttribute("href").split("/")[1];if(key&&key!=="admin"&&!user.permissions?.[key])a.hidden=true}
+
+if(user.permissions?.competitors){const a=document.createElement('a');a.className='portal-card';a.id='competitors-card';a.href='/competitors/';a.innerHTML='<span class="card-label">РЫНОК</span><h2>Продукция и цены конкурентов</h2><p>Товары для сетей связи, характеристики, виды цен и история изменений.</p><span class="open-section">Открыть сравнение</span>';document.querySelector('.portal-cards').append(a)}
