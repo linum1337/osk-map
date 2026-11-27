@@ -686,7 +686,7 @@
       "module": "Модули в повиве",
       "armor": "Уточнить по исполнению",
       "strength": "Стальной или диэлектрический — уточнить",
-      "construction": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "construction": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "differences": "Эта строка не подтверждает материал несущего элемента: нужна полная марка. Размеры, диапазон усилий, исполнение оболочки и документы сравнивают по двум полным спецификациям. Один тип конструкции не означает совпадение всех характеристик."
     },
     {
@@ -696,7 +696,7 @@
       "module": "Центральный модуль",
       "armor": "Уточнить по исполнению",
       "strength": "Стальной или диэлектрический — уточнить",
-      "construction": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "construction": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "differences": "Эта строка не подтверждает материал несущего элемента: нужна полная марка. Размеры, диапазон усилий, исполнение оболочки и документы сравнивают по двум полным спецификациям. Один тип конструкции не означает совпадение всех характеристик."
     },
     {
@@ -1760,7 +1760,7 @@
       "mark": "ОСД",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение.",
+      "note": "",
       "constructionDescription": "Круглый кабель с распределёнными арамидными силовыми нитями; без выносного троса.",
       "constructionBasis": "group"
     },
@@ -1771,7 +1771,7 @@
       "mark": "ДС",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/podvesnoy-vok/kabel-lep-dlya-podvesa-ds/",
@@ -1815,7 +1815,7 @@
       "mark": "ОКСМ, ОКСД",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/samonesushchiy/oksd/",
@@ -1950,7 +1950,7 @@
       "mark": "ОКСНМ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-mnogomodulnye-samonesushhie/",
@@ -1994,7 +1994,7 @@
       "mark": "ОКА-М",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://altayok.ru/catalog/podvesnoj-samonesushhij/oka-m/",
@@ -2038,7 +2038,7 @@
       "mark": "ОСД",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение.",
+      "note": "",
       "constructionDescription": "Оптические модули скручены вокруг центрального силового элемента. Упрочняющий повив выполнен из стеклонитей; снаружи расположена защитная полиэтиленовая оболочка.",
       "constructionBasis": "manufacturer",
       "descriptionLinks": [
@@ -2060,7 +2060,7 @@
       "mark": "ДС",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/podvesnoy-vok/kabel-lep-dlya-podvesa-ds/",
@@ -2100,7 +2100,7 @@
       "mark": "ОКСМ, ОКСД",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/samonesushchiy/oksd/",
@@ -2185,7 +2185,7 @@
       "mark": "ОКСНМ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение.",
+      "note": "",
       "constructionDescription": "Круглый кабель с несущими стеклонитями, без выносного троса.",
       "constructionBasis": "group"
     },
@@ -2218,7 +2218,7 @@
       "mark": "ОКА-М",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Марка встречается в нескольких конструктивных группах. Требуется полное исполнение.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://altayok.ru/catalog/podvesnoj-samonesushhij/oka-m/",
@@ -2763,7 +2763,7 @@
       "mark": "ОКС Simplex",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/oks/",
@@ -2784,7 +2784,7 @@
       "mark": "ОКД Duplex",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okd/",
@@ -2805,7 +2805,7 @@
       "mark": "ОКР Distribution",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okr1/",
@@ -2826,7 +2826,7 @@
       "mark": "ОКВ Riser",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okv1/",
@@ -2847,7 +2847,7 @@
       "mark": "ОКДП Drop",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okdp/",
@@ -2868,7 +2868,7 @@
       "mark": "ОКДП Drop с выносным элементом",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okdp/",
@@ -2886,7 +2886,7 @@
       "mark": "КСО-ВнАнг…- СШ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-9/",
@@ -2907,7 +2907,7 @@
       "mark": "КСО-ВнАнгДШ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-15/",
@@ -2928,7 +2928,7 @@
       "mark": "КСО-Вннг-…-Р",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Распределительная конструкция для внутренней разводки; устройство буфера, модулей и доступа к волокнам зависит от серии.",
       "constructionBasis": "group"
     },
@@ -2939,7 +2939,7 @@
       "mark": "КСО-Вннг-…-В",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-14/",
@@ -2960,7 +2960,7 @@
       "mark": "КСО-Внг-…-Д",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Волокна расположены между двумя продольными элементами в компактной плоской оболочке.",
       "constructionBasis": "group"
     },
@@ -2971,7 +2971,7 @@
       "mark": "КСО-Внг-…-Д-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-12/",
@@ -2993,7 +2993,7 @@
       "mark": "ИКВА",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Одноволоконная конструкция для шнуров и внутриобъектовых соединений.",
       "constructionBasis": "group"
     },
@@ -3004,7 +3004,7 @@
       "mark": "ИКВД2-П",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Двухволоконная конструкция для соединительных шнуров и внутренней разводки.",
       "constructionBasis": "group"
     },
@@ -3015,7 +3015,7 @@
       "mark": "ИКВА-П",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Распределительная конструкция для внутренней разводки; устройство буфера, модулей и доступа к волокнам зависит от серии.",
       "constructionBasis": "group"
     },
@@ -3026,7 +3026,7 @@
       "mark": "ИКВД2-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Распределительная конструкция для внутренней разводки; устройство буфера, модулей и доступа к волокнам зависит от серии.",
       "constructionBasis": "group"
     },
@@ -3037,7 +3037,7 @@
       "mark": "ИКВД2",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Волокна расположены между двумя продольными элементами в компактной плоской оболочке.",
       "constructionBasis": "group"
     },
@@ -3048,7 +3048,7 @@
       "mark": "ИКВД2/Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Абонентская оптическая часть соединена с отдельным несущим элементом.",
       "constructionBasis": "group"
     },
@@ -3059,7 +3059,7 @@
       "mark": "ВКО (Simplex)",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Одноволоконная конструкция для шнуров и внутриобъектовых соединений.",
       "constructionBasis": "group"
     },
@@ -3070,7 +3070,7 @@
       "mark": "ВКО (Duplex)",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Двухволоконная конструкция для соединительных шнуров и внутренней разводки.",
       "constructionBasis": "group"
     },
@@ -3081,7 +3081,7 @@
       "mark": "ВКОр",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/raspredelitelnyy-vkor/",
@@ -3102,7 +3102,7 @@
       "mark": "ВКОСр",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/vkosr/",
@@ -3123,7 +3123,7 @@
       "mark": "ВКОД, ВКОС",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/vkodnga-hf/",
@@ -3150,7 +3150,7 @@
       "mark": "ВКОДД, ВКОСС",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/vkoddnga-hf/",
@@ -3177,7 +3177,7 @@
       "mark": "ОКВнг(D)-С-1",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Одноволоконная конструкция для шнуров и внутриобъектовых соединений.",
       "constructionBasis": "group"
     },
@@ -3188,7 +3188,7 @@
       "mark": "ОКВнг(D)-Д-2",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Двухволоконная конструкция для соединительных шнуров и внутренней разводки.",
       "constructionBasis": "group"
     },
@@ -3199,7 +3199,7 @@
       "mark": "ОКВнг(D)-РД",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Распределительная конструкция для внутренней разводки; устройство буфера, модулей и доступа к волокнам зависит от серии.",
       "constructionBasis": "group"
     },
@@ -3210,7 +3210,7 @@
       "mark": "ОКВнг(D)-Р",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "constructionDescription": "Распределительная конструкция для внутренней разводки; устройство буфера, модулей и доступа к волокнам зависит от серии.",
       "constructionBasis": "group"
     },
@@ -3221,7 +3221,7 @@
       "mark": "ОКПА-П",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/okpa-p/",
@@ -3243,7 +3243,7 @@
       "mark": "ОКПА-П/С, ОКПАП/П ОКПА-С/П, ОКПА-С/С",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Внутриобъектовое и абонентское исполнение уточняется по полному обозначению.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/okpa-p-p/",
@@ -4599,7 +4599,7 @@
       "mark": "ДОЛ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "images": [
         "incab-dol"
       ],
@@ -4665,7 +4665,7 @@
       "mark": "ОКК, ОКК-Л",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://okabel.ru/okk",
@@ -4686,7 +4686,7 @@
       "mark": "ОКД, ОКМ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "constructionDescription": "Оптические модули скручены вокруг центрального силового элемента. Защита включает стальную гофрированную ленту и наружную полимерную оболочку.",
       "constructionBasis": "manufacturer",
       "descriptionLinks": [
@@ -4708,7 +4708,7 @@
       "mark": "ДПб",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/vok-v-kanalizatsiyu/kabel-v-kanalizatsiyu-opticheskiy-bronirovannyy-stalnoy-gofrirovannoy-lentoy-dbp/",
@@ -4730,7 +4730,7 @@
       "mark": "ДОЛ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://ocs01.ru/catalog/grunt_dol",
@@ -4763,7 +4763,7 @@
       "mark": "ОККМ, ОКЗмС",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/dlya-kabelnoy-kanalizatsii/okkm/",
@@ -4784,7 +4784,7 @@
       "mark": "ОКЛм",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/oklm/",
@@ -4817,7 +4817,7 @@
       "mark": "ОКЗ-СО, ОКЗ-САО",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "constructionDescription": "Сердечник из модулей, броня из стальной ленты, наружная полимерная оболочка.",
       "constructionBasis": "group"
     },
@@ -4828,7 +4828,7 @@
       "mark": "ОКСЛ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "constructionDescription": "Сердечник из модулей, броня из стальной ленты, наружная полимерная оболочка.",
       "constructionBasis": "group"
     },
@@ -4839,7 +4839,7 @@
       "mark": "ДОЛ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://opten.spb.ru/ru/catalog/kabeli-dlya-prokladki-v-kabelnuyu-kanalizatsiyu/dpl-dol.html",
@@ -4860,7 +4860,7 @@
       "mark": "ОКСТМ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-2/",
@@ -4882,7 +4882,7 @@
       "mark": "ИКСЛ-М",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-obychnoy-obolochke/iksl-m/",
@@ -4904,7 +4904,7 @@
       "mark": "ОКСЛ-М",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://altayok.ru/catalog/dlya-prokladki-v-kanalizacziyu/oksl-m/",
@@ -5661,7 +5661,7 @@
       "mark": "ДОТа",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "images": [
         "incab-dota"
       ],
@@ -5683,7 +5683,7 @@
       "mark": "ДОТс",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "images": [
         "incab-dots"
       ],
@@ -5716,7 +5716,7 @@
       "mark": "ДОТ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://ocs01.ru/catalog/fall_dot",
@@ -5738,7 +5738,7 @@
       "mark": "ДОТс",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://ocs01.ru/catalog/fall_dots",
@@ -5760,7 +5760,7 @@
       "mark": "ОККМ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/okkm/",
@@ -5782,7 +5782,7 @@
       "mark": "ОККМС",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/okkms/",
@@ -5804,7 +5804,7 @@
       "mark": "ДОТ",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://opten.spb.ru/ru/catalog/category-4/dpt-dot/marka-dot.html",
@@ -5825,7 +5825,7 @@
       "mark": "ИКАЛ-М",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://intg.ru/catalog/kabel-opticheskiy/samonesushij/v-obychnoj-obolochke/ikal/ikal-m/",
@@ -5847,7 +5847,7 @@
       "mark": "ИКАЛс-М",
       "source": "incab",
       "kind": "crosswalk",
-      "note": "Облегчённое исполнение; промежуточную оболочку и механику сверить.",
+      "note": "Облегчённое исполнение.",
       "descriptionLinks": [
         {
           "url": "https://intg.ru/catalog/kabel-opticheskiy/samonesushij/v-obychnoj-obolochke/ikal/ikals-m/",
@@ -7909,7 +7909,7 @@
       "mark": "ТПОд2",
       "source": "incab-tpod",
       "kind": "catalog",
-      "note": "Прямая карточка: плоское исполнение, центральная полимерная трубка и два стеклопрутка.",
+      "note": "плоское исполнение, центральная полимерная трубка и два стеклопрутка.",
       "attributes": {
         "module": "Центральная полимерная трубка",
         "strength": "Два стеклопластиковых прутка",
@@ -8382,7 +8382,7 @@
       "mark": "ОКГМд",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/dlya-grunta/okgmd/",
@@ -8403,7 +8403,7 @@
       "mark": "ОКГЦд",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/dlya-grunta/okgtsd/",
@@ -8424,7 +8424,7 @@
       "mark": "ОКСЦ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/samonesushchiy/oksts/",
@@ -8445,7 +8445,7 @@
       "mark": "ОКПМ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/podvesnoy-s-vynosnym-silovym-elementom/okpm/",
@@ -8456,7 +8456,7 @@
       "images": [
         "factory-c5ab38a7e8db7646"
       ],
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -8466,7 +8466,7 @@
       "mark": "ОКПЦ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/podvesnoy-s-vynosnym-silovym-elementom/okpts/",
@@ -8477,7 +8477,7 @@
       "images": [
         "factory-1ff8b8d9f4ddd1e9"
       ],
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -8487,7 +8487,7 @@
       "mark": "ОКПП",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/podvesnoy-s-vynosnym-silovym-elementom/okpp/",
@@ -8508,7 +8508,7 @@
       "mark": "ОКТЦ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/dlya-zaduvki-v-truby/oktts/",
@@ -8529,7 +8529,7 @@
       "mark": "ОКС-М ОКСЛ-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://altayok.ru/catalog/dlya-prokladki-v-kanalizacziyu/oks-m/",
@@ -8557,7 +8557,7 @@
       "mark": "ОКА-Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Центральный оптический модуль и распределённые арамидные силовые элементы.",
       "constructionBasis": "group"
     },
@@ -8568,7 +8568,7 @@
       "mark": "ОК/Т-М ОК/Д-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://altayok.ru/catalog/podvesnoj-s-vneshnim-nesushhim-elementom/okd-m/",
@@ -8596,7 +8596,7 @@
       "mark": "ОК/Т-Т ОК/Д-Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://altayok.ru/catalog/podvesnoj-s-vneshnim-nesushhim-elementom/okt-t/",
@@ -8624,7 +8624,7 @@
       "mark": "ОКСНМт ОКСНМп",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-5/",
@@ -8635,7 +8635,7 @@
       "images": [
         "factory-884bd987372f438d"
       ],
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -8645,7 +8645,7 @@
       "mark": "ОКСНЦт ОКСНЦп",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-5/",
@@ -8653,7 +8653,7 @@
           "kind": "product"
         }
       ],
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -8663,7 +8663,7 @@
       "mark": "ОКД, ОКМ ОКМН",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Оптические модули скручены вокруг центрального силового элемента. Защита включает стальную гофрированную ленту и наружную полимерную оболочку.",
       "constructionBasis": "manufacturer",
       "descriptionLinks": [
@@ -8685,7 +8685,7 @@
       "mark": "ОПД",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Оптические модули из ПБТ скручены вокруг центрального стеклопластикового стержня. Межмодульное пространство заполнено гидрофобным составом. Выносной несущий элемент — стальной трос; наружная оболочка — полиэтилен высокой плотности.",
       "constructionBasis": "manufacturer",
       "descriptionLinks": [
@@ -8707,7 +8707,7 @@
       "mark": "ОПЦ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Волокна с гидрофобным заполнителем находятся в центральном оптическом модуле. Выносной несущий элемент и оптическая часть объединены общей полимерной оболочкой.",
       "constructionBasis": "manufacturer",
       "descriptionLinks": [
@@ -8729,7 +8729,7 @@
       "mark": "ОТД ОТМ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Оптические модули с волокнами и кордели скручены вокруг центрального силового элемента. В ОТД применяется стеклопластиковый элемент, в ОТМ — стальной трос с полиэтиленовым покрытием. Снаружи расположена полимерная оболочка.",
       "constructionBasis": "manufacturer",
       "descriptionLinks": [
@@ -8751,7 +8751,7 @@
       "mark": "ДПС ДПС2",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/in-ground/dps/",
@@ -8779,7 +8779,7 @@
       "mark": "ТОС ТОС2",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Волокна размещены в центральной трубке; снаружи проволочная броня и защитная оболочка.",
       "constructionBasis": "group"
     },
@@ -8790,7 +8790,7 @@
       "mark": "ДПЛ ДОЛ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/in-duct/dol/",
@@ -8818,7 +8818,7 @@
       "mark": "ДОТс ДПТс",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/in-air/dots/",
@@ -8846,7 +8846,7 @@
       "mark": "ДПТ, ДПТа ДОТа",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "images": [
         "incab-dpt"
       ],
@@ -8873,7 +8873,7 @@
       "mark": "ДПОм ДПОд",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/in-air-8/dpom/",
@@ -8895,7 +8895,7 @@
       "mark": "ТПОм ТПОд",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/in-air-8/tpom/",
@@ -8917,7 +8917,7 @@
       "mark": "ТПОд2 ОМП-2д",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/drop/drop-kabel-omp-2d/",
@@ -8945,7 +8945,7 @@
       "mark": "ДПО",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "images": [
         "incab-dpo"
       ],
@@ -8967,7 +8967,7 @@
       "mark": "ИКП…-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Сердечник защищён диэлектрическими элементами вместо металлического броневого повива.",
       "constructionBasis": "group"
     },
@@ -8978,7 +8978,7 @@
       "mark": "ИКП…- -Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Сердечник защищён диэлектрическими элементами вместо металлического броневого повива.",
       "constructionBasis": "group"
     },
@@ -8989,7 +8989,7 @@
       "mark": "ИКБ…- М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://intg.ru/catalog/kabel-opticheskiy/v-grunt/v-negoryuchey-obolochke/ikbng-a-hf-m/",
@@ -9011,7 +9011,7 @@
       "mark": "ИКБ…-Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://intg.ru/catalog/kabel-opticheskiy/v-grunt/v-negoryuchey-obolochke/ikbng-a-hf-t/",
@@ -9033,7 +9033,7 @@
       "mark": "ИКС…-М ИКСЛ…-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-negoryuchey-obolochke/iksng-a-hf-m/",
@@ -9061,7 +9061,7 @@
       "mark": "ИКС…-Т ИКСЛ…-Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-negoryuchey-obolochke/iksng-a-hf-t/",
@@ -9083,7 +9083,7 @@
       "mark": "ИКАЛс…-М ИКАс…-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Круглый кабель с несущими стеклонитями, без выносного троса.",
       "constructionBasis": "group"
     },
@@ -9094,7 +9094,7 @@
       "mark": "ИКА…-М ИКАТ…-М ИКАЛ…-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Круглый кабель с распределёнными арамидными силовыми нитями; без выносного троса.",
       "constructionBasis": "group"
     },
@@ -9105,8 +9105,8 @@
       "mark": "ИК/Т…-М ИК/Д…-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "note": "",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -9116,8 +9116,8 @@
       "mark": "ИК/Т…-Т ИК/Д…-Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "note": "",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -9127,7 +9127,7 @@
       "mark": "ИК/Д2",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://intg.ru/catalog/kabel-opticheskiy/ftth/v-negoryuchey-obolochke/ikd2nga-hf-o/",
@@ -9149,7 +9149,7 @@
       "mark": "ИК…-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://intg.ru/catalog/kabel-opticheskiy/v-truby/v-negoryuchey-obolochke/ikng-a-hf-m/",
@@ -9171,7 +9171,7 @@
       "mark": "ИК…-Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Волокна в одном центральном модуле; исполнение усиления и оболочки уточняется по марке.",
       "constructionBasis": "group"
     },
@@ -9182,7 +9182,7 @@
       "mark": "ДПС, ДП2",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ocs01.ru/catalog/grunt_dps",
@@ -9210,7 +9210,7 @@
       "mark": "ОПС, ОП2",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ocs01.ru/catalog/grunt_ops",
@@ -9238,7 +9238,7 @@
       "mark": "ДПЛ, ДОЛ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ocs01.ru/catalog/grunt_dol",
@@ -9266,7 +9266,7 @@
       "mark": "ДПТс, ДОТс",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ocs01.ru/catalog/fall_dots",
@@ -9294,7 +9294,7 @@
       "mark": "ДПТ, ДОТ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ocs01.ru/catalog/fall_dpt",
@@ -9322,7 +9322,7 @@
       "mark": "ДПК, ДПД",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ocs01.ru/catalog/air_dpk",
@@ -9350,7 +9350,7 @@
       "mark": "ОПК, ОПД",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ocs01.ru/catalog/air_opk",
@@ -9378,7 +9378,7 @@
       "mark": "ДПО",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ocs01.ru/catalog/zpt_dpo",
@@ -9399,7 +9399,7 @@
       "mark": "ДПС, СПС",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://opten.spb.ru/ru/catalog/category-2/dps.html",
@@ -9420,7 +9420,7 @@
       "mark": "ТОС",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://opten.spb.ru/ru/catalog/category-2/marka-tos.html",
@@ -9441,7 +9441,7 @@
       "mark": "ДПЛ, ДОЛ СОЛ, СПЛ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://opten.spb.ru/ru/catalog/kabeli-dlya-prokladki-v-kabelnuyu-kanalizatsiyu/dpl-dol.html",
@@ -9462,7 +9462,7 @@
       "mark": "ДПТ, ДОТ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://opten.spb.ru/ru/catalog/category-4/dpt-dot/marka-dot.html",
@@ -9489,8 +9489,8 @@
       "mark": "ДПВ, ДПИ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "note": "",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -9500,7 +9500,7 @@
       "mark": "ДПО",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://opten.spb.ru/ru/catalog/category-3/dpo.html",
@@ -9521,7 +9521,7 @@
       "mark": "ДСП, ДСМ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/podvesnoy-vok/kabel-lep-dlya-podvesa-ds/",
@@ -9548,7 +9548,7 @@
       "mark": "ДКПа, ДКП",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/vok-v-grunt/bronirovannyy-kabel-stalnymi-provolokami-dkp/",
@@ -9570,7 +9570,7 @@
       "mark": "ДТ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/podvesnoy-vok/podvesnoy-s-nesushchim-trosom-dt/",
@@ -9592,7 +9592,7 @@
       "mark": "ДП",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/vok-dlya-zaduvki-zpt/kabel-opticheskiy-dlya-prokladki-v-spetsialnykh-trubakh-dp/",
@@ -9614,7 +9614,7 @@
       "mark": "ОКЦК, ОКЦПК",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Центральный оптический модуль и распределённые арамидные силовые элементы.",
       "constructionBasis": "group"
     },
@@ -9625,7 +9625,7 @@
       "mark": "ОКДТ ОКСТ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/podvesnoy-s-vynesenym-silovym-elementom-okdt-okst/",
@@ -9636,7 +9636,7 @@
       "images": [
         "factory-3c68d9e5bb236f7b"
       ],
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -9646,7 +9646,7 @@
       "mark": "ОКЦТ ОКЦД",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/oktsd/",
@@ -9663,7 +9663,7 @@
         "factory-f1890466ec857076",
         "factory-5bbdf8e5e02a15cd"
       ],
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -9673,7 +9673,7 @@
       "mark": "ОКЦП",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/drop-kabel-ploskiy-oktsp/",
@@ -9694,7 +9694,7 @@
       "mark": "ОКЛК",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://soccom.ru/catalog/v-grunt/oklk-01-dielektricheskiy/",
@@ -9716,7 +9716,7 @@
       "mark": "ОКЛКМТ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://soccom.ru/catalog/v-grunt/oklk-mt/",
@@ -9738,7 +9738,7 @@
       "mark": "ОКЛСтМТ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://soccom.ru/catalog/v-kabelnuyu-kanalizatsiyu/oklst-mt/",
@@ -9760,7 +9760,7 @@
       "mark": "ОКЛЖ со стеклонит.",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://soccom.ru/catalog/podvesnoy-samonesushchiy/oklzh-01/",
@@ -9779,7 +9779,7 @@
       "mark": "ОКЛЖ ОКЛЖ-(Т)",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://soccom.ru/catalog/podvesnoy-samonesushchiy/oklzh-01/",
@@ -9801,7 +9801,7 @@
       "mark": "ОКЛЖВС(ВД)",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://soccom.ru/catalog/podvesnoj-s-vynesennym-silovym-ehlementom/oklzh-vs-01/",
@@ -9823,7 +9823,7 @@
       "mark": "ОКЛЖВС(ВД)-МТ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://soccom.ru/catalog/podvesnoj-s-vynesennym-silovym-ehlementom/oklzh-vs-01/",
@@ -9834,7 +9834,7 @@
       "images": [
         "factory-dbd2c5c5ca78d880"
       ],
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -9844,7 +9844,7 @@
       "mark": "ОКЛ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://soccom.ru/catalog/v-truby-i-mikrotrubki/okl-01/",
@@ -9866,7 +9866,7 @@
       "mark": "ОКБт",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/okb-t-grunt/",
@@ -9888,7 +9888,7 @@
       "mark": "ОКЛ ОКЛм",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/okl/",
@@ -9916,7 +9916,7 @@
       "mark": "ОКЛс",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Волокна в центральной трубке, снаружи защита стальной лентой и оболочка.",
       "constructionBasis": "group"
     },
@@ -9927,7 +9927,7 @@
       "mark": "ОККМС ОККС",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/okks/",
@@ -9955,7 +9955,7 @@
       "mark": "ОКК ОККм",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/okk/",
@@ -9983,8 +9983,8 @@
       "mark": "ОКТ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "note": "",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -9994,8 +9994,8 @@
       "mark": "ОКТ-Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "note": "",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -10005,7 +10005,7 @@
       "mark": "ОКГ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/okg/",
@@ -10027,7 +10027,7 @@
       "mark": "ОКГ-Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product-category/opticheskie-kabeli/opticheskie-grozotrosy-okgt-opgw/",
@@ -10045,7 +10045,7 @@
       "mark": "ОКБс",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Сердечник защищён диэлектрическими элементами вместо металлического броневого повива.",
       "constructionBasis": "group"
     },
@@ -10056,7 +10056,7 @@
       "mark": "ОКБс- …Ц",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Сердечник защищён диэлектрическими элементами вместо металлического броневого повива.",
       "constructionBasis": "group"
     },
@@ -10067,7 +10067,7 @@
       "mark": "ОКБ-…Ц",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://www.transvoc.ru/product?item=1",
@@ -10085,7 +10085,7 @@
       "mark": "ОКЗ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://www.transvoc.ru/product?item=2",
@@ -10106,7 +10106,7 @@
       "mark": "ОКЗ-…Ц",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://www.transvoc.ru/product?item=2",
@@ -10124,8 +10124,8 @@
       "mark": "ОКП",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "note": "",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -10135,8 +10135,8 @@
       "mark": "ОКП-…Ц",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "note": "",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -10146,7 +10146,7 @@
       "mark": "ОКЗпКд-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://elcable.ru/upload/iblock/736/ha0jwhn9l48g4zbglkp9mlxn61juko6o/1_KHKA_obshchiy_katalog.pdf#page=374",
@@ -10164,7 +10164,7 @@
       "mark": "ОКВАр-Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://elcable.ru/upload/iblock/736/ha0jwhn9l48g4zbglkp9mlxn61juko6o/1_KHKA_obshchiy_katalog.pdf#page=374",
@@ -10182,7 +10182,7 @@
       "mark": "ОКВп/Д-М ОКВп/ Ст-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://elcable.ru/upload/iblock/736/ha0jwhn9l48g4zbglkp9mlxn61juko6o/1_KHKA_obshchiy_katalog.pdf#page=374",
@@ -10190,7 +10190,7 @@
           "kind": "pdf"
         }
       ],
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -10200,7 +10200,7 @@
       "mark": "ОКВп/Д-Т ОКВп/Ст-Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://elcable.ru/upload/iblock/736/ha0jwhn9l48g4zbglkp9mlxn61juko6o/1_KHKA_obshchiy_katalog.pdf#page=374",
@@ -10208,7 +10208,7 @@
           "kind": "pdf"
         }
       ],
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -10218,7 +10218,7 @@
       "mark": "ОК/Т ОК/П",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://elprovod.ru/index.php/page/opticheskiy-kabel-dlya-prokladki-v-grunt-marki-okp",
@@ -10229,7 +10229,7 @@
       "images": [
         "factory-1833491fd21a8741"
       ],
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -10239,7 +10239,7 @@
       "mark": "ОК/Т-Т, ОК/П-Т",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://elprovod.ru/page/opticheskiy-kabel-dlya-prokladki-v-grunt-marki-okp-t",
@@ -10250,7 +10250,7 @@
       "images": [
         "factory-41e85f24aad8d460"
       ],
-      "constructionDescription": "В сводном источнике объединены исполнения с разными материалами выносного элемента.",
+      "constructionDescription": "Оптическая часть и выносной силовой элемент объединены общей оболочкой. Материал силового элемента зависит от исполнения.",
       "constructionBasis": "group"
     },
     {
@@ -10260,7 +10260,7 @@
       "mark": "ОКР Distribution",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okr1/",
@@ -10281,7 +10281,7 @@
       "mark": "ОКР Distribution смикромодулями",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okr1/",
@@ -10302,7 +10302,7 @@
       "mark": "ОКБ Breakout",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10313,7 +10313,7 @@
       "mark": "ОКВ Riser",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okv1/",
@@ -10334,7 +10334,7 @@
       "mark": "ОКВ Riser с микромодулями",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okv1/",
@@ -10355,7 +10355,7 @@
       "mark": "ОКНГ- буферное покрытие",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://altayok.ru/catalog/abonentskij/okng-va/",
@@ -10377,7 +10377,7 @@
       "mark": "ОКНГ - микромодули",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://altayok.ru/catalog/abonentskij/okng-va/",
@@ -10399,7 +10399,7 @@
       "mark": "КСО-Вннг-…-Р",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10410,7 +10410,7 @@
       "mark": "КСО-Вннг- …-Р (mxn)",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10421,7 +10421,7 @@
       "mark": "КСО-Вннг-…-В",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-14/",
@@ -10442,7 +10442,7 @@
       "mark": "КСО-Вннг-…-В (mxn)",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-14/",
@@ -10463,7 +10463,7 @@
       "mark": "ОВНС",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Одно оптическое волокно в буферном покрытии, арамидные нити и безгалогенная оболочка, не распространяющая горение.",
       "constructionBasis": "manufacturer",
       "descriptionLinks": [
@@ -10485,7 +10485,7 @@
       "mark": "ОВНД",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Два оптических волокна в буферном покрытии, арамидные нити и безгалогенная оболочка, не распространяющая горение.",
       "constructionBasis": "manufacturer",
       "descriptionLinks": [
@@ -10507,7 +10507,7 @@
       "mark": "ОВНВ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10518,7 +10518,7 @@
       "mark": "ОВНП-ХпА",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "От одного до четырёх оптических волокон находятся между двумя параллельными стеклопластиковыми прутками. Снаружи нанесена оболочка из негорючего полимерного материала.",
       "constructionBasis": "manufacturer",
       "descriptionLinks": [
@@ -10537,7 +10537,7 @@
       "mark": "ОВП-2Д, ОМП-2Д",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Сводная таблица объединяет разные конструкции. ОМП-2Д имеет модуль: используйте отдельную карточку в группе плоского drop с трубкой.",
+      "note": "ОМП-2Д имеет модуль: плоский drop с трубкой.",
       "images": [
         "incab-omp"
       ],
@@ -10559,7 +10559,7 @@
       "mark": "ИКВА-П",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10570,7 +10570,7 @@
       "mark": "ИКВД2-М",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10581,7 +10581,7 @@
       "mark": "ОБН",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://opten.spb.ru/ru/catalog/raspredelitelnyj-kabelya-dlya-stroitelstva-setej-fttx/obn.html",
@@ -10599,7 +10599,7 @@
       "mark": "ОБН, ОБГ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://opten.spb.ru/ru/catalog/raspredelitelnyj-kabelya-dlya-stroitelstva-setej-fttx/obn.html",
@@ -10620,7 +10620,7 @@
       "mark": "ДБН, ДБГ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://opten.spb.ru/ru/catalog/raspredelitelnyj-kabelya-dlya-stroitelstva-setej-fttx/dbn.html",
@@ -10641,7 +10641,7 @@
       "mark": "ДН (Simplex)",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/vnutriobektovyy/dlya-vnutrenney-prokladki-dn/",
@@ -10660,7 +10660,7 @@
       "mark": "ДН (Duplex)",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/vnutriobektovyy/dlya-vnutrenney-prokladki-dn/",
@@ -10679,7 +10679,7 @@
       "mark": "ДН (Distribution)",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/vnutriobektovyy/dlya-vnutrenney-prokladki-dn/",
@@ -10698,7 +10698,7 @@
       "mark": "ДН (Breakout)",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10709,7 +10709,7 @@
       "mark": "ВКОр",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/raspredelitelnyy-vkor/",
@@ -10730,7 +10730,7 @@
       "mark": "ВКОс",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/vkosnga-hf/",
@@ -10751,7 +10751,7 @@
       "mark": "ВКОСр",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/vkosr/",
@@ -10772,7 +10772,7 @@
       "mark": "ВКОр",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/raspredelitelnyy-vkor/",
@@ -10793,7 +10793,7 @@
       "mark": "ОКВнг(D)-РД",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10804,7 +10804,7 @@
       "mark": "ОКВнг(D)-РМ",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10815,7 +10815,7 @@
       "mark": "ВС",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Одноволоконная конструкция для шнуров и внутриобъектовых соединений.",
       "constructionBasis": "group"
     },
@@ -10826,7 +10826,7 @@
       "mark": "ВД",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Двухволоконная конструкция для соединительных шнуров и внутренней разводки.",
       "constructionBasis": "group"
     },
@@ -10837,7 +10837,7 @@
       "mark": "ВР",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10848,7 +10848,7 @@
       "mark": "ВРП",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10859,7 +10859,7 @@
       "mark": "ВР",
       "source": "mkf",
       "kind": "crosswalk",
-      "note": "Состав кабеля зависит от полного исполнения.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -10870,7 +10870,7 @@
       "mark": "ОКС simplex",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/oks/",
@@ -10891,7 +10891,7 @@
       "mark": "ОКД duplex",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okd/",
@@ -10912,7 +10912,7 @@
       "mark": "ОКД distribution",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okd/",
@@ -10933,7 +10933,7 @@
       "mark": "ОКД breakout",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okd/",
@@ -10954,7 +10954,7 @@
       "mark": "ОКВ rieser",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okv1/",
@@ -10975,7 +10975,7 @@
       "mark": "ОКДП drop",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okdp/",
@@ -10996,7 +10996,7 @@
       "mark": "ОКДП drop с выносным силовым элементом",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://mk-f.ru/product/opticheskiy-kabel/abonentskiy/okdp/",
@@ -11014,7 +11014,7 @@
       "mark": "ОКНГ-буферное покрытие",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -11025,7 +11025,7 @@
       "mark": "КСО-внанг…-сш",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-9/",
@@ -11046,7 +11046,7 @@
       "mark": "КСО-внанг-дш",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-15/",
@@ -11067,7 +11067,7 @@
       "mark": "КСО-вннг-…-р (mxn)",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -11078,7 +11078,7 @@
       "mark": "КСО-вннг-…-в",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-14/",
@@ -11099,7 +11099,7 @@
       "mark": "КСО-внг-…-д",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Волокна в общей оболочке между продольными силовыми элементами, без отдельной центральной модульной трубки.",
       "constructionBasis": "group"
     },
@@ -11110,7 +11110,7 @@
       "mark": "КСО-внг-…-д-м",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-12/",
@@ -11132,7 +11132,7 @@
       "mark": "ОВНП-ХПА",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "От одного до четырёх оптических волокон находятся между двумя параллельными стеклопластиковыми прутками. Снаружи нанесена оболочка из негорючего полимерного материала.",
       "constructionBasis": "manufacturer",
       "descriptionLinks": [
@@ -11151,7 +11151,7 @@
       "mark": "ОМР",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/distribution/omr/",
@@ -11172,7 +11172,7 @@
       "mark": "ОВП-2д; ОМП-2д",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/drop/drop-kabel-omp-2d/",
@@ -11194,7 +11194,7 @@
       "mark": "ИКВД2-п",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Двухволоконная конструкция для соединительных шнуров и внутренней разводки.",
       "constructionBasis": "group"
     },
@@ -11205,7 +11205,7 @@
       "mark": "ИКВА-М",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -11216,7 +11216,7 @@
       "mark": "ИКВД2/т",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Абонентская оптическая часть соединена с отдельным несущим элементом.",
       "constructionBasis": "group"
     },
@@ -11227,7 +11227,7 @@
       "mark": "ДН (simplex)",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/vnutriobektovyy/dlya-vnutrenney-prokladki-dn/",
@@ -11246,7 +11246,7 @@
       "mark": "ДН (duplex)",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://ofsrus.ru/catalog/vnutriobektovyy/dlya-vnutrenney-prokladki-dn/",
@@ -11265,7 +11265,7 @@
       "mark": "ДН (breakout)",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -11276,7 +11276,7 @@
       "mark": "ВКО (simplex)",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Одноволоконная конструкция для шнуров и внутриобъектовых соединений.",
       "constructionBasis": "group"
     },
@@ -11287,7 +11287,7 @@
       "mark": "ВКО (duplex)",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Двухволоконная конструкция для соединительных шнуров и внутренней разводки.",
       "constructionBasis": "group"
     },
@@ -11298,7 +11298,7 @@
       "mark": "ВКОС",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/vkosnga-hf/",
@@ -11319,7 +11319,7 @@
       "mark": "ВКОСР",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/vkosr/",
@@ -11340,7 +11340,7 @@
       "mark": "ВКОД, ВКОС",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://polimet-cable.ru/products/volokonno-opticheskie-kabeli/vkodnga-hf/",
@@ -11367,7 +11367,7 @@
       "mark": "ОКВНГ(d)-С-1",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Одноволоконная конструкция для шнуров и внутриобъектовых соединений.",
       "constructionBasis": "group"
     },
@@ -11378,7 +11378,7 @@
       "mark": "ОКВНГ(d)-Д-2",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Двухволоконная конструкция для соединительных шнуров и внутренней разводки.",
       "constructionBasis": "group"
     },
@@ -11389,7 +11389,7 @@
       "mark": "ОКВНГ(d)-p",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "constructionDescription": "Внутриобъектовая конструкция соответствующего назначения; способ доступа и защита волокон зависят от серии.",
       "constructionBasis": "group"
     },
@@ -11400,7 +11400,7 @@
       "mark": "ОКПА-П",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/okpa-p/",
@@ -11422,7 +11422,7 @@
       "mark": "ОКПА-П/С, ОКПА-П/П ОКПА-С/П, ОКПА-С/С",
       "source": "koscab",
       "kind": "crosswalk",
-      "note": "Точный состав кабеля уточняется по спецификации.",
+      "note": "",
       "descriptionLinks": [
         {
           "url": "https://sarko.ru/product/okpa-p-p/",
@@ -11590,7 +11590,7 @@
       "mark": "ОВК-Г",
       "source": "incab-ovkg",
       "kind": "catalog",
-      "note": "Кандидат к мягким малогабаритным сериям с многопроволочной бронёй.",
+      "note": "",
       "attributes": {
         "module": "Без модульной трубки",
         "armor": "Стальные многопроволочные тросы",
@@ -11722,7 +11722,7 @@
       "mark": "СЛ-ОКМ2Б",
       "source": "starlink",
       "kind": "catalog",
-      "note": "Двойная броня; уточнить устройство слоёв и наличие трубки.",
+      "note": "Двойная броня.",
       "descriptionLinks": [
         {
           "url": "https://npp-starlink.ru/catalog/kabel-opticheskiy-sl-okm2b-bronirovannyy-usilennyy/",
@@ -11845,7 +11845,7 @@
       "mark": "ОКМ2Б",
       "source": "kes",
       "kind": "catalog",
-      "note": "Двойная броня; уточнить устройство слоёв и наличие трубки.",
+      "note": "Двойная броня.",
       "descriptionLinks": [
         {
           "url": "https://cabletrade.ru/upload/katalog_kes.pdf#page=99",
@@ -12003,7 +12003,7 @@
       "mark": "СЛ-ОЭК",
       "source": "starlink",
       "kind": "catalog",
-      "note": "В оптической части разные серии брони; медные жилы сравниваются отдельно.",
+      "note": "В оптической части разные серии брони.",
       "images": [
         "verified-73a517c8a64077dc"
       ],
@@ -12024,7 +12024,7 @@
       "mark": "ОЭК",
       "source": "kes",
       "kind": "catalog",
-      "note": "В оптической части разные серии брони; медные жилы сравниваются отдельно.",
+      "note": "В оптической части разные серии брони.",
       "descriptionLinks": [
         {
           "url": "https://cabletrade.ru/products/vols07/oek/",
@@ -12067,7 +12067,7 @@
       "mark": "КОС-ОКДП",
       "source": "koscab-catalog",
       "kind": "catalog",
-      "note": "Плоский drop с центральной трубкой и стеклопрутками. Кандидат к ТПОд2 и СЛ-ОКПЦ-Д2.",
+      "note": "Плоский drop с центральной трубкой и стеклопрутками.",
       "attributes": {
         "shape": "Плоский"
       },
@@ -12161,7 +12161,7 @@
       "mark": "ДПО (комбинированный)",
       "source": "incab-hybrid",
       "kind": "catalog",
-      "note": "Оптика и медные жилы. Сравнивать с СЛ-ОЭК / ОЭК по устройству обеих частей, жилам и оболочке.",
+      "note": "Оптика и медные жилы.",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/combined-optical-solutions/kombinirovannyj-opticheskij-kabel-dpo/",
@@ -12183,7 +12183,7 @@
       "mark": "ОМК-2Д",
       "source": "incab-hybrid",
       "kind": "catalog",
-      "note": "Оптика и медные жилы. Сравнивать с СЛ-ОЭК / ОЭК по устройству обеих частей, жилам и оболочке.",
+      "note": "Оптика и медные жилы.",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/combined-optical-solutions/kombinirovannyj-opticheskij-kabel-omk-2d/",
@@ -12205,7 +12205,7 @@
       "mark": "ОМП (комбинированный)",
       "source": "incab-hybrid",
       "kind": "catalog",
-      "note": "Оптика и медные жилы. Сравнивать с СЛ-ОЭК / ОЭК по устройству обеих частей, жилам и оболочке.",
+      "note": "Оптика и медные жилы.",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/combined-optical-solutions/kombinirovannyj-opticheskij-kabel-omp/",
@@ -12227,7 +12227,7 @@
       "mark": "ДОЛ (комбинированный)",
       "source": "incab-hybrid",
       "kind": "catalog",
-      "note": "Оптика и медные жилы. Сравнивать с СЛ-ОЭК / ОЭК по устройству обеих частей, жилам и оболочке.",
+      "note": "Оптика и медные жилы.",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/combined-optical-solutions/kombinirovannyj-opticheskij-kabel-dol/",
@@ -12249,7 +12249,7 @@
       "mark": "ДПС (комбинированный)",
       "source": "incab-hybrid",
       "kind": "catalog",
-      "note": "Оптика и медные жилы. Сравнивать с СЛ-ОЭК / ОЭК по устройству обеих частей, жилам и оболочке.",
+      "note": "Оптика и медные жилы.",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/combined-optical-solutions/kombinirovannyj-opticheskij-kabel-dps/",
@@ -12271,7 +12271,7 @@
       "mark": "СЛ-ОКДМ (самонесущий)",
       "source": "slcatalog",
       "kind": "catalog",
-      "note": "Отдельное подвесное исполнение. СЛ-ОКДМ для помещений и вариант 1/1 проверяются по собственной карточке.",
+      "note": "Отдельное подвесное исполнение.",
       "attributes": {
         "module": "Модули в повиве",
         "armor": "Без металлической брони",
@@ -12327,7 +12327,7 @@
       "mark": "СЛ-ОКДМ (внутриобъектовый)",
       "source": "slcatalog",
       "kind": "catalog",
-      "note": "В каталоге завода выделено отдельное внутриобъектовое исполнение; одинаковый префикс с подвесным кабелем не определяет условия прокладки.",
+      "note": "Отдельное внутриобъектовое исполнение; одинаковый префикс с подвесным кабелем не определяет условия прокладки.",
       "attributes": {
         "module": "Полимерные модули",
         "application": "Помещение",
@@ -12354,7 +12354,7 @@
       "mark": "СЛ-ОЭК-П",
       "source": "slcatalog",
       "kind": "catalog",
-      "note": "Плоский вариант с оптической частью и медными жилами. Количество и сечение медных жил, оптическую часть и оболочки сравнивают отдельно.",
+      "note": "Плоский вариант с оптической частью и медными жилами.",
       "attributes": {
         "module": "Оптическая часть и медные жилы",
         "armor": "По полному исполнению",
@@ -12380,7 +12380,7 @@
       "mark": "СЛ-ОЭК-ПЦ",
       "source": "slcatalog",
       "kind": "catalog",
-      "note": "Вариант с выносным несущим элементом. Количество и сечение медных жил, оптическую часть и оболочки сравнивают отдельно.",
+      "note": "Вариант с выносным несущим элементом.",
       "attributes": {
         "module": "Оптическая часть и медные жилы",
         "armor": "По полному исполнению",
@@ -12406,7 +12406,7 @@
       "mark": "СЛ-ОЭК-У",
       "source": "slcatalog",
       "kind": "catalog",
-      "note": "Усиленная универсальная конструкция. Количество и сечение медных жил, оптическую часть и оболочки сравнивают отдельно.",
+      "note": "Усиленная универсальная конструкция.",
       "attributes": {
         "module": "Оптическая часть и медные жилы",
         "armor": "По полному исполнению",
@@ -12432,7 +12432,7 @@
       "mark": "СЛ-ОЭК-НУ",
       "source": "slcatalog",
       "kind": "catalog",
-      "note": "Неусиленная комбинированная конструкция; условия прокладки уточнить по полному исполнению. Количество и сечение медных жил, оптическую часть и оболочки сравнивают отдельно.",
+      "note": "Неусиленная комбинированная конструкция.",
       "attributes": {
         "module": "Оптическая часть и медные жилы",
         "armor": "По полному исполнению",
@@ -12464,7 +12464,7 @@
         "strength": "Центральный стеклопластиковый пруток",
         "construction": "Огнестойкий модульный кабель; защита: стальные оцинкованные проволоки. Оболочка и предел огнестойкости зависят от исполнения."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "note": "FRHF и FRLSLTx — разные пожарные исполнения.",
       "descriptionLinks": [
         {
           "url": "https://spkb.ru/catalog/fireproof-optical-cables/sp-okbng-a-frhf/",
@@ -12489,7 +12489,7 @@
         "strength": "Уточнить по карточке исполнения",
         "construction": "Огнестойкое бронированное исполнение, присутствует в заводском каталоге. Подробное устройство этой карточки не подтверждено."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "note": "FRHF и FRLSLTx — разные пожарные исполнения.",
       "constructionDescription": "Конструкция с подтверждаемой огнестойкостью; устройство сердечника и брони зависит от марки. Броня: Бронированный; устройство уточнить.",
       "constructionBasis": "group"
     },
@@ -12506,7 +12506,7 @@
         "strength": "Центральный стеклопластиковый пруток",
         "construction": "Огнестойкий модульный кабель; защита: лента из оцинкованной стали. Оболочка и предел огнестойкости зависят от исполнения."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "note": "FRHF и FRLSLTx — разные пожарные исполнения.",
       "descriptionLinks": [
         {
           "url": "https://spkb.ru/catalog/fireproof-optical-cables/sp-oksng-a-frhf/",
@@ -12531,7 +12531,7 @@
         "strength": "Уточнить по карточке исполнения",
         "construction": "Огнестойкое бронированное исполнение, присутствует в заводском каталоге. Подробное устройство этой карточки не подтверждено."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "note": "FRHF и FRLSLTx — разные пожарные исполнения.",
       "constructionDescription": "Конструкция с подтверждаемой огнестойкостью; устройство сердечника и брони зависит от марки. Броня: Бронированный; устройство уточнить.",
       "constructionBasis": "group"
     },
@@ -12548,7 +12548,7 @@
         "strength": "Центральный стеклопластиковый пруток",
         "construction": "Огнестойкий модульный кабель; защита: без брони. Оболочка и предел огнестойкости зависят от исполнения."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "note": "FRHF и FRLSLTx — разные пожарные исполнения.",
       "images": [
         "spkb-v-frhf"
       ],
@@ -12575,7 +12575,7 @@
         "strength": "Центральный стеклопластиковый пруток",
         "construction": "Огнестойкий модульный кабель; защита: без брони. Оболочка и предел огнестойкости зависят от исполнения."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "note": "FRHF и FRLSLTx — разные пожарные исполнения.",
       "images": [
         "spkb-v-frlsltx"
       ],
@@ -12602,7 +12602,7 @@
         "strength": "Центральный стеклопластиковый пруток",
         "construction": "Огнестойкий модульный кабель; защита: стеклопластиковые прутки. Оболочка и предел огнестойкости зависят от исполнения."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "note": "FRHF и FRLSLTx — разные пожарные исполнения.",
       "images": [
         "spkb-p-frhf"
       ],
@@ -12630,7 +12630,7 @@
         "strength": "Центральный стеклопластиковый пруток",
         "construction": "Огнестойкий модульный кабель; защита: стеклопластиковые прутки. Оболочка и предел огнестойкости зависят от исполнения."
       },
-      "note": "Конструкцию и пожарные показатели проверяют для указанной оболочки. FRHF и FRLSLTx не объединяются в одно исполнение.",
+      "note": "FRHF и FRLSLTx — разные пожарные исполнения.",
       "images": [
         "spkb-p-frlsltx"
       ],
@@ -12651,7 +12651,7 @@
       "mark": "ОКПД",
       "source": "ultra-marking",
       "kind": "catalog",
-      "note": "Кандидат для сопоставления с круглым СЛ-ОКПЦ-Д2к. Пруток бывает без подклейки ROD и с подклейкой EAA; полное исполнение обязательно.",
+      "note": "Пруток бывает без подклейки ROD и с подклейкой EAA; полное исполнение обязательно.",
       "attributes": {
         "module": "Центральная полимерная трубка",
         "armor": "Без металлической брони",
@@ -12680,7 +12680,7 @@
       "mark": "ОКПДп",
       "source": "ultra-marking",
       "kind": "catalog",
-      "note": "Кандидат к плоским ТПОд2, СЛ-ОКПЦ-Д2 и ОКПЦ-Д2. Пруток ROD/EAA, число волокон, усилие и габариты сверяют отдельно.",
+      "note": "",
       "attributes": {
         "module": "Центральная полимерная трубка",
         "armor": "Без металлической брони",
@@ -12707,7 +12707,7 @@
       "mark": "ОКБм",
       "source": "ultra-marking",
       "kind": "catalog",
-      "note": "Бронированный модульный кабель. Кандидат к ДПС и другим проволочным конструкциям; растяжение, броню и оболочку подтвердить по спецификациям.",
+      "note": "Бронированный модульный кабель.",
       "attributes": {
         "module": "Модули в повиве",
         "armor": "Стальная проволока",
@@ -12734,7 +12734,7 @@
       "mark": "ОКБц",
       "source": "ultra-marking",
       "kind": "catalog",
-      "note": "Бронированный кабель с центральным полимерным модулем. Кандидат к ТОС; отличается от ОКБм с модулями в повиве.",
+      "note": "Бронированный кабель с центральным полимерным модулем.",
       "attributes": {
         "module": "Центральный полимерный модуль",
         "armor": "Стальная проволока",
@@ -12761,7 +12761,7 @@
       "mark": "ОКС",
       "source": "ultra-marking",
       "kind": "catalog",
-      "note": "Завод подтверждает модульную диэлектрическую самонесущую конструкцию. Арамид или стеклонить в опубликованном маркообразовании не уточнены; прямой аналог ДПТ/ДПТс не назначен.",
+      "note": "Модульная диэлектрическую самонесущую конструкцию.",
       "attributes": {
         "module": "Модули в повиве",
         "armor": "Без металлической брони",
@@ -12788,7 +12788,7 @@
       "group": "drop-flat-tube",
       "source": "osk-0",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "note": "",
       "attributes": {
         "module": "Центральный полимерный модуль",
         "strength": "Два стеклопластиковых прутка",
@@ -12815,7 +12815,7 @@
       "group": "drop-round",
       "source": "osk-1",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "note": "",
       "attributes": {
         "shape": "Круглый",
         "strength": "Два стеклопластиковых прутка",
@@ -12842,7 +12842,7 @@
       "group": "glass",
       "source": "osk-2",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "note": "",
       "attributes": {
         "module": "Модули в повиве",
         "strength": "Стеклонити",
@@ -12869,7 +12869,7 @@
       "group": "aramid",
       "source": "osk-3",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "note": "",
       "attributes": {
         "module": "Модули в повиве",
         "strength": "Арамидные нити",
@@ -12901,7 +12901,7 @@
       "group": "aramid",
       "source": "osk-4",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "note": "",
       "attributes": {
         "module": "Модули в повиве",
         "strength": "Арамидные нити",
@@ -12933,7 +12933,7 @@
       "group": "aerial-dielectric-unspecified",
       "source": "osk-5",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению. Для объединённого диапазона нагрузок материал силовых нитей требует уточнения.",
+      "note": "",
       "attributes": {
         "module": "Модули в повиве",
         "strength": "Стеклонить или арамид — по исполнению",
@@ -12965,7 +12965,7 @@
       "group": "hybrid",
       "source": "osk-6",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "note": "",
       "attributes": {
         "shape": "Круглый",
         "module": "Оптическая часть и медные жилы",
@@ -12992,7 +12992,7 @@
       "group": "hybrid",
       "source": "osk-7",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "note": "",
       "attributes": {
         "shape": "Круглый",
         "module": "Оптическая часть и медные жилы",
@@ -13019,7 +13019,7 @@
       "group": "hybrid",
       "source": "osk-8",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "note": "",
       "attributes": {
         "shape": "Плоский",
         "module": "Оптическая часть и медные жилы",
@@ -13046,7 +13046,7 @@
       "group": "hybrid",
       "source": "osk-9",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "note": "",
       "attributes": {
         "shape": "Круглый",
         "module": "Оптическая часть и медные жилы",
@@ -13073,7 +13073,7 @@
       "group": "wire-central",
       "source": "osk-18",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению.",
+      "note": "",
       "attributes": {
         "module": "Центральная полимерная трубка",
         "armor": "Стальная проволока"
@@ -13098,7 +13098,7 @@
       "group": "micro-rope",
       "source": "osk-19",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению. Устройство модульной трубки уточняется по спецификации.",
+      "note": "",
       "attributes": {
         "armor": "Многопроволочная металлическая броня",
         "module": "Уточнить по полному исполнению"
@@ -13123,7 +13123,7 @@
       "group": "micro-rope",
       "source": "osk-20",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению. Устройство модульной трубки уточняется по спецификации.",
+      "note": "",
       "attributes": {
         "armor": "Многопроволочная металлическая броня",
         "module": "Уточнить по полному исполнению"
@@ -13148,7 +13148,7 @@
       "group": "micro-rope",
       "source": "osk-21",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению. Устройство модульной трубки уточняется по спецификации.",
+      "note": "",
       "attributes": {
         "armor": "Многопроволочная металлическая броня",
         "module": "Уточнить по полному исполнению"
@@ -13173,7 +13173,7 @@
       "group": "micro-wire",
       "source": "osk-22",
       "kind": "catalog",
-      "note": "Полную маркировку, механические параметры и оболочку сверяйте по исполнению. Устройство модульной трубки уточняется по спецификации.",
+      "note": "",
       "attributes": {
         "armor": "Отдельные стальные проволоки",
         "module": "Уточнить по полному исполнению"
