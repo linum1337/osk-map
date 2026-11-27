@@ -5,7 +5,7 @@ from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,sen
 from werkzeug.middleware.proxy_fix import ProxyFix
 # Minimal container images may not include WebP in the system MIME database.
 mimetypes.add_type("image/webp", ".webp")
-import site_backup,admin_store,admin_routes
+import site_backup,admin_store,admin_routes,section_access
 import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import,supplier_catalog,contact_enrichment,warehouse_store,warehouse_routes
 ROOT=Path(__file__).resolve().parent
 USERNAME=os.environ.get('APP_USER','osk')
@@ -17,6 +17,7 @@ head_office.init()
 workspace_store.initialize()
 warehouse_store.init()
 admin_store.init()
+section_access.init()
 app=Flask(__name__,static_folder=None)
 app.config['MAX_CONTENT_LENGTH']=100000
 key_file=crm_store.DB.parent/'session.key'
@@ -75,21 +76,16 @@ def guard():
   if request.method in ('GET','HEAD') and (request.path in PORTAL_PAGES or request.accept_mimetypes.best=='text/html' or request.headers.get('Sec-Fetch-Dest')=='document') and not request.path.startswith(('/api/','/warehouse/api/')):
    return redirect('/login?next='+request.path)
   return jsonify(error='Требуется вход'),401
- if request.path=='/references' or request.path.startswith('/references/'):
-  if g.user['role'] not in ('admin','manager'):return jsonify(error='Справочные материалы доступны администраторам и менеджерам'),403
- if request.path=='/training' or request.path.startswith('/training/'):
-  if g.user['role']!='admin':return jsonify(error='Обучение доступно только администратору'),403
- if request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/')):
-  if g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
-  request.max_content_length=12_000_000
- if g.user['role']=='warehouse' and not (request.path=='/warehouse' or request.path.startswith('/warehouse/') or request.path in ('/api/me','/logout','/access.js')):
-  document_navigation=request.path in ('/','/index.html') or request.headers.get('Sec-Fetch-Mode')=='navigate' or request.headers.get('Sec-Fetch-Dest')=='document' or request.accept_mimetypes.best=='text/html'
-  if request.method=='GET' and document_navigation and not request.path.startswith(('/api/','/warehouse/api/')):return redirect('/warehouse/')
-  return jsonify(error='Вам доступен только раздел «Склад Краснодар»'),403
+ g.user=section_access.decorate(g.user)
+ if not section_access.allowed_path(g.user,request.path):
+  if g.user['role']=='warehouse' and section_access.landing(g.user)=='/warehouse/' and request.method=='GET' and (request.path in ('/','/index.html') or request.headers.get('Sec-Fetch-Mode')=='navigate' or request.headers.get('Sec-Fetch-Dest')=='document' or request.accept_mimetypes.best=='text/html') and not request.path.startswith(('/api/','/warehouse/api/','/references','/training','/admin')):return redirect('/warehouse/')
+  return jsonify(error='У вас нет доступа к этому разделу'),403
+ if request.path in ('/','/index.html') and section_access.landing(g.user)!='/':return redirect(section_access.landing(g.user))
+ if section_access.canonical(request.path).startswith(('/admin','/api/admin/')):request.max_content_length=12_000_000
  if request.path in ('/api/bitrix/preview','/api/bitrix/import','/api/contacts/preview','/api/contacts/enrich'):
-  if g.user['role']!='admin':return jsonify(error='Импорт доступен только администратору'),403
+  if not section_access.has(g.user,'administration'):return jsonify(error='Импорт доступен только администратору'),403
   request.max_content_length=12_000_000
- price_download=request.path=='/warehouse/api/prices.xlsx' and g.user['role']=='manager'
+ price_download=request.path=='/warehouse/api/prices.xlsx' and section_access.has(g.user,'prices')
  if not price_download and (request.path.startswith('/api/export/') or request.path.lower().endswith(('.csv','.xlsx','.xls','.zip'))) and not g.user['canExport']:
   return jsonify(error='Выгрузка доступна только администратору'),403
  if request.method not in ('GET','HEAD','OPTIONS'):
@@ -123,7 +119,8 @@ def login_page():
   user,rev=account(request.form.get('login',''),request.form.get('password',''))
   if user:
    session.clear();session.update(login=user['login'],kind=user['role'],revision=rev)
-   return redirect('/warehouse/' if user['role']=='warehouse' else next_page,code=303)
+   user=section_access.decorate(user)
+   return redirect(next_page if next_page!='/' and section_access.allowed_path(user,next_page) else section_access.landing(user),code=303)
   error='Неверный логин или пароль'
  disabled=auth_store.disabled_logins()
  options=[(USERNAME,'Администратор · '+USERNAME)]+[(name,name) for name in ['Андрей Логинов','Анна Скрынник','Светлана Квашина','Любовь Коровина'] if name!=USERNAME and auth_store.normalize(name) not in disabled]
@@ -133,12 +130,12 @@ def login_page():
  return render_template_string((ROOT/'app/login.html').read_text(),options=options,csrf=session['login_csrf'],next_page=next_page,error=error,selected=request.form.get('login',USERNAME)),401 if error else 200
 @app.post('/api/admin/users')
 def create_manager():
- if g.user['role']!='admin':return jsonify(error='Доступно только администратору'),403
+ if not section_access.has(g.user,'administration'):return jsonify(error='Доступно только администратору'),403
  status,data=auth_store.provision(request.get_json(silent=True),USERNAME)
  return jsonify(data),status
 @app.post('/api/admin/backup')
 def download_site_backup():
- if g.user['role']!='admin':return jsonify(error='Доступно только администратору'),403
+ if not section_access.has(g.user,'administration'):return jsonify(error='Доступно только администратору'),403
  archive=site_backup.build_backup(crm_store.DB,USERNAME,PASSWORD,request.host)
  admin_store.record(g.user['login'],'backup','Сайт','Создана полная резервная копия сайта')
  response=send_file(archive,mimetype='application/gzip',as_attachment=True,download_name='osk-site-backup.tar.gz',max_age=0)
@@ -264,8 +261,6 @@ def companies_redirect():return redirect('/companies/')
 def companies_index():return send_from_directory(ROOT/'app','index.html')
 @app.get('/companies/<path:name>')
 def companies_asset(name):
- if any((ROOT/'app'/name).resolve().is_relative_to((ROOT/'app'/folder).resolve()) for folder in ('admin','training')) and g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
- if (ROOT/'app'/name).resolve().is_relative_to((ROOT/'app/references').resolve()) and g.user['role'] not in ('admin','manager'):return jsonify(error='Раздел доступен администраторам и менеджерам'),403
  return send_from_directory(ROOT/'app',name)
 @app.get('/suppliers')
 def suppliers_redirect():return redirect('/suppliers/')

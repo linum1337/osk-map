@@ -6,7 +6,7 @@ import warehouse_store as store
 import warehouse_price_export
 import warehouse_update
 import warehouse_export
-import auth_store
+import auth_store,section_access
 import warehouse_prices as prices
 
 ROOT=Path(__file__).resolve().parent/'app/warehouse'
@@ -17,7 +17,7 @@ def register(app,admin_name):
  @bp.before_request
  def guard():
   if request.path.startswith('/warehouse/api/admin/'):
-   if g.user['role']!='admin':return jsonify(error='Доступно только администратору'),403
+   if not section_access.has(g.user,'administration'):return jsonify(error='Доступно только администратору'),403
    request.max_content_length=12_000_000
  @bp.get('/')
  def index():return send_from_directory(ROOT,'index.html')

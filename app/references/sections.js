@@ -1,7 +1,7 @@
 (()=>{
-const categories=['cable'];
+const permissions=window.CURRENT_USER?.permissions||{};const categories=['cable','closures'].filter(key=>permissions[key==='cable'?'referenceCable':'referenceClosures']);for(const key of ['cable','closures']){document.getElementById('product-'+key).hidden=!categories.includes(key);document.getElementById('reference-'+key).hidden=true}if(!categories.length)return;if(categories.includes('cable')){const script=document.createElement('script');script.src='/references/references.js';document.body.append(script)}if(categories.includes('closures')){const css=document.createElement('link');css.rel='stylesheet';css.href='/references/closures/closures.css';document.head.append(css);const script=document.createElement('script');script.src='/references/closures/closures.js';document.body.append(script)}
 function selectCategory(id){
-  if(!categories.includes(id))id='cable';
+  if(!categories.includes(id))id=categories[0];
   for(const key of categories){
     const selected=key===id;
     const button=document.getElementById('product-'+key);
