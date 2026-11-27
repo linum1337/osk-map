@@ -129,3 +129,6 @@ with tempfile.TemporaryDirectory() as tmp:
  assert response.status_code==303 and response.location=='/references/'
  assert 'references-card' in client.get('/portal-home.js').get_data(as_text=True)
 print('PASS: admin-only documents/data/aliases GET+HEAD; no-store; safe login return; RU/BY crosswalk integrity; aliases and construction distinctions')
+
+assert not any(e["id"]=="c1066" for e in data["entries"])
+assert "aerial-steel" not in groups
