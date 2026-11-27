@@ -79,6 +79,11 @@ with tempfile.TemporaryDirectory() as tmp:
  for mid in ['starlink','kes']:
   assert all(e.get('images') for e in data['entries'] if e['manufacturer']==mid)
  assert next(e for e in data['entries'] if e['id']=='c132')['constructionDescription']!=next(e for e in data['entries'] if e['id']=='c1425')['constructionDescription']
+ # Product UI must not reintroduce editorial work-process commentary.
+ ui=(Path(__file__).resolve().parents[1]/'app/references/references.js').read_text()
+ for phrase in ['Описание конструкции производителя','Описание конструктивной группы','пока не добавлена','сводная заводская таблица','конкретное исполнение требует проверки','Что сверить по группе']:
+  assert phrase not in ui,phrase
+ assert 'coverage-notes' not in client.get('/references/',headers=admin).get_data(as_text=True)
  # Manufacturer imagery stays behind the same access rules and has explicit provenance.
  assert client.get('/references/images/ultra-0.webp',headers=admin).content_type=='image/webp'
  assert len(data['images'])>=53
