@@ -9,3 +9,15 @@ assert(!A.matches({...source,fields:{...source.fields,portSeal:'ТУТ, меха
 assert(A.matches({...source,fields:{...source.fields,capacity:'216',ports:'6'}},req));
 assert.equal(A.capacity('48/96 (два слоя)'),96);assert.equal(A.ports('4 (круглый), 1 (овальный)'),5);assert.equal(A.ports('4/2/1'),null);
 const data=JSON.parse(fs.readFileSync(path.join(__dirname,'../app/references/closures/closures.json')));const baseline=data.entries.find(e=>e.id==='42c2d2a4013dee84');const p=A.profile(baseline);assert.equal(p.kind,'dome');assert.equal(p.capacity,144);assert.equal(p.ports,5);const demands={kind:p.kind,capacity:p.capacity,portSeal:p.portSeals[0],transit:p.transit};const matches=data.entries.filter(e=>e.id!==baseline.id&&A.matches(e,demands));assert(matches.length>0);assert(matches.every(e=>A.profile(e).kind==='dome'&&A.profile(e).capacity>=144));console.log('PASS: closure candidates exclude different construction, lower capacity/input count, wrong seals, missing transit, weaker IP/climate and unknown required parameters; real model candidates remain');
+
+const sourceData=JSON.parse(require('fs').readFileSync(require('path').join(__dirname,'../app/references/closures/closures.json'),'utf8'));
+const enrichedFind=id=>sourceData.entries.find(e=>e.id===id);
+require('assert').equal(A.capacity('до 54'),54);
+require('assert').equal(A.profile(enrichedFind('dcafe05f1e6fa7d2')).capacity,48);
+require('assert').equal(enrichedFind('4d29814103d4d9a6').fields.capacity,'144');
+require('assert').equal(enrichedFind('2e2a004404e17e32').fields.capacity,'216');
+const chosen=enrichedFind('4d29814103d4d9a6');
+require('assert').equal(A.matches(chosen,{minimums:{cassettesMax:999}}),false);
+require('assert').equal(A.matches(chosen,{supplier:'НАГ'}),false);
+require('assert').equal(A.matches(chosen,{fields:{cassetteType:'NONEXISTENT'}}),false);
+require('assert').equal(A.matches(chosen,{specifications:[{key:'Missing',value:'anything'}]}),false);
