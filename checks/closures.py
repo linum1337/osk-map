@@ -21,6 +21,12 @@ with tempfile.TemporaryDirectory() as tmp:
  assert all(e.get('image') and e['image'].get('reviewed') for e in es)
  assert all('no-photo' not in e['image']['source'] for e in es)
  assert not any('склад' in k.casefold() for e in es for k,v in e['evidence']['propertyRows'])
+ for e in es:
+  assert e['gallery'] and e['technicalDescription']
+  assert not e['equipment'] or e['equipmentEvidence']['confirmedForExactModification']
+  for im in e['gallery']+[im for c in e.get('cassettes',[]) for im in c['images']]:
+   assert im['reviewed'] and (root/'app'/im['src'].lstrip('/')).is_file()
+   assert im['source'].startswith('https://') and 'no-photo' not in im['source']
  first=next(e['image']['src'] for e in es if e.get('image'))
  for path in ['/references/closures/closures.json','/references/closures/closures.js','/references/closures/analogs.js','/references/closures/closures.css',first]:
   assert c.get(path).status_code==401,path
