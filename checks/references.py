@@ -84,6 +84,11 @@ with tempfile.TemporaryDirectory() as tmp:
  for phrase in ['Описание конструкции производителя','Описание конструктивной группы','пока не добавлена','сводная заводская таблица','конкретное исполнение требует проверки','Что сверить по группе']:
   assert phrase not in ui,phrase
  assert 'coverage-notes' not in client.get('/references/',headers=admin).get_data(as_text=True)
+ # ОЭК-ПЦ analogues must not include a single central FRP member.
+ two_frp=[e for e in data['entries'] if e['group']=='hybrid-two-frp']
+ assert {e['id'] for e in two_frp}=={'direct-sl-hybrid-ПЦ','direct-osk-9','d586'}
+ assert all(e['attributes']['frpCount']=='2' and 'По бокам' in e['attributes']['frpPlacement'] for e in two_frp)
+ assert all(e['group']!='hybrid-two-frp' for e in data['entries'] if e.get('attributes',{}).get('frpCount')=='1')
  # Manufacturer imagery stays behind the same access rules and has explicit provenance.
  assert client.get('/references/images/ultra-0.webp',headers=admin).content_type=='image/webp'
  assert len(data['images'])>=53

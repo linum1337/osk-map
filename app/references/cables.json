@@ -848,6 +848,19 @@
       "strength": "Уточнить материал несущих элементов",
       "construction": "Диэлектрический самонесущий кабель модульного устройства. Вид силовых элементов не подтверждён заводским описанием.",
       "differences": "Нельзя считать арамид и стеклонить равнозначными. Перед подбором к ДПТ, ДПТс и другим ADSS подтвердите материал несущих элементов, рабочие нагрузки и условия подвеса."
+    },
+    {
+      "id": "hybrid-two-frp",
+      "title": "Оптоэлектрический: центральный модуль и два стеклопрутка",
+      "application": "Специальное применение",
+      "module": "Центральный полимерный оптический модуль",
+      "armor": "Без металлической брони",
+      "strength": "Два продольных стеклопластиковых прутка",
+      "construction": "Волокна размещены в центральном полимерном модуле. По бокам модуля расположены два продольных стеклопластиковых прутка. Оптическая часть и изолированные медные жилы объединены наружной оболочкой.",
+      "differences": "У ОМК-2Д оптическая часть имеет промежуточную ПВХ-оболочку. Сечение медных жил, число волокон, наружная оболочка и механические параметры зависят от исполнения.",
+      "frpCount": "2",
+      "frpPlacement": "По бокам центрального оптического модуля",
+      "shape": "Круглый"
     }
   ],
   "entries": [
@@ -12174,16 +12187,20 @@
       ],
       "constructionDescription": "Оптические модули и изолированные медные жилы скручены вокруг центрального стеклопластикового прутка. Свободные места занимают кордели. Водоблокирующие нити и стеклонити расположены под наружной оболочкой.",
       "constructionSource": "https://incab.ru/optical-cable/combined-optical-solutions/kombinirovannyj-opticheskij-kabel-dpo/",
-      "constructionBasis": "manufacturer"
+      "constructionBasis": "manufacturer",
+      "attributes": {
+        "frpCount": "1",
+        "frpPlacement": "Центральный силовой элемент"
+      }
     },
     {
       "id": "d586",
       "manufacturer": "incab",
-      "group": "hybrid",
+      "group": "hybrid-two-frp",
       "mark": "ОМК-2Д",
       "source": "incab-hybrid",
       "kind": "catalog",
-      "note": "Оптика и медные жилы.",
+      "note": "Промежуточная ПВХ-оболочка вокруг оптической части.",
       "descriptionLinks": [
         {
           "url": "https://incab.ru/optical-cable/combined-optical-solutions/kombinirovannyj-opticheskij-kabel-omk-2d/",
@@ -12194,9 +12211,17 @@
       "images": [
         "factory-ce4b3c85c4504a08"
       ],
-      "constructionDescription": "Оптическое волокно; Оптический модуль с гидрофобным гелем; Изолированная медная жила; Силовые элементы (стеклопластиковые прутки); Промежуточная оболочка из поливинилхлорида; Оболочка из полиэтилена.",
+      "constructionDescription": "Волокна размещены в центральном полимерном модуле. По бокам модуля расположены два продольных стеклопластиковых прутка. Оптическая часть и изолированные медные жилы объединены наружной оболочкой. Оптическая часть дополнительно заключена в промежуточную ПВХ-оболочку.",
       "constructionSource": "https://incab.ru/optical-cable/combined-optical-solutions/kombinirovannyj-opticheskij-kabel-omk-2d/",
-      "constructionBasis": "manufacturer"
+      "constructionBasis": "manufacturer",
+      "attributes": {
+        "module": "Центральный полимерный оптический модуль",
+        "strength": "Два продольных стеклопластиковых прутка",
+        "frpCount": "2",
+        "frpPlacement": "По бокам центрального оптического модуля",
+        "armor": "Без металлической брони",
+        "shape": "Круглый"
+      }
     },
     {
       "id": "d587",
@@ -12240,7 +12265,11 @@
       ],
       "constructionDescription": "Центральный силовой элемент (стеклопластиковый пруток); Оптическое волокно; Оптический модуль; Изолированная медная жила; Водоблокирующая лента; Броня из стальной ленты; Наружная оболочка.",
       "constructionSource": "https://incab.ru/optical-cable/combined-optical-solutions/kombinirovannyj-opticheskij-kabel-dol/",
-      "constructionBasis": "manufacturer"
+      "constructionBasis": "manufacturer",
+      "attributes": {
+        "frpCount": "1",
+        "frpPlacement": "Центральный силовой элемент"
+      }
     },
     {
       "id": "d589",
@@ -12262,7 +12291,11 @@
       ],
       "constructionDescription": "Оптические модули и медные жилы скручены вокруг центрального стеклопластикового прутка. Применяются кордели, внутренняя оболочка, броня из стальных проволок и наружная оболочка.",
       "constructionSource": "https://incab.ru/optical-cable/combined-optical-solutions/kombinirovannyj-opticheskij-kabel-dps/",
-      "constructionBasis": "manufacturer"
+      "constructionBasis": "manufacturer",
+      "attributes": {
+        "frpCount": "1",
+        "frpPlacement": "Центральный силовой элемент"
+      }
     },
     {
       "id": "direct-sl-adss",
@@ -12376,15 +12409,18 @@
     {
       "id": "direct-sl-hybrid-ПЦ",
       "manufacturer": "starlink",
-      "group": "hybrid",
+      "group": "hybrid-two-frp",
       "mark": "СЛ-ОЭК-ПЦ",
       "source": "slcatalog",
       "kind": "catalog",
-      "note": "Вариант с выносным несущим элементом.",
+      "note": "Два боковых стеклопластиковых прутка, без стальных силовых элементов.",
       "attributes": {
-        "module": "Оптическая часть и медные жилы",
-        "armor": "По полному исполнению",
-        "strength": "По полному исполнению"
+        "module": "Центральный полимерный оптический модуль",
+        "armor": "Без металлической брони",
+        "strength": "Два продольных стеклопластиковых прутка",
+        "frpCount": "2",
+        "frpPlacement": "По бокам центрального оптического модуля",
+        "shape": "Круглый"
       },
       "descriptionLinks": [
         {
@@ -12396,8 +12432,9 @@
       "images": [
         "factory-0b9790c5c39f939e"
       ],
-      "constructionDescription": "В одной конструкции объединены оптические волокна и медные проводники. Оптический сердечник: Оптическая часть и медные жилы. Броня: По полному исполнению. Силовые элементы: По полному исполнению.",
-      "constructionBasis": "group"
+      "constructionDescription": "Волокна размещены в центральном полимерном модуле. По бокам модуля расположены два продольных стеклопластиковых прутка. Оптическая часть и изолированные медные жилы объединены наружной оболочкой.",
+      "constructionBasis": "manufacturer",
+      "constructionSource": "https://npp-starlink.ru/catalog/kombinirovannyy-optoelektricheskiy-kabel-sl-oek-pts/"
     },
     {
       "id": "direct-sl-hybrid-У",
@@ -13043,15 +13080,17 @@
       "id": "direct-osk-9",
       "manufacturer": "osk",
       "mark": "ОГК-ПЦ",
-      "group": "hybrid",
+      "group": "hybrid-two-frp",
       "source": "osk-9",
       "kind": "catalog",
-      "note": "",
+      "note": "Два боковых стеклопластиковых прутка, без стальных силовых элементов.",
       "attributes": {
         "shape": "Круглый",
-        "module": "Оптическая часть и медные жилы",
-        "armor": "Без стальных элементов",
-        "strength": "Стеклопластиковые прутки"
+        "module": "Центральный полимерный оптический модуль",
+        "armor": "Без металлической брони",
+        "strength": "Два продольных стеклопластиковых прутка",
+        "frpCount": "2",
+        "frpPlacement": "По бокам центрального оптического модуля"
       },
       "images": [
         "osk-9"
@@ -13063,8 +13102,9 @@
           "kind": "product"
         }
       ],
-      "constructionDescription": "В одной конструкции объединены оптические волокна и медные проводники. Оптический сердечник: Оптическая часть и медные жилы. Броня: Без стальных элементов. Силовые элементы: Стеклопластиковые прутки. Форма: Круглый.",
-      "constructionBasis": "group"
+      "constructionDescription": "Волокна размещены в центральном полимерном модуле. По бокам модуля расположены два продольных стеклопластиковых прутка. Оптическая часть и изолированные медные жилы объединены наружной оболочкой.",
+      "constructionBasis": "manufacturer",
+      "constructionSource": "https://www.optik-sk.ru/kabel-osk/optoelektricheskij-kabel-ogk/optoelektricheskij-kabel-bez-stalnykh-elementov-ogk-pts"
     },
     {
       "id": "direct-osk-18",
@@ -13203,7 +13243,9 @@
         "module": "Оптические волокна и медные изолированные жилы",
         "armor": "Без стальной брони; алюмополиэтиленовый экран",
         "strength": "Центральный стеклопластиковый пруток",
-        "shape": "Круглый"
+        "shape": "Круглый",
+        "frpCount": "1",
+        "frpPlacement": "Центральный силовой элемент"
       },
       "descriptionLinks": [
         {
@@ -13230,7 +13272,9 @@
         "module": "Оптические волокна и медные изолированные жилы",
         "armor": "Стальная гофрированная лента",
         "strength": "Центральный стеклопластиковый пруток",
-        "shape": "Круглый"
+        "shape": "Круглый",
+        "frpCount": "1",
+        "frpPlacement": "Центральный силовой элемент"
       },
       "descriptionLinks": [
         {
@@ -13899,7 +13943,7 @@
       {
         "manufacturer": "incab",
         "records": 62,
-        "groups": 43,
+        "groups": 44,
         "sources": [
           "incab",
           "incab-hybrid",
@@ -14093,7 +14137,7 @@
       {
         "manufacturer": "starlink",
         "records": 18,
-        "groups": 12,
+        "groups": 13,
         "sources": [
           "sl03",
           "slcatalog",
@@ -14167,7 +14211,7 @@
       {
         "manufacturer": "osk",
         "records": 15,
-        "groups": 9,
+        "groups": 10,
         "sources": [
           "osk-0",
           "osk-1",
