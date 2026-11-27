@@ -1,4 +1,4 @@
-"""Admin-only reference library: access, deep links and crosswalk data integrity."""
+"""Admin and manager reference library: access, deep links and crosswalk data integrity."""
 import os,sys,tempfile,json,re,base64,mimetypes
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -19,9 +19,11 @@ with tempfile.TemporaryDirectory() as tmp:
  for path in paths:
   assert client.get(path).status_code==(302 if path in ['/references','/references/'] else 401),path
   for role in ['manager','warehouse']:
-   for method in ['get','head']:assert getattr(client,method)(path,headers=auth('Reference '+role,'reference-fixture-password')).status_code==403,(path,role,method)
+   for method in ['get','head']:assert getattr(client,method)(path,headers=auth('Reference '+role,'reference-fixture-password')).status_code==((302 if path=='/references' else 200) if role=='manager' else 403),(path,role,method)
   response=client.get(path,headers=admin);assert response.status_code==(302 if path=='/references' else 200),(path,response.status_code)
   assert 'no-store' in response.headers['Cache-Control'],path
+ for path in ['/admin/','/api/admin/accounts','/training/','/companies/training/index.html','/companies/admin/index.html']:
+  assert client.get(path,headers=auth('Reference manager','reference-fixture-password')).status_code==403,path
  data=client.get('/references/cables.json',headers=admin).json
  makers={m['id']:m for m in data['manufacturers']};groups={g['id']:g for g in data['groups']}
  assert len(makers)==len(data['manufacturers'])>=24 and {m['country'] for m in makers.values()}=={'Россия','Беларусь'}
@@ -122,13 +124,13 @@ with tempfile.TemporaryDirectory() as tmp:
  for path in [first,'/companies'+first]:
   assert client.get(path).status_code==401
   for role in ['manager','warehouse']:
-   for method in ['get','head']:assert getattr(client,method)(path,headers=auth('Reference '+role,'reference-fixture-password')).status_code==403
+   for method in ['get','head']:assert getattr(client,method)(path,headers=auth('Reference '+role,'reference-fixture-password')).status_code==(200 if role=='manager' else 403)
   assert client.get(path,headers=admin).status_code==200
  text=client.get('/login?next=/references/').get_data(as_text=True);csrf=re.search('name="csrf" value="([^\"]+)"',text)[1]
  response=client.post('/login',data={'next':'/references/','login':'admin','password':os.environ['APP_PASSWORD'],'csrf':csrf})
  assert response.status_code==303 and response.location=='/references/'
  assert 'references-card' in client.get('/portal-home.js').get_data(as_text=True)
-print('PASS: admin-only documents/data/aliases GET+HEAD; no-store; safe login return; RU/BY crosswalk integrity; aliases and construction distinctions')
+print('PASS: admin+manager documents/data/aliases GET+HEAD; no-store; safe login return; RU/BY crosswalk integrity; aliases and construction distinctions')
 
 assert not any(e["id"]=="c1066" for e in data["entries"])
 assert "aerial-steel" not in groups

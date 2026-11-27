@@ -76,7 +76,7 @@ def guard():
    return redirect('/login?next='+request.path)
   return jsonify(error='Требуется вход'),401
  if request.path=='/references' or request.path.startswith('/references/'):
-  if g.user['role']!='admin':return jsonify(error='Справочные материалы доступны только администратору'),403
+  if g.user['role'] not in ('admin','manager'):return jsonify(error='Справочные материалы доступны администраторам и менеджерам'),403
  if request.path=='/training' or request.path.startswith('/training/'):
   if g.user['role']!='admin':return jsonify(error='Обучение доступно только администратору'),403
  if request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/')):
@@ -264,7 +264,8 @@ def companies_redirect():return redirect('/companies/')
 def companies_index():return send_from_directory(ROOT/'app','index.html')
 @app.get('/companies/<path:name>')
 def companies_asset(name):
- if any((ROOT/'app'/name).resolve().is_relative_to((ROOT/'app'/folder).resolve()) for folder in ('admin','training','references')) and g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
+ if any((ROOT/'app'/name).resolve().is_relative_to((ROOT/'app'/folder).resolve()) for folder in ('admin','training')) and g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
+ if (ROOT/'app'/name).resolve().is_relative_to((ROOT/'app/references').resolve()) and g.user['role'] not in ('admin','manager'):return jsonify(error='Раздел доступен администраторам и менеджерам'),403
  return send_from_directory(ROOT/'app',name)
 @app.get('/suppliers')
 def suppliers_redirect():return redirect('/suppliers/')
