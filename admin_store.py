@@ -1,7 +1,7 @@
 """Administrator account changes and audit. Passwords never enter responses or audit."""
 import json,secrets,time
 from werkzeug.security import generate_password_hash
-import auth_store,crm_store
+import auth_store,crm_store,section_access
 
 ROLE_LABELS={'manager':'Менеджер','warehouse':'Только склад','admin':'Администратор'}
 
@@ -31,11 +31,12 @@ def account_rows(c):
   for login,name,active in c.execute(f'SELECT login,display_name,active FROM {table} ORDER BY display_name'):
    version=c.execute('SELECT token FROM admin_account_versions WHERE login=?',(login,)).fetchone()
    result.append({'login':name,'role':role,'roleLabel':ROLE_LABELS[role],'active':bool(active),'version':version[0] if version else '','protected':False})
+ for user in result:user['permissions']=section_access.permissions(user['login'],user['role'],c)
  return result
 
 def users(admin_name):
  with crm_store.connect() as c:rows=account_rows(c)
- return [{'login':admin_name,'role':'admin','roleLabel':ROLE_LABELS['admin'],'active':True,'protected':True,'version':''}]+rows
+ return [{'login':admin_name,'role':'admin','roleLabel':ROLE_LABELS['admin'],'active':True,'protected':True,'version':'','permissions':section_access.defaults('admin')}]+rows
 
 def audit(before=None):
  with crm_store.connect() as c:
@@ -64,9 +65,10 @@ def create(body,actor,admin_name):
 def change(body,actor,admin_name):
  if not isinstance(body,dict):return 400,{'error':'Проверьте действие'}
  name=body.get('login');action=body.get('action');version=body.get('version')
- if not isinstance(name,str) or not isinstance(version,str) or action not in ('password','active','role'):return 400,{'error':'Проверьте действие и пользователя'}
+ if not isinstance(name,str) or not isinstance(version,str) or action not in ('password','active','role','permissions'):return 400,{'error':'Проверьте действие и пользователя'}
  login=auth_store.normalize(name)
  if login==auth_store.normalize(admin_name):return 403,{'error':'Учётная запись администратора защищена от отключения и изменения прав'}
+ if action=='permissions' and (not isinstance(body.get('permissions'),dict) or set(body['permissions'])!=section_access.KEYS or any(type(v) is not bool for v in body['permissions'].values())):return 400,{'error':'Проверьте список доступов'}
  if action=='password':
   password=body.get('password')
   if not isinstance(password,str) or not 8<=len(password)<=128:return 400,{'error':'Пароль должен содержать от 8 до 128 символов'}
@@ -91,6 +93,10 @@ def change(body,actor,admin_name):
   elif action=='active':
    if bool(active)==body['active']:return 200,{'ok':True,'unchanged':True}
    c.execute(f'UPDATE {table} SET active=? WHERE login=?',(int(body['active']),login));description='Вход включён' if body['active'] else 'Вход отключён. Данные и история пользователя сохранены.';details={'active':body['active']}
+  elif action=='permissions':
+   before=section_access.permissions(login,role,c)
+   c.execute('INSERT INTO user_section_access VALUES(?,?) ON CONFLICT(login) DO UPDATE SET permissions=excluded.permissions',(login,json.dumps(body['permissions'])))
+   description='Изменены доступы к разделам. Прежние сеансы входа завершены.';details={'before':before,'after':body['permissions']}
   else:
    new_role=body['role']
    if new_role==role:return 200,{'ok':True,'unchanged':True}

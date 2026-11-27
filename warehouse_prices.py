@@ -3,7 +3,7 @@ import json
 import hashlib
 import re
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
-import auth_store
+import auth_store,section_access
 import crm_store
 import warehouse_store as stock
 
@@ -12,7 +12,7 @@ def init():
   c.execute('CREATE TABLE IF NOT EXISTS warehouse_prices(id INTEGER PRIMARY KEY CHECK(id=1), digest TEXT NOT NULL, data TEXT NOT NULL, actor TEXT NOT NULL, updated_at INTEGER NOT NULL)')
 
 def allowed(user):
- return user.get('role')!='warehouse' and auth_store.normalize(user.get('login',''))!=auth_store.normalize('Валерия Алексеева')
+ return section_access.has(user,'prices')
 
 def match_key(data,marking_only=False):
  # Price depends only on fibre count and the rod's diameter and material.

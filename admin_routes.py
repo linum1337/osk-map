@@ -1,7 +1,7 @@
 """Administrator dashboard endpoints and protected static assets."""
 from pathlib import Path
 from flask import Blueprint,g,request,jsonify,send_from_directory,redirect
-import admin_store,admin_imports,crm_store,warehouse_store
+import admin_store,admin_imports,crm_store,warehouse_store,section_access
 
 ROOT=Path(__file__).resolve().parent/'app/admin'
 
@@ -9,7 +9,7 @@ def register(app,admin_name):
  bp=Blueprint('administration',__name__)
  @bp.before_request
  def protect():
-  if g.user['role']!='admin':return jsonify(error='Раздел доступен только администратору'),403
+  if not section_access.has(g.user,'administration'):return jsonify(error='Раздел доступен только администратору'),403
  @bp.get('/admin')
  def root_redirect():return redirect('/admin/')
  @bp.get('/admin/')
@@ -33,6 +33,8 @@ def register(app,admin_name):
  @bp.post('/api/admin/accounts/change')
  def change():
   status,data=admin_store.change(request.get_json(silent=True),g.user['login'],admin_name);return jsonify(data),status
+ @bp.get('/api/admin/sections')
+ def sections():return jsonify([{'id':k,'label':v} for k,v in section_access.SECTIONS])
  @bp.get('/api/admin/audit')
  def audit():
   before=request.args.get('before')
