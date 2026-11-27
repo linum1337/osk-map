@@ -1,7 +1,7 @@
 """Per-user section policy; defaults preserve existing access."""
 import json,posixpath
 import auth_store,crm_store
-SECTIONS=[('transport','Транспортные компании'),('suppliers','Поставщики'),('companies','Компании и таблица'),('requests','Запрос в головной офис'),('warehouse','Склад Краснодар'),('prices','Прайс и цены склада'),('references','Справочные материалы'),('referenceCable','Оптический кабель'),('referenceClosures','Муфты оптические'),('training','Обучение'),('administration','Администрирование'),('exports','Выгрузки данных')]
+SECTIONS=[('transport','Транспортные компании'),('suppliers','Поставщики'),('companies','Компании и таблица'),('requests','Запрос в головной офис'),('warehouse','Склад Краснодар'),('prices','Прайс и цены склада'),('references','Справочные материалы'),('referenceCable','Оптический кабель'),('referenceClosures','Муфты оптические'),('training','Обучение'),('administration','Администрирование'),('exports','Выгрузки данных'),('competitors','Продукция и цены конкурентов')]
 KEYS={k for k,_ in SECTIONS}
 def init():
  with crm_store.connect() as c:c.execute('CREATE TABLE IF NOT EXISTS user_section_access(login TEXT PRIMARY KEY,permissions TEXT NOT NULL)')
@@ -23,7 +23,7 @@ def canonical(path):
  path=posixpath.normpath('/'+path.lstrip('/'))
  if path.startswith('/companies/'):
   candidate=path[len('/companies'):]
-  if candidate.split('/')[1] in {'admin','training','references','warehouse','suppliers','transport','requests'}:return candidate
+  if candidate.split('/')[1] in {'admin','training','references','warehouse','suppliers','transport','requests','competitors'}:return candidate
  return path
 def required(path):
  p=canonical(path)
@@ -37,7 +37,7 @@ def required(path):
   if p.startswith('/references/images/') or p.endswith(('/cables.json','/references.js')):return ['references','referenceCable']
   return ['references']
  if p=='/training' or p.startswith('/training/'):return ['training']
- for key in ['transport','suppliers','requests']:
+ for key in ['transport','suppliers','requests','competitors']:
   if p=='/'+key or p.startswith('/'+key+'/'):return [key]
  if p.startswith('/api/head-office-requests') or p.startswith('/api/export/requests/'):return ['requests']
  if p.startswith(('/api/bitrix/','/api/contacts/')):return ['companies','administration']

@@ -5,7 +5,7 @@ from flask import Flask,request,jsonify,send_from_directory,Response,abort,g,sen
 from werkzeug.middleware.proxy_fix import ProxyFix
 # Minimal container images may not include WebP in the system MIME database.
 mimetypes.add_type("image/webp", ".webp")
-import site_backup,admin_store,admin_routes,section_access,closure_prices
+import site_backup,admin_store,admin_routes,section_access,closure_prices,competitor_catalog
 import crm_store,auth_store,table_export,head_office,workspace_store,bitrix_import,supplier_catalog,contact_enrichment,warehouse_store,warehouse_routes
 ROOT=Path(__file__).resolve().parent
 USERNAME=os.environ.get('APP_USER','osk')
@@ -64,7 +64,7 @@ for module in ('transport','suppliers'):
 
 TRAINING_COURSES=('optical-cable','optical-closures','optical-crosses','twisted-pair','suspension-hardware')
 TRAINING_PAGE_PATHS={'/training/'+slug+'/' for slug in TRAINING_COURSES}
-PORTAL_PAGES={'/','/index.html','/transport','/transport/','/suppliers','/suppliers/','/companies','/companies/','/requests','/requests/','/warehouse','/warehouse/','/admin','/admin/','/training','/training/','/training/optical-cable/','/references','/references/'} | TRAINING_PAGE_PATHS | {path.rstrip('/') for path in TRAINING_PAGE_PATHS}
+PORTAL_PAGES={'/competitors','/competitors/','/','/index.html','/transport','/transport/','/suppliers','/suppliers/','/companies','/companies/','/requests','/requests/','/warehouse','/warehouse/','/admin','/admin/','/training','/training/','/training/optical-cable/','/references','/references/'} | TRAINING_PAGE_PATHS | {path.rstrip('/') for path in TRAINING_PAGE_PATHS}
 
 @app.before_request
 def guard():
@@ -97,7 +97,7 @@ def headers(response):
  response.headers['X-Content-Type-Options']='nosniff'
  response.headers['X-Frame-Options']='DENY'
  response.headers['Referrer-Policy']='strict-origin-when-cross-origin'
- response.headers['Cache-Control']='private, no-store' if request.path.startswith('/warehouse') or request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/','/training/','/companies/training/','/references','/companies/references/')) or request.path=='/training' else 'private, max-age=604800' if request.path.startswith('/tiles/') and response.status_code==200 else 'private, no-cache'
+ response.headers['Cache-Control']='private, no-store' if request.path.startswith('/warehouse') or request.path=='/admin' or request.path.startswith(('/admin/','/api/admin/','/training/','/companies/training/','/references','/companies/references/','/competitors','/companies/competitors/')) or request.path=='/training' else 'private, max-age=604800' if request.path.startswith('/tiles/') and response.status_code==200 else 'private, no-cache'
  return response
 @app.route('/login',methods=['GET','POST'])
 def login_page():
@@ -106,9 +106,9 @@ def login_page():
  next_page=request.values.get('next','/')
  try:
   target=urlsplit(next_page)
-  allowed={'/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/','/admin/','/training/','/training/optical-cable/','/references/'} | TRAINING_PAGE_PATHS
+  allowed={'/competitors/','/','/transport/','/suppliers/','/companies/','/requests/','/warehouse/','/admin/','/training/','/training/optical-cable/','/references/'} | TRAINING_PAGE_PATHS
   path=target.path
-  if path in ('/transport','/suppliers','/companies','/requests','/warehouse','/admin','/training','/references') or path in {item.rstrip('/') for item in TRAINING_PAGE_PATHS}:path+='/'
+  if path in ('/transport','/suppliers','/companies','/requests','/warehouse','/admin','/training','/references','/competitors') or path in {item.rstrip('/') for item in TRAINING_PAGE_PATHS}:path+='/'
   if target.scheme or target.netloc or path not in allowed or any(char in next_page for char in ('\\','\r','\n')):next_page='/'
   else:next_page=target._replace(path=path).geturl()
  except ValueError:next_page='/'
@@ -308,6 +308,7 @@ def transport_index():
 @app.get('/<path:name>')
 def static_file(name):return send_from_directory(ROOT/'app',name)
 
+competitor_catalog.register(app,USERNAME)
 closure_prices.register(app,USERNAME)
 warehouse_routes.register(app,USERNAME)
 
