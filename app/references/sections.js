@@ -1,5 +1,5 @@
 (()=>{
-const categories=['cable','closures'];
+const categories=['cable'];
 function selectCategory(id){
   if(!categories.includes(id))id='cable';
   for(const key of categories){
