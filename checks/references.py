@@ -62,6 +62,23 @@ with tempfile.TemporaryDirectory() as tmp:
   if e['manufacturer']=='beltele' and e['group']=='duplex':assert e['descriptionLinks'][0]['url'].endswith('kabeli-15/')
  central=next(e for e in data['entries'] if e['id']=='c1243')
  assert all(data['images'][i]['sourcePage'].endswith('ikbng-a-hf-t/') for i in central['images'])
+ # Identical brand letters must not reuse the unrelated optical-only construction.
+ for id in ['d585','d589']:
+  e=next(e for e in data['entries'] if e['id']==id)
+  assert e['group']=='hybrid' and e['constructionBasis']=='manufacturer'
+  assert 'медн' in e['constructionDescription'].lower()
+  assert all('/combined-optical-solutions/' in data['images'][i]['sourcePage'] for i in e['images'])
+ assert sum(e.get('constructionBasis')=='manufacturer' for e in data['entries'])>=220
+ assert sum(bool(e.get('images')) for e in data['entries'] if e['manufacturer']=='euro')>=18
+ for id in ['c1416','c1418']:
+  e=next(e for e in data['entries'] if e['id']==id)
+  assert all('katalog_kes.pdf#page=' in data['images'][i]['sourcePage'] for i in e['images'])
+ assert all(e.get('constructionDescription') and e.get('constructionBasis') in ['manufacturer','group'] for e in data['entries'])
+ for e in data['entries']:
+  if e['constructionBasis']=='manufacturer':assert e.get('constructionSource')
+ for mid in ['starlink','kes']:
+  assert all(e.get('images') for e in data['entries'] if e['manufacturer']==mid)
+ assert next(e for e in data['entries'] if e['id']=='c132')['constructionDescription']!=next(e for e in data['entries'] if e['id']=='c1425')['constructionDescription']
  # Manufacturer imagery stays behind the same access rules and has explicit provenance.
  assert client.get('/references/images/ultra-0.webp',headers=admin).content_type=='image/webp'
  assert len(data['images'])>=53
