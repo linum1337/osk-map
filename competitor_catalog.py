@@ -8,6 +8,7 @@ from urllib.error import HTTPError
 from bs4 import BeautifulSoup
 import crm_store
 from closure_prices import money,now,text,norm
+LANSET_PARSER='lanset-product-offers-v2'
 ROOT=Path(__file__).resolve().parent
 SOURCES=json.loads((ROOT/'competitor_sources.json').read_text());BY_SOURCE={s['id']:s for s in SOURCES}
 CATEGORIES=['Оптический кабель','Витая пара','Муфты','Кроссы и боксы','Арматура и крепёж','Пассивные компоненты','Сетевое оборудование','Инструмент и измерение','Шкафы и стойки','Колодцы и кабельная канализация','Прочие комплектующие']
@@ -37,7 +38,7 @@ def fetch(src,url):
   return raw.decode(r.headers.get_content_charset() or 'utf-8',errors='replace')
 def category(name,path=''):
  s=name.lower();matches=[]
- for value,pattern in [('Муфты',r'муфт|muft'),('Кроссы и боксы',r'кросс|бокс|крт|kross|box'),('Витая пара',r'витая|витой|utp|ftp|sftp|vitaya|mednye-kabeli'),('Оптический кабель',r'кабель.*оптич|оптич.*кабел|kabel.*optic|optic.*kabel|дроп.кабел'),('Арматура и крепёж',r'арматур|зажим|креплен|подвес|кронштейн|хомут|armatur|kreplen|podves'),('Инструмент и измерение',r'инструмент|измер|сварочн|рефлектом|стриппер|скалывател|instrument|izmer'),('Шкафы и стойки',r'шкаф|стойк|shkaf|stoyk'),('Колодцы и кабельная канализация',r'колод|люк|узк|труб|kolod|kanaliz'),('Сетевое оборудование',r'коммутатор|трансивер|роутер|медиаконверт|gpon|gepon|xpon|sfp|switch|wdm'),('Пассивные компоненты',r'патч|пигтейл|адаптер|разветв|аттенюат|розет|коннектор|кдзс|кассет|patch|pigt|splitter')]:
+ for value,pattern in [('Муфты',r'муфт|muft'),('Кроссы и боксы',r'кросс|бокс|крт|kross|box'),('Витая пара',r'витая|витой|utp|ftp|sftp|vitaya|mednye-kabeli'),('Оптический кабель',r'кабель.*оптич|оптич.*кабел|kabel.*optic|optic.*kabel|дроп.кабел|adss|flat.drop|(?:^|\s)(?:ок[а-я]{1,6}|о[тсцпд][а-я]{0,4})[-–\d]|\d+\s*(?:волокон|волокна|ов\b)'),('Арматура и крепёж',r'арматур|зажим|креплен|подвес|кронштейн|хомут|armatur|kreplen|podves'),('Инструмент и измерение',r'инструмент|измер|сварочн|рефлектом|стриппер|скалывател|instrument|izmer'),('Шкафы и стойки',r'шкаф|стойк|shkaf|stoyk'),('Колодцы и кабельная канализация',r'колод|люк|узк|труб|kolod|kanaliz'),('Сетевое оборудование',r'коммутатор|трансивер|роутер|медиаконверт|gpon|gepon|xpon|sfp|switch|wdm'),('Пассивные компоненты',r'патч|пигтейл|адаптер|разветв|аттенюат|розет|коннектор|кдзс|кассет|patch|pigt|splitter')]:
   match=re.search(pattern,s)
   if match:matches.append((match.start(),value))
  if matches:return min(matches,key=lambda v:v[0])[1]
@@ -69,9 +70,10 @@ def prices_in(scope,source):
  if source=='nag':
   for block in scope.select('.our-price, .product-card-prices__price'):add('Цена на странице',text(block),unit=unit_from(text(block)))
  if source=='lanset':
-  for block in scope.select('.e-products-card__price, [itemprop="price"]'):
+  # Listing cards only. Product-page recommendations are never price sources.
+  for block in scope.select('.e-products-card__price'):
    if block.find_parent(class_=lambda c:c and ('old' in c or 'compare' in c)):continue
-   add('Цена на странице',block.get('content') or text(block),unit=unit_from(text(block)))
+   add('Цена на странице',text(block),unit=unit_from(text(block)))
  if source=='yotta':
   for block in scope.select('.views-field-field-price .field-content'):add('Цена на странице',text(block),unit=unit_from(text(block)))
  if source=='pkk':
@@ -80,12 +82,41 @@ def prices_in(scope,source):
   for block in scope.select('[itemprop="price"], .price, .price__value'):add('Цена на странице',block.get('content') or text(block),unit=unit_from(text(block.parent)))
  return result
 
+def lanset_stock(scope):
+ if scope is None:return ''
+ rows=[]
+ for block in scope.select('.stocks_block'):
+  city=text(block.select_one('.stocks_title'));value=text(block.select_one('.e-product-stock'))
+  if value:rows.append((city+' '+value).strip())
+ if rows:return '; '.join(dict.fromkeys(rows))
+ value=text(scope.select_one('.e-products-card__stock, .e-product-stock'))
+ if value:return value
+ offer=scope.select_one('[itemprop="availability"]')
+ return {'InStock':'В наличии','OutOfStock':'Нет в наличии','PreOrder':'Под заказ','BackOrder':'Под заказ','Discontinued':'Снят с производства'}.get((offer.get('href','').rsplit('/',1)[-1] if offer else ''),'')
+
+def lanset_prices(form):
+ result=[]
+ for offer in form.select('[itemprop="offers"][itemtype$="/Offer"]'):
+  amount=offer.select_one('[itemprop="price"]');currency=offer.select_one('[itemprop="priceCurrency"]')
+  if amount is None or currency is None:continue
+  # Each price belongs to its own SKU/Offer, not AggregateOffer or related cards.
+  variant=text(offer.select_one('[itemprop="name"]'));sku=offer.select_one('input[name="sku_id"]')
+  sku_id=sku.get('value','') if sku else '';sku_code=sku.get('data-sku-number','') if sku else ''
+  stocks=form.select_one('.sku-'+sku_id+'-stock') if sku_id.isdigit() else None
+  availability=lanset_stock(stocks if stocks is not None else offer)
+  p=price('Исполнение: '+variant if variant else 'Цена на странице',amount.get('content') or text(amount),currency=currency.get('content') or text(currency))
+  if not p:continue
+  p.update(sku=sku_code,skuId=sku_id,availability=availability)
+  if sku_code:p['condition']='Артикул: '+sku_code
+  if p not in result:result.append(p)
+ return result
+
 def make(src,url,name,scope=None,category_path=''):
  url=canonical(src,url)
  if not url or not name.strip():return None
  sku=text(scope.select_one('.sku, .e-products-card__sku, .setout__article-sku, .article')) if scope else ''
  sku=re.sub(r'^(?:Артикул|Арт\.?|Код товара)\s*[:—-]?\s*','',sku,flags=re.I)
- return {'id':product_id(src,url),'provider':src['id'],'name':name.strip(),'sku':sku,'manufacturer':'','category':category(name,category_path),'categoryPath':category_path,'url':url,'properties':{},'prices':prices_in(scope,src['id']),'availability':text(scope.select_one('.availability, .e-products-card__stock, .setout__presence, .item-stock')) if scope else '', 'checkedAt':now(),'detailCheckedAt':None}
+ return {'id':product_id(src,url),'provider':src['id'],'name':name.strip(),'sku':sku,'manufacturer':'','category':category(name,category_path),'categoryPath':category_path,'url':url,'properties':{},'prices':prices_in(scope,src['id']),'availability':text(scope.select_one('.availability, .e-products-card__stock, .setout__presence, .item-stock')) if scope else '', 'checkedAt':now(),'detailCheckedAt':None,**({'priceParser':LANSET_PARSER} if src['id']=='lanset' else {})}
 
 def listing(src,url,html):
  s=BeautifulSoup(html,'html.parser');sid=src['id'];products=[];links=[];title=text(s.select_one('h1'));scopes=[]
@@ -133,17 +164,26 @@ def details(src,record,html):
  elif sid=='nag':scope=s.select_one('.product-card__prices')
  elif sid=='yotta':scope=s.select_one('article.node-product')
  elif sid=='pkk':scope=s.select_one('.product-page')
- elif sid=='lanset':scope=s.select_one('[itemtype*="/Product"]') or s.select_one('#product')
+ elif sid=='lanset':scope=s.select_one('.e-product-info.product_card')
  elif sid=='optikkom':scope=s.select_one('[itemtype*="/Product"]') or s.select_one('.product')
  if scope is None:raise ValueError('Product scope missing')
  title=text(s.select_one('.zag > .wrap > span' if sid=='pkk' else 'h1'))
  if title and norm(title)!=norm(record['name']) and not(norm(title) in norm(record['name']) or norm(record['name']) in norm(title)):raise ValueError('Different product heading')
  out={**record,'detailCheckedAt':now(),'checkedAt':now()};out['prices']=prices_in(scope,sid)
+ if sid=='lanset':
+  if not title or norm(title)!=norm(record['name']):raise ValueError('Different Lanset product heading')
+  form=scope.select_one('form#cart-form');cart=form.select_one('#product-cart[data-id]') if form else None
+  if form is None or cart is None:raise ValueError('Lanset current-product form missing')
+  out['prices']=lanset_prices(form);out['priceParser']=LANSET_PARSER
+  stocks=[p['availability'] for p in out['prices'] if p.get('availability')]
+  out['availability']=stocks[0] if stocks and len(set(stocks))==1 else ('Зависит от исполнения' if stocks else lanset_stock(form))
+  main_sku=form.select_one('.e-product-sku')
+  if main_sku:out['sku']=re.sub(r'^Артикул:\s*','',text(main_sku))
  if sid=='nag':
   from closure_prices import parse as nag_prices
   out['prices']=nag_prices({**record,'supplier':'НАГ'},html)
  # Product JSON-LD only when identity matches; never scrape recommendations as offers.
- for script in s.select('script[type="application/ld+json"]'):
+ for script in ([] if sid=='lanset' else s.select('script[type="application/ld+json"]')):
   try:payload=json.loads(script.string or script.get_text())
   except (ValueError,TypeError):continue
   stack=payload if isinstance(payload,list) else [payload]
@@ -179,6 +219,27 @@ def init():
   c.execute('CREATE INDEX IF NOT EXISTS competitor_provider ON competitor_products(provider)')
   c.execute('CREATE INDEX IF NOT EXISTS competitor_category ON competitor_products(category)')
   c.execute('CREATE INDEX IF NOT EXISTS competitor_history_product ON competitor_price_history(product_id,seq)')
+ with crm_store.connect() as c:
+  c.execute('CREATE TABLE IF NOT EXISTS competitor_price_quarantine(id INTEGER PRIMARY KEY AUTOINCREMENT,product_id TEXT,kind TEXT,payload TEXT,reason TEXT,quarantined TEXT)')
+  c.execute('CREATE TABLE IF NOT EXISTS competitor_migrations(id TEXT PRIMARY KEY,applied TEXT)')
+  if not c.execute('SELECT 1 FROM competitor_migrations WHERE id=?',(LANSET_PARSER,)).fetchone():
+   ids=[]
+   for id,payload in c.execute("SELECT id,payload FROM competitor_products WHERE provider='lanset'").fetchall():
+    p=json.loads(payload)
+    if p.get('priceParser')==LANSET_PARSER:continue
+    ids.append(id);c.execute('INSERT INTO competitor_price_quarantine(product_id,kind,payload,reason,quarantined) VALUES(?,?,?,?,?)',(id,'product',payload,'Unscoped legacy Lanset parser',now()))
+    p.update(prices=[],availability='',detailCheckedAt=None);p.pop('listingPrices',None)
+    c.execute('UPDATE competitor_products SET payload=?,has_price=0 WHERE id=?',(json.dumps(p,ensure_ascii=False),id))
+   for id in ids:
+    for seq,checked,prices,fingerprint in c.execute('SELECT seq,checked,prices,fingerprint FROM competitor_price_history WHERE product_id=?',(id,)).fetchall():
+     c.execute('INSERT INTO competitor_price_quarantine(product_id,kind,payload,reason,quarantined) VALUES(?,?,?,?,?)',(id,'history',json.dumps(dict(seq=seq,checked=checked,prices=json.loads(prices),fingerprint=fingerprint),ensure_ascii=False),'Unscoped legacy Lanset parser',now()))
+    c.execute('DELETE FROM competitor_price_history WHERE product_id=?',(id,))
+   c.execute('INSERT INTO competitor_migrations VALUES(?,?)',(LANSET_PARSER,now()))
+ with crm_store.connect() as c:
+  for id,name,path,payload in c.execute('SELECT id,name,category,payload FROM competitor_products').fetchall():
+   p=json.loads(payload);group=category(name,p.get('categoryPath',''))
+   if group!=path:
+    p['category']=group;c.execute('UPDATE competitor_products SET category=?,payload=? WHERE id=?',(group,json.dumps(p,ensure_ascii=False),id))
  bootstrap=ROOT/'app/competitors/bootstrap.json'
  if bootstrap.exists():
   for record in json.loads(bootstrap.read_text()):
@@ -186,6 +247,9 @@ def init():
    if not exists:save(record)
 
 def save(record):
+ record={**record,'category':category(record['name'],record.get('categoryPath',''))}
+ if record.get('provider')=='lanset' and record.get('priceParser')!=LANSET_PARSER:
+  record={**record,'prices':[],'availability':'','detailCheckedAt':None}
  with crm_store.connect() as c:
   old=c.execute('SELECT payload FROM competitor_products WHERE id=?',(record['id'],)).fetchone()
   if old:
@@ -275,10 +339,10 @@ def register(app,owner):
   q=request.args.get('q','').strip()[:200]
   if q:clauses.append('(name LIKE ? ESCAPE \'\\\' OR sku LIKE ? ESCAPE \'\\\')');escaped=q.replace('\\','\\\\').replace('%','\\%').replace('_','\\_');args+=['%'+escaped+'%']*2
   if request.args.get('priced')=='1':clauses.append('has_price=1')
-  sql='SELECT payload FROM competitor_products'+(' WHERE '+' AND '.join(clauses) if clauses else '')+' ORDER BY name,provider LIMIT 41 OFFSET ?'
+  sql='SELECT payload FROM competitor_products'+(' WHERE '+' AND '.join(clauses) if clauses else '')+' ORDER BY name,provider LIMIT 21 OFFSET ?'
   with crm_store.connect() as c:
-   rows=c.execute(sql,args+[(page-1)*40]).fetchall();states={r[0]:dict(zip(['state','checkedAt','lastSuccess'],r[1:])) for r in c.execute('SELECT * FROM competitor_sources')};job=c.execute('SELECT id,state,started,finished,phase,source FROM competitor_jobs ORDER BY started DESC LIMIT 1').fetchone()
-  return jsonify(products=[json.loads(r[0]) for r in rows[:40]],hasNext=len(rows)>40,page=page,categories=CATEGORIES,sources=[{**s,'status':states.get(s['id'])} for s in SOURCES],job=dict(zip(['id','state','started','finished','phase','source'],job)) if job else None,canRefresh=g.user.get('role')=='admin' and g.user.get('login')==owner)
+   rows=c.execute(sql,args+[(page-1)*20]).fetchall();states={r[0]:dict(zip(['state','checkedAt','lastSuccess'],r[1:])) for r in c.execute('SELECT * FROM competitor_sources')};job=c.execute('SELECT id,state,started,finished,phase,source FROM competitor_jobs ORDER BY started DESC LIMIT 1').fetchone()
+  return jsonify(products=[json.loads(r[0]) for r in rows[:20]],hasNext=len(rows)>20,page=page,categories=CATEGORIES,sources=[{**s,'status':states.get(s['id'])} for s in SOURCES],job=dict(zip(['id','state','started','finished','phase','source'],job)) if job else None,canRefresh=g.user.get('role')=='admin' and g.user.get('login')==owner)
  @app.get('/competitors/api/product/<id>')
  def competitor_product(id):
   with crm_store.connect() as c:
