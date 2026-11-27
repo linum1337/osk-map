@@ -129,3 +129,8 @@ with tempfile.TemporaryDirectory() as tmp:
  assert response.status_code==303 and response.location=='/references/'
  assert 'references-card' in client.get('/portal-home.js').get_data(as_text=True)
 print('PASS: admin-only documents/data/aliases GET+HEAD; no-store; safe login return; RU/BY crosswalk integrity; aliases and construction distinctions')
+
+oksm=next(e for e in data["entries"] if e["id"]=="c1066")
+assert oksm["constructionBasis"]=="manufacturer"
+assert oksm["attributes"]["module"]=="Центральный стальной оптический модуль"
+assert "Модули в повиве" not in groups["aerial-steel"].values()
