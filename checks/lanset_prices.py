@@ -33,6 +33,8 @@ with tempfile.TemporaryDirectory() as tmp:
  assert c.category('ОКПД-08А-(2,0)-2/4,6 (2кН) (8 волокон)','Для подвеса')=='Оптический кабель'
  assert c.category('Зажим для кабеля 8 волокон')=='Арматура и крепёж'
  assert c.category('COVLINE ADSS Flat Drop, 4 волокна','Для подвеса')=='Оптический кабель'
+ assert c.category('Блок БКТ','Монтаж оптических кабелей связи')=='Прочие комплектующие'
+ assert c.category('Оптическая кабельная сборка ОКГ-1, SC/APC','Кабельные сборки')=='Пассивные компоненты'
  c.save(result)
  with c.crm_store.connect() as db:assert db.execute('SELECT count(*) FROM competitor_price_history WHERE product_id=?',(record['id'],)).fetchone()[0]==1
  print('PASS Lanset: current product only, no recommendations/old prices/JSON-LD fallback, exact heading, variant SKU prices and stock, no zero prices, reversible legacy quarantine')

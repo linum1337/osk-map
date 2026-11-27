@@ -38,11 +38,12 @@ def fetch(src,url):
   return raw.decode(r.headers.get_content_charset() or 'utf-8',errors='replace')
 def category(name,path=''):
  s=name.lower();matches=[]
+ if re.match(r'^(?:оптическая\s+)?кабельная\s+сборка',s):return 'Пассивные компоненты'
  for value,pattern in [('Муфты',r'муфт|muft'),('Кроссы и боксы',r'кросс|бокс|крт|kross|box'),('Витая пара',r'витая|витой|utp|ftp|sftp|vitaya|mednye-kabeli'),('Оптический кабель',r'кабель.*оптич|оптич.*кабел|kabel.*optic|optic.*kabel|дроп.кабел|adss|flat.drop|(?:^|\s)(?:ок[а-я]{1,6}|о[тсцпд][а-я]{0,4})[-–\d]|\d+\s*(?:волокон|волокна|ов\b)'),('Арматура и крепёж',r'арматур|зажим|креплен|подвес|кронштейн|хомут|armatur|kreplen|podves'),('Инструмент и измерение',r'инструмент|измер|сварочн|рефлектом|стриппер|скалывател|instrument|izmer'),('Шкафы и стойки',r'шкаф|стойк|shkaf|stoyk'),('Колодцы и кабельная канализация',r'колод|люк|узк|труб|kolod|kanaliz'),('Сетевое оборудование',r'коммутатор|трансивер|роутер|медиаконверт|gpon|gepon|xpon|sfp|switch|wdm'),('Пассивные компоненты',r'патч|пигтейл|адаптер|разветв|аттенюат|розет|коннектор|кдзс|кассет|patch|pigt|splitter')]:
   match=re.search(pattern,s)
   if match:matches.append((match.start(),value))
  if matches:return min(matches,key=lambda v:v[0])[1]
- return category(path) if path else 'Прочие комплектующие'
+ return category(path) if path and not re.search(r'монтаж|строительство',path,re.I) else 'Прочие комплектующие'
 def product_id(src,url):return hashlib.sha256((src['id']+'|'+url).encode()).hexdigest()[:20]
 def price(label,raw,unit='',tax='',condition='',currency=''):
  value=money(raw)
