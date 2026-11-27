@@ -18,9 +18,11 @@ with tempfile.TemporaryDirectory() as tmp:
    raw=(root/'app'/image['src'].lstrip('/')).read_text();assert '<svg' in raw and 'data:image/webp;base64,' in raw
  a=next(e for e in es if e['id']=='f8060ca86c39e99a');assert a['fields']['capacity']=='216' and a['fields']['cassettesIncluded']=='1'
  assert sum(e['supplier']=='Volsip' for e in es)>=60
- assert sum(bool(e.get('image')) for e in es)>=35
+ assert all(e.get('image') and e['image'].get('reviewed') for e in es)
+ assert all('no-photo' not in e['image']['source'] for e in es)
+ assert not any('склад' in k.casefold() for e in es for k,v in e['evidence']['propertyRows'])
  first=next(e['image']['src'] for e in es if e.get('image'))
- for path in ['/references/closures/closures.json','/references/closures/closures.js','/references/closures/closures.css',first]:
+ for path in ['/references/closures/closures.json','/references/closures/closures.js','/references/closures/analogs.js','/references/closures/closures.css',first]:
   assert c.get(path).status_code==401,path
   for prefix in ['', '/companies']:
    for method in ['get','head']:
