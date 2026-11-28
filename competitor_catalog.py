@@ -7,6 +7,8 @@ from concurrent.futures import ThreadPoolExecutor,as_completed
 from urllib.error import HTTPError
 from bs4 import BeautifulSoup
 import crm_store
+import competitor_search as search
+import competitor_manufacturers as makers
 from closure_prices import money,now,text,norm
 LANSET_PARSER='lanset-product-offers-v2'
 ROOT=Path(__file__).resolve().parent
@@ -21,7 +23,7 @@ def safe_url(src,url):
 def canonical(src,url):
  url=urljoin(src['url'],url);p=urlsplit(url)
  if not safe_url(src,url):return None
- query=[(k,v) for k,v in parse_qsl(p.query) if k in ('page','PAGEN_1','PAGEN_2') and v.isdigit() and 1<int(v)<10000]
+ query=[(k,v) for k,v in parse_qsl(p.query) if (k in ('page','PAGEN_1','PAGEN_2') and v.isdigit() and 1<int(v)<10000) or (src['id']=='mircable' and k=='q' and len(v)<=500)]
  return urlunsplit((p.scheme,urlsplit(src['url']).netloc,p.path,urlencode(query),''))
 class Redirect(HTTPRedirectHandler):
  def __init__(self,src):self.src=src
@@ -44,7 +46,7 @@ def category(name,path=''):
   if match:matches.append((match.start(),value))
  if matches:return min(matches,key=lambda v:v[0])[1]
  return category(path) if path and not re.search(r'монтаж|строительство',path,re.I) else 'Прочие комплектующие'
-def product_id(src,url):return hashlib.sha256((src['id']+'|'+url).encode()).hexdigest()[:20]
+def product_id(src,url,source_id=''):return hashlib.sha256((src['id']+'|'+url+('|'+source_id if source_id else '')).encode()).hexdigest()[:20]
 def price(label,raw,unit='',tax='',condition='',currency=''):
  value=money(raw)
  if not value:return None
@@ -120,6 +122,9 @@ def make(src,url,name,scope=None,category_path=''):
  return {'id':product_id(src,url),'provider':src['id'],'name':name.strip(),'sku':sku,'manufacturer':'','category':category(name,category_path),'categoryPath':category_path,'url':url,'properties':{},'prices':prices_in(scope,src['id']),'availability':text(scope.select_one('.availability, .e-products-card__stock, .setout__presence, .item-stock')) if scope else '', 'checkedAt':now(),'detailCheckedAt':None,**({'priceParser':LANSET_PARSER} if src['id']=='lanset' else {})}
 
 def listing(src,url,html):
+ if src['id']=='osk':
+  from competitor_sources_extra import osk_listing
+  return osk_listing(src,url,html)
  s=BeautifulSoup(html,'html.parser');sid=src['id'];products=[];links=[];title=text(s.select_one('h1'));scopes=[]
  if re.search(r'архив|arhiv|archive',title+' '+url,re.I):return [],[]
  if sid=='lanset':scopes=s.select('.e-products-card__item')
@@ -159,6 +164,9 @@ def listing(src,url,html):
  return products,list(dict.fromkeys(links))
 
 def details(src,record,html):
+ if src['id']=='osk':
+  from competitor_sources_extra import osk_details
+  return osk_details(src,record,html)
  s=BeautifulSoup(html,'html.parser');sid=src['id'];scope=None
  if sid in ('install',):scope=s.select_one('.item_main_info')
  elif sid=='nk':scope=s.select_one('.summary.entry-summary')
@@ -194,7 +202,9 @@ def details(src,record,html):
    stack.extend(node.get('@graph',[]))
    if node.get('@type')!='Product' or norm(node.get('name'))!=norm(title or record['name']):continue
    if node.get('sku'):out['sku']=str(node['sku'])
-   brand=node.get('brand',node.get('manufacturer',{}));out['manufacturer']=brand.get('name','') if isinstance(brand,dict) else str(brand)
+   for field,target in [('manufacturer','manufacturerDeclaration'),('brand','brandDeclaration')]:
+    value=node.get(field)
+    if value:out[target]=value.get('name','') if isinstance(value,dict) else str(value)
    offers=node.get('offers',[]);offers=offers if isinstance(offers,list) else [offers]
    if not out['prices']:
     for offer in offers:
@@ -209,7 +219,7 @@ def details(src,record,html):
   if len(cells)==2 and all(cells):
    k,v=map(text,cells)
    if k and v and len(k)<120 and len(v)<1000 and re.search(r'колич|число|волокон|диаметр|длина|ширина|высота|габарит|размер|масса|вес|материал|тип|категори|экран|оболоч|емкост|ёмкост|нагруз|усили|температур|защит|герметиз|кассет|разъем|разъём|затухан|коэффициент|частот|скорост|порт|мощност|питан|напряж|модель',k,re.I) and not re.search(r'цен|стоимост|налич|артикул|наименование',k,re.I):out['properties'][k]=v
- return out
+ return makers.read_claims(out,s)
 
 def init():
  with crm_store.connect() as c:
@@ -217,6 +227,9 @@ def init():
   c.execute('CREATE TABLE IF NOT EXISTS competitor_price_history(seq INTEGER PRIMARY KEY AUTOINCREMENT,product_id TEXT,checked TEXT,prices TEXT,fingerprint TEXT)')
   c.execute('CREATE TABLE IF NOT EXISTS competitor_jobs(id TEXT PRIMARY KEY,state TEXT,started REAL,finished TEXT,actor TEXT,phase TEXT,source TEXT)')
   c.execute('CREATE TABLE IF NOT EXISTS competitor_sources(id TEXT PRIMARY KEY,state TEXT,checked TEXT,last_success TEXT)')
+  c.execute('CREATE TABLE IF NOT EXISTS competitor_makers(product_id TEXT PRIMARY KEY,maker_key TEXT NOT NULL,maker_label TEXT NOT NULL)')
+  c.execute('CREATE INDEX IF NOT EXISTS competitor_maker_key ON competitor_makers(maker_key)')
+  c.execute('CREATE TABLE IF NOT EXISTS competitor_search(id TEXT PRIMARY KEY,body TEXT NOT NULL,name TEXT NOT NULL,sku TEXT NOT NULL)')
   c.execute('CREATE INDEX IF NOT EXISTS competitor_provider ON competitor_products(provider)')
   c.execute('CREATE INDEX IF NOT EXISTS competitor_category ON competitor_products(category)')
   c.execute('CREATE INDEX IF NOT EXISTS competitor_history_product ON competitor_price_history(product_id,seq)')
@@ -241,6 +254,18 @@ def init():
    p=json.loads(payload);group=category(name,p.get('categoryPath',''))
    if group!=path:
     p['category']=group;c.execute('UPDATE competitor_products SET category=?,payload=? WHERE id=?',(group,json.dumps(p,ensure_ascii=False),id))
+ with crm_store.connect() as c:
+  if not c.execute("SELECT 1 FROM competitor_migrations WHERE id='manufacturer-v1'").fetchone():
+   for id,payload in c.execute('SELECT id,payload FROM competitor_products').fetchall():
+    p=makers.enrich(json.loads(payload));c.execute('UPDATE competitor_products SET payload=? WHERE id=?',(json.dumps(p,ensure_ascii=False),id))
+    c.execute('INSERT OR REPLACE INTO competitor_makers VALUES(?,?,?)',(id,p['manufacturerKey'],p['manufacturerLabel']))
+   c.execute('INSERT INTO competitor_migrations VALUES(?,?)',('manufacturer-v1',now()))
+ with crm_store.connect() as c:
+  if not c.execute("SELECT 1 FROM competitor_migrations WHERE id='search-v2'").fetchone():
+   for id,payload in c.execute('SELECT id,payload FROM competitor_products').fetchall():
+    record=json.loads(payload);body,name,sku=search.document(record,BY_SOURCE.get(record['provider'],{}).get('name',''))
+    c.execute('INSERT OR REPLACE INTO competitor_search VALUES(?,?,?,?)',(id,body,name,sku))
+   c.execute('INSERT INTO competitor_migrations VALUES(?,?)',('search-v2',now()))
  bootstrap=ROOT/'app/competitors/bootstrap.json'
  if bootstrap.exists():
   for record in json.loads(bootstrap.read_text()):
@@ -251,6 +276,7 @@ def save(record):
  record={**record,'category':category(record['name'],record.get('categoryPath',''))}
  if record.get('provider')=='lanset' and record.get('priceParser')!=LANSET_PARSER:
   record={**record,'prices':[],'availability':'','detailCheckedAt':None}
+ listing_update=not record.get('detailCheckedAt')
  with crm_store.connect() as c:
   old=c.execute('SELECT payload FROM competitor_products WHERE id=?',(record['id'],)).fetchone()
   if old:
@@ -259,8 +285,15 @@ def save(record):
     record['properties']=previous.get('properties',{});record['manufacturer']=previous.get('manufacturer','');record['detailCheckedAt']=previous.get('detailCheckedAt');record['sku']=record['sku'] or previous.get('sku','')
     if previous.get('detailCheckedAt'):
      record['listingPrices']=record['prices'];record['prices']=previous.get('prices',[]);record['checkedAt']=previous['checkedAt']
+   if listing_update:
+    for field in ['manufacturerDeclaration','brandDeclaration','originCountry','originEvidence']:
+     if field not in record and field in previous:record[field]=previous[field]
+  record=makers.enrich(record)
+  c.execute('INSERT OR REPLACE INTO competitor_makers VALUES(?,?,?)',(record['id'],record['manufacturerKey'],record['manufacturerLabel']))
   serialized=json.dumps(record,ensure_ascii=False)
   c.execute('INSERT OR REPLACE INTO competitor_products VALUES(?,?,?,?,?,?,?,?)',(record['id'],record['provider'],record['category'],record['name'],record['sku'],serialized,int(bool(record['prices'])),record['checkedAt']))
+  body,name,sku=search.document(record,BY_SOURCE.get(record['provider'],{}).get('name',''))
+  c.execute('INSERT OR REPLACE INTO competitor_search VALUES(?,?,?,?)',(record['id'],body,name,sku))
   raw=json.dumps(record['prices'],ensure_ascii=False,sort_keys=True);fingerprint=hashlib.sha256(raw.encode()).hexdigest();prior=c.execute('SELECT fingerprint FROM competitor_price_history WHERE product_id=? ORDER BY seq DESC LIMIT 1',(record['id'],)).fetchone()
   if record.get('checkedAt') and (not prior or prior[0]!=fingerprint):c.execute('INSERT INTO competitor_price_history(product_id,checked,prices,fingerprint) VALUES(?,?,?,?)',(record['id'],record['checkedAt'],raw,fingerprint))
 
@@ -268,6 +301,14 @@ def source_state(id,state):
  with crm_store.connect() as c:
   prior=c.execute('SELECT last_success FROM competitor_sources WHERE id=?',(id,)).fetchone();stamp=now();c.execute('INSERT OR REPLACE INTO competitor_sources VALUES(?,?,?,?)',(id,state,stamp,stamp if state=='ok' else prior[0] if prior else None))
 def scrape_source(src,full=True,progress=None):
+ if src['id']=='mircable':
+  from competitor_sources_extra import mircable
+  try:
+   for record in mircable(src,fetch(src,src['seeds'][0])):save(record)
+   source_state(src['id'],'ok')
+  except HTTPError as error:source_state(src['id'],'blocked' if error.code in (401,403,429) else 'partial')
+  except Exception:source_state(src['id'],'partial')
+  return
  queue=collections.deque(src['seeds']);scheduled=set(src['seeds']);seen=set();failed=False
  while queue:
   url=queue.popleft()
@@ -336,19 +377,52 @@ def register(app,owner):
   clauses=[];args=[]
   for key in ['provider','category']:
    value=request.args.get(key,'')
-   if value:clauses.append(key+'=?');args.append(value)
-  q=request.args.get('q','').strip()[:200]
-  if q:clauses.append('(name LIKE ? ESCAPE \'\\\' OR sku LIKE ? ESCAPE \'\\\')');escaped=q.replace('\\','\\\\').replace('%','\\%').replace('_','\\_');args+=['%'+escaped+'%']*2
+   if value:clauses.append('p.'+key+'=?');args.append(value)
+  q=request.args.get('q','').strip()[:200];words=search.terms(q)
+  if q and not words:clauses.append('0')
+  for word in words:clauses.append('instr(s.body,?)>0');args.append(word)
   if request.args.get('priced')=='1':clauses.append('has_price=1')
-  sql='SELECT payload FROM competitor_products'+(' WHERE '+' AND '.join(clauses) if clauses else '')+' ORDER BY name,provider LIMIT 21 OFFSET ?'
+  manufacturer=request.args.get('manufacturer','')
+  if manufacturer:clauses.append('m.maker_key=?');args.append(manufacturer)
+  rank_args=[];rank='p.name,p.provider'
+  if words:
+   phrase=search.normalize(q);rank_args=[phrase,phrase,phrase]
+   rank="(CASE WHEN replace(s.sku,' ','')=replace(?,' ','') THEN 100 ELSE 0 END+CASE WHEN s.name=? THEN 80 ELSE 0 END+CASE WHEN instr(s.name,?)>0 THEN 40 ELSE 0 END"
+   for word in words:
+    rank+='+CASE WHEN instr(s.sku,?)>0 THEN 20 ELSE 0 END+CASE WHEN instr(s.name,?)>0 THEN 30 ELSE 0 END';rank_args.extend([word,word])
+   rank+=') DESC,p.name,p.provider'
+  sql='SELECT p.payload FROM competitor_products p JOIN competitor_search s ON s.id=p.id JOIN competitor_makers m ON m.product_id=p.id'+(' WHERE '+' AND '.join(clauses) if clauses else '')+' ORDER BY '+rank+' LIMIT 21 OFFSET ?'
   with crm_store.connect() as c:
-   rows=c.execute(sql,args+[(page-1)*20]).fetchall();states={r[0]:dict(zip(['state','checkedAt','lastSuccess'],r[1:])) for r in c.execute('SELECT * FROM competitor_sources')};job=c.execute('SELECT id,state,started,finished,phase,source FROM competitor_jobs ORDER BY started DESC LIMIT 1').fetchone()
-  return jsonify(products=[json.loads(r[0]) for r in rows[:20]],hasNext=len(rows)>20,page=page,categories=CATEGORIES,sources=[{**s,'status':states.get(s['id'])} for s in SOURCES],job=dict(zip(['id','state','started','finished','phase','source'],job)) if job else None,canRefresh=g.user.get('role')=='admin' and g.user.get('login')==owner)
+   manufacturer_options=[{'id':key,'name':label} for key,label in c.execute('SELECT DISTINCT m.maker_key,m.maker_label FROM competitor_makers m JOIN competitor_products p ON p.id=m.product_id ORDER BY m.maker_label')]
+   rows=c.execute(sql,args+rank_args+[(page-1)*20]).fetchall();states={r[0]:dict(zip(['state','checkedAt','lastSuccess'],r[1:])) for r in c.execute('SELECT * FROM competitor_sources')};job=c.execute('SELECT id,state,started,finished,phase,source FROM competitor_jobs ORDER BY started DESC LIMIT 1').fetchone()
+  products=[json.loads(r[0]) for r in rows[:20]]
+  for p in products:p['searchMatches']=search.highlights(p,words,BY_SOURCE.get(p['provider'],{}).get('name','')) if words else []
+  return jsonify(products=products,hasNext=len(rows)>20,page=page,categories=CATEGORIES,manufacturers=manufacturer_options,sources=[{**s,'status':states.get(s['id'])} for s in SOURCES],job=dict(zip(['id','state','started','finished','phase','source'],job)) if job else None,canRefresh=g.user.get('role')=='admin' and g.user.get('login')==owner)
  @app.get('/competitors/api/product/<id>')
  def competitor_product(id):
   with crm_store.connect() as c:
    row=c.execute('SELECT payload FROM competitor_products WHERE id=?',(id,)).fetchone();history=[dict(zip(['checkedAt','prices'],(r[0],json.loads(r[1])))) for r in c.execute('SELECT checked,prices FROM competitor_price_history WHERE product_id=? ORDER BY seq DESC LIMIT 100',(id,))]
   return (jsonify(product=json.loads(row[0]),history=history) if row else (jsonify(error='Товар не найден'),404))
+ @app.post('/competitors/api/manufacturers')
+ def competitor_manufacturer_metadata():
+  if g.user.get('role')!='admin' or g.user.get('login')!=owner:return jsonify(error='Доступно только владельцу портала'),403
+  payload=request.get_json(silent=True);allowed={'manufacturerDeclaration','brandDeclaration','originCountry','originEvidence','manufacturerClaimsCheckedAt'}
+  if not isinstance(payload,dict) or not isinstance(payload.get('items'),list) or len(payload['items'])>1000:return jsonify(error='Некорректные данные'),400
+  items=payload['items']
+  if any(not isinstance(item,dict) or set(item)-({'id'}|allowed) or not re.fullmatch(r'[a-f0-9]{20}',str(item.get('id',''))) or any(not isinstance(v,str) or len(v)>200 for k,v in item.items() if k!='id') for item in items):return jsonify(error='Некорректные поля'),400
+  with crm_store.connect() as c:
+   c.execute('BEGIN IMMEDIATE');records=[]
+   for item in items:
+    row=c.execute('SELECT payload FROM competitor_products WHERE id=?',(item['id'],)).fetchone()
+    if row is None:return jsonify(error='Товар не найден'),404
+    record=json.loads(row[0]);record.update({k:v for k,v in item.items() if k in allowed});records.append(makers.enrich(record))
+   for record in records:
+    c.execute('UPDATE competitor_products SET payload=? WHERE id=?',(json.dumps(record,ensure_ascii=False),record['id']))
+    c.execute('INSERT OR REPLACE INTO competitor_makers VALUES(?,?,?)',(record['id'],record['manufacturerKey'],record['manufacturerLabel']))
+    body,name,sku=search.document(record,BY_SOURCE.get(record['provider'],{}).get('name',''))
+    c.execute('INSERT OR REPLACE INTO competitor_search VALUES(?,?,?,?)',(record['id'],body,name,sku))
+  return jsonify(updated=len(records))
+
  @app.post('/competitors/api/refresh')
  def competitor_refresh():
   if g.user.get('role')!='admin' or g.user.get('login')!=owner:return jsonify(error='Доступно только владельцу портала'),403
@@ -370,8 +444,10 @@ def register(app,owner):
    if not isinstance(record,dict) or record.get('provider') not in BY_SOURCE:return jsonify(error='Неизвестный источник'),400
    src=BY_SOURCE[record['provider']]
    if not safe_url(src,record.get('url','')) or not isinstance(record.get('name'),str) or not record['name'].strip() or not record.get('checkedAt'):return jsonify(error='Некорректный товар'),400
-   if record.get('id')!=product_id(src,canonical(src,record['url'])):return jsonify(error='Некорректный идентификатор'),400
-   if not isinstance(record.get('prices'),list) or len(record['prices'])>100:return jsonify(error='Некорректные цены'),400
+   source_id=record.get('sourceProductId','') if src['id']=='mircable' else ''
+   if src['id']=='mircable' and (not isinstance(source_id,str) or not re.fullmatch(r'[a-zA-Z0-9_-]{1,160}',source_id)):return jsonify(error='Некорректный идентификатор'),400
+   if record.get('id')!=product_id(src,canonical(src,record['url']),source_id):return jsonify(error='Некорректный идентификатор'),400
+   if not isinstance(record.get('prices'),list) or len(record['prices'])>1000:return jsonify(error='Некорректные цены'),400
    for row in record['prices']:
     if not isinstance(row,dict) or not money(row.get('amount','')) or row.get('currency','') not in ('','RUB','RUR','USD','EUR'):return jsonify(error='Некорректная цена'),400
    records.append(record)

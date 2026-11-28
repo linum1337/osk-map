@@ -82,5 +82,42 @@
     "seeds": [
       "https://www.optik-kom.ru/catalog"
     ]
+  },
+  {
+    "id": "osk",
+    "name": "ОСК",
+    "url": "https://www.optik-sk.ru/",
+    "seeds": [
+      "https://www.optik-sk.ru/rasprodaja/",
+      "https://www.optik-sk.ru/kabel-osk/",
+      "https://www.optik-sk.ru/opticheskie-kabelnye-sborki-oks/",
+      "https://www.optik-sk.ru/opticheskij-kabel-npp-starlink/",
+      "https://www.optik-sk.ru/minskkabel/",
+      "https://www.optik-sk.ru/mufty-opticheskie/",
+      "https://www.optik-sk.ru/armatura-dlya-podvesa-kabelya/",
+      "https://www.optik-sk.ru/passivnoe-opticheskoe-oborudovanie/",
+      "https://www.optik-sk.ru/svarochnye-apparaty/",
+      "https://www.optik-sk.ru/reflektometry-dlya-optovolokna/",
+      "https://www.optik-sk.ru/oborudovanie-ftth/",
+      "https://www.optik-sk.ru/instrumenty-dlya-montazha/",
+      "https://www.optik-sk.ru/sks-strukturirovannye-kabelnye-seti/",
+      "https://www.optik-sk.ru/kabelnyj-kolodets-svyazi/",
+      "https://www.optik-sk.ru/mednye-kabeli/",
+      "https://www.optik-sk.ru/aktivnoe-oborudovanie/",
+      "https://www.optik-sk.ru/ultra-kabel/",
+      "https://www.optik-sk.ru/opticheskij-kabel-moskabel-fudzhikura/",
+      "https://www.optik-sk.ru/opticheskij-kabel-opten/",
+      "https://www.optik-sk.ru/opticheskij-kabel-evrokabel-1/",
+      "https://www.optik-sk.ru/altaj-kabel/",
+      "https://www.optik-sk.ru/saranskkabel-optika/"
+    ]
+  },
+  {
+    "id": "mircable",
+    "name": "Мир Кабеля",
+    "url": "https://mircable.com/",
+    "seeds": [
+      "https://mircable.com/api/content"
+    ]
   }
 ]
