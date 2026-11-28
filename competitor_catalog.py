@@ -13,31 +13,38 @@ from closure_prices import money,now,text,norm
 LANSET_PARSER='lanset-product-offers-v2'
 ROOT=Path(__file__).resolve().parent
 SOURCES=json.loads((ROOT/'competitor_sources.json').read_text());BY_SOURCE={s['id']:s for s in SOURCES}
+PRESENCE=json.loads((ROOT/'competitor_presence.json').read_text())
+REGIONS=sorted(set(json.loads((ROOT/'competitor_regions.json').read_text()))|{r for p in PRESENCE.values() for r in p.get('regions',[])+p.get('salesRegions',[])})
+def source_in_region(id,region):
+ p=PRESENCE.get(id,{})
+ return not region or (p.get('federal') if region=='federal' else not p.get('verified') if region=='unknown' else p.get('federal') or region in p.get('regions',[])+p.get('salesRegions',[]))
 CATEGORIES=['Оптический кабель','Витая пара','Муфты','Кроссы и боксы','Арматура и крепёж','Пассивные компоненты','Сетевое оборудование','Инструмент и измерение','Шкафы и стойки','Колодцы и кабельная канализация','Прочие комплектующие']
 
 def hostnames(src):
  host=urlsplit(src['url']).hostname;return {host,host.removeprefix('www.'),'www.'+host.removeprefix('www.')}
 def safe_url(src,url):
- try:p=urlsplit(url);return p.scheme in ({'http','https'} if src['id']=='yotta' else {'https'}) and p.hostname in hostnames(src) and not p.username and not p.password and p.port in (None,80 if p.scheme=='http' else 443)
+ try:p=urlsplit(url);return p.scheme in ({'http','https'} if src['id']=='yotta' or src.get('allowHttp') else {'https'}) and p.hostname in hostnames(src) and not p.username and not p.password and p.port in (None,80 if p.scheme=='http' else 443)
  except ValueError:return False
 def canonical(src,url):
  url=urljoin(src['url'],url);p=urlsplit(url)
  if not safe_url(src,url):return None
- query=[(k,v) for k,v in parse_qsl(p.query) if (k in ('page','PAGEN_1','PAGEN_2') and v.isdigit() and 1<int(v)<10000) or (src['id']=='mircable' and k=='q' and len(v)<=500)]
+ query=[(k,v) for k,v in parse_qsl(p.query) if (k in ('page','PAGEN_1','PAGEN_2','start','limitstart') and v.isdigit() and 1<int(v)<100000) or (src['id']=='mircable' and k=='q' and len(v)<=500) or (src['id']=='kabis' and ((k=='view' and v=='product') or (k=='id' and v.isdigit())))]
  return urlunsplit((p.scheme,urlsplit(src['url']).netloc,p.path,urlencode(query),''))
 class Redirect(HTTPRedirectHandler):
  def __init__(self,src):self.src=src
  def redirect_request(self,req,fp,code,msg,headers,newurl):
   if not safe_url(self.src,newurl):raise ValueError('Off-source redirect')
   return super().redirect_request(req,fp,code,msg,headers,newurl)
-def fetch(src,url):
+def fetch_bytes(src,url,with_charset=False):
  if not safe_url(src,url):raise ValueError('Unsupported source URL')
  context=ssl.create_default_context();context.load_verify_locations(cafile=certifi.where())
  req=Request(url,headers={'User-Agent':'OSK-Product-Reference/1.0 (+https://osk.l1num.ru/)','Accept':'text/html','Accept-Language':'ru,en;q=0.5'})
  with build_opener(Redirect(src),HTTPSHandler(context=context)).open(req,timeout=15) as r:
   raw=r.read(10_000_001)
   if len(raw)>10_000_000:raise ValueError('Response too large')
-  return raw.decode(r.headers.get_content_charset() or 'utf-8',errors='replace')
+  return (raw,r.headers.get_content_charset() or 'utf-8') if with_charset else raw
+def fetch(src,url):
+ raw,charset=fetch_bytes(src,url,True);return raw.decode(charset,errors='replace')
 def category(name,path=''):
  s=name.lower();matches=[]
  if re.match(r'^(?:оптическая\s+)?кабельная\s+сборка',s):return 'Пассивные компоненты'
@@ -122,6 +129,9 @@ def make(src,url,name,scope=None,category_path=''):
  return {'id':product_id(src,url),'provider':src['id'],'name':name.strip(),'sku':sku,'manufacturer':'','category':category(name,category_path),'categoryPath':category_path,'url':url,'properties':{},'prices':prices_in(scope,src['id']),'availability':text(scope.select_one('.availability, .e-products-card__stock, .setout__presence, .item-stock')) if scope else '', 'checkedAt':now(),'detailCheckedAt':None,**({'priceParser':LANSET_PARSER} if src['id']=='lanset' else {})}
 
 def listing(src,url,html):
+ if src.get('adapter')=='extended':
+  from competitor_sources_extended import listing as extended_listing
+  return extended_listing(src,url,html)
  if src['id']=='osk':
   from competitor_sources_extra import osk_listing
   return osk_listing(src,url,html)
@@ -164,6 +174,9 @@ def listing(src,url,html):
  return products,list(dict.fromkeys(links))
 
 def details(src,record,html):
+ if src.get('adapter')=='extended':
+  from competitor_sources_extended import details as extended_details
+  return extended_details(src,record,html)
  if src['id']=='osk':
   from competitor_sources_extra import osk_details
   return osk_details(src,record,html)
@@ -303,6 +316,26 @@ def source_state(id,state):
  with crm_store.connect() as c:
   prior=c.execute('SELECT last_success FROM competitor_sources WHERE id=?',(id,)).fetchone();stamp=now();c.execute('INSERT OR REPLACE INTO competitor_sources VALUES(?,?,?,?)',(id,state,stamp,stamp if state=='ok' else prior[0] if prior else None))
 def scrape_source(src,full=True,progress=None):
+ if src['id']=='kabis':
+  from competitor_sources_extended import kabis_products
+  try:
+   page=1
+   while True:
+    records,pagination=kabis_products(src,fetch(src,src['publicApi']+'?page='+str(page)+'&limit=100'))
+    for record in records:save(record)
+    if progress:progress('catalog',src['id'])
+    if page>=int(pagination.get('totalPages') or pagination.get('pages') or 1):break
+    page+=1;time.sleep(.15)
+   source_state(src['id'],'ok')
+  except Exception:source_state(src['id'],'partial')
+  return
+ if src.get('priceDocument'):
+  from competitor_sources_extended import document_products
+  try:
+   for record in document_products(src,fetch_bytes(src,src['priceDocument'])):save(record)
+   source_state(src['id'],'ok')
+  except Exception:source_state(src['id'],'partial')
+  return
  if src['id']=='mircable':
   from competitor_sources_extra import mircable
   try:
@@ -311,17 +344,19 @@ def scrape_source(src,full=True,progress=None):
   except HTTPError as error:source_state(src['id'],'blocked' if error.code in (401,403,429) else 'partial')
   except Exception:source_state(src['id'],'partial')
   return
- queue=collections.deque(src['seeds']);scheduled=set(src['seeds']);seen=set();failed=False
+ queue=collections.deque(src['seeds']);scheduled=set(src['seeds']);seen=set();failed=False;found=0
  while queue:
   url=queue.popleft()
   if url in seen:continue
   seen.add(url)
   try:
    records,links=listing(src,url,fetch(src,url))
+   found+=len(records)
    for record in records:save(record)
    for link in links:
     if link not in scheduled:queue.append(link);scheduled.add(link)
    if progress:progress('catalog',src['id'])
+  except PermissionError:source_state(src['id'],'blocked');return
   except HTTPError as error:
    failed=True
    if error.code in (401,403,429):source_state(src['id'],'blocked');return
@@ -331,13 +366,14 @@ def scrape_source(src,full=True,progress=None):
   with crm_store.connect() as c:records=[json.loads(r[0]) for r in c.execute('SELECT payload FROM competitor_products WHERE provider=?',(src['id'],))]
   for record in records:
    try:save(details(src,record,fetch(src,record['url'])))
+   except PermissionError:source_state(src['id'],'blocked');return
    except HTTPError as error:
     failed=True
     if error.code in (401,403,429):source_state(src['id'],'blocked');return
    except Exception:failed=True
    if progress:progress('details',src['id'])
    time.sleep(.15)
- source_state(src['id'],'partial' if failed else 'ok')
+ source_state(src['id'],'partial' if failed or not found else 'ok')
 
 def run(job,source_ids,full):
  def progress(phase,source):
@@ -380,6 +416,11 @@ def register(app,owner):
   for key in ['provider','category']:
    value=request.args.get(key,'')
    if value:clauses.append('p.'+key+'=?');args.append(value)
+  region=request.args.get('region','')
+  if region:
+   ids=[s['id'] for s in SOURCES if source_in_region(s['id'],region)]
+   if ids:clauses.append('p.provider IN ('+','.join('?' for _ in ids)+')');args.extend(ids)
+   else:clauses.append('0')
   q=request.args.get('q','').strip()[:200];words=search.terms(q)
   if q and not words:clauses.append('0')
   for word in words:clauses.append('instr(s.body,?)>0');args.append(word)
@@ -398,8 +439,10 @@ def register(app,owner):
    manufacturer_options=[{'id':key,'name':label} for key,label in c.execute('SELECT DISTINCT m.maker_key,m.maker_label FROM competitor_makers m JOIN competitor_products p ON p.id=m.product_id ORDER BY m.maker_label')]
    rows=c.execute(sql,args+rank_args+[(page-1)*20]).fetchall();states={r[0]:dict(zip(['state','checkedAt','lastSuccess'],r[1:])) for r in c.execute('SELECT * FROM competitor_sources')};job=c.execute('SELECT id,state,started,finished,phase,source FROM competitor_jobs ORDER BY started DESC LIMIT 1').fetchone()
   products=[json.loads(r[0]) for r in rows[:20]]
-  for p in products:p['searchMatches']=search.highlights(p,words,BY_SOURCE.get(p['provider'],{}).get('name','')) if words else []
-  return jsonify(products=products,hasNext=len(rows)>20,page=page,categories=CATEGORIES,manufacturers=manufacturer_options,sources=[{**s,'status':states.get(s['id'])} for s in SOURCES],job=dict(zip(['id','state','started','finished','phase','source'],job)) if job else None,canRefresh=g.user.get('role')=='admin' and g.user.get('login')==owner)
+  for p in products:
+   p['searchMatches']=search.highlights(p,words,BY_SOURCE.get(p['provider'],{}).get('name','')) if words else []
+   p['supplierPresence']=PRESENCE.get(p['provider'],{})
+  return jsonify(products=products,hasNext=len(rows)>20,page=page,categories=CATEGORIES,regions=REGIONS,manufacturers=manufacturer_options,sources=[{**s,'presence':PRESENCE.get(s['id'],{}),'matchesRegion':source_in_region(s['id'],region),'status':states.get(s['id'])} for s in SOURCES],job=dict(zip(['id','state','started','finished','phase','source'],job)) if job else None,canRefresh=g.user.get('role')=='admin' and g.user.get('login')==owner)
  @app.get('/competitors/api/product/<id>')
  def competitor_product(id):
   with crm_store.connect() as c:
@@ -445,9 +488,12 @@ def register(app,owner):
   for record in payload['products']:
    if not isinstance(record,dict) or record.get('provider') not in BY_SOURCE:return jsonify(error='Неизвестный источник'),400
    src=BY_SOURCE[record['provider']]
+   if src['id']=='etm':
+    from competitor_sources_extended import scope_allowed
+    if not scope_allowed(src,record.get('sourceCategoryUrl','')):return jsonify(error='Товар вне разрешённого раздела ЭТМ'),400
    if not safe_url(src,record.get('url','')) or not isinstance(record.get('name'),str) or not record['name'].strip() or not record.get('checkedAt'):return jsonify(error='Некорректный товар'),400
-   source_id=record.get('sourceProductId','') if src['id']=='mircable' else ''
-   if src['id']=='mircable' and (not isinstance(source_id,str) or not re.fullmatch(r'[a-zA-Z0-9_-]{1,160}',source_id)):return jsonify(error='Некорректный идентификатор'),400
+   source_id=record.get('sourceProductId','') if src['id']=='mircable' or src.get('priceDocument') else ''
+   if (src['id']=='mircable' or src.get('priceDocument')) and (not isinstance(source_id,str) or not re.fullmatch(r'[a-zA-Z0-9_-]{1,160}',source_id)):return jsonify(error='Некорректный идентификатор'),400
    if record.get('id')!=product_id(src,canonical(src,record['url']),source_id):return jsonify(error='Некорректный идентификатор'),400
    if not isinstance(record.get('prices'),list) or len(record['prices'])>1000:return jsonify(error='Некорректные цены'),400
    for row in record['prices']:

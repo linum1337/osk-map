@@ -1,0 +1,399 @@
+{
+  "lanset": {
+    "regions": [
+      "Москва",
+      "Санкт-Петербург"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://lanset.ru/kontakty/"
+    ],
+    "verified": true
+  },
+  "nag": {
+    "regions": [
+      "Свердловская область",
+      "Москва",
+      "Московская область",
+      "Санкт-Петербург",
+      "Ростовская область",
+      "Новосибирская область"
+    ],
+    "federal": false,
+    "verified": true,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://shop.nag.ru/contacts-test"
+    ]
+  },
+  "install": {
+    "regions": [
+      "Московская область"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://install-ltd.ru/contacts/"
+    ],
+    "verified": true
+  },
+  "pkk": {
+    "regions": [
+      "Самарская область",
+      "Московская область",
+      "Ставропольский край",
+      "Алтайский край",
+      "Краснодарский край"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://www.pkk63.ru/contacts/"
+    ],
+    "verified": true
+  },
+  "yotta": {
+    "regions": [
+      "Краснодарский край"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "http://yottacom.ru/kontakty"
+    ],
+    "verified": true
+  },
+  "nk": {
+    "regions": [
+      "Санкт-Петербург"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://nk-groupltd.ru/contact/"
+    ],
+    "verified": true
+  },
+  "optikkom": {
+    "regions": [
+      "Нижегородская область"
+    ],
+    "federal": false,
+    "verified": true,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://www.optik-kom.ru/contacts"
+    ]
+  },
+  "osk": {
+    "regions": [
+      "Санкт-Петербург",
+      "Москва"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://www.optik-sk.ru/contacts"
+    ],
+    "verified": true
+  },
+  "mircable": {
+    "regions": [
+      "Самарская область"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://mircable.com/"
+    ],
+    "verified": true
+  },
+  "component": {
+    "regions": [
+      "Санкт-Петербург",
+      "Москва",
+      "Республика Башкортостан",
+      "Краснодарский край",
+      "Калининградская область"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://componentltd.ru/contacts/",
+      "https://componentltd.ru/contacts/#contacts"
+    ],
+    "verified": true
+  },
+  "kdds": {
+    "regions": [
+      "Московская область",
+      "Санкт-Петербург"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://www.kdds.ru/contacts/"
+    ],
+    "verified": true
+  },
+  "sparta": {
+    "regions": [
+      "Нижегородская область",
+      "Республика Татарстан"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://sparta-vt.ru/kontakty/"
+    ],
+    "verified": true
+  },
+  "komss": {
+    "regions": [
+      "Москва"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://komss.ru/contact"
+    ],
+    "verified": true
+  },
+  "hard": {
+    "regions": [
+      "Ростовская область"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://hardr.ru/contacts/"
+    ],
+    "verified": true
+  },
+  "lenservice": {
+    "regions": [
+      "Санкт-Петербург",
+      "Москва",
+      "Пермский край"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://www.lenservice.ru/kontakty/"
+    ],
+    "verified": true
+  },
+  "investtelecom": {
+    "regions": [
+      "Санкт-Петербург"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://invest-telecom.com/kontaktyi.html"
+    ],
+    "verified": true
+  },
+  "progress": {
+    "regions": [
+      "Москва"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://progress-msk.ru/index.php?route=information/contact",
+      "https://progress-msk.ru/contact"
+    ],
+    "verified": true
+  },
+  "anlan": {
+    "regions": [
+      "Московская область"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://anlan.ru/contacts"
+    ],
+    "verified": true
+  },
+  "etm": {
+    "regions": [],
+    "federal": true,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://promo.etm.ru/platforma"
+    ],
+    "verified": true
+  },
+  "optel": {
+    "regions": [
+      "Москва"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://optel.ru/contacts/"
+    ],
+    "verified": true
+  },
+  "fbtrade": {
+    "regions": [
+      "Новосибирская область"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://fb-trade.ru/about/contacts/"
+    ],
+    "verified": true
+  },
+  "fibertool": {
+    "regions": [
+      "Москва",
+      "Новосибирская область",
+      "Ростовская область",
+      "Приморский край"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://fibertool.ru/filials/"
+    ],
+    "verified": true
+  },
+  "alphanets": {
+    "regions": [
+      "Москва"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://alphanets.ru/contact"
+    ],
+    "verified": true
+  },
+  "skeo": {
+    "regions": [
+      "Санкт-Петербург"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://skeo.ru/contact"
+    ],
+    "verified": true,
+    "salesRegions": [
+      "Москва",
+      "Ростовская область"
+    ]
+  },
+  "telecomo": {
+    "regions": [
+      "Москва"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://telecomo.ru/company/contacts/"
+    ],
+    "verified": true
+  },
+  "komtel": {
+    "regions": [
+      "Свердловская область"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://komtel.su/contacts/"
+    ],
+    "verified": true
+  },
+  "linesv": {
+    "regions": [
+      "Краснодарский край"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://linesv.ru/contact"
+    ],
+    "verified": true
+  },
+  "kabis": {
+    "regions": [
+      "Санкт-Петербург"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://spb-kabis.ru/"
+    ],
+    "verified": true
+  },
+  "netsol": {
+    "regions": [
+      "Краснодарский край",
+      "Республика Крым",
+      "Республика Дагестан"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://netsol.shop/contacts"
+    ],
+    "verified": true
+  },
+  "skp": {
+    "regions": [
+      "Краснодарский край"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://skp-krasnodar.ru/kontakty"
+    ],
+    "verified": true
+  },
+  "lancentre": {
+    "regions": [
+      "Краснодарский край"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://lancentre.ru/contacts/"
+    ],
+    "verified": true
+  },
+  "kabco": {
+    "regions": [
+      "Свердловская область"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://kabco.ru/company/contacts/"
+    ],
+    "verified": true
+  },
+  "bazis": {
+    "regions": [
+      "Санкт-Петербург",
+      "Москва",
+      "Московская область",
+      "Краснодарский край",
+      "Республика Крым",
+      "Ростовская область"
+    ],
+    "federal": false,
+    "checkedAt": "2026-11-28",
+    "sources": [
+      "https://bazistelecom.ru/contacts/",
+      "https://bazistelecom.ru/contacts/stores/"
+    ],
+    "verified": true
+  }
+}

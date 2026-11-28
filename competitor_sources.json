@@ -119,5 +119,281 @@
     "seeds": [
       "https://mircable.com/api/content"
     ]
+  },
+  {
+    "id": "component",
+    "name": "Компонент",
+    "url": "https://componentltd.ru/",
+    "seeds": [
+      "https://componentltd.ru/catalog/"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "kdds",
+    "name": "КДДС",
+    "url": "https://www.kdds.ru/",
+    "seeds": [
+      "https://www.kdds.ru/kabelnaya-produkciya/opticheskiy-kabel",
+      "https://www.kdds.ru/kabelnaya-produkciya/vitaya-para",
+      "https://www.kdds.ru/kabelnaya-produkciya/kabel-kombinirovannyy",
+      "https://www.kdds.ru/uzly-dlya-krepleniya/trubostoyka",
+      "https://www.kdds.ru/uzly-dlya-krepleniya/ustroystvo-dlya-zapasa-kabelya",
+      "https://www.kdds.ru/uzly-dlya-krepleniya/krepezh-dlya-kabelya",
+      "https://www.kdds.ru/krossovoe-oborudovanie"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "sparta",
+    "name": "Спарта",
+    "url": "https://sparta-vt.ru/",
+    "seeds": [
+      "https://sparta-vt.ru/shop/vols/",
+      "https://sparta-vt.ru/shop/montazh-opticheskikh-kabeley-svyazi/",
+      "https://sparta-vt.ru/shop/montazh-i-izmereniya-opticheskikh-kabeley-svyazi/mufty-dlya-opticheskikh-kabeley/",
+      "https://sparta-vt.ru/shop/montazh-i-izmereniya-opticheskikh-kabeley-svyazi/krossy-i-shkafy-opticheskie/",
+      "https://sparta-vt.ru/shop/montazh-i-izmereniya-opticheskikh-kabeley-svyazi/komponenty-opticheskikh-setey/",
+      "https://sparta-vt.ru/shop/montazh-i-izmereniya-opticheskikh-kabeley-svyazi/pribory-i-instrumenty-dlya-vols/",
+      "https://sparta-vt.ru/shop/montazh-i-izmereniya-opticheskikh-kabeley-svyazi/shkafy-i-stoyki-telekommunikatsionnye/"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "komss",
+    "name": "Комплексные системы и сети (KOMSS)",
+    "url": "https://komss.ru/",
+    "seeds": [
+      "https://komss.ru/catalog/izdeliya-dlya-sozdaniya-setej-svyazi-i-elektroenergetiki",
+      "https://komss.ru/catalog/izdeliya-dlya-montazha-vols",
+      "https://komss.ru/catalog/komponenty-dlya-montazha-kabelej-i-sks"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "hard",
+    "name": "Хард",
+    "url": "https://hardr.ru/",
+    "seeds": [
+      "https://hardr.ru/catalog/novinki/",
+      "https://hardr.ru/catalog/Izmeritelnoe-oborudovanie/",
+      "https://hardr.ru/catalog/kabel-mednyj-vitaya-para/",
+      "https://hardr.ru/catalog/volokonno-opticheskij-kabel/",
+      "https://hardr.ru/catalog/Armatura-dlja-podvesa-kabelja/",
+      "https://hardr.ru/catalog/Krossovoe-oborudovanie/",
+      "https://hardr.ru/catalog/mufty-dlya-kabelej-s-obolochkami-iz-polietilena/",
+      "https://hardr.ru/catalog/mufty-dlya-kabelej-s-obolochkami-iz-svincza-alyuminiya-ili-stali/",
+      "https://hardr.ru/catalog/Mufty-opticheskih-kabelej/",
+      "https://hardr.ru/catalog/opoveshhenie-i-ograzhdenie/",
+      "https://hardr.ru/catalog/opticheskie-componenty/",
+      "https://hardr.ru/catalog/Rashodnye-materialy/",
+      "https://hardr.ru/catalog/svarochnye-apparaty-i-aksessuary-k-nim/",
+      "https://hardr.ru/catalog/setevoe-oborudovanie/",
+      "https://hardr.ru/catalog/ssd-pipe/",
+      "https://hardr.ru/catalog/Telekommunikacionnye-stojki/",
+      "https://hardr.ru/catalog/montazhnoe-oborudovanie/"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "lenservice",
+    "name": "Ленсервис",
+    "url": "https://www.lenservice.ru/",
+    "seeds": [
+      "https://www.lenservice.ru/katalog/"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "investtelecom",
+    "name": "Инвест Телеком",
+    "url": "https://invest-telecom.com/",
+    "seeds": [
+      "https://invest-telecom.com/produkcziya/kabelnaya-produkcziya/",
+      "https://invest-telecom.com/produkcziya/kabelnaya-kanalizacziya/",
+      "https://invest-telecom.com/produkcziya/okonechnoe-oborudovanie/okonesnoe-oborudovanie-pod-mednozhilnyij-kabel/",
+      "https://invest-telecom.com/produkcziya/okonechnoe-oborudovanie/okonesnoe-oborudovanie-pod-opticheskij-kabel/",
+      "https://invest-telecom.com/produkcziya/okonechnoe-oborudovanie/kontejneryi-dgu-czod-batarejnyie-shkafyi/",
+      "https://invest-telecom.com/produkcziya/priczepnaya-texnika/priczepnaya-texnika-test-1/",
+      "https://invest-telecom.com/produkcziya/muftyi/"
+    ],
+    "adapter": "extended",
+    "allowHttp": true
+  },
+  {
+    "id": "progress",
+    "name": "Прогресс",
+    "url": "https://progress-msk.ru/",
+    "seeds": [
+      "https://progress-msk.ru/montazh-opticheskih-kabelej-svyazi/",
+      "https://progress-msk.ru/montazh-strukturirovannyh-kabelnyh-sistem/"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "anlan",
+    "name": "АнЛан",
+    "url": "https://anlan.ru/",
+    "seeds": [
+      "https://anlan.ru/catalog/kross-opticheskij",
+      "https://anlan.ru/catalog/kabelnaya-produkciya",
+      "https://anlan.ru/catalog/shkafy-i-stoyki",
+      "https://anlan.ru/catalog/komponenty-sks",
+      "https://anlan.ru/catalog/aktivnoe-oborudovanie"
+    ],
+    "adapter": "extended",
+    "priceDocument": "https://anlan.ru/uploads/Price_AnLan.xlsx"
+  },
+  {
+    "id": "etm",
+    "name": "ЭТМ",
+    "url": "https://www.etm.ru/",
+    "seeds": [
+      "https://www.etm.ru/catalog/090_telekommunikacionnoe_oborudovanie_i_sks"
+    ],
+    "adapter": "extended",
+    "categoryRoot": "090",
+    "categoryPrefixes": [
+      "9515",
+      "9525",
+      "9535",
+      "9541",
+      "9545",
+      "9550",
+      "9565",
+      "9567",
+      "9570",
+      "9575"
+    ]
+  },
+  {
+    "id": "optel",
+    "name": "ОПТЕЛ",
+    "url": "https://optel.ru/",
+    "seeds": [
+      "https://optel.ru/opticheskie-kabeli/",
+      "https://optel.ru/passivnie-komponenti-vols"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "fbtrade",
+    "name": "ФБ-Трейд",
+    "url": "https://fb-trade.ru/",
+    "seeds": [
+      "https://fb-trade.ru/catalog"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "fibertool",
+    "name": "FIBERTOOL",
+    "url": "https://fibertool.ru/",
+    "seeds": [
+      "https://fibertool.ru/catalog/"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "alphanets",
+    "name": "Альфа-Сети",
+    "url": "https://alphanets.ru/",
+    "seeds": [
+      "https://alphanets.ru/catalog"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "skeo",
+    "name": "СКЕО",
+    "url": "https://skeo.ru/",
+    "seeds": [
+      "https://skeo.ru/katalog/"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "telecomo",
+    "name": "Telecomo",
+    "url": "https://telecomo.ru/",
+    "seeds": [
+      "https://telecomo.ru/catalog/setevoe-oborudovanie/",
+      "https://telecomo.ru/catalog/kabelnaya-produktsiya/"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "komtel",
+    "name": "КомТел",
+    "url": "https://komtel.su/",
+    "seeds": [
+      "https://komtel.su/catalog/"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "linesv",
+    "name": "Линии связи",
+    "url": "https://linesv.ru/",
+    "seeds": [
+      "https://linesv.ru/catalog"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "kabis",
+    "name": "КАБИС",
+    "url": "https://spb-kabis.ru/",
+    "seeds": [
+      "https://spb-kabis.ru/"
+    ],
+    "adapter": "extended",
+    "publicApi": "https://spb-kabis.ru/api/products"
+  },
+  {
+    "id": "netsol",
+    "name": "NetSol",
+    "url": "https://netsol.shop/",
+    "seeds": [
+      "https://netsol.shop/"
+    ],
+    "adapter": "extended",
+    "priceDocument": "https://netsol.shop/docs/price.xlsx"
+  },
+  {
+    "id": "skp",
+    "name": "СКП Краснодар",
+    "url": "https://skp-krasnodar.ru/",
+    "seeds": [
+      "https://skp-krasnodar.ru/catalog"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "lancentre",
+    "name": "ЛАНЦЕНТР",
+    "url": "https://lancentre.ru/",
+    "seeds": [
+      "https://lancentre.ru/catalog/"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "kabco",
+    "name": "КАБКО",
+    "url": "https://kabco.ru/",
+    "seeds": [
+      "https://kabco.ru/catalog/"
+    ],
+    "adapter": "extended"
+  },
+  {
+    "id": "bazis",
+    "name": "Базис Телеком",
+    "url": "https://bazistelecom.ru/",
+    "seeds": [
+      "https://bazistelecom.ru/catalog/"
+    ],
+    "adapter": "extended"
   }
 ]
