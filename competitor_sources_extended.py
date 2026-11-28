@@ -27,7 +27,7 @@ PROFILES={
  'bazis':('[itemtype$="/Product"]','.catalog-block__info-title a','.price__new-val'),
  'anlan':('.product-item, .product','.product_name a, .product-name a, a.name','.price'),
  'linesv':('.shop-item, .product-item, .product','.name a, .product-title a, h3 a','.price'),
- 'skeo':('.product, .product-item, .vm-product','.name a, .product-title a, h2 a','.price, .product-price'),
+ 'skeo':('#yoo-zoo .jbzoo-item-teaser','h3.item-title a','.item-price .price, [itemprop="price"]'),
  'kabis':('article, [data-product-id]','a[href*="/product/"]','[data-price], .price'),
  'etm':('[class*="listItem-item"]','a[href*="/cat/nn/"]','[data-testid^="catalog-list-item-price-details-"]:not([data-testid$="-unit"]), [data-testid^="catalog-list-item-price560-"]:not([data-testid$="-unit"])'),
 }
@@ -112,6 +112,7 @@ def listing(src,url,html):
   # Follow actual category navigation and pagination, not arbitrary product/recommendation URLs.
   ancestors=[a,*list(a.parents)[:4]]
   extra=(src['id']=='hard' and a.find_parent(class_='product-item') is not None and not a.find_parent(class_='product-item').select_one('.item-price')) or (src['id']=='progress' and '/product-' not in href and a.find_parent(class_='card') is not None)
+  if src['id']=='skeo' and a.find_parent('h2') is not None and a.find_parent(id='yoo-zoo') is not None:extra=True
   if extra or any(CAT_CLASSES.search(' '.join(n.get('class',[]))) for n in ancestors if getattr(n,'attrs',None)) or a.get('rel')==['next'] or re.search(r'[?&](?:page|PAGEN_\d|start|limitstart)=',a['href']):links.append(href)
  # Catalog-only suppliers can expose the product page as a link-card without a price.
  return list(products.values()),list(dict.fromkeys(links))
