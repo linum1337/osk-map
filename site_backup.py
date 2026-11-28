@@ -64,7 +64,7 @@ def build_backup(db_path,admin_user,admin_password,domain,root=ROOT):
      if path.is_symlink() or not path.is_file():raise ValueError('Unsafe backup file')
      add_bytes(name,path.read_bytes())
     for path in sorted(root.glob('*.py')):add_file(path.name,path)
-    for name in ['competitor_sources.json','requirements.txt','Dockerfile','.dockerignore','compose.yaml','compose.restore.yaml','Caddyfile','README.md']:
+    for name in ['competitor_sources.json','competitor_presence.json','competitor_regions.json','requirements.txt','Dockerfile','.dockerignore','compose.yaml','compose.restore.yaml','Caddyfile','README.md']:
      add_file(name,root/name)
     for directory in ['app','modules']:
      for path in sorted((root/directory).rglob('*')):
