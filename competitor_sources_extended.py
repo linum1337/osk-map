@@ -109,6 +109,7 @@ def listing(src,url,html):
  for a in soup.select('a[href]'):
   href=c.canonical(src,urljoin(src['url'] if not a['href'].startswith(('/','http')) else url,a['href']))
   if not href or href in product_urls or FORBIDDEN.search(urlsplit(href).path) or not scope_allowed(src,href):continue
+  if src['id']=='etm' and re.search(r'-\d+_',urlsplit(href).path):continue
   # Follow actual category navigation and pagination, not arbitrary product/recommendation URLs.
   ancestors=[a,*list(a.parents)[:4]]
   extra=(src['id']=='hard' and a.find_parent(class_='product-item') is not None and not a.find_parent(class_='product-item').select_one('.item-price')) or (src['id']=='progress' and '/product-' not in href and a.find_parent(class_='card') is not None)

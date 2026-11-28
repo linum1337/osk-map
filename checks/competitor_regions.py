@@ -25,6 +25,9 @@ with tempfile.TemporaryDirectory() as tmp:
  assert not find(q='РегионФикстура',region='not-a-real-region')['products'] or all(p['provider']=='etm' for p in find(q='РегионФикстура',region='not-a-real-region')['products'])
  assert any(s['presence']['federal'] for s in result['sources']) and result['regions']
  etm=c.BY_SOURCE['etm'];assert scope_allowed(etm,etm['seeds'][0]) and scope_allowed(etm,'https://www.etm.ru/catalog/952510_opticheskie_kabeli')
+ assert scope_allowed(etm,'https://www.etm.ru/catalog/952530_opticheskie_adaptery-1575_ITK'),'A source facet remains valid product provenance'
+ _,links=listing(etm,etm['seeds'][0],'<nav class=category><a href="/catalog/952530_opticheskie_adaptery">Адаптеры</a><a href="/catalog/952530_opticheskie_adaptery-1575_ITK">ITK</a></nav>')
+ assert links==['https://www.etm.ru/catalog/952530_opticheskie_adaptery'],'Skip duplicate brand facets during traversal'
  assert not scope_allowed(etm,'https://www.etm.ru/catalog/010_elektrotehnika') and not scope_allowed(etm,'https://www.etm.ru/catalog/9999_other')
  wrong=c.make(etm,'https://www.etm.ru/cat/nn/123','Товар вне раздела');wrong['prices']=[];wrong['sourceCategoryUrl']='https://www.etm.ru/catalog/010_other'
  r=client.post('/competitors/api/import',json={'products':[wrong]},headers=auth|{'X-Requested-With':'OSK-Map'});assert r.status_code==400
