@@ -38,4 +38,29 @@ with tempfile.TemporaryDirectory() as tmp:
  after_record=client.get('/competitors/api/product/'+ids[0],headers=headers).json
  assert after_record['product']['prices']==before_record['product']['prices'] and after_record['history']==before_record['history']
  assert after_record['product']['brandDeclaration']=='SSD MetaFixture'
+ # Rebuild legacy manufacturer/search indexes without recording a price change.
+ legacy=c.make(c.BY_SOURCE['nk'],c.BY_SOURCE['nk']['url']+'legacy-cable','Кабель ОККМС-0,22-48')
+ legacy.update(manufacturerVersion='manufacturer-v1',manufacturerKey='unknown',manufacturerLabel='Не указан',prices=[{'amount':'25.00','currency':'RUB','label':'Цена'}])
+ with c.crm_store.connect() as db:
+  db.execute('INSERT OR REPLACE INTO competitor_products VALUES(?,?,?,?,?,?,?,?)',(legacy['id'],'nk','Оптический кабель',legacy['name'],'',json.dumps(legacy),1,legacy['checkedAt']))
+  db.execute("DELETE FROM competitor_migrations WHERE id='manufacturer-v2'")
+  before_all=db.execute('SELECT count(*) FROM competitor_price_history').fetchone()[0]
+ c.init()
+ upgraded=client.get('/competitors/api/product/'+legacy['id'],headers=headers).json['product']
+ assert upgraded['manufacturerKey']=='sarko' and upgraded['prices']==legacy['prices'] and upgraded['checkedAt']==legacy['checkedAt']
+ assert legacy['id'] in [p['id'] for p in find(q='ОККМС',manufacturer='sarko')['products']]
+ with c.crm_store.connect() as db:assert db.execute('SELECT count(*) FROM competitor_price_history').fetchone()[0]==before_all
 print('PASS manufacturers: exact official article links, brand/factory separation, no guessed country/maker, scoped source claims, maker+supplier+category filters, unchanged price history')
+
+def cable(name,**extra):return m.enrich(dict(name=name,category='Оптический кабель',provider='optikkom',url='https://www.optik-kom.ru/goods/test',properties={},prices=[])|extra)
+for mark,key,path in [('ОККМС-0,22-48 7кН','sarko','/okkms/'),('ОККС-0,22-48','sarko','/okks/'),('ОКПК-0,22-4','sarko','/okpk/'),('ОКМС-16 10кН','transvoc','item=3'),('ОМЗКГЦ-10-01-0,22-8','beltele','odnomodulnoj'),('ОКНГ (В/Т2)','altay','okng-vt2')]:
+ e=cable('Кабель '+mark);assert e['manufacturerKey']==key and path in e['manufacturerProductUrl'],e;assert e['manufacturerEvidence']=='reference-mark' and not e.get('originCountry');assert m.enrich(e)==e
+for name in ['Кабель ОКБ-16 7кН','Кабель ОККМ-16','Кабель ДПО-16','Кабель ОКТм-16','Кабель ОККМСХ-16','Кабель ОКСЛ-М, ОКСТМ, ОКЛм','Кабель ОККМС / ОМЗКГЦ','Зажим для кабеля ОККМС']:
+ assert cable(name)['manufacturerKey']=='unknown',name
+assert cable('Кабель ОККМС',originCountry='Китай')['manufacturerKey']=='unknown'
+assert cable('Кабель ОККМС',manufacturerDeclaration='Другой завод')['manufacturer']=='Другой завод'
+e=cable('Кабель ОКМБ-02',prices=[{'label':'Исполнение: Кабель СЛ-ОКМБ 02НУ-4Е2-2,5','amount':'10.00'}]);assert e['manufacturerKey']=='starlink' and '/sl-okmb-02/' in e['manufacturerProductUrl']
+e=cable('Кабель ОКМБ-02');assert e['manufacturerKey']=='unknown','Omitted factory prefix is ambiguous'
+e=cable('Кабель СЛ-ОКПЦ-Д2к');assert e['manufacturerKey']=='starlink' and 'kruglyy' in e['manufacturerProductUrl']
+assert cable('Кабель СЛ-ОКМБ-02 / ОККМС')['manufacturerKey']=='unknown','Conflicting factories'
+print('PASS cable markings: reviewed complete families, variant markings, exact series links, no ambiguous parents/alternatives/country conflicts or declared-maker overrides')

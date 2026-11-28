@@ -109,7 +109,8 @@
       "name": "АлтайОптикаКабель",
       "aliases": [
         "АлтайОптикаКабель",
-        "Алтай Оптика кабель"
+        "Алтай Оптика кабель",
+        "Алтай Кабель"
       ],
       "site": "https://altayok.ru/"
     },
@@ -4949,5 +4950,280 @@
     "120313-00004": "https://ssd.ru/product/mufta-tupikovaya-razv-p-et-4mto-45-s-tr-tut/",
     "120313-00009": "https://ssd.ru/product/mufta-tupikovaya-razv-p-et-4mto-80-s-tr-tut/",
     "130408-00354": "https://ssd.ru/product/mufta_kross_mko_g3_sm6_20sc_ssd/"
-  }
+  },
+  "cableMarks": [
+    {
+      "maker": "sarko",
+      "mark": "ОККМС",
+      "url": "https://sarko.ru/product/okkms/",
+      "source": "https://sarko.ru/product/okkms/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "sarko",
+      "mark": "ОККС",
+      "url": "https://sarko.ru/product/okks/",
+      "source": "https://sarko.ru/product/okks/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "sarko",
+      "mark": "ОКПК",
+      "url": "https://sarko.ru/product/okpk/",
+      "source": "https://sarko.ru/product/okpk/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "sarko",
+      "mark": "ОКПА-П/С",
+      "url": "https://sarko.ru/product/okpa-p-s/",
+      "source": "https://sarko.ru/product/okpa-p-s/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "sarko",
+      "mark": "ОКПА-П/П",
+      "url": "https://sarko.ru/product/okpa-p-p/",
+      "source": "https://sarko.ru/product/okpa-p-p/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "sarko",
+      "mark": "ОКПА-С/П",
+      "url": "https://sarko.ru/product/okpa-s-p/",
+      "source": "https://sarko.ru/product/okpa-s-p/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "transvoc",
+      "mark": "ОКМС",
+      "url": "https://www.transvoc.ru/product?item=3",
+      "source": "https://www.transvoc.ru/product?item=3",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "beltele",
+      "mark": "ОМЗКГЦ",
+      "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-dlja-odnomodulnoj-prokladki-v-grunt/",
+      "source": "https://beltelecabel.by/sertificate/sertifikat-sootvetstvija-rf/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "beltele",
+      "mark": "ОМЗКГМ",
+      "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli/",
+      "source": "https://beltelecabel.by/sertificate/sertifikat-sootvetstvija-rf/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "beltele",
+      "mark": "ОККТМ",
+      "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-3/",
+      "source": "https://beltelecabel.by/sertificate/sertifikat-sootvetstvija-rf/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "beltele",
+      "mark": "ОККТЦ",
+      "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-3/",
+      "source": "https://beltelecabel.by/sertificate/sertifikat-sootvetstvija-rf/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "beltele",
+      "mark": "ОКСТМ",
+      "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-2/",
+      "source": "https://beltelecabel.by/sertificate/sertifikat-sootvetstvija-rf/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "beltele",
+      "mark": "ОКСТЦ",
+      "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-odnomodulnye-dlja-prokladki-v-kanalizacii/",
+      "source": "https://beltelecabel.by/sertificate/sertifikat-sootvetstvija-rf/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "beltele",
+      "mark": "ОКСНМ",
+      "url": "https://beltelecabel.by/production/volokonno-opticheskie-kabeli-mnogomodulnye-samonesushhie/",
+      "source": "https://beltelecabel.by/sertificate/sertifikat-sootvetstvija-rf/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "altay",
+      "mark": "ОКНГ (В/П2)",
+      "url": "https://altayok.ru/catalog/abonentskij/okng-vp2/",
+      "source": "https://altayok.ru/catalog/abonentskij/okng-vp2/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "altay",
+      "mark": "ОКНГ (В/Т2)",
+      "url": "https://altayok.ru/catalog/abonentskij/okng-vt2/",
+      "source": "https://altayok.ru/catalog/abonentskij/okng-vt2/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "altay",
+      "mark": "ОКНГ (В/Т3)",
+      "url": "https://altayok.ru/catalog/abonentskij/okng-vt3/",
+      "source": "https://altayok.ru/catalog/abonentskij/okng-vt3/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "altay",
+      "mark": "ОКНГ (ВА)",
+      "url": "https://altayok.ru/catalog/abonentskij/okng-va/",
+      "source": "https://altayok.ru/catalog/abonentskij/okng-va/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "integra",
+      "mark": "ИКСЛ-М",
+      "url": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-obychnoy-obolochke/iksl-m/",
+      "source": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-obychnoy-obolochke/iksl-m/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "integra",
+      "mark": "ИКСЛН-М",
+      "url": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-negoryuchey-obolochke/ikslng-a-hf-m/",
+      "source": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-negoryuchey-obolochke/ikslng-a-hf-m/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "integra",
+      "mark": "ИКС-М",
+      "url": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-obychnoj-obolochke/iks-m/",
+      "source": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-obychnoj-obolochke/iks-m/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "integra",
+      "mark": "ИКС-Т",
+      "url": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-obychnoj-obolochke/iks-t/",
+      "source": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-obychnoj-obolochke/iks-t/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "integra",
+      "mark": "ИКСЛ-Т",
+      "url": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-obychnoj-obolochke/iksl-t/",
+      "source": "https://intg.ru/catalog/kabel-opticheskiy/v-kanalizaciyu/v-obychnoj-obolochke/iksl-t/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "integra",
+      "mark": "ИКБ-М",
+      "url": "https://intg.ru/catalog/kabel-opticheskiy/v-grunt/v-obychnoy-obolochke/ikb-m/",
+      "source": "https://intg.ru/catalog/kabel-opticheskiy/v-grunt/v-obychnoy-obolochke/ikb-m/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "socc",
+      "mark": "ОКЛЖ",
+      "url": "https://soccom.ru/catalog/podvesnoy-samonesushchiy/oklzh-01/",
+      "source": "https://soccom.ru/catalog/podvesnoy-samonesushchiy/oklzh-01/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "socc",
+      "mark": "ОКЛЖ-ВС",
+      "url": "https://soccom.ru/catalog/podvesnoj-s-vynesennym-silovym-ehlementom/oklzh-vs-01/",
+      "source": "https://soccom.ru/catalog/podvesnoj-s-vynesennym-silovym-ehlementom/oklzh-vs-01/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "socc",
+      "mark": "ОКЛЖ-ВД",
+      "url": "https://soccom.ru/catalog/podvesnoj-s-vynesennym-silovym-ehlementom/oklzh-vd-01/",
+      "source": "https://soccom.ru/catalog/podvesnoj-s-vynesennym-silovym-ehlementom/oklzh-vd-01/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "socc",
+      "mark": "ОКЛСт",
+      "url": "https://soccom.ru/catalog/v-kabelnuyu-kanalizatsiyu/oklst-01/",
+      "source": "https://soccom.ru/catalog/v-kabelnuyu-kanalizatsiyu/oklst-01/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "socc",
+      "mark": "ОКЛК",
+      "url": "https://soccom.ru/catalog/v-grunt/oklk-01/",
+      "source": "https://soccom.ru/catalog/v-grunt/oklk-01/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "starlink",
+      "mark": "СЛ-ОКМБ-01",
+      "url": "https://npp-starlink.ru/catalog/sl-okmb-01/",
+      "source": "https://npp-starlink.ru/catalog/sl-okmb-01/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "starlink",
+      "mark": "СЛ-ОКМБ-02",
+      "url": "https://npp-starlink.ru/catalog/sl-okmb-02/",
+      "source": "https://npp-starlink.ru/catalog/sl-okmb-02/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "starlink",
+      "mark": "СЛ-ОКМБ-03",
+      "url": "https://npp-starlink.ru/catalog/sl-okmb-03/",
+      "source": "https://npp-starlink.ru/catalog/sl-okmb-03/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "starlink",
+      "mark": "СЛ-ОКПБ",
+      "url": "https://npp-starlink.ru/catalog/sl-okpb/",
+      "source": "https://npp-starlink.ru/catalog/sl-okpb/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "starlink",
+      "mark": "СЛ-ОКПЦ-Д2",
+      "url": "https://npp-starlink.ru/catalog/ploskiy-drop-kabel-sl-okpts-d2/",
+      "source": "https://npp-starlink.ru/catalog/ploskiy-drop-kabel-sl-okpts-d2/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "starlink",
+      "mark": "СЛ-ОКПЦ-Д2к",
+      "url": "https://npp-starlink.ru/catalog/sl-okpts-d2k-kruglyy-drop-kabel/",
+      "source": "https://npp-starlink.ru/catalog/sl-okpts-d2k-kruglyy-drop-kabel/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "starlink",
+      "mark": "СЛ-ОЭК-ПЦ",
+      "url": "https://npp-starlink.ru/catalog/kombinirovannyy-optoelektricheskiy-kabel-sl-oek-pts/",
+      "source": "https://npp-starlink.ru/catalog/kombinirovannyy-optoelektricheskiy-kabel-sl-oek-pts/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "starlink",
+      "mark": "СЛ-ОЭК-НУ",
+      "url": "https://npp-starlink.ru/catalog/kombinirovannyy-optoelektricheskiy-kabel-sl-oek-nu/",
+      "source": "https://npp-starlink.ru/catalog/kombinirovannyy-optoelektricheskiy-kabel-sl-oek-nu/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "starlink",
+      "mark": "СЛ-ОЭК-У",
+      "url": "https://npp-starlink.ru/catalog/kombinirovannyy-optoelektricheskiy-kabel-sl-oek-u/",
+      "source": "https://npp-starlink.ru/catalog/kombinirovannyy-optoelektricheskiy-kabel-sl-oek-u/",
+      "checked": "2026-11-28"
+    },
+    {
+      "maker": "starlink",
+      "mark": "СЛ-ОЭК-П",
+      "url": "https://npp-starlink.ru/catalog/kombinirovannyy-optoelektricheskiy-kabel-sl-oek-p/",
+      "source": "https://npp-starlink.ru/catalog/kombinirovannyy-optoelektricheskiy-kabel-sl-oek-p/",
+      "checked": "2026-11-28"
+    }
+  ]
 }

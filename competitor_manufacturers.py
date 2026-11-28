@@ -4,7 +4,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 DATA=json.loads((ROOT/'app/competitors/manufacturer-links.json').read_text())
 MAKERS={m['id']:m for m in DATA['manufacturers']}
-_VERSION='manufacturer-v1'
+_VERSION='manufacturer-v2'
 def norm(text):return re.sub(r'[^a-zа-я0-9]','',str(text).casefold().replace('ё','е'))
 _ALIASES={}
 for maker in MAKERS.values():
@@ -77,9 +77,31 @@ def manufacturer_link(record,key):
   url=next(iter(candidates));return key,url,candidates[url]
  return key,'',''
 
+def cable_mark_match(record):
+ # Only reviewed factory-specific families; shared abbreviations are excluded.
+ if record.get('category')!='Оптический кабель' or record.get('originCountry') in ('Китай','China','КНР'):return None
+ if re.search(r'[,|]\s*(?:ОК|ОМЗ|ИК|СЛ-|ОР[ПК])',record.get('name',''),re.I):return None
+ if re.search(r'зажим|муфт|разъ[её]м|ролик|инструмент|сборк|шнур|лента|колодец|кронштейн|гаситель|тестер|соединител',record.get('name',''),re.I):return None
+ fields=[record.get('name',''),record.get('sku','')]
+ fields.extend(p.get('label','') for p in record.get('prices',[]) if str(p.get('label','')).startswith('Исполнение:'))
+ hits=[]
+ for text in fields:
+  text=re.sub('[–—−]','-',str(text)).upper()
+  text=re.sub(r'(СЛ-ОКМБ)\s+(0[123])',r'\1-\2',text)
+  matches=[]
+  for rule in DATA.get('cableMarks',[]):
+   code=rule['mark'].upper();pattern=re.escape(code).replace(r'\ ',r'\s*')
+   for m in re.finditer(r'(?<![А-ЯA-Z0-9])'+pattern+r'(?=$|[^А-ЯA-Z]|НУ\b|НГ\b)',text):matches.append((m.start(),m.end(),rule))
+  # A full СЛ-ОКПЦ-Д2к must not also match its shorter parent family.
+  hits.extend(r for a,b,r in matches if not any(c<=a and d>=b and d-c>b-a for c,d,_ in matches))
+ if len({r['maker'] for r in hits})!=1:return None
+ # Different series at the same factory can share a product card; do not pick one.
+ urls={r['url'] for r in hits}
+ return dict(maker=hits[0]['maker'],url=next(iter(urls)) if len(urls)==1 else '',mark=', '.join(dict.fromkeys(r['mark'] for r in hits)))
+
 def enrich(record):
  out={**record}
- if out.get('manufacturerVersion')!=_VERSION:
+ if not out.get('manufacturerVersion'):
   # Earlier JSON-LD imports combined brand with manufacturer: retain it as a brand.
   if out.get('manufacturer') and not out.get('manufacturerDeclaration'):
    out.setdefault('brandDeclaration',out['manufacturer']);out.setdefault('manufacturerPrevious',out['manufacturer'])
@@ -105,7 +127,14 @@ def enrich(record):
     if pattern.search(label):maker=key;break
   if maker:evidence='supplier-title'
  if out.get('provider')=='osk' and '/kabel-osk/' in out.get('url',''):maker='osk';brand='ОСК';evidence='supplier-category'
+ match=cable_mark_match(out) if not raw and (not maker or maker=='altay') else None
+ if match and (not maker or maker==match['maker']):
+  maker=match['maker'];evidence='reference-mark'
+ else:match=None
  key,url,kind=manufacturer_link(out,maker)
+ if match:
+  url=match['url'];kind='family' if url else '';out['manufacturerMatchedMark']=match['mark']
+ else:out.pop('manufacturerMatchedMark',None)
  if key=='ssd' and url:
   maker=key;raw=MAKERS[key]['name'];out['manufacturerDeclaration']=raw;evidence='official-article'
  out['manufacturerProductUrl']='';out['brandProductUrl']='';out['manufacturerLinkKind']='';out['brandLinkKind']=''

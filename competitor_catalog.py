@@ -255,11 +255,13 @@ def init():
    if group!=path:
     p['category']=group;c.execute('UPDATE competitor_products SET category=?,payload=? WHERE id=?',(group,json.dumps(p,ensure_ascii=False),id))
  with crm_store.connect() as c:
-  if not c.execute("SELECT 1 FROM competitor_migrations WHERE id='manufacturer-v1'").fetchone():
+  if not c.execute("SELECT 1 FROM competitor_migrations WHERE id='manufacturer-v2'").fetchone():
    for id,payload in c.execute('SELECT id,payload FROM competitor_products').fetchall():
     p=makers.enrich(json.loads(payload));c.execute('UPDATE competitor_products SET payload=? WHERE id=?',(json.dumps(p,ensure_ascii=False),id))
     c.execute('INSERT OR REPLACE INTO competitor_makers VALUES(?,?,?)',(id,p['manufacturerKey'],p['manufacturerLabel']))
-   c.execute('INSERT INTO competitor_migrations VALUES(?,?)',('manufacturer-v1',now()))
+    body,name,sku=search.document(p,BY_SOURCE.get(p['provider'],{}).get('name',''))
+    c.execute('INSERT OR REPLACE INTO competitor_search VALUES(?,?,?,?)',(id,body,name,sku))
+   c.execute('INSERT INTO competitor_migrations VALUES(?,?)',('manufacturer-v2',now()))
  with crm_store.connect() as c:
   if not c.execute("SELECT 1 FROM competitor_migrations WHERE id='search-v2'").fetchone():
    for id,payload in c.execute('SELECT id,payload FROM competitor_products').fetchall():
