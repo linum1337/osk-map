@@ -1,5 +1,5 @@
 """Public network-product catalogues and price tiers from the seven configured suppliers."""
-import json,re,ssl,certifi,time,hashlib,threading,uuid,os,collections
+import json,re,ssl,certifi,time,hashlib,threading,uuid,os,collections,contextlib
 from pathlib import Path
 from urllib.parse import urljoin,urlsplit,urlunsplit,parse_qsl,urlencode
 from urllib.request import Request,build_opener,HTTPRedirectHandler,HTTPSHandler
@@ -287,12 +287,12 @@ def init():
    with crm_store.connect() as c:exists=c.execute('SELECT 1 FROM competitor_products WHERE id=?',(record['id'],)).fetchone()
    if not exists:save(record)
 
-def save(record):
+def save(record,connection=None):
  record={**record,'category':category(record['name'],record.get('categoryPath',''))}
  if record.get('provider')=='lanset' and record.get('priceParser')!=LANSET_PARSER:
   record={**record,'prices':[],'availability':'','detailCheckedAt':None}
  listing_update=not record.get('detailCheckedAt')
- with crm_store.connect() as c:
+ with (contextlib.nullcontext(connection) if connection is not None else crm_store.connect()) as c:
   old=c.execute('SELECT payload FROM competitor_products WHERE id=?',(record['id'],)).fetchone()
   if old:
    previous=json.loads(old[0])
@@ -311,6 +311,10 @@ def save(record):
   c.execute('INSERT OR REPLACE INTO competitor_search VALUES(?,?,?,?)',(record['id'],body,name,sku))
   raw=json.dumps(record['prices'],ensure_ascii=False,sort_keys=True);fingerprint=hashlib.sha256(raw.encode()).hexdigest();prior=c.execute('SELECT fingerprint FROM competitor_price_history WHERE product_id=? ORDER BY seq DESC LIMIT 1',(record['id'],)).fetchone()
   if record.get('checkedAt') and (not prior or prior[0]!=fingerprint):c.execute('INSERT INTO competitor_price_history(product_id,checked,prices,fingerprint) VALUES(?,?,?,?)',(record['id'],record['checkedAt'],raw,fingerprint))
+
+def save_many(records):
+ with crm_store.connect() as connection:
+  for record in records:save(record,connection)
 
 def source_state(id,state):
  with crm_store.connect() as c:
@@ -499,5 +503,5 @@ def register(app,owner):
    for row in record['prices']:
     if not isinstance(row,dict) or not money(row.get('amount','')) or row.get('currency','') not in ('','RUB','RUR','USD','EUR'):return jsonify(error='Некорректная цена'),400
    records.append(record)
-  for record in records:save(record)
+  save_many(records)
   return jsonify(imported=len(records))
